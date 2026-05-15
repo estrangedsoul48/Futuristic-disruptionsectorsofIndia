@@ -1,0 +1,2035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>India's New-Age Digital Business Transformation Super-Cycle</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #080e1d;
+    --navy-mid: #0d1628;
+    --navy-card: #111c33;
+    --navy-border: #1e2d4a;
+    --gold: #c8a84b;
+    --gold-light: #e4c97a;
+    --gold-dim: rgba(200,168,75,0.15);
+    --teal: #2c8c7e;
+    --teal-light: #3ab5a3;
+    --teal-dim: rgba(44,140,126,0.12);
+    --red: #c0483a;
+    --red-dim: rgba(192,72,58,0.12);
+    --text-primary: #e8e4d8;
+    --text-secondary: #9ba3b8;
+    --text-muted: #5a6480;
+    --sidebar-w: 260px;
+    --max-w: 960px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    background: var(--navy);
+    color: var(--text-primary);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.75;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR ── */
+  aside#sidebar {
+    width: var(--sidebar-w);
+    min-height: 100vh;
+    background: var(--navy-mid);
+    border-right: 1px solid var(--navy-border);
+    position: fixed;
+    top: 0; left: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    z-index: 100;
+  }
+
+  .sidebar-brand {
+    padding: 28px 22px 20px;
+    border-bottom: 1px solid var(--navy-border);
+  }
+  .sidebar-brand .label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 6px;
+    font-family: 'DM Mono', monospace;
+  }
+  .sidebar-brand h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+
+  nav#toc { padding: 14px 0; flex: 1; }
+
+  .toc-section-label {
+    font-size: 8.5px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+    font-family: 'DM Mono', monospace;
+    padding: 14px 22px 5px;
+  }
+
+  nav#toc a {
+    display: block;
+    padding: 7px 22px;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: all 0.2s;
+    line-height: 1.4;
+    font-weight: 400;
+  }
+  nav#toc a:hover, nav#toc a.active {
+    color: var(--gold-light);
+    border-left-color: var(--gold);
+    background: var(--gold-dim);
+  }
+
+  .sidebar-meta {
+    padding: 16px 22px;
+    border-top: 1px solid var(--navy-border);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    line-height: 2;
+  }
+
+  /* ── MAIN CONTENT ── */
+  main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    max-width: calc(100vw - var(--sidebar-w));
+  }
+
+  /* ── HERO ── */
+  #cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 80px 80px 72px;
+    position: relative;
+    overflow: hidden;
+    background: var(--navy);
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(200,168,75,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,168,75,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(44,140,126,0.07) 0%, transparent 70%);
+    top: -200px; right: -200px;
+    pointer-events: none;
+  }
+
+  .hero-glow2 {
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,168,75,0.06) 0%, transparent 70%);
+    bottom: 0; left: 40%;
+    pointer-events: none;
+  }
+
+  .cover-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .cover-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 40px; height: 1px;
+    background: var(--gold);
+  }
+
+  .cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    font-weight: 600;
+    line-height: 1.08;
+    color: var(--text-primary);
+    position: relative;
+    max-width: 800px;
+    margin-bottom: 14px;
+  }
+  .cover-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .cover-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .cover-stats {
+    display: flex;
+    gap: 48px;
+    position: relative;
+    padding-top: 36px;
+    border-top: 1px solid var(--navy-border);
+  }
+
+  .cover-stat .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .cover-stat .lbl {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: 'DM Mono', monospace;
+    margin-top: 4px;
+  }
+
+  /* ── SECTION WRAPPER ── */
+  section.module {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 80px 80px 60px;
+    border-bottom: 1px solid var(--navy-border);
+    animation: fadeUp 0.5s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 40px;
+    height: 1px;
+    background: var(--gold-dim);
+  }
+
+  h2.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin-bottom: 32px;
+  }
+
+  h3.sub-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 36px 0 14px;
+  }
+
+  h4.sub-sub {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    font-family: 'DM Mono', monospace;
+    margin: 28px 0 10px;
+  }
+
+  p { color: var(--text-secondary); margin-bottom: 16px; font-size: 0.93rem; }
+  p strong { color: var(--text-primary); font-weight: 500; }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight-box {
+    border-left: 3px solid var(--gold);
+    background: var(--gold-dim);
+    padding: 20px 24px;
+    border-radius: 0 6px 6px 0;
+    margin: 24px 0;
+  }
+  .highlight-box p { margin: 0; color: var(--text-primary); font-size: 0.9rem; }
+
+  .insight-box {
+    border-left: 3px solid var(--teal);
+    background: var(--teal-dim);
+    padding: 20px 24px;
+    border-radius: 0 6px 6px 0;
+    margin: 24px 0;
+  }
+  .insight-box p { margin: 0; color: var(--text-secondary); font-size: 0.88rem; }
+  .insight-box .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  /* ── STAT GRID ── */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--navy-border);
+    border: 1px solid var(--navy-border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 32px 0;
+  }
+  .stat-cell {
+    background: var(--navy-card);
+    padding: 24px 20px;
+  }
+  .stat-cell .val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-cell .key {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'DM Mono', monospace;
+  }
+  .stat-cell .delta {
+    font-size: 0.75rem;
+    color: var(--teal-light);
+    margin-top: 4px;
+    font-family: 'DM Mono', monospace;
+  }
+  .stat-cell .delta.neg { color: var(--red); }
+
+  /* ── TIER CARDS ── */
+  .tier-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 10px;
+    padding: 28px 28px;
+    margin: 20px 0;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .tier-card:hover { border-color: var(--gold); }
+  .tier-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gold);
+  }
+  .tier-card.teal::before { background: var(--teal); }
+  .tier-card.red::before { background: var(--red); }
+
+  .tier-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .tier-card.teal .tier-badge { color: var(--teal-light); }
+
+  .tier-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  .tier-card p { font-size: 0.85rem; margin-bottom: 12px; }
+
+  .tier-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
+  }
+  .tag-chip {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--navy-border);
+    color: var(--text-muted);
+    background: var(--navy);
+    white-space: nowrap;
+  }
+  .tag-chip.gold { border-color: var(--gold); color: var(--gold-light); background: var(--gold-dim); }
+  .tag-chip.teal { border-color: var(--teal); color: var(--teal-light); background: var(--teal-dim); }
+
+  /* ── COMPANY CARDS ── */
+  .company-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 28px 0;
+  }
+
+  .company-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 10px;
+    padding: 22px;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .company-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  }
+
+  .company-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  .company-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .moat-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .moat-badge.strong { background: rgba(44,140,126,0.2); color: var(--teal-light); border: 1px solid var(--teal); }
+  .moat-badge.moderate { background: rgba(200,168,75,0.15); color: var(--gold-light); border: 1px solid var(--gold); }
+  .moat-badge.emerging { background: rgba(100,100,200,0.15); color: #9999e8; border: 1px solid #5555bb; }
+  .moat-badge.narrative { background: var(--red-dim); color: #e07060; border: 1px solid var(--red); }
+
+  .company-ticker {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .company-desc {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+    line-height: 1.6;
+  }
+
+  .company-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--navy-border);
+    border: 1px solid var(--navy-border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+  .metric-cell {
+    background: var(--navy);
+    padding: 10px 8px;
+    text-align: center;
+  }
+  .metric-cell .mv { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--gold-light); font-weight: 500; }
+  .metric-cell .mk { font-size: 0.62rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+
+  .company-verdict {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .verdict-bull, .verdict-bear {
+    font-size: 0.72rem;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 400;
+  }
+  .verdict-bull { background: rgba(44,140,126,0.1); color: var(--teal-light); }
+  .verdict-bear { background: var(--red-dim); color: #e07060; }
+
+  /* ── ECOSYSTEM MAP (SVG) ── */
+  .ecosystem-container {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 10px;
+    padding: 32px;
+    margin: 32px 0;
+    overflow-x: auto;
+  }
+
+  /* ── BAR CHART ── */
+  .bar-chart { margin: 28px 0; }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .bar-label { font-size: 0.75rem; color: var(--text-secondary); width: 140px; text-align: right; white-space: nowrap; font-family: 'DM Mono', monospace; }
+  .bar-track { flex: 1; background: var(--navy-border); border-radius: 3px; height: 28px; position: relative; overflow: hidden; }
+  .bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--teal), var(--teal-light));
+    transition: width 1s ease;
+    display: flex;
+    align-items: center;
+    padding-right: 8px;
+    justify-content: flex-end;
+  }
+  .bar-fill.gold { background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+  .bar-val { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--navy); font-weight: 500; }
+
+  /* ── FLYWHEEL SVG ── */
+  .flywheel-wrap {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 10px;
+    padding: 32px;
+    margin: 28px 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* ── MATRIX TABLE ── */
+  .matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 28px 0;
+    font-size: 0.8rem;
+  }
+  .matrix-table th {
+    background: var(--navy-card);
+    color: var(--gold-light);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 12px 14px;
+    text-align: left;
+    border: 1px solid var(--navy-border);
+  }
+  .matrix-table td {
+    padding: 11px 14px;
+    border: 1px solid var(--navy-border);
+    color: var(--text-secondary);
+    line-height: 1.4;
+    vertical-align: top;
+  }
+  .matrix-table tr:hover td { background: rgba(200,168,75,0.04); }
+  .matrix-table .dot-high { color: var(--teal-light); }
+  .matrix-table .dot-mid { color: var(--gold-light); }
+  .matrix-table .dot-low { color: #e07060; }
+
+  /* ── RISK SECTION ── */
+  .risk-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 28px 0;
+  }
+  .risk-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+  }
+  .risk-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--red);
+    border-radius: 8px 8px 0 0;
+  }
+  .risk-card.moderate::before { background: var(--gold); }
+  .risk-card.low::before { background: var(--teal); }
+  .risk-level {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #e07060;
+    margin-bottom: 8px;
+  }
+  .risk-card.moderate .risk-level { color: var(--gold-light); }
+  .risk-card.low .risk-level { color: var(--teal-light); }
+  .risk-card h4 { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
+  .risk-card p { font-size: 0.78rem; color: var(--text-secondary); margin: 0; }
+
+  /* ── INVESTOR BASKETS ── */
+  .basket-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .basket {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 8px;
+    padding: 18px;
+  }
+  .basket-type {
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .basket h4 { font-size: 0.88rem; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; }
+  .basket ul { list-style: none; }
+  .basket ul li {
+    font-size: 0.77rem;
+    color: var(--text-secondary);
+    padding: 4px 0;
+    border-bottom: 1px solid var(--navy-border);
+    font-family: 'DM Mono', monospace;
+  }
+  .basket ul li:last-child { border: none; }
+
+  /* ── VERDICT SECTION ── */
+  #verdict {
+    background: linear-gradient(180deg, var(--navy-mid) 0%, var(--navy) 100%);
+  }
+
+  .verdict-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 32px 0;
+  }
+  .verdict-box {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 10px;
+    padding: 26px;
+  }
+  .verdict-box.gold { border-color: var(--gold); background: var(--gold-dim); }
+  .verdict-box.teal { border-color: var(--teal); background: var(--teal-dim); }
+  .verdict-box h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--text-primary); margin-bottom: 14px; }
+  .verdict-box ul { list-style: none; }
+  .verdict-box ul li { font-size: 0.82rem; color: var(--text-secondary); padding: 6px 0; border-bottom: 1px solid var(--navy-border); display: flex; gap: 10px; align-items: flex-start; }
+  .verdict-box ul li::before { content: '→'; color: var(--gold); flex-shrink: 0; }
+  .verdict-box.teal ul li::before { color: var(--teal-light); }
+
+  /* ── FOOTER ── */
+  footer.report-footer {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 40px 80px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    line-height: 2;
+    border-top: 1px solid var(--navy-border);
+  }
+  footer.report-footer strong { color: var(--text-secondary); font-weight: 500; }
+
+  /* ── ROADMAP TIMELINE ── */
+  .timeline {
+    position: relative;
+    margin: 32px 0;
+    padding-left: 30px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 8px;
+    width: 1px;
+    background: linear-gradient(180deg, var(--gold), var(--teal), var(--gold));
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 32px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -34px;
+    top: 7px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--navy);
+  }
+  .timeline-item .period {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .timeline-item h4 { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
+  .timeline-item p { font-size: 0.82rem; color: var(--text-secondary); margin: 0; }
+
+  /* Scroll-to-top */
+  #top-btn {
+    position: fixed;
+    bottom: 30px; right: 30px;
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    border-radius: 50%;
+    width: 42px; height: 42px;
+    font-size: 18px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+  }
+  #top-btn.visible { opacity: 1; }
+
+  @media(max-width: 900px) {
+    aside#sidebar { display: none; }
+    main { margin-left: 0; max-width: 100%; }
+    section.module { padding: 48px 28px; }
+    #cover { padding: 48px 28px; }
+    .risk-grid, .verdict-grid { grid-template-columns: 1fr; }
+    .cover-stats { flex-wrap: wrap; gap: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── SIDEBAR ── -->
+<aside id="sidebar">
+  <div class="sidebar-brand">
+    <div class="label">Institutional Research</div>
+    <h2>India Digital Transformation Super-Cycle</h2>
+  </div>
+  <nav id="toc">
+    <span class="toc-section-label">Introduction</span>
+    <a href="#cover">Cover & Key Statistics</a>
+    <a href="#exec">Executive Summary</a>
+    <span class="toc-section-label">Context & Ecosystem</span>
+    <a href="#global">Global Digital Context</a>
+    <a href="#ecosystem">Ecosystem Value Chain Map</a>
+    <a href="#tier1">Tier 1 — Digital Infrastructure</a>
+    <a href="#tier2">Tier 2 — Enterprise Transformation</a>
+    <a href="#tier3">Tier 3 — Consumer Internet</a>
+    <a href="#tier4">Tier 4 — AI & Automation</a>
+    <a href="#tier5">Tier 5 — B2B Enablement</a>
+    <a href="#tier6">Tier 6 — Cybersecurity & Trust</a>
+    <span class="toc-section-label">Policy & Macro</span>
+    <a href="#policy">India Policy & Digital Infrastructure</a>
+    <a href="#adoption">Digital Adoption & Transformation</a>
+    <span class="toc-section-label">Financial Analysis</span>
+    <a href="#capital">Capital Cycle Analysis</a>
+    <a href="#margins">Margin Structure & Value Capture</a>
+    <span class="toc-section-label">Equity Research</span>
+    <a href="#equities">Listed Equity Mapping</a>
+    <a href="#moat">Mission-Criticality & Moat</a>
+    <a href="#comparables">Global Comparables</a>
+    <span class="toc-section-label">Risk & Strategy</span>
+    <a href="#risks">Risk Analysis</a>
+    <a href="#strategy">Investor Strategy</a>
+    <span class="toc-section-label">Conclusion</span>
+    <a href="#verdict">Final Investment Verdict</a>
+    <a href="#decade">The Next Decade</a>
+  </nav>
+  <div class="sidebar-meta">
+    Classification: Public Research<br>
+    Coverage: India Digital Ecosystem<br>
+    Format: Institutional Equity Research<br>
+    © 2025 Research Intelligence Unit
+  </div>
+</aside>
+
+<!-- ── MAIN ── -->
+<main>
+
+<!-- COVER -->
+<section id="cover" style="border-bottom:1px solid var(--navy-border)">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="cover-eyebrow">Institutional-Grade Equity Research</div>
+  <h1 class="cover-title">India's New-Age Digital Business<br><em>Transformation Super-Cycle</em></h1>
+  <p class="cover-subtitle">A Definitive Cross-Disciplinary Blueprint for India's Listed Digital Equities</p>
+  <div class="cover-stats">
+    <div class="cover-stat"><div class="num">$1T+</div><div class="lbl">Digital Economy Target by 2030</div></div>
+    <div class="cover-stat"><div class="num">950M+</div><div class="lbl">Internet Users by 2026E</div></div>
+    <div class="cover-stat"><div class="num">~7%</div><div class="lbl">Enterprise SaaS Penetration (Current)</div></div>
+    <div class="cover-stat"><div class="num">20Y</div><div class="lbl">Estimated Digitization Runway</div></div>
+    <div class="cover-stat"><div class="num">63M+</div><div class="lbl">Registered SMEs — Largely Under-Digitized</div></div>
+  </div>
+</section>
+
+<!-- EXEC SUMMARY -->
+<section id="exec" class="module">
+  <div class="section-label">Section 00</div>
+  <h2 class="section-title">Executive Summary</h2>
+
+  <div class="highlight-box">
+    <p><strong>India is entering its most consequential digital decade.</strong> The confluence of 950M+ internet users, a maturing India Stack, enterprise modernization pressure, AI-driven productivity imperatives, and a young developer ecosystem has created a structural inflection point that will compound over 15–20 years. This is not a short-cycle theme — it is a civilizational rewiring of how businesses operate, transact, hire, serve, and scale.</p>
+  </div>
+
+  <p>The India digital transformation narrative is frequently conflated with fintech and payments. This report deliberately excludes that lens. The opportunity studied here is categorically different: it is the emergence of software as the operating layer of Indian commerce — the ERP, CRM, HRM, supply-chain, AI copilot, API economy, and platform-infrastructure stack that turns India's 63 million SMEs and its modernizing large enterprises into computable, data-driven, automatable economic units.</p>
+
+  <p>India's enterprise software penetration remains extraordinarily early. Cloud migration is accelerating but still in its first innings. AI adoption is creating a step-change in digitization economics. Consumer internet platforms are transitioning from growth-at-all-costs to unit-economics maturity. And a new class of B2B infrastructure businesses — quietly building mission-critical workflow dependencies — is becoming the most interesting risk-adjusted digital opportunity on Indian exchanges.</p>
+
+  <h3 class="sub-title">Five Core Theses</h3>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <div class="val">01</div>
+      <div class="key">Software Penetration Thesis</div>
+      <div class="delta">India's enterprise software spending is ~2–3% of global share vs. ~15% of GDP share</div>
+    </div>
+    <div class="stat-cell">
+      <div class="val">02</div>
+      <div class="key">AI Acceleration Thesis</div>
+      <div class="delta">Generative AI compresses 10-year digitization timelines — a forcing function for enterprise software adoption</div>
+    </div>
+    <div class="stat-cell">
+      <div class="val">03</div>
+      <div class="key">Platform Lock-In Thesis</div>
+      <div class="delta">Workflow-embedded SaaS and platform businesses create switching costs that evolve into monopolistic moats</div>
+    </div>
+    <div class="stat-cell">
+      <div class="val">04</div>
+      <div class="key">Infrastructure Toll-Booth Thesis</div>
+      <div class="delta">Mission-critical digital infrastructure (cloud, API, identity, data) accretes pricing power as dependency deepens</div>
+    </div>
+    <div class="stat-cell">
+      <div class="val">05</div>
+      <div class="key">Capital Cycle Thesis</div>
+      <div class="delta">Post-bubble rationalization creates entry into high-quality digital businesses at structurally reasonable valuations</div>
+    </div>
+  </div>
+</section>
+
+<!-- GLOBAL CONTEXT -->
+<section id="global" class="module">
+  <div class="section-label">Section 01</div>
+  <h2 class="section-title">Global Digital Transformation Context</h2>
+
+  <p>The global enterprise software industry has undergone three distinct paradigm shifts since 2000: the on-premise ERP era (Oracle, SAP), the cloud/SaaS transition (Salesforce, Workday, ServiceNow), and now the AI-native era (Microsoft Copilot, Salesforce Einstein, Snowflake Cortex). Each shift created multi-decade compounding wealth for shareholders who understood the economic architecture early.</p>
+
+  <h3 class="sub-title">Why Software Margins Structurally Scale</h3>
+  <p>The economics of software businesses are unlike any other industrial category. <strong>Once a product is developed, the marginal cost of distributing an additional unit approaches zero.</strong> This creates a gross margin structure (typically 70–85% for SaaS) that has no analogue in manufacturing or services. As revenue scales, operating leverage compounds. The top SaaS businesses in the world — ServiceNow, Veeva, Workday — have demonstrated that workflow-embedded software generates 25–35% free cash flow margins at scale, with net revenue retention above 120% for best-in-class platforms.</p>
+
+  <div class="insight-box">
+    <span class="tag">Key Economic Principle</span>
+    <p>Software businesses with deep workflow integration are the only asset class that generates both <strong>growing topline revenue AND expanding margins simultaneously</strong> — the hallmark of a structural compounder. This is the economic template India's emerging software ecosystem is attempting to replicate.</p>
+  </div>
+
+  <h3 class="sub-title">Relevant Global Analogues for India's Journey</h3>
+
+  <div class="bar-chart">
+    <div class="bar-row"><div class="bar-label">Salesforce CRM Penetration</div><div class="bar-track"><div class="bar-fill gold" style="width:82%"><span class="bar-val">~82% of F500</span></div></div></div>
+    <div class="bar-row"><div class="bar-label">ServiceNow Workflow</div><div class="bar-track"><div class="bar-fill gold" style="width:78%"><span class="bar-val">~78% of F500</span></div></div></div>
+    <div class="bar-row"><div class="bar-label">AWS Cloud Adoption (US)</div><div class="bar-track"><div class="bar-fill" style="width:70%"><span class="bar-val">~70% Enterprise</span></div></div></div>
+    <div class="bar-row"><div class="bar-label">India Cloud Adoption</div><div class="bar-track"><div class="bar-fill" style="width:22%"><span class="bar-val">~22% Enterprise</span></div></div></div>
+    <div class="bar-row"><div class="bar-label">India ERP Penetration</div><div class="bar-track"><div class="bar-fill" style="width:15%"><span class="bar-val">~15% of Enterprises</span></div></div></div>
+    <div class="bar-row"><div class="bar-label">India SaaS per Employee</div><div class="bar-track"><div class="bar-fill" style="width:8%"><span class="bar-val">~8% of US levels</span></div></div></div>
+  </div>
+
+  <p>The penetration gaps above are not bugs — they are the investment thesis. Every percentage point of cloud adoption, SaaS penetration, or workflow digitization in India represents billions of dollars of addressable software revenue. The trajectory of US software markets from 1995–2020 is India's roadmap, compressed and accelerated by AI.</p>
+
+  <h3 class="sub-title">Why India Matters Now</h3>
+  <p>India has crossed several structural thresholds simultaneously that create a self-reinforcing digital adoption loop. Cheap internet (averaging ₹200/month for unlimited data) means the distribution cost of software approaches zero. India Stack has eliminated the need to build basic financial and identity infrastructure from scratch. A generation of 650,000+ software developers graduating annually has created a technical workforce capable of both building and adopting enterprise software. And the post-COVID enterprise productivity shock has forced CFOs and CIOs across Indian corporations to confront the inefficiency of legacy, manual workflows.</p>
+</section>
+
+<!-- ECOSYSTEM MAP -->
+<section id="ecosystem" class="module">
+  <div class="section-label">Section 02</div>
+  <h2 class="section-title">Complete Indian Digital Ecosystem Value Chain Map</h2>
+  <p>The Indian digital ecosystem is best understood as a layered architecture — each tier dependent on the one below, each extracting value from the one above. The most durable businesses occupy positions where they are simultaneously <em>load-bearing infrastructure</em> (difficult to remove) and <em>data-accumulating platforms</em> (difficult to replicate). Below is the strategic architecture of the full stack.</p>
+
+  <div class="ecosystem-container">
+    <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:800px;display:block;margin:0 auto">
+      <defs>
+        <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#c8a84b" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#c8a84b" stop-opacity="0.08"/>
+        </linearGradient>
+        <linearGradient id="gTeal" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#2c8c7e" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#2c8c7e" stop-opacity="0.08"/>
+        </linearGradient>
+        <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#4466cc" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#4466cc" stop-opacity="0.08"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Layer bars -->
+      <rect x="10" y="10"  width="780" height="56" rx="6" fill="url(#gGold)" stroke="#c8a84b" stroke-width="1" stroke-opacity="0.4"/>
+      <rect x="10" y="78"  width="780" height="56" rx="6" fill="url(#gTeal)" stroke="#2c8c7e" stroke-width="1" stroke-opacity="0.4"/>
+      <rect x="10" y="146" width="780" height="56" rx="6" fill="url(#gBlue)" stroke="#4466cc" stroke-width="1" stroke-opacity="0.4"/>
+      <rect x="10" y="214" width="780" height="56" rx="6" fill="url(#gGold)" stroke="#c8a84b" stroke-width="1" stroke-opacity="0.4"/>
+      <rect x="10" y="282" width="780" height="56" rx="6" fill="url(#gTeal)" stroke="#2c8c7e" stroke-width="1" stroke-opacity="0.4"/>
+      <rect x="10" y="350" width="780" height="56" rx="6" fill="url(#gBlue)" stroke="#4466cc" stroke-width="1" stroke-opacity="0.4"/>
+
+      <!-- Layer labels -->
+      <text x="22" y="30" font-family="'DM Mono',monospace" font-size="8" fill="#c8a84b" letter-spacing="2">TIER 1</text>
+      <text x="22" y="44" font-family="'Cormorant Garamond',serif" font-size="15" fill="#e8e4d8" font-weight="600">Digital Infrastructure &amp; Cloud Enablers</text>
+      <text x="22" y="57" font-family="'DM Mono',monospace" font-size="8" fill="#9ba3b8">Data Centers · Cloud APIs · Identity · Cybersecurity · AI Compute</text>
+
+      <text x="22" y="98"  font-family="'DM Mono',monospace" font-size="8" fill="#3ab5a3" letter-spacing="2">TIER 2</text>
+      <text x="22" y="112" font-family="'Cormorant Garamond',serif" font-size="15" fill="#e8e4d8" font-weight="600">Enterprise Digital Transformation</text>
+      <text x="22" y="125" font-family="'DM Mono',monospace" font-size="8" fill="#9ba3b8">ERP · HR Tech · CRM · Supply-Chain Software · AI Copilots · Vertical SaaS</text>
+
+      <text x="22" y="166" font-family="'DM Mono',monospace" font-size="8" fill="#7788dd" letter-spacing="2">TIER 3</text>
+      <text x="22" y="180" font-family="'Cormorant Garamond',serif" font-size="15" fill="#e8e4d8" font-weight="600">Consumer Internet &amp; Digital Platforms</text>
+      <text x="22" y="193" font-family="'DM Mono',monospace" font-size="8" fill="#9ba3b8">E-Commerce · Food Delivery · Travel · Classifieds · Content · Creator Economy</text>
+
+      <text x="22" y="234" font-family="'DM Mono',monospace" font-size="8" fill="#c8a84b" letter-spacing="2">TIER 4</text>
+      <text x="22" y="248" font-family="'Cormorant Garamond',serif" font-size="15" fill="#e8e4d8" font-weight="600">AI &amp; Automation Ecosystem</text>
+      <text x="22" y="261" font-family="'DM Mono',monospace" font-size="8" fill="#9ba3b8">GenAI Infra · AI Copilots · Workflow Automation · Data Labeling · AI Services</text>
+
+      <text x="22" y="302" font-family="'DM Mono',monospace" font-size="8" fill="#3ab5a3" letter-spacing="2">TIER 5</text>
+      <text x="22" y="316" font-family="'Cormorant Garamond',serif" font-size="15" fill="#e8e4d8" font-weight="600">Digital Enablement &amp; B2B Infrastructure</text>
+      <text x="22" y="329" font-family="'DM Mono',monospace" font-size="8" fill="#9ba3b8">Logistics Software · E-Commerce Enablement · SMB OS · API Businesses · Developer Infra</text>
+
+      <text x="22" y="370" font-family="'DM Mono',monospace" font-size="8" fill="#7788dd" letter-spacing="2">TIER 6</text>
+      <text x="22" y="384" font-family="'Cormorant Garamond',serif" font-size="15" fill="#e8e4d8" font-weight="600">Cybersecurity, Data Trust &amp; Digital Governance</text>
+      <text x="22" y="397" font-family="'DM Mono',monospace" font-size="8" fill="#9ba3b8">Identity Mgmt · Data Governance · Compliance · Secure Cloud · Digital Trust</text>
+
+      <!-- Moat indicators on right side -->
+      <rect x="728" y="18" width="54" height="18" rx="4" fill="rgba(200,168,75,0.2)" stroke="#c8a84b" stroke-width="0.7"/>
+      <text x="755" y="31" font-family="'DM Mono',monospace" font-size="8" fill="#c8a84b" text-anchor="middle">TOLL BOOTH</text>
+
+      <rect x="728" y="86" width="54" height="18" rx="4" fill="rgba(44,140,126,0.2)" stroke="#2c8c7e" stroke-width="0.7"/>
+      <text x="755" y="99" font-family="'DM Mono',monospace" font-size="8" fill="#3ab5a3" text-anchor="middle">LOCK-IN</text>
+
+      <rect x="728" y="154" width="54" height="18" rx="4" fill="rgba(68,102,204,0.2)" stroke="#4466cc" stroke-width="0.7"/>
+      <text x="755" y="167" font-family="'DM Mono',monospace" font-size="8" fill="#7788dd" text-anchor="middle">NETWORK FX</text>
+
+      <rect x="728" y="222" width="54" height="18" rx="4" fill="rgba(200,168,75,0.2)" stroke="#c8a84b" stroke-width="0.7"/>
+      <text x="755" y="235" font-family="'DM Mono',monospace" font-size="8" fill="#c8a84b" text-anchor="middle">AI OPTIONALITY</text>
+
+      <rect x="728" y="290" width="54" height="18" rx="4" fill="rgba(44,140,126,0.2)" stroke="#2c8c7e" stroke-width="0.7"/>
+      <text x="755" y="303" font-family="'DM Mono',monospace" font-size="8" fill="#3ab5a3" text-anchor="middle">ENABLEMENT</text>
+
+      <rect x="728" y="358" width="54" height="18" rx="4" fill="rgba(68,102,204,0.2)" stroke="#4466cc" stroke-width="0.7"/>
+      <text x="755" y="371" font-family="'DM Mono',monospace" font-size="8" fill="#7788dd" text-anchor="middle">COMPLIANCE</text>
+    </svg>
+  </div>
+</section>
+
+<!-- TIER 1 -->
+<section id="tier1" class="module">
+  <div class="section-label">Tier 1 — Digital Infrastructure</div>
+  <h2 class="section-title">Digital Infrastructure & Cloud Enablers</h2>
+  <p>Infrastructure layers are the foundational stratum of the digital economy — the equivalent of roads, power grids, and telecommunications. The critical insight is that <strong>digital infrastructure becomes a toll booth</strong>: once an enterprise routes its workflows through a platform, switching is non-trivial, pricing power accretes, and usage compounds with the customer's own growth. India's cloud infrastructure market is growing at ~30% CAGR and remains deeply underpenetrated.</p>
+
+  <div class="tier-card">
+    <span class="tier-badge">Cloud & Data Center</span>
+    <h3>The Cloud Migration Wave</h3>
+    <p>Indian enterprises are migrating from on-premise infrastructure to hybrid and public cloud environments at an accelerating pace, driven by digital-native workload growth, AI inference requirements, and regulatory compliance pressures. AWS, Azure, and GCP dominate hyperscaler capacity, but India-specific data center operators (Yotta, NTT, CtrlS, STT) are scaling capacity to meet sovereign data requirements. The Tier 2 city data center buildout is a 5-year capital deployment cycle that creates durable infrastructure assets.</p>
+    <div class="tier-tags">
+      <span class="tag-chip gold">30% CAGR Market</span>
+      <span class="tag-chip teal">Hyperscaler Dependency</span>
+      <span class="tag-chip">Sovereign Data Push</span>
+      <span class="tag-chip">Pricing Power Accretes</span>
+    </div>
+  </div>
+
+  <div class="tier-card">
+    <span class="tier-badge">API & Integration Layer</span>
+    <h3>The API Economy as Invisible Infrastructure</h3>
+    <p>Route Mobile, Tanla Platforms, and Kaleyra (now part of Sinch) represent the API communication layer — the "plumbing" of digital customer engagement. These businesses send billions of SMS, OTP, WhatsApp Business, and RCS messages per month on behalf of enterprises. They are mission-critical, price-inelastic, and growing with the digitization of enterprise-customer interactions. The key risk is commoditization pressure from hyperscaler communication APIs and rising telecom operator margins.</p>
+    <div class="tier-tags">
+      <span class="tag-chip gold">Mission Critical</span>
+      <span class="tag-chip teal">Volume Compounder</span>
+      <span class="tag-chip">Commoditization Risk</span>
+    </div>
+  </div>
+
+  <div class="tier-card teal">
+    <span class="tier-badge">AI Compute Infrastructure</span>
+    <h3>GPU Clouds & AI Inference Buildout</h3>
+    <p>India's AI compute infrastructure is nascent but accelerating. Netweb Technologies is a notable beneficiary as a domestic AI server assembler. The government's India AI Mission envisions 10,000+ GPU capacity for public AI research. Private AI compute clouds (E2E Networks, Yotta, Neysa) are scaling capacity for inference workloads. The long-term structural question is whether India develops sovereign AI compute capability or remains dependent on global hyperscalers — a policy-level decision that will shape this tier's economics for a decade.</p>
+    <div class="tier-tags">
+      <span class="tag-chip teal">Policy Dependent</span>
+      <span class="tag-chip">Nascent Opportunity</span>
+      <span class="tag-chip gold">Netweb Technologies Play</span>
+    </div>
+  </div>
+</section>
+
+<!-- TIER 2 -->
+<section id="tier2" class="module">
+  <div class="section-label">Tier 2 — Enterprise Transformation</div>
+  <h2 class="section-title">Enterprise Digital Transformation</h2>
+  <p>This tier is, arguably, the most important and least appreciated layer of India's digital transformation. Indian enterprises — from listed conglomerates to unlisted mid-market businesses — are dramatically under-invested in software relative to their revenue scale. A ₹10,000 crore revenue enterprise in India may spend less on enterprise software than a $100M revenue company in the United States. That gap is the market.</p>
+
+  <div class="stat-grid">
+    <div class="stat-cell"><div class="val">~2%</div><div class="key">Enterprise Software as % of IT Budget (India)</div></div>
+    <div class="stat-cell"><div class="val">~8%</div><div class="key">Enterprise Software as % of IT Budget (US)</div></div>
+    <div class="stat-cell"><div class="val">$50B+</div><div class="key">India Enterprise Software TAM by 2030E</div></div>
+    <div class="stat-cell"><div class="val">12–15%</div><div class="key">Estimated CAGR for Indian Vertical SaaS</div></div>
+  </div>
+
+  <h3 class="sub-title">Why Indian Enterprises Remain Under-Digitized</h3>
+  <p>Three structural factors explain the gap: <strong>(1) Legacy of jugaad culture</strong> — Indian businesses built workarounds using Excel, WhatsApp, and manual labor rather than software. <strong>(2) SME financing constraints</strong> — software is perceived as a cost rather than a capital multiplier by cash-constrained SME promoters. <strong>(3) Talent availability</strong> — the skills needed to implement and manage enterprise software have historically been scarce outside metros. All three constraints are now simultaneously relaxing: AI makes software simpler to deploy, India Stack provides data infrastructure, and the post-COVID productivity imperative has shifted CFO mindsets.</p>
+
+  <div class="tier-card">
+    <span class="tier-badge">Vertical SaaS</span>
+    <h3>The Vertical SaaS Opportunity</h3>
+    <p>Horizontal SaaS (Zoho, Freshworks) serves broad markets but faces intense global competition. <strong>Vertical SaaS</strong> — software built specifically for the workflows of a particular industry (hospitality, logistics, textiles, real estate, pharmaceuticals) — represents India's clearest software moat opportunity. Vertical SaaS businesses with deep workflow integration achieve net revenue retention above 110% in mature markets because the cost of switching is the cost of disrupting the entire business operation. Newgen Software (document and process automation), Nucleus Software (loan management), and niche unlisted verticals are building these moats quietly.</p>
+    <div class="tier-tags">
+      <span class="tag-chip gold">110%+ NRR Potential</span>
+      <span class="tag-chip teal">Deep Workflow Integration</span>
+      <span class="tag-chip">SME + Enterprise</span>
+    </div>
+  </div>
+
+  <div class="tier-card teal">
+    <span class="tier-badge">HR Tech</span>
+    <h3>HR Tech — India's Underrated Enterprise SaaS Category</h3>
+    <p>With 500M+ workers in the formal and semi-formal economy and rising compliance complexity (EPFO, ESI, GST payroll, labor codes), HR technology is a structurally compounding market. Listed players include Zaggle (expense and rewards management) and various unlisted platforms. The AI-enabled HRMS market is being disrupted from below by API-first, mobile-native platforms that are more accessible to mid-market enterprises than legacy systems.</p>
+    <div class="tier-tags">
+      <span class="tag-chip teal">Compliance Driven</span>
+      <span class="tag-chip">500M Worker Market</span>
+    </div>
+  </div>
+</section>
+
+<!-- TIER 3 -->
+<section id="tier3" class="module">
+  <div class="section-label">Tier 3 — Consumer Internet</div>
+  <h2 class="section-title">Consumer Internet & Digital Platforms</h2>
+  <p>India's consumer internet ecosystem has matured significantly since the 2015–2021 hypergrowth era. The current phase is defined by a transition from user acquisition to monetization depth, from GMV growth to contribution margin expansion, and from narrative-driven valuation to cash-flow-proximity valuation. The platforms that survive will be those that have achieved genuine behavioral lock-in — not merely habitual usage, but embedded dependency.</p>
+
+  <!-- Platform Flywheel -->
+  <div class="flywheel-wrap">
+    <svg viewBox="0 0 500 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:480px">
+      <defs>
+        <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+          <path d="M0,0 L0,8 L8,4 z" fill="#c8a84b" fill-opacity="0.7"/>
+        </marker>
+      </defs>
+      <text x="250" y="30" font-family="'DM Mono',monospace" font-size="10" fill="#c8a84b" text-anchor="middle" letter-spacing="3">PLATFORM FLYWHEEL</text>
+      <!-- Center -->
+      <circle cx="250" cy="220" r="55" fill="rgba(200,168,75,0.1)" stroke="#c8a84b" stroke-width="1.5"/>
+      <text x="250" y="215" font-family="'Cormorant Garamond',serif" font-size="15" fill="#e8e4d8" text-anchor="middle" font-weight="600">Network</text>
+      <text x="250" y="232" font-family="'Cormorant Garamond',serif" font-size="15" fill="#e8e4d8" text-anchor="middle" font-weight="600">Effect</text>
+
+      <!-- Outer nodes -->
+      <circle cx="250" cy="80" r="40" fill="rgba(44,140,126,0.15)" stroke="#2c8c7e" stroke-width="1"/>
+      <text x="250" y="74" font-family="'DM Mono',monospace" font-size="8.5" fill="#3ab5a3" text-anchor="middle">MORE</text>
+      <text x="250" y="86" font-family="'DM Mono',monospace" font-size="8.5" fill="#3ab5a3" text-anchor="middle">USERS</text>
+
+      <circle cx="400" cy="160" r="40" fill="rgba(200,168,75,0.12)" stroke="#c8a84b" stroke-width="1"/>
+      <text x="400" y="154" font-family="'DM Mono',monospace" font-size="8.5" fill="#c8a84b" text-anchor="middle">MORE</text>
+      <text x="400" y="166" font-family="'DM Mono',monospace" font-size="8.5" fill="#c8a84b" text-anchor="middle">SELLERS</text>
+
+      <circle cx="400" cy="290" r="40" fill="rgba(44,140,126,0.15)" stroke="#2c8c7e" stroke-width="1"/>
+      <text x="400" y="284" font-family="'DM Mono',monospace" font-size="8.5" fill="#3ab5a3" text-anchor="middle">BETTER</text>
+      <text x="400" y="296" font-family="'DM Mono',monospace" font-size="8.5" fill="#3ab5a3" text-anchor="middle">DATA</text>
+
+      <circle cx="250" cy="370" r="40" fill="rgba(200,168,75,0.12)" stroke="#c8a84b" stroke-width="1"/>
+      <text x="250" y="364" font-family="'DM Mono',monospace" font-size="8.5" fill="#c8a84b" text-anchor="middle">LOWER</text>
+      <text x="250" y="376" font-family="'DM Mono',monospace" font-size="8.5" fill="#c8a84b" text-anchor="middle">CAC</text>
+
+      <circle cx="100" cy="290" r="40" fill="rgba(44,140,126,0.15)" stroke="#2c8c7e" stroke-width="1"/>
+      <text x="100" y="284" font-family="'DM Mono',monospace" font-size="8.5" fill="#3ab5a3" text-anchor="middle">HIGHER</text>
+      <text x="100" y="296" font-family="'DM Mono',monospace" font-size="8.5" fill="#3ab5a3" text-anchor="middle">LTV</text>
+
+      <circle cx="100" cy="160" r="40" fill="rgba(200,168,75,0.12)" stroke="#c8a84b" stroke-width="1"/>
+      <text x="100" y="154" font-family="'DM Mono',monospace" font-size="8.5" fill="#c8a84b" text-anchor="middle">MORE</text>
+      <text x="100" y="166" font-family="'DM Mono',monospace" font-size="8.5" fill="#c8a84b" text-anchor="middle">SELECTION</text>
+
+      <!-- Arrows (circular) -->
+      <path d="M250,120 L250,165" stroke="#c8a84b" stroke-width="1.2" fill="none" stroke-opacity="0.5" marker-end="url(#arrow)"/>
+      <path d="M362,175 L290,200" stroke="#c8a84b" stroke-width="1.2" fill="none" stroke-opacity="0.5" marker-end="url(#arrow)"/>
+      <path d="M370,275 L300,250" stroke="#c8a84b" stroke-width="1.2" fill="none" stroke-opacity="0.5" marker-end="url(#arrow)"/>
+      <path d="M250,330 L250,280" stroke="#c8a84b" stroke-width="1.2" fill="none" stroke-opacity="0.5" marker-end="url(#arrow)"/>
+      <path d="M138,275 L210,250" stroke="#c8a84b" stroke-width="1.2" fill="none" stroke-opacity="0.5" marker-end="url(#arrow)"/>
+      <path d="M130,175 L205,200" stroke="#c8a84b" stroke-width="1.2" fill="none" stroke-opacity="0.5" marker-end="url(#arrow)"/>
+    </svg>
+  </div>
+
+  <h3 class="sub-title">Platform-by-Platform Analysis</h3>
+
+  <div class="tier-card">
+    <span class="tier-badge">Quick Commerce / Food Delivery</span>
+    <h3>Zomato & Swiggy — The Duopoly That Matters</h3>
+    <p>India's food delivery market is effectively a duopoly, and duopolies in platform markets tend toward oligopolistic equilibrium pricing over time. Zomato (listed) has demonstrated improving unit economics, with Blinkit (quick commerce) emerging as a high-ROIC infrastructure asset. The thesis has evolved from "can they grow?" to "what is the take-rate ceiling?" — a fundamentally better question to be asking. Swiggy's IPO (2024) brought the duopoly fully into public market focus. The risk: continued promotional intensity preventing margin normalization.</p>
+    <div class="tier-tags">
+      <span class="tag-chip gold">Duopoly Structure</span>
+      <span class="tag-chip teal">Blinkit Infrastructure</span>
+      <span class="tag-chip">Take-Rate Ceiling Thesis</span>
+    </div>
+  </div>
+
+  <div class="tier-card teal">
+    <span class="tier-badge">Digital Classifieds / Marketplaces</span>
+    <h3>Info Edge — India's Internet Holding Company</h3>
+    <p>Info Edge is one of the most elegant capital allocation stories in Indian digital markets. Naukri.com has dominated professional recruitment for two decades with 70%+ market share, generating exceptional free cash flow that has been deployed into Zomato (early investor), PolicyBazaar, and other ventures. The core business benefits from both sides of the employment market compounding simultaneously — more employers AND more job seekers — creating a structural network effect moat. The key analytical challenge is separating the intrinsic Naukri value from the complex holding company structure.</p>
+    <div class="tier-tags">
+      <span class="tag-chip teal">70%+ Naukri Market Share</span>
+      <span class="tag-chip gold">Capital Allocator</span>
+      <span class="tag-chip">Network Effect Moat</span>
+    </div>
+  </div>
+</section>
+
+<!-- TIER 4 -->
+<section id="tier4" class="module">
+  <div class="section-label">Tier 4 — AI & Automation</div>
+  <h2 class="section-title">AI & Automation Ecosystem</h2>
+  <p>Artificial intelligence is not a separate technology layer in India's digital ecosystem — it is a <strong>forcing function</strong> that accelerates the entire stack. AI reduces the cost of building software, reduces the time to derive value from data, and makes workflow automation accessible to businesses that previously could not afford implementation complexity. The net effect is a compression of India's digitization timeline from two decades to one.</p>
+
+  <div class="highlight-box">
+    <p><strong>The AI Paradox for Indian Listed Equities:</strong> Most companies claiming AI transformation are embedding AI into existing products incrementally. Very few are building AI-native business models. Investors must distinguish between <em>AI-enhanced incumbents</em> (most companies), <em>AI-threatened incumbents</em> (some services businesses), and <em>AI-native new entrants</em> (largely unlisted). The asymmetric opportunity is identifying listed companies with genuine proprietary data moats that AI amplifies.</p>
+  </div>
+
+  <h3 class="sub-title">Which Layers Capture Most Value in the AI Stack?</h3>
+
+  <table class="matrix-table">
+    <thead>
+      <tr>
+        <th>Layer</th>
+        <th>Value Capture</th>
+        <th>India Listed Exposure</th>
+        <th>Moat Quality</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>AI Compute (GPU/TPU)</td>
+        <td>Very High</td>
+        <td>Netweb Technologies (partial)</td>
+        <td class="dot-high">Strong (hardware moat)</td>
+      </tr>
+      <tr>
+        <td>Foundation Models</td>
+        <td>High</td>
+        <td>Minimal (unlisted)</td>
+        <td class="dot-mid">Scale-dependent</td>
+      </tr>
+      <tr>
+        <td>AI Platform / MLOps</td>
+        <td>High</td>
+        <td>Limited</td>
+        <td class="dot-mid">Growing</td>
+      </tr>
+      <tr>
+        <td>AI-Embedded SaaS</td>
+        <td>High</td>
+        <td>Newgen, Happiest Minds, Tata Elxsi</td>
+        <td class="dot-high">Workflow lock-in</td>
+      </tr>
+      <tr>
+        <td>AI Services / Implementation</td>
+        <td>Moderate</td>
+        <td>Broad IT services</td>
+        <td class="dot-low">Commoditizing</td>
+      </tr>
+      <tr>
+        <td>Data Labeling</td>
+        <td>Low-Moderate</td>
+        <td>Unlisted players (iMerit etc.)</td>
+        <td class="dot-low">Margin pressure</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="tier-card">
+    <span class="tier-badge">AI Services</span>
+    <h3>Happiest Minds & Tata Elxsi — Engineering Intelligence</h3>
+    <p>Happiest Minds Technologies is positioned as a digital and AI-first IT services company, with a higher proportion of digital revenue than most mid-tier IT peers. Tata Elxsi is a premium engineering and technology design firm with deep domain expertise in automotive, media, and healthcare — sectors where AI is creating massive design and development complexity. Both firms benefit from the AI productivity boom without needing to own foundation model risk. The structural question is whether their AI services can command premium pricing as implementation tools commoditize.</p>
+    <div class="tier-tags">
+      <span class="tag-chip gold">Digital-First Revenue Mix</span>
+      <span class="tag-chip teal">Domain Expertise Moat</span>
+    </div>
+  </div>
+</section>
+
+<!-- TIER 5 -->
+<section id="tier5" class="module">
+  <div class="section-label">Tier 5 — B2B Enablement</div>
+  <h2 class="section-title">Digital Enablement & B2B Infrastructure</h2>
+  <p>This is the least glamorous and most undervalued tier in India's digital ecosystem. B2B infrastructure businesses — logistics software, e-commerce enablement, SMB operating systems, API middleware — operate in markets with low brand recognition and high customer stickiness. They are the digital picks-and-shovels of India's commerce transformation.</p>
+
+  <div class="tier-card">
+    <span class="tier-badge">B2B Marketplace</span>
+    <h3>IndiaMART — The B2B Network Effect Compounder</h3>
+    <p>IndiaMART is one of India's most durable digital moats. As the dominant B2B marketplace connecting buyers and suppliers across India's fragmented SME economy, it benefits from a two-sided network that is genuinely self-reinforcing. 170M+ registered buyers, 7M+ supplier listings, and a marketplace that has survived multiple competitive threats because the demand density itself is the product. The monetization journey from free listings to paid subscriptions to premium services (CRM, lead management) mirrors the playbook of Alibaba's early years. The risk is that large-format vertical marketplaces (steel.com equivalents) progressively cannibalize category-specific demand.</p>
+    <div class="tier-tags">
+      <span class="tag-chip gold">Two-Sided Network</span>
+      <span class="tag-chip teal">170M+ Buyers</span>
+      <span class="tag-chip">SME Digitization Proxy</span>
+    </div>
+  </div>
+
+  <div class="tier-card teal">
+    <span class="tier-badge">E-Commerce Enablement</span>
+    <h3>Unicommerce — Hidden Infrastructure Compounder</h3>
+    <p>Unicommerce is the clearest example of a "hidden toll-booth" digital business in India. It provides the order management, warehouse management, and multi-channel commerce software that underpins e-commerce operations for thousands of brands and logistics providers. When a D2C brand sells across Myntra, Amazon, Flipkart, and their own website simultaneously, Unicommerce's software is the routing layer ensuring inventory accuracy, order fulfillment, and returns management. Switching from Unicommerce requires rebuilding operational integrations across every sales channel — a prohibitive switching cost that creates durable lock-in. Revenue is SaaS-model recurring. Margin expansion is visible as the platform scales without proportional cost growth.</p>
+    <div class="tier-tags">
+      <span class="tag-chip teal">Mission-Critical OMS/WMS</span>
+      <span class="tag-chip gold">SaaS Recurring Revenue</span>
+      <span class="tag-chip">D2C Beneficiary</span>
+    </div>
+  </div>
+
+  <div class="tier-card">
+    <span class="tier-badge">Travel Tech</span>
+    <h3>RateGain Travel Technologies — Vertical SaaS Leader</h3>
+    <p>RateGain is one of India's most globally integrated vertical SaaS businesses, providing revenue management, distribution, and marketing technology to hotels, airlines, and Online Travel Agencies. With 3,200+ customers across 100+ countries, it represents a rare case of an Indian-origin B2B SaaS company that has achieved genuine global scale. The business earns recurring subscription revenue, has net revenue retention above 110%, and benefits from the AI-driven transformation of travel pricing and distribution. The risk: exposure to travel industry cyclicality and competitive pressure from global players like Amadeus and Sabre.</p>
+    <div class="tier-tags">
+      <span class="tag-chip gold">Global SaaS Scale</span>
+      <span class="tag-chip teal">110%+ NRR</span>
+      <span class="tag-chip">3,200+ Customers</span>
+    </div>
+  </div>
+</section>
+
+<!-- TIER 6 -->
+<section id="tier6" class="module">
+  <div class="section-label">Tier 6 — Cybersecurity & Trust</div>
+  <h2 class="section-title">Cybersecurity, Data Trust & Digital Governance</h2>
+  <p>Cybersecurity is not a discretionary spend — it is existential infrastructure. As India's enterprises digitize, the attack surface expands proportionally. The India CERT (Computer Emergency Response Team) reports a multi-fold increase in cyber incidents annually. The Personal Data Protection Act creates a new compliance-driven demand cycle for data governance and privacy infrastructure. This tier is early-stage in India's listed equity markets but represents a structurally compounding opportunity as digitization deepens.</p>
+
+  <div class="insight-box">
+    <span class="tag">Structural Driver</span>
+    <p>Every enterprise that digitizes creates a new cybersecurity customer. The causality is direct and inescapable — digital transformation and cybersecurity spend are co-dependent variables. This makes cybersecurity one of the most durable demand curves in the digital economy, irrespective of macroeconomic cycles.</p>
+  </div>
+
+  <p><strong>India's listed cybersecurity pure-play exposure remains limited</strong>, with most enterprise cybersecurity delivered through IT services arms of large technology firms (TCS, Infosys, HCL) or through international vendors. Black Box Corporation (now listed, network infrastructure and cybersecurity services) represents partial exposure. The opportunity remains largely in the private market, suggesting that IPOs in this category may be among the most interesting listings of the next 3–5 years.</p>
+</section>
+
+<!-- POLICY -->
+<section id="policy" class="module">
+  <div class="section-label">Section 03</div>
+  <h2 class="section-title">India Policy & Digital Public Infrastructure</h2>
+  <p>India has done something extraordinary in the past decade: it has built a <strong>public digital infrastructure stack</strong> (India Stack) that private businesses can leverage as a foundation layer, dramatically reducing the cost and complexity of building financial, identity, and data-sharing applications. This is arguably India's most significant structural competitive advantage in the global digital economy.</p>
+
+  <div class="stat-grid">
+    <div class="stat-cell"><div class="val">1.4B</div><div class="key">Aadhaar Biometric IDs Issued</div></div>
+    <div class="stat-cell"><div class="val">500M+</div><div class="key">DigiLocker Documents Stored</div></div>
+    <div class="stat-cell"><div class="val">ONDC</div><div class="key">Open Network for Digital Commerce — Live</div></div>
+    <div class="stat-cell"><div class="val">AA</div><div class="key">Account Aggregator — Data Portability Live</div></div>
+  </div>
+
+  <h3 class="sub-title">India Stack as Platform Infrastructure</h3>
+  <p>Aadhaar-based identity authentication has eliminated the need for every business to build its own KYC infrastructure. DigiLocker enables instant document verification. The Account Aggregator framework enables consent-based financial data sharing — the foundation of AI-driven credit, insurance, and financial planning products. ONDC is attempting to democratize e-commerce by creating an open protocol that any buyer or seller application can plug into, potentially disrupting the platform lock-in of Amazon and Flipkart. Each of these public rails accelerates private innovation by eliminating infrastructure problems that previously consumed years of engineering effort.</p>
+
+  <div class="highlight-box">
+    <p><strong>The Policy Risk vs. Policy Tailwind Distinction:</strong> India's digital policy environment is simultaneously an accelerator and a risk. ONDC could disrupt current platform economics. Data localization requirements increase infrastructure costs. AI regulation (still evolving) may add compliance complexity. The critical investor skill is distinguishing between policies that create new markets (tailwinds) and policies that redistribute existing market shares (disruption risk).</p>
+  </div>
+</section>
+
+<!-- ADOPTION -->
+<section id="adoption" class="module">
+  <div class="section-label">Section 04</div>
+  <h2 class="section-title">Digital Adoption & Economic Transformation</h2>
+  <p>The most important structural insight about India's digital transformation is that <strong>we are genuinely at the beginning</strong>. This is not narrative convenience — it is an empirical observation grounded in software penetration, cloud adoption, and enterprise workflow digitization data.</p>
+
+  <h3 class="sub-title">Sectors by Digitization Speed</h3>
+
+  <div class="bar-chart">
+    <div class="bar-row"><div class="bar-label">Financial Services</div><div class="bar-track"><div class="bar-fill gold" style="width:75%"><span class="bar-val">Advanced</span></div></div></div>
+    <div class="bar-row"><div class="bar-label">E-Commerce/Retail</div><div class="bar-track"><div class="bar-fill gold" style="width:65%"><span class="bar-val">Accelerating</span></div></div></div>
+    <div class="bar-row"><div class="bar-label">Travel & Hospitality</div><div class="bar-track"><div class="bar-fill" style="width:58%"><span class="bar-val">Maturing</span></div></div></div>
+    <div class="bar-row"><div class="bar-label">Healthcare</div><div class="bar-track"><div class="bar-fill" style="width:35%"><span class="bar-val">Early</span></div></div></div>
+    <div class="bar-row"><div class="bar-label">Manufacturing</div><div class="bar-track"><div class="bar-fill" style="width:28%"><span class="bar-val">Early</span></div></div></div>
+    <div class="bar-row"><div class="bar-label">Agriculture</div><div class="bar-track"><div class="bar-fill" style="width:18%"><span class="bar-val">Nascent</span></div></div></div>
+    <div class="bar-row"><div class="bar-label">SME / Informal Sector</div><div class="bar-track"><div class="bar-fill" style="width:12%"><span class="bar-val">Very Early</span></div></div></div>
+    <div class="bar-row"><div class="bar-label">Construction/Real Estate</div><div class="bar-track"><div class="bar-fill" style="width:10%"><span class="bar-val">Nascent</span></div></div></div>
+  </div>
+
+  <p>The sectors with the lowest current digitization (SME, manufacturing, agriculture, real estate) represent the largest <em>future</em> software opportunity precisely because of their underpenetration. SME digitization alone — if India's 63M SMEs move from paper-based to software-enabled operations — could create a $30–40B annual software revenue pool. This is a multi-decade transition, not a 2–3 year cycle.</p>
+</section>
+
+<!-- CAPITAL CYCLE -->
+<section id="capital" class="module">
+  <div class="section-label">Section 05</div>
+  <h2 class="section-title">Capital Cycle Analysis</h2>
+  <p>Understanding capital cycles in digital businesses is essential for distinguishing permanent wealth creation from cyclical return opportunities. The digital economy has historically concentrated the majority of value creation in a small number of businesses that achieved monopolistic or near-monopolistic positions within their ecosystems.</p>
+
+  <table class="matrix-table">
+    <thead>
+      <tr>
+        <th>Business Type</th>
+        <th>ROIC at Scale</th>
+        <th>Operating Leverage</th>
+        <th>Moat Durability</th>
+        <th>Capital Intensity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Infrastructure Toll Booths</td>
+        <td class="dot-high">20–40%+</td>
+        <td class="dot-high">Very High</td>
+        <td class="dot-high">Strongest</td>
+        <td class="dot-low">Moderate-High</td>
+      </tr>
+      <tr>
+        <td>Platform Ecosystems (Winner-Take-Most)</td>
+        <td class="dot-high">25–50%+</td>
+        <td class="dot-high">Extreme</td>
+        <td class="dot-high">Very Strong</td>
+        <td class="dot-mid">Low (at scale)</td>
+      </tr>
+      <tr>
+        <td>Vertical SaaS (Workflow-Embedded)</td>
+        <td class="dot-high">25–35%</td>
+        <td class="dot-high">High</td>
+        <td class="dot-high">Strong</td>
+        <td class="dot-high">Very Low</td>
+      </tr>
+      <tr>
+        <td>Horizontal SaaS (Competitive)</td>
+        <td class="dot-mid">15–25%</td>
+        <td class="dot-mid">Moderate</td>
+        <td class="dot-mid">Moderate</td>
+        <td class="dot-high">Very Low</td>
+      </tr>
+      <tr>
+        <td>AI Infrastructure</td>
+        <td class="dot-mid">15–30%</td>
+        <td class="dot-high">High (over time)</td>
+        <td class="dot-mid">Moderate-Strong</td>
+        <td class="dot-low">Very High</td>
+      </tr>
+      <tr>
+        <td>Digital Services / BPO</td>
+        <td class="dot-mid">12–20%</td>
+        <td class="dot-low">Low</td>
+        <td class="dot-low">Weak</td>
+        <td class="dot-high">Very Low</td>
+      </tr>
+      <tr>
+        <td>Consumer Internet (Pre-Profitability)</td>
+        <td class="dot-low">Negative → TBD</td>
+        <td class="dot-mid">Potential</td>
+        <td class="dot-mid">Fragile-Moderate</td>
+        <td class="dot-mid">Moderate</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight-box">
+    <span class="tag">Capital Cycle Key Insight</span>
+    <p>Historically, <strong>the greatest digital wealth creation occurs in businesses that become infrastructure</strong> — AWS for cloud, Visa/Mastercard for payments, Salesforce for CRM. The playbook: build a product, achieve distribution, embed into workflows, become mission-critical, raise prices gradually as switching costs compound. Investors in India should identify which businesses are executing this playbook quietly, before the market prices in the infrastructure terminal value.</p>
+  </div>
+</section>
+
+<!-- MARGINS -->
+<section id="margins" class="module">
+  <div class="section-label">Section 06</div>
+  <h2 class="section-title">Margin Structure & Value Capture Analysis</h2>
+
+  <h3 class="sub-title">Gross Margin Benchmarks by Business Type</h3>
+
+  <div class="bar-chart">
+    <div class="bar-row"><div class="bar-label">Pure SaaS Platform</div><div class="bar-track"><div class="bar-fill gold" style="width:82%"><span class="bar-val">75–85%</span></div></div></div>
+    <div class="bar-row"><div class="bar-label">Vertical SaaS</div><div class="bar-track"><div class="bar-fill gold" style="width:75%"><span class="bar-val">65–78%</span></div></div></div>
+    <div class="bar-row"><div class="bar-label">B2B Marketplace</div><div class="bar-track"><div class="bar-fill" style="width:68%"><span class="bar-val">60–75%</span></div></div></div>
+    <div class="bar-row"><div class="bar-label">API Communication</div><div class="bar-track"><div class="bar-fill" style="width:35%"><span class="bar-val">25–40%</span></div></div></div>
+    <div class="bar-row"><div class="bar-label">Consumer Internet Platform</div><div class="bar-track"><div class="bar-fill" style="width:48%"><span class="bar-val">40–55% (contribution)</span></div></div></div>
+    <div class="bar-row"><div class="bar-label">IT Services</div><div class="bar-track"><div class="bar-fill" style="width:33%"><span class="bar-val">28–35%</span></div></div></div>
+    <div class="bar-row"><div class="bar-label">E-Commerce Enablement</div><div class="bar-track"><div class="bar-fill" style="width:65%"><span class="bar-val">60–70%</span></div></div></div>
+  </div>
+
+  <p>The gross margin profile of a business tells the investor more about long-term value capture potential than any other single metric. <strong>High gross margin = operating leverage potential.</strong> A business earning 75% gross margins can invest aggressively in sales, product, and R&D while still improving operating margins as the revenue base grows. A business earning 30% gross margins must choose between growth and profitability.</p>
+
+  <h3 class="sub-title">CAC vs LTV: The Economics of Digital Growth</h3>
+  <p>In digital platform businesses, the ratio of Customer Lifetime Value (LTV) to Customer Acquisition Cost (CAC) is the fundamental measure of business quality. World-class SaaS businesses achieve LTV/CAC ratios of 5–10x or higher. Indian digital businesses are on a wide spectrum — from IndiaMART's mature, high-LTV B2B relationships to early-stage consumer platforms where CAC exceeds LTV by 2–3x. The investment opportunity is identifying businesses transitioning from LTV/CAC below 1 toward LTV/CAC above 5 — the journey where the most value is created in public markets.</p>
+</section>
+
+<!-- LISTED EQUITIES -->
+<section id="equities" class="module">
+  <div class="section-label">Section 07</div>
+  <h2 class="section-title">India Listed Equity Mapping</h2>
+  <p>The following company analysis covers the primary digital transformation equity universe on Indian exchanges. Each is assessed across ecosystem role, platform strength, AI optionality, moat durability, and investment thesis.</p>
+
+  <div class="company-grid">
+
+    <div class="company-card">
+      <div class="company-header">
+        <div class="company-name">Info Edge</div>
+        <div class="moat-badge strong">Platform Monopoly</div>
+      </div>
+      <div class="company-ticker">NSE: NAUKRI &nbsp;|&nbsp; Digital Classifieds</div>
+      <div class="company-desc">Dominant recruitment marketplace (Naukri.com) with 70%+ market share, plus real estate (99acres), matrimonial (Jeevansathi), and strategic equity stakes in Zomato, PB Fintech, and others. A compounding capital allocation machine built on network-effect classifieds businesses.</div>
+      <div class="company-metrics">
+        <div class="metric-cell"><div class="mv">70%+</div><div class="mk">Naukri Mkt Share</div></div>
+        <div class="metric-cell"><div class="mv">60%+</div><div class="mk">Gross Margin</div></div>
+        <div class="metric-cell"><div class="mv">High</div><div class="mk">AI Optionality</div></div>
+      </div>
+      <div class="company-verdict">
+        <span class="verdict-bull">Bull: Naukri pricing power + AI-driven recruitment</span>
+        <span class="verdict-bear">Bear: Holding company discount, LinkedIn competition</span>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div class="company-name">Zomato</div>
+        <div class="moat-badge strong">Platform Ecosystem</div>
+      </div>
+      <div class="company-ticker">NSE: ZOMATO &nbsp;|&nbsp; Food Delivery / Quick Commerce</div>
+      <div class="company-desc">India's leading food delivery and quick commerce platform. Blinkit (acquired 2022) is emerging as a high-ROIC dark store infrastructure business. Transitioning from GMV-growth narrative to unit-economics and EBITDA profitability story. The platform effect compounds as restaurant density and delivery density improve simultaneously.</div>
+      <div class="company-metrics">
+        <div class="metric-cell"><div class="mv">~55%</div><div class="mk">Food Delivery Share</div></div>
+        <div class="metric-cell"><div class="mv">High</div><div class="mk">Operating Leverage</div></div>
+        <div class="metric-cell"><div class="mv">Yes</div><div class="mk">AI in Logistics</div></div>
+      </div>
+      <div class="company-verdict">
+        <span class="verdict-bull">Bull: Blinkit infrastructure + platform monetization deepening</span>
+        <span class="verdict-bear">Bear: Swiggy competition, regulatory risk, valuation premium</span>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div class="company-name">Swiggy</div>
+        <div class="moat-badge moderate">Platform Ecosystem</div>
+      </div>
+      <div class="company-ticker">NSE: SWIGGY &nbsp;|&nbsp; Food Delivery / Quick Commerce</div>
+      <div class="company-desc">India's #2 food delivery and quick commerce platform (Instamart). IPO in 2024. Unit economics lagging Zomato. Path to profitability requires Instamart scale and contribution margin improvement. The duopoly structure protects both players from catastrophic competitive destruction.</div>
+      <div class="company-metrics">
+        <div class="metric-cell"><div class="mv">~40%</div><div class="mk">Food Delivery Share</div></div>
+        <div class="metric-cell"><div class="mv">Improving</div><div class="mk">Unit Economics</div></div>
+        <div class="metric-cell"><div class="mv">Yes</div><div class="mk">AI in Ops</div></div>
+      </div>
+      <div class="company-verdict">
+        <span class="verdict-bull">Bull: Duopoly protection, unit economics catch-up, Instamart</span>
+        <span class="verdict-bear">Bear: Cash burn, Zomato lead, profitability timeline uncertainty</span>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div class="company-name">Nykaa</div>
+        <div class="moat-badge moderate">Digital Brand Platform</div>
+      </div>
+      <div class="company-ticker">NSE: NYKAA &nbsp;|&nbsp; Beauty / Fashion E-Commerce</div>
+      <div class="company-desc">India's leading beauty and personal care e-commerce platform, with a growing owned-brand portfolio. Strong brand equity and loyal female consumer demographic. Expanding into fashion (Nykaa Fashion) with lower margin profile. The platform earns discovery fees, listing fees, and own-brand margins — a three-part monetization stack.</div>
+      <div class="company-metrics">
+        <div class="metric-cell"><div class="mv">#1</div><div class="mk">Beauty E-Commerce</div></div>
+        <div class="metric-cell"><div class="mv">~42%</div><div class="mk">Gross Margin</div></div>
+        <div class="metric-cell"><div class="mv">Growing</div><div class="mk">Own Brands</div></div>
+      </div>
+      <div class="company-verdict">
+        <span class="verdict-bull">Bull: Beauty category loyalty + private label economics</span>
+        <span class="verdict-bear">Bear: Fashion profitability drag, valuation, Reliance/Tata competition</span>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div class="company-name">IndiaMART</div>
+        <div class="moat-badge strong">B2B Network Effect</div>
+      </div>
+      <div class="company-ticker">NSE: INDIAMART &nbsp;|&nbsp; B2B Marketplace</div>
+      <div class="company-desc">Dominant B2B marketplace connecting India's fragmented SME buyers and suppliers. 170M+ registered buyers, 7M+ supplier listings. Monetizes through supplier subscriptions (pay to get verified, premium listings, lead management). Network effect makes it extraordinarily difficult to displace — the demand density is the product.</div>
+      <div class="company-metrics">
+        <div class="metric-cell"><div class="mv">170M+</div><div class="mk">Registered Buyers</div></div>
+        <div class="metric-cell"><div class="mv">~65%</div><div class="mk">Gross Margin</div></div>
+        <div class="metric-cell"><div class="mv">Strong</div><div class="mk">Moat Rating</div></div>
+      </div>
+      <div class="company-verdict">
+        <span class="verdict-bull">Bull: SME digitization tailwind + supplier ARPU expansion</span>
+        <span class="verdict-bear">Bear: Vertical marketplace disruption, growth deceleration</span>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div class="company-name">Route Mobile</div>
+        <div class="moat-badge moderate">API Infrastructure</div>
+      </div>
+      <div class="company-ticker">NSE: ROUTE &nbsp;|&nbsp; CPaaS / API Communication</div>
+      <div class="company-desc">Communications Platform as a Service (CPaaS) provider enabling enterprise SMS, voice, email, and omnichannel communication. Mission-critical OTP, transactional, and promotional messaging for enterprises. Global operations across 65+ countries. Risk: margin pressure from telecom operator pricing and hyperscaler CPaaS competition.</div>
+      <div class="company-metrics">
+        <div class="metric-cell"><div class="mv">65+</div><div class="mk">Countries</div></div>
+        <div class="metric-cell"><div class="mv">~23%</div><div class="mk">Gross Margin</div></div>
+        <div class="metric-cell"><div class="mv">Yes</div><div class="mk">AI Messaging</div></div>
+      </div>
+      <div class="company-verdict">
+        <span class="verdict-bull">Bull: Volume growth + RCS/WhatsApp Business platform transition</span>
+        <span class="verdict-bear">Bear: Gross margin compression, commodity risk, Tanla competition</span>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div class="company-name">Tanla Platforms</div>
+        <div class="moat-badge moderate">API + Platform</div>
+      </div>
+      <div class="company-ticker">NSE: TANLA &nbsp;|&nbsp; CPaaS / Messaging Platform</div>
+      <div class="company-desc">CPaaS provider with a differentiated proprietary blockchain-based messaging platform (Trubloq) for spam filtering — positioned as a trust infrastructure layer in enterprise communication. Attempting to transition from pure CPaaS volume play to platform/software model with higher margins.</div>
+      <div class="company-metrics">
+        <div class="metric-cell"><div class="mv">Trubloq</div><div class="mk">Platform Differentiator</div></div>
+        <div class="metric-cell"><div class="mv">~25%</div><div class="mk">Gross Margin</div></div>
+        <div class="metric-cell"><div class="mv">Moderate</div><div class="mk">AI Optionality</div></div>
+      </div>
+      <div class="company-verdict">
+        <span class="verdict-bull">Bull: Platform transition to higher-margin software model</span>
+        <span class="verdict-bear">Bear: Transition execution risk, telecom margin pressure</span>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div class="company-name">Affle India</div>
+        <div class="moat-badge strong">Data-Driven AdTech</div>
+      </div>
+      <div class="company-ticker">NSE: AFFLE &nbsp;|&nbsp; Consumer Intelligence / AdTech</div>
+      <div class="company-desc">AI-powered consumer intelligence platform providing mobile advertising and consumer conversion solutions. Unique cost-per-converted-user (CPCU) model aligns incentives with advertiser outcomes. Proprietary data platform covers 2B+ consumer profiles. Strong in emerging markets (India, SEA, MENA). Genuine AI-native business in an Indian listed context.</div>
+      <div class="company-metrics">
+        <div class="metric-cell"><div class="mv">2B+</div><div class="mk">Consumer Profiles</div></div>
+        <div class="metric-cell"><div class="mv">~55%</div><div class="mk">Gross Margin</div></div>
+        <div class="metric-cell"><div class="mv">Core</div><div class="mk">AI in Business Model</div></div>
+      </div>
+      <div class="company-verdict">
+        <span class="verdict-bull">Bull: Outcome-based pricing + global emerging markets expansion</span>
+        <span class="verdict-bear">Bear: Privacy regulation risk, ad market cyclicality</span>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div class="company-name">Netweb Technologies</div>
+        <div class="moat-badge emerging">AI Infrastructure</div>
+      </div>
+      <div class="company-ticker">NSE: NETWEB &nbsp;|&nbsp; AI Servers / HPC Infrastructure</div>
+      <div class="company-desc">India's leading domestic AI server assembler and HPC infrastructure provider. Direct beneficiary of the AI compute buildout and government India AI Mission. As enterprises and hyperscalers build AI capacity in India, Netweb sits at the hardware infrastructure intersection. Cyclical business model with strong current demand visibility, but susceptible to component supply disruptions and global semiconductor dynamics.</div>
+      <div class="company-metrics">
+        <div class="metric-cell"><div class="mv">HPC+AI</div><div class="mk">Core Focus</div></div>
+        <div class="metric-cell"><div class="mv">~18%</div><div class="mk">Gross Margin</div></div>
+        <div class="metric-cell"><div class="mv">Direct</div><div class="mk">AI Infra Play</div></div>
+      </div>
+      <div class="company-verdict">
+        <span class="verdict-bull">Bull: India AI Mission + enterprise AI compute demand</span>
+        <span class="verdict-bear">Bear: Hardware margin compression, component dependency, cyclicality</span>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div class="company-name">Happiest Minds</div>
+        <div class="moat-badge moderate">Digital IT Services</div>
+      </div>
+      <div class="company-ticker">NSE: HAPPSTMNDS &nbsp;|&nbsp; Digital IT Services</div>
+      <div class="company-desc">Born-digital IT services company with >70% of revenue from digital and AI services. Positioned between large IT outsourcers and pure-play tech companies. Benefits from enterprise digital transformation mandates. Smaller scale limits competitive positioning for mega-deals but enables agility in AI implementation.</div>
+      <div class="company-metrics">
+        <div class="metric-cell"><div class="mv">>70%</div><div class="mk">Digital Revenue Mix</div></div>
+        <div class="metric-cell"><div class="mv">~30%</div><div class="mk">Gross Margin</div></div>
+        <div class="metric-cell"><div class="mv">Strong</div><div class="mk">AI Service Positioning</div></div>
+      </div>
+      <div class="company-verdict">
+        <span class="verdict-bull">Bull: AI services demand + clean digital revenue positioning</span>
+        <span class="verdict-bear">Bear: Scale limitations, talent cost inflation, client concentration</span>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div class="company-name">Tata Elxsi</div>
+        <div class="moat-badge strong">Engineering Intelligence</div>
+      </div>
+      <div class="company-ticker">NSE: TATAELXSI &nbsp;|&nbsp; Engineering Design / AI Services</div>
+      <div class="company-desc">Premium engineering design and technology services company with deep domain expertise in automotive (software-defined vehicles), media/broadcasting, and healthcare. Genuinely differentiated — not a staffing business. AI is creating massive engineering design complexity in EVs and connected vehicles, driving demand for Tata Elxsi's specialized capabilities. Scarcity of domain expertise creates pricing power.</div>
+      <div class="company-metrics">
+        <div class="metric-cell"><div class="mv">Premium</div><div class="mk">Positioning</div></div>
+        <div class="metric-cell"><div class="mv">~35%</div><div class="mk">EBITDA Margin</div></div>
+        <div class="metric-cell"><div class="mv">Core</div><div class="mk">AI Engineering</div></div>
+      </div>
+      <div class="company-verdict">
+        <span class="verdict-bull">Bull: EV software complexity + domain scarcity premium</span>
+        <span class="verdict-bear">Bear: Auto sector cyclicality, valuation premium, talent retention</span>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div class="company-name">Newgen Software</div>
+        <div class="moat-badge strong">Enterprise Process Platform</div>
+      </div>
+      <div class="company-ticker">NSE: NEWGEN &nbsp;|&nbsp; BPM / Document Management</div>
+      <div class="company-desc">Cloud-based Business Process Management (BPM) and Document Management platform with global banking, insurance, and government clients. The workflow automation and document intelligence layer for complex enterprise processes. High NRR, sticky relationships, and AI integration (intelligent document processing) creates meaningful moat. One of India's most underappreciated pure-play enterprise software companies.</div>
+      <div class="company-metrics">
+        <div class="metric-cell"><div class="mv">Global</div><div class="mk">Banking/Insurance Clients</div></div>
+        <div class="metric-cell"><div class="mv">~65%</div><div class="mk">Gross Margin</div></div>
+        <div class="metric-cell"><div class="mv">AI-IDP</div><div class="mk">AI Integration</div></div>
+      </div>
+      <div class="company-verdict">
+        <span class="verdict-bull">Bull: Workflow lock-in + AI document intelligence integration</span>
+        <span class="verdict-bear">Bear: Scale, global competition from ServiceNow/Appian</span>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div class="company-name">Unicommerce</div>
+        <div class="moat-badge strong">E-Commerce Infrastructure</div>
+      </div>
+      <div class="company-ticker">NSE: UNICOMMERCE &nbsp;|&nbsp; E-Commerce SaaS</div>
+      <div class="company-desc">Mission-critical order management and warehouse management SaaS for Indian e-commerce. The routing layer that ensures multi-channel inventory accuracy for thousands of D2C brands. Deeply embedded in operational workflows. Classic "hidden toll booth" — invisible to consumers, indispensable to merchants. Pure SaaS recurring revenue with meaningful operating leverage as platform scales.</div>
+      <div class="company-metrics">
+        <div class="metric-cell"><div class="mv">OMS/WMS</div><div class="mk">Mission-Critical</div></div>
+        <div class="metric-cell"><div class="mv">>70%</div><div class="mk">Gross Margin Est.</div></div>
+        <div class="metric-cell"><div class="mv">High</div><div class="mk">Switching Costs</div></div>
+      </div>
+      <div class="company-verdict">
+        <span class="verdict-bull">Bull: D2C growth tailwind + multi-channel commerce complexity</span>
+        <span class="verdict-bear">Bear: Platform risk (Amazon/Flipkart building in-house tools)</span>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div class="company-name">RateGain Travel Tech</div>
+        <div class="moat-badge strong">Vertical SaaS</div>
+      </div>
+      <div class="company-ticker">NSE: RATEGAIN &nbsp;|&nbsp; Travel Technology SaaS</div>
+      <div class="company-desc">Global travel technology SaaS — revenue management, distribution, and marketing tech for hotels, airlines, and OTAs. 3,200+ customers in 100+ countries. One of India's few genuinely global B2B SaaS successes. AI is creating massive demand for dynamic pricing and demand forecasting capabilities. High NRR, global distribution, and defensible customer relationships.</div>
+      <div class="company-metrics">
+        <div class="metric-cell"><div class="mv">3,200+</div><div class="mk">Global Customers</div></div>
+        <div class="metric-cell"><div class="mv">110%+</div><div class="mk">NRR Estimate</div></div>
+        <div class="metric-cell"><div class="mv">Core</div><div class="mk">AI Pricing</div></div>
+      </div>
+      <div class="company-verdict">
+        <span class="verdict-bull">Bull: Global SaaS moat + AI travel pricing demand</span>
+        <span class="verdict-bear">Bear: Travel cyclicality, Amadeus/Sabre global competition</span>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div class="company-name">Zaggle Prepaid</div>
+        <div class="moat-badge emerging">SaaS + Fintech</div>
+      </div>
+      <div class="company-ticker">NSE: ZAGGLE &nbsp;|&nbsp; Spend Management SaaS</div>
+      <div class="company-desc">B2B spend management and employee benefits SaaS platform. Sits at the intersection of HR tech, expense management, and prepaid card infrastructure. Revenue model combines SaaS subscriptions with interchange economics. Growing enterprise customer base with sticky workflow integration across payroll, expense, and rewards. Platform potential is significant if multi-product expansion succeeds.</div>
+      <div class="company-metrics">
+        <div class="metric-cell"><div class="mv">SaaS+</div><div class="mk">Revenue Model</div></div>
+        <div class="metric-cell"><div class="mv">Scaling</div><div class="mk">Enterprise Traction</div></div>
+        <div class="metric-cell"><div class="mv">Moderate</div><div class="mk">AI Optionality</div></div>
+      </div>
+      <div class="company-verdict">
+        <span class="verdict-bull">Bull: HR tech tailwind + spend management SaaS stickiness</span>
+        <span class="verdict-bear">Bear: Regulatory risk on prepaid, profitability trajectory</span>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div class="company-name">PB Fintech</div>
+        <div class="moat-badge strong">Insurance Distribution Platform</div>
+      </div>
+      <div class="company-ticker">NSE: POLICYBZR &nbsp;|&nbsp; Digital Insurance Platform</div>
+      <div class="company-desc">(Analyzed for platform/network-effect characteristics only.) PolicyBazaar is India's dominant online insurance comparison and distribution platform with genuine pricing power derived from its information advantage and consumer trust brand. Paisabazaar (credit marketplace) adds a financial products distribution layer. The platform earns take-rates on insurance premiums — a toll booth on India's underpenetrated insurance market. AI is improving underwriting recommendation quality, driving higher conversion rates.</div>
+      <div class="company-metrics">
+        <div class="metric-cell"><div class="mv">#1</div><div class="mk">Insurance Platform</div></div>
+        <div class="metric-cell"><div class="mv">~35%</div><div class="mk">Revenue CAGR (Recent)</div></div>
+        <div class="metric-cell"><div class="mv">Strong</div><div class="mk">Platform Network FX</div></div>
+      </div>
+      <div class="company-verdict">
+        <span class="verdict-bull">Bull: Insurance under-penetration + platform take-rate expansion</span>
+        <span class="verdict-bear">Bear: Insurer disintermediation risk, regulatory shifts</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MOAT -->
+<section id="moat" class="module">
+  <div class="section-label">Section 08</div>
+  <h2 class="section-title">Mission-Criticality & Moat Analysis</h2>
+  <p>Not all digital businesses are created equal. The deepest moats in the digital economy share a common characteristic: they become <strong>operationally indispensable</strong> — embedded so deeply in the daily workflow of a business or consumer that removal would cause operational failure, not mere inconvenience.</p>
+
+  <h3 class="sub-title">The Four Moat Archetypes</h3>
+
+  <div class="tier-card">
+    <span class="tier-badge">Archetype 1</span>
+    <h3>"AWS-Like" Infrastructure Layers</h3>
+    <p>Businesses that provide critical compute, data, or connectivity infrastructure. Switching costs are extreme because migration requires re-engineering the entire digital architecture. In India: hyperscaler-adjacent businesses, data center operators, API infrastructure providers. The key question is whether any Indian-origin company can build an "AWS-like" position in a specific infrastructure niche — the answer appears to be yes, in vertically specific contexts (Unicommerce for e-commerce OMS, Newgen for process automation).</p>
+  </div>
+
+  <div class="tier-card teal">
+    <span class="tier-badge">Archetype 2</span>
+    <h3>"Shopify-Like" Enablement Platforms</h3>
+    <p>Businesses that power other businesses' digital operations. The more merchants succeed, the stickier the platform becomes. Unicommerce and IndiaMART approximate this archetype — the platform's success is causally linked to merchant success, creating aligned incentives that deepen the relationship over time. As Shopify has demonstrated, the monetization opportunity expands dramatically once the platform becomes mission-critical — from subscriptions to payments to capital to fulfillment.</p>
+  </div>
+
+  <div class="tier-card">
+    <span class="tier-badge">Archetype 3</span>
+    <h3>"Salesforce-Like" Workflow Ecosystems</h3>
+    <p>CRM and workflow automation systems are deeply embedded in organizational processes, team training, and data history. The cost of switching Salesforce for a Fortune 500 company is measured in years and hundreds of millions of dollars. In India, Newgen Software, Zoho (unlisted), and emerging vertical SaaS players are building analogous dependencies in their respective domains. The moat compounds as integration depth, trained user base, and historical data accumulation all simultaneously increase switching costs.</p>
+  </div>
+
+  <div class="tier-card teal">
+    <span class="tier-badge">Archetype 4</span>
+    <h3>"Invisible Digital Monopolies"</h3>
+    <p>The most underappreciated category: businesses that are unknown to the public but indispensable to the markets they serve. Unicommerce (e-commerce OMS), RateGain (hotel revenue management), Tanla Trubloq (messaging verification) are operating in this space. These businesses are ignored in broad market indices, under-covered by institutional analysts, and under-owned by retail investors — precisely because their names do not appear on consumer applications. They are the infrastructure behind the infrastructure.</p>
+  </div>
+</section>
+
+<!-- COMPARABLES -->
+<section id="comparables" class="module">
+  <div class="section-label">Section 09</div>
+  <h2 class="section-title">Global Comparables</h2>
+
+  <table class="matrix-table">
+    <thead>
+      <tr>
+        <th>Country</th>
+        <th>Digital Economy Stage</th>
+        <th>Key Platforms Created</th>
+        <th>India Parallel</th>
+        <th>Lesson</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>USA</strong></td>
+        <td>Mature / AI Transition</td>
+        <td>AWS, Salesforce, Shopify, Stripe</td>
+        <td>Cloud infrastructure, SaaS platforms</td>
+        <td class="dot-high">Infrastructure becomes the moat — not applications</td>
+      </tr>
+      <tr>
+        <td><strong>China</strong></td>
+        <td>Mature / State-Influenced</td>
+        <td>Alibaba, Tencent, ByteDance, Meituan</td>
+        <td>Consumer super-apps, B2B marketplaces</td>
+        <td class="dot-mid">Super-app consolidation is achievable; regulatory risk is real</td>
+      </tr>
+      <tr>
+        <td><strong>Southeast Asia</strong></td>
+        <td>Early-Maturing</td>
+        <td>Sea Group, Grab, GoTo</td>
+        <td>Consumer internet platform evolution</td>
+        <td class="dot-mid">Platform consolidation + unit economics correction predictable</td>
+      </tr>
+      <tr>
+        <td><strong>Israel</strong></td>
+        <td>Mature Cybersecurity</td>
+        <td>Check Point, CyberArk, Wiz</td>
+        <td>Enterprise cybersecurity (nascent)</td>
+        <td class="dot-high">Cybersecurity is a national-scale opportunity India has barely tapped</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight-box">
+    <span class="tag">Critical Comparable Insight</span>
+    <p>China's Alibaba 1999–2010 trajectory is the closest historical analogue to IndiaMART's current position — a B2B marketplace for a fragmented SME economy, building network effects before monetization. Alibaba became one of the world's most valuable companies from that starting point. IndiaMART's addressable market (India's 63M SMEs) is larger than Alibaba's 1999 TAM. The question is execution and monetization depth — not market size.</p>
+  </div>
+</section>
+
+<!-- RISKS -->
+<section id="risks" class="module">
+  <div class="section-label">Section 10</div>
+  <h2 class="section-title">Risk Analysis</h2>
+
+  <div class="risk-grid">
+    <div class="risk-card">
+      <div class="risk-level">High Risk</div>
+      <h4>AI-Driven Software Disruption</h4>
+      <p>AI agents and copilots may dramatically reduce the need for certain categories of software (form-based SaaS, manual workflow tools). Businesses that automate existing manual processes may find their value proposition eroded by AI that eliminates those processes entirely.</p>
+    </div>
+    <div class="risk-card">
+      <div class="risk-level">High Risk</div>
+      <h4>Platform Regulation</h4>
+      <p>ONDC, competition authority action, data localization mandates, and potential digital markets regulation can structurally alter the economics of platform businesses. India's regulatory environment has shown willingness to intervene (see: e-commerce FDI rules affecting Amazon/Flipkart).</p>
+    </div>
+    <div class="risk-card moderate">
+      <div class="risk-level">Moderate Risk</div>
+      <h4>Cash Burn & Profitability Timelines</h4>
+      <p>Multiple listed digital businesses remain loss-making and dependent on capital market access for survival. A sustained period of high interest rates or risk-off equity markets could create existential funding risk for pre-profitable platforms.</p>
+    </div>
+    <div class="risk-card moderate">
+      <div class="risk-level">Moderate Risk</div>
+      <h4>Valuation Premium Compression</h4>
+      <p>India's digital equity universe trades at significant premiums to global peers and Indian market averages. Any re-rating of growth expectations or global technology multiple compression could create meaningful drawdown risk even in fundamentally sound businesses.</p>
+    </div>
+    <div class="risk-card moderate">
+      <div class="risk-level">Moderate Risk</div>
+      <h4>CPaaS / API Margin Commoditization</h4>
+      <p>API communication businesses face structural margin pressure as hyperscalers (Google, Meta, Microsoft) compete with native messaging infrastructure at marginal-cost pricing. Route Mobile and Tanla face this headwind as a secular risk.</p>
+    </div>
+    <div class="risk-card low">
+      <div class="risk-level">Lower Risk</div>
+      <h4>Cybersecurity Incidents</h4>
+      <p>Paradoxically, cybersecurity incidents at Indian enterprises accelerate cybersecurity spending — they are a demand catalyst, not a demand destroyer, for the cybersecurity ecosystem. Risk is reputational for individual firms, not systemic for the sector.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTOR STRATEGY -->
+<section id="strategy" class="module">
+  <div class="section-label">Section 11</div>
+  <h2 class="section-title">Investor Strategy: Best Ways to Play India's Digital Transformation Super-Cycle</h2>
+
+  <div class="basket-grid">
+    <div class="basket">
+      <div class="basket-type">Conservative Compounder</div>
+      <h4>Core Quality Digital</h4>
+      <ul>
+        <li>Info Edge (Naukri moat)</li>
+        <li>IndiaMART (B2B network)</li>
+        <li>Tata Elxsi (premium engineering)</li>
+        <li>Newgen Software (enterprise SaaS)</li>
+      </ul>
+    </div>
+    <div class="basket">
+      <div class="basket-type">Platform Investor</div>
+      <h4>Platform Ecosystem</h4>
+      <ul>
+        <li>Zomato (food + quick commerce)</li>
+        <li>Nykaa (beauty platform)</li>
+        <li>PB Fintech (insurance platform)</li>
+        <li>IndiaMART (B2B marketplace)</li>
+      </ul>
+    </div>
+    <div class="basket">
+      <div class="basket-type">AI-Focused</div>
+      <h4>AI Transformation</h4>
+      <ul>
+        <li>Affle India (AI-native AdTech)</li>
+        <li>Netweb Technologies (AI compute)</li>
+        <li>Tata Elxsi (AI engineering)</li>
+        <li>Happiest Minds (AI services)</li>
+      </ul>
+    </div>
+    <div class="basket">
+      <div class="basket-type">Hidden Compounders</div>
+      <h4>Invisible Infrastructure</h4>
+      <ul>
+        <li>Unicommerce (e-commerce OMS)</li>
+        <li>RateGain (travel SaaS)</li>
+        <li>Newgen Software (BPM platform)</li>
+        <li>Zaggle (spend management)</li>
+      </ul>
+    </div>
+    <div class="basket">
+      <div class="basket-type">High-Risk Multibagger</div>
+      <h4>Optionality Plays</h4>
+      <ul>
+        <li>Swiggy (unit econ catch-up)</li>
+        <li>Tanla (platform transition)</li>
+        <li>Route Mobile (RCS upside)</li>
+        <li>Zaggle (multi-product platform)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="sub-title">Allocation Framework</h3>
+
+  <div class="insight-box">
+    <span class="tag">Portfolio Construction Principle</span>
+    <p>The optimal digital transformation portfolio allocates the majority of capital to <strong>mission-critical infrastructure and workflow-embedded SaaS</strong> (highest risk-adjusted return over 7–10 years), a meaningful allocation to <strong>platform ecosystem leaders</strong> with proven network effects, and a smaller speculative allocation to <strong>AI optionality plays</strong> with asymmetric return potential but higher execution risk. Avoid pure narrative plays that lack genuine workflow dependency or defensible market position.</p>
+  </div>
+</section>
+
+<!-- VERDICT -->
+<section id="verdict" class="module">
+  <div class="section-label">Final Section</div>
+  <h2 class="section-title">The Final Investment Verdict</h2>
+
+  <div class="verdict-grid">
+    <div class="verdict-box gold">
+      <h3>Strongest Moat Durability</h3>
+      <ul>
+        <li>Info Edge — 20-year Naukri moat, still compounding</li>
+        <li>IndiaMART — two-sided B2B network, irreplaceable density</li>
+        <li>Unicommerce — mission-critical OMS, invisible toll booth</li>
+        <li>Newgen Software — enterprise BPM, global workflow lock-in</li>
+        <li>RateGain — global travel SaaS, 110%+ NRR</li>
+        <li>Tata Elxsi — domain engineering scarcity moat</li>
+      </ul>
+    </div>
+    <div class="verdict-box teal">
+      <h3>Digital Toll Booth Characteristics</h3>
+      <ul>
+        <li>Unicommerce — every D2C order routes through it</li>
+        <li>Info Edge / Naukri — recruiter dependency, 70%+ share</li>
+        <li>Newgen — bank document workflows deeply embedded</li>
+        <li>IndiaMART — SME discovery is impossible without it</li>
+        <li>Affle — proprietary consumer data, performance accountability</li>
+      </ul>
+    </div>
+    <div class="verdict-box">
+      <h3>Narrative-Driven / Caution</h3>
+      <ul>
+        <li>Pure AI branding without proprietary data or workflow lock-in</li>
+        <li>CPaaS businesses facing hyperscaler margin pressure</li>
+        <li>Consumer internet platforms without clear profitability path</li>
+        <li>Any business whose "AI strategy" is only a UI redesign</li>
+      </ul>
+    </div>
+    <div class="verdict-box">
+      <h3>Asymmetric Opportunities</h3>
+      <ul>
+        <li>Vertical SaaS for manufacturing and agriculture (unlisted today)</li>
+        <li>Cybersecurity pure-plays (structural gap in listed universe)</li>
+        <li>B2B marketplace verticals (steel, chemicals, agri-inputs)</li>
+        <li>Developer infrastructure / Indian-origin API businesses</li>
+        <li>ONDC-native applications (emerging, pre-listed)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- DECADE ROADMAP -->
+<section id="decade" class="module" style="border-bottom:none">
+  <div class="section-label">Section 15</div>
+  <h2 class="section-title">The Next Decade of India's Digital Evolution</h2>
+  <p>India's digital transformation is not a theme — it is a civilizational process. The following is a probabilistic roadmap grounded in structural drivers, capital allocation patterns, and historical technology diffusion curves.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="period">2025 — 2027</div>
+      <h4>AI-Accelerated Workflow Digitization (The Forcing Function Phase)</h4>
+      <p>Enterprise AI copilot adoption reaches meaningful penetration in large Indian corporates. Generative AI compresses software implementation complexity, enabling SME onboarding onto SaaS platforms that previously required enterprise-grade IT teams. Cloud migration accelerates as AI workloads require elastic compute. The gap between digital leaders and laggards in Indian industry widens sharply — creating urgency in the remaining holdouts.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="period">2027 — 2030</div>
+      <h4>Platform Consolidation & Monetization Depth (The Maturity Phase)</h4>
+      <p>Consumer internet platforms achieve EBITDA profitability at scale. Take-rates expand as switching costs compound. B2B marketplace leaders (IndiaMART equivalents) add financial services, logistics, and software layers — transitioning from lead-generation platforms to full-stack SME operating systems. Enterprise SaaS NRR rates normalize above 110% as vertical SaaS leaders deepen workflow integration. IPO activity in cybersecurity, vertical SaaS, and AI infrastructure creates new listed equity opportunities.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="period">2030 — 2035</div>
+      <h4>Indian Software Exports 2.0 & Global SaaS Leaders (The Global Phase)</h4>
+      <p>India produces its first cohort of globally dominant B2B SaaS companies — not IT services businesses, but genuine product companies with >$1B ARR. RateGain's global travel SaaS trajectory becomes a playbook replicated in healthcare, manufacturing, and retail tech. India's developer ecosystem (the world's second largest by volume) drives an AI-native software revolution that creates export revenue complementing traditional IT outsourcing. India's digital economy reaches $1T+.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="period">2035 — 2040</div>
+      <h4>India as a Digital Operating System for Emerging Markets</h4>
+      <p>India Stack is exported to 40+ developing nations as a sovereign digital infrastructure template. Indian SaaS companies become the enterprise software providers of choice for Southeast Asia, Africa, and the Middle East — markets too large to be served by US SaaS at US prices, and too structurally similar to India to require custom solutions. The digital economy reshapes India's GDP composition, with software and data services matching or exceeding traditional IT services revenues.</p>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="margin-top:40px">
+    <p><strong>Final Verdict:</strong> India's digital transformation super-cycle is real, durable, and in its first innings. The greatest wealth creation will accrue to investors who identify <em>mission-critical workflow dependencies</em> before they are priced as infrastructure monopolies, who distinguish genuine AI-native businesses from AI-branded narratives, and who maintain conviction through the inevitable volatility of a multi-decade structural transition. The businesses that become India's digital operating system — the platforms enterprises and consumers cannot function without — will be among the most valuable enterprises in Asia over the next twenty years.</p>
+  </div>
+</section>
+
+<footer class="report-footer">
+  <strong>Disclaimer:</strong> This report is produced for informational and research purposes only. It does not constitute investment advice, a solicitation, or a recommendation to buy or sell any security. All analysis is based on publicly available information and reasonable assumptions. Markets are subject to risk. Past performance is not indicative of future results. Investors should conduct their own due diligence and consult qualified financial advisors before making investment decisions.<br><br>
+  <strong>Coverage Universe:</strong> India Listed Digital Equities &nbsp;|&nbsp; <strong>Classification:</strong> Institutional Research (Public) &nbsp;|&nbsp; <strong>Format:</strong> Cross-Disciplinary Digital Transformation Intelligence Report
+</footer>
+
+</main>
+
+<button id="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  // Active TOC link tracking
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('nav#toc a');
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`nav#toc a[href="#${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+
+  sections.forEach(s => obs.observe(s));
+
+  // Top button
+  const topBtn = document.getElementById('top-btn');
+  window.addEventListener('scroll', () => {
+    topBtn.classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // Animate bars on scroll
+  const barFills = document.querySelectorAll('.bar-fill');
+  const barObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.width = e.target.dataset.width || e.target.style.width;
+      }
+    });
+  }, { threshold: 0.2 });
+
+  barFills.forEach(b => {
+    const w = b.style.width;
+    b.style.width = '0';
+    b.dataset.width = w;
+    setTimeout(() => barObs.observe(b), 100);
+  });
+</script>
+</body>
+</html>

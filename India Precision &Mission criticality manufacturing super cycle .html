@@ -1,0 +1,2112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>India Precision & Mission-Critical Manufacturing Super-Cycle | Institutional Research</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:        #07112B;
+  --navy-mid:    #0D1E3F;
+  --navy-light:  #142754;
+  --gold:        #C9A84C;
+  --gold-light:  #E8C97A;
+  --gold-pale:   #F5E9C8;
+  --cream:       #F4EFE4;
+  --white:       #FDFAF4;
+  --steel:       #2563A8;
+  --steel-light: #4A86D4;
+  --slate:       #8A9CBD;
+  --red:         #C0392B;
+  --green:       #1A7A4A;
+  --green-light: #27AE60;
+  --amber:       #D68910;
+  --border:      rgba(201,168,76,0.22);
+  --text-body:   #E8E0D0;
+  --text-muted:  #9AAABB;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Source Serif 4', Georgia, serif;
+  --font-mono:    'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--navy);
+  color: var(--text-body);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.72;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+/* ── NAV ── */
+#top-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(7,17,43,0.96);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex; align-items: center; gap: 0;
+  height: 56px;
+}
+.nav-brand {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  margin-right: auto;
+}
+.nav-links {
+  display: flex; gap: 0; list-style: none;
+  overflow-x: auto;
+}
+.nav-links li a {
+  display: block;
+  padding: 0 0.85rem;
+  height: 56px; line-height: 56px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--slate);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.nav-links li a:hover, .nav-links li a.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+/* ── COVER ── */
+#cover {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 4rem 5rem;
+}
+.cover-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 30%, rgba(37,99,168,0.22) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(201,168,76,0.10) 0%, transparent 60%),
+    linear-gradient(175deg, #07112B 0%, #0A1E3E 50%, #07112B 100%);
+}
+.cover-grid {
+  position: absolute; inset: 0; z-index: 1;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.cover-content { position: relative; z-index: 2; max-width: 900px; }
+
+.cover-tag {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.cover-tag::before {
+  content: '';
+  display: block; width: 48px; height: 1px;
+  background: var(--gold);
+}
+
+.cover-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.04;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+.cover-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+.cover-subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--slate);
+  margin: 1.5rem 0 3rem;
+}
+.cover-meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  max-width: 760px;
+}
+.meta-block {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  padding: 1.1rem 1.2rem;
+}
+.meta-label {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 0.35rem;
+}
+.meta-value {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--gold-light);
+}
+
+/* ── LAYOUT ── */
+.page-wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+/* ── SECTION SHELLS ── */
+.section {
+  padding: 6rem 0;
+  border-top: 1px solid var(--border);
+}
+.section:first-of-type { border-top: none; }
+
+.section-number {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.5vw, 2.9rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+.section-deck {
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--slate);
+  max-width: 680px;
+  margin-bottom: 3rem;
+}
+
+/* ── TYPOGRAPHY ── */
+h2 {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--white);
+  margin: 2.8rem 0 1rem;
+}
+h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin: 2rem 0 0.8rem;
+}
+h4 {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin: 1.6rem 0 0.6rem;
+}
+p { margin-bottom: 1.1rem; color: var(--text-body); }
+strong { color: var(--white); font-weight: 600; }
+em { color: var(--gold-light); font-style: italic; }
+
+/* ── CALLOUT / PULL QUOTE ── */
+.callout {
+  border-left: 3px solid var(--gold);
+  background: rgba(201,168,76,0.06);
+  padding: 1.4rem 1.8rem;
+  margin: 2rem 0;
+  border-radius: 0 4px 4px 0;
+}
+.callout p { margin: 0; font-size: 1.05rem; color: var(--cream); }
+.callout-headline {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+/* ── STAT CARDS ── */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2px;
+  margin: 2.5rem 0;
+}
+.stat-card {
+  background: var(--navy-mid);
+  border: 1px solid var(--border);
+  padding: 1.5rem 1.4rem;
+  position: relative;
+  overflow: hidden;
+}
+.stat-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold);
+}
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--slate);
+  line-height: 1.4;
+}
+
+/* ── TABLES ── */
+.table-wrap { overflow-x: auto; margin: 2rem 0; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.87rem;
+}
+thead tr {
+  background: var(--navy-light);
+  border-bottom: 1px solid var(--gold);
+}
+thead th {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 0.9rem 1rem;
+  text-align: left;
+  white-space: nowrap;
+}
+tbody tr {
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: background 0.15s;
+}
+tbody tr:hover { background: rgba(201,168,76,0.05); }
+tbody td {
+  padding: 0.8rem 1rem;
+  color: var(--text-body);
+  vertical-align: top;
+}
+tbody td:first-child { color: var(--white); font-weight: 400; }
+.tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.18em 0.6em;
+  border-radius: 2px;
+}
+.tag-green  { background: rgba(26,122,74,0.25);  color: #4CDE94; border: 1px solid rgba(76,222,148,0.3); }
+.tag-gold   { background: rgba(201,168,76,0.2);  color: var(--gold-light); border: 1px solid var(--border); }
+.tag-red    { background: rgba(192,57,43,0.2);   color: #E74C3C; border: 1px solid rgba(231,76,60,0.3); }
+.tag-blue   { background: rgba(37,99,168,0.25);  color: #74B9FF; border: 1px solid rgba(116,185,255,0.3); }
+.tag-grey   { background: rgba(138,156,189,0.15); color: var(--slate); border: 1px solid rgba(138,156,189,0.2); }
+
+/* ── TIER CARDS ── */
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2px;
+  margin: 2rem 0;
+}
+.tier-card {
+  background: var(--navy-mid);
+  border: 1px solid var(--border);
+  padding: 1.8rem;
+  position: relative;
+}
+.tier-badge {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--navy);
+  background: var(--gold);
+  display: inline-block;
+  padding: 0.2em 0.7em;
+  margin-bottom: 0.9rem;
+}
+.tier-card h3 {
+  margin-top: 0;
+  font-size: 1.05rem;
+  color: var(--white);
+}
+.tier-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.8rem 0 0;
+}
+.tier-card ul li {
+  font-size: 0.83rem;
+  color: var(--text-muted);
+  padding: 0.25rem 0;
+  padding-left: 1rem;
+  position: relative;
+}
+.tier-card ul li::before {
+  content: '—';
+  position: absolute; left: 0;
+  color: var(--gold);
+  font-size: 0.7rem;
+}
+.moat-score {
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.moat-label {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+.moat-dots {
+  display: flex; gap: 3px;
+}
+.dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+}
+.dot.filled { background: var(--gold); border-color: var(--gold); }
+
+/* ── COMPANY CARDS ── */
+.company-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px;
+  margin: 2rem 0;
+}
+.company-card {
+  background: var(--navy-mid);
+  border: 1px solid var(--border);
+  padding: 2rem 2.2rem;
+  position: relative;
+}
+.company-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--gold);
+}
+.company-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.2rem;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+.company-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--white);
+}
+.company-meta {
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+  align-items: center;
+}
+.company-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+@media (max-width: 700px) { .company-body { grid-template-columns: 1fr; } }
+.company-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 1rem;
+}
+.metric-cell {
+  background: var(--navy);
+  padding: 0.7rem 0.9rem;
+}
+.metric-key {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+.metric-val {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gold-light);
+}
+.bull-bear {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+.bull, .bear {
+  padding: 0.7rem 0.9rem;
+  font-size: 0.83rem;
+}
+.bull {
+  background: rgba(26,122,74,0.12);
+  border-left: 2px solid var(--green-light);
+  color: #A8E6C1;
+}
+.bear {
+  background: rgba(192,57,43,0.12);
+  border-left: 2px solid var(--red);
+  color: #F1A9A0;
+}
+.bull strong, .bear strong {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.3rem;
+  color: inherit;
+}
+
+/* ── RISK MATRIX ── */
+.risk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2px;
+  margin: 2rem 0;
+}
+.risk-card {
+  background: var(--navy-mid);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+}
+.risk-severity {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.risk-high   { color: #E74C3C; }
+.risk-medium { color: var(--amber); }
+.risk-low    { color: var(--green-light); }
+
+/* ── PORTFOLIO BASKETS ── */
+.basket-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2px;
+  margin: 2rem 0;
+}
+.basket-card {
+  background: var(--navy-mid);
+  border: 1px solid var(--border);
+  padding: 1.8rem;
+}
+.basket-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 0.3rem;
+}
+.basket-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 1rem;
+}
+.basket-holdings {
+  list-style: none;
+  padding: 0;
+}
+.basket-holdings li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.85rem;
+}
+.basket-holdings li:last-child { border-bottom: none; }
+.holding-name { color: var(--white); }
+.holding-wt {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--gold);
+}
+
+/* ── VERDICT BOX ── */
+.verdict-box {
+  background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(37,99,168,0.08) 100%);
+  border: 1px solid var(--gold);
+  padding: 3rem;
+  margin: 3rem 0;
+  position: relative;
+}
+.verdict-box::before {
+  content: '★';
+  position: absolute;
+  top: -0.8rem; left: 50%;
+  transform: translateX(-50%);
+  background: var(--navy);
+  color: var(--gold);
+  font-size: 1.4rem;
+  padding: 0 0.6rem;
+}
+
+/* ── ECOSYSTEM VISUAL ── */
+.ecosystem-visual {
+  margin: 3rem 0;
+  padding: 2.5rem;
+  background: var(--navy-mid);
+  border: 1px solid var(--border);
+}
+.eco-title {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.eco-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.eco-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+.eco-node {
+  background: var(--navy);
+  border: 1px solid var(--border);
+  padding: 0.9rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1px;
+}
+.eco-node-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  width: 2.2rem;
+  text-align: center;
+}
+.eco-node-body { flex: 1; }
+.eco-node-title {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--white);
+}
+.eco-node-sub {
+  font-size: 0.78rem;
+  color: var(--slate);
+}
+.eco-node-margin {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--gold);
+  text-align: right;
+  flex-shrink: 0;
+}
+.eco-tier-label {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--navy);
+  background: var(--gold);
+  padding: 0.2em 0.8em;
+  margin: 0.8rem 0 0.2rem;
+  display: inline-block;
+}
+
+/* ── CAPITAL CYCLE VISUAL ── */
+.cycle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2px;
+  margin: 2rem 0;
+}
+.cycle-card {
+  background: var(--navy-mid);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  text-align: center;
+}
+.cycle-roic {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+.cycle-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 0.8rem;
+}
+.cycle-desc { font-size: 0.82rem; color: var(--text-muted); }
+.high-roic { color: #4CDE94; }
+.mid-roic  { color: var(--gold); }
+.low-roic  { color: var(--slate); }
+
+/* ── COMPARISON TABLE ── */
+.comp-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.bar {
+  height: 8px;
+  border-radius: 2px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+/* ── DECADE ROADMAP ── */
+.roadmap {
+  position: relative;
+  padding-left: 2rem;
+  margin: 2rem 0;
+}
+.roadmap::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+.roadmap-item {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+.roadmap-item::before {
+  content: '';
+  position: absolute;
+  left: -2.4rem; top: 0.5rem;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--navy);
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.25);
+}
+.roadmap-year {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+}
+.roadmap-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.4rem;
+}
+.roadmap-desc { font-size: 0.88rem; color: var(--text-muted); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy-mid);
+  border-top: 1px solid var(--border);
+  padding: 3rem;
+  text-align: center;
+  margin-top: 6rem;
+}
+.footer-disc {
+  font-size: 0.78rem;
+  color: var(--slate);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.cover-content > * {
+  animation: fadeUp 0.8s ease both;
+}
+.cover-content > *:nth-child(1) { animation-delay: 0.1s; }
+.cover-content > *:nth-child(2) { animation-delay: 0.25s; }
+.cover-content > *:nth-child(3) { animation-delay: 0.4s; }
+.cover-content > *:nth-child(4) { animation-delay: 0.55s; }
+.cover-content > *:nth-child(5) { animation-delay: 0.7s; }
+
+@media (max-width: 768px) {
+  #cover { padding: 5rem 1.5rem 3rem; }
+  .page-wrap { padding: 0 1.5rem; }
+  .cover-meta { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  .company-body { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="top-nav">
+  <div class="nav-brand">India Precision Mfg · IC Research</div>
+  <ul class="nav-links">
+    <li><a href="#cover">Overview</a></li>
+    <li><a href="#context">Context</a></li>
+    <li><a href="#ecosystem">Ecosystem</a></li>
+    <li><a href="#policy">Policy</a></li>
+    <li><a href="#china1">China+1</a></li>
+    <li><a href="#capital">Capital Cycle</a></li>
+    <li><a href="#equities">Equities</a></li>
+    <li><a href="#risks">Risks</a></li>
+    <li><a href="#strategy">Strategy</a></li>
+    <li><a href="#verdict">Verdict</a></li>
+  </ul>
+</nav>
+
+<!-- COVER -->
+<section id="cover">
+  <div class="cover-bg"></div>
+  <div class="cover-grid"></div>
+  <div class="cover-content">
+    <div class="cover-tag">Institutional Equity Research · Deep Industry Study · India</div>
+    <div class="cover-title">The India Precision &<br><em>Mission-Critical</em><br>Manufacturing<br>Super-Cycle</div>
+    <div class="cover-subtitle">A comprehensive institutional intelligence dossier on India's rise as a global precision engineering hub</div>
+    <div class="cover-meta">
+      <div class="meta-block">
+        <div class="meta-label">Publication</div>
+        <div class="meta-value">April 2026</div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">TAM Opportunity</div>
+        <div class="meta-value">$500B+ by 2035</div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">Investment Horizon</div>
+        <div class="meta-value">10–20 Years</div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">Classification</div>
+        <div class="meta-value">Institutional Grade</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="page-wrap">
+
+<!-- EXECUTIVE SUMMARY -->
+<section class="section" id="exec-summary">
+  <div class="section-number">00 · Executive Summary</div>
+  <div class="section-title">The Thesis in Nine Words</div>
+  <div class="section-deck">"India is building the engineering stack the 21st century demands."</div>
+
+  <div class="callout">
+    <div class="callout-headline">Core Investment Thesis</div>
+    <p>A structural, decade-long super-cycle is forming in Indian precision and mission-critical manufacturing, driven by the confluence of China+1 supply-chain diversification, India's defence indigenisation mandate, PLI-led aerospace industrialisation, and an emerging domestic engineering talent base. The businesses that compound most powerfully are not the large OEMs — they are the invisible Tier-1 and Tier-2 suppliers whose components are irreplaceable, whose qualifications cannot be replicated in 18 months, and whose customer relationships span decades. These are the industrial toll booths of the 21st century.</p>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-num">₹1.97T</div>
+      <div class="stat-label">India Defence Budget FY2025<br>(fastest growing in Asia)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">75%</div>
+      <div class="stat-label">Defence production indigenisation target by 2027</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">$26B</div>
+      <div class="stat-label">India aerospace market size by 2030E (CAGR ~11%)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">42%</div>
+      <div class="stat-label">Global OEMs actively seeking India alt-sourcing (McKinsey 2024)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">6–18mo</div>
+      <div class="stat-label">Typical AS9100/NADCAP qualification cycle — the real moat</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">3–5×</div>
+      <div class="stat-label">Premium EBITDA margin: mission-critical vs. commodity manufacturing</div>
+    </div>
+  </div>
+
+  <p>This report maps the full precision manufacturing ecosystem across seven tiers, analyses thirteen listed Indian equities in institutional depth, builds three stress-tested investor portfolios, and identifies the eight asymmetric opportunities investors most systematically undervalue. The analytical framework draws on engineering economics, capital cycle theory, industrial moat architecture, and geopolitical supply-chain strategy.</p>
+</section>
+
+<!-- SECTION 1: CONTEXT -->
+<section class="section" id="context">
+  <div class="section-number">01 · Global Precision Manufacturing Context</div>
+  <div class="section-title">Why Tolerances Become Moats</div>
+  <div class="section-deck">The economics of precision manufacturing are fundamentally different from commodity production. Understanding this gap is the prerequisite for every investment decision in this report.</div>
+
+  <h2>1.1 The Geometry of Industrial Trust</h2>
+  <p>Precision manufacturing operates in a parallel economic universe to standard industrial production. When Rolls-Royce certifies a turbine blade supplier, they are not merely approving a part — they are certifying a <strong>process capability, a quality management system, a metallurgical understanding, and a human organisation</strong> that must replicate perfection tens of thousands of times without failure. The economics that flow from this are extraordinary.</p>
+
+  <p>A single turbine blade failure in a commercial engine costs $50–300 million in liability, insurance, investigation, and reputational damage. The blade itself costs $8,000. The supplier's margin on that blade might be 35%. The OEM's decision calculus is therefore: never switch suppliers to save 8% on a component where switching introduces even a 0.001% incremental failure risk. This is the foundational economics of industrial trust — and it is why mission-critical suppliers enjoy pricing power that commodity manufacturers can only dream of.</p>
+
+  <div class="callout">
+    <div class="callout-headline">The ASML Lesson</div>
+    <p>ASML, the world's only manufacturer of EUV lithography machines, sells each machine for €150–180 million. Their gross margins exceed 50%. They have <strong>zero competition</strong>. This is not because ASML is protected by patents alone — it is because the knowledge, supplier relationships, and process capabilities embedded in each machine represent 40 years of compounding institutional knowledge across 5,000 specialised suppliers. No competitor can compress 40 years into 5. India's precision manufacturers are building the same kind of irreplaceable institutional knowledge — just 30 years behind. The question is whether investors are early enough to benefit.</p>
+  </div>
+
+  <h2>1.2 Historical Parallels: Germany, Japan, Taiwan</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Country/Model</th>
+          <th>Timeframe</th>
+          <th>Entry Point</th>
+          <th>Strategic Edge</th>
+          <th>Peak Outcome</th>
+          <th>India Parallel</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>German Mittelstand</strong></td>
+          <td>1960s–present</td>
+          <td>Post-WWII rebuilding; engineering culture</td>
+          <td>Niche B2B industrial specialisation; family capital patience</td>
+          <td>Undisputed global market leaders in 100s of niche categories</td>
+          <td>Indian engineering family promoters; patience capital emerging</td>
+        </tr>
+        <tr>
+          <td><strong>Japan Industrial Ecosystem</strong></td>
+          <td>1955–1990</td>
+          <td>Technology transfer + kaizen culture</td>
+          <td>Process perfection; quality circles; supplier integration</td>
+          <td>Toyota Production System — copied globally, never equalled</td>
+          <td>India absorbing Japanese manufacturing investment (Toyota, Suzuki)</td>
+        </tr>
+        <tr>
+          <td><strong>Taiwan Semi Suppliers</strong></td>
+          <td>1980s–present</td>
+          <td>TSMC + integrated supply chain</td>
+          <td>Specialisation in narrow but critical nodes of global value chain</td>
+          <td>Chokepoint leverage; geopolitical strategic asset</td>
+          <td>India's aerospace/defence suppliers becoming strategic leverage</td>
+        </tr>
+        <tr>
+          <td><strong>South Korea</strong></td>
+          <td>1970s–present</td>
+          <td>Chaebol + government capital direction</td>
+          <td>Scale + government-backed industrial policy</td>
+          <td>Samsung, Hyundai, POSCO — global category leaders</td>
+          <td>PLI + HAL/DRDO ecosystem mimics early Korean model</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>1.3 Why India Matters NOW — Structural Convergence</h2>
+  <p>Four independent structural forces are converging simultaneously, creating a tidal pull toward Indian precision manufacturing that would require extraordinary misexecution to squander:</p>
+
+  <div class="tier-grid">
+    <div class="tier-card">
+      <div class="tier-badge">Force 01</div>
+      <h3>Geopolitical Manufacturing Reset</h3>
+      <ul>
+        <li>US-China decoupling accelerating post-2022</li>
+        <li>Friend-shoring mandates in US IRA, CHIPS Act</li>
+        <li>Europe diversifying critical supply chains</li>
+        <li>India as the only democratic large-scale manufacturing alternative</li>
+      </ul>
+    </div>
+    <div class="tier-card">
+      <div class="tier-badge">Force 02</div>
+      <h3>India Defence Indigenisation</h3>
+      <ul>
+        <li>75% indigenous defence procurement target (DAP 2020)</li>
+        <li>Positive indigenisation lists now covering 509+ items</li>
+        <li>₹1.97T defence budget; 25% reserved for private sector</li>
+        <li>iDEX startup ecosystem creating 300+ deep-tech suppliers</li>
+      </ul>
+    </div>
+    <div class="tier-card">
+      <div class="tier-badge">Force 03</div>
+      <h3>Aviation & Aerospace Boom</h3>
+      <ul>
+        <li>1,100+ aircraft on order for Indian carriers (Indigo, Air India)</li>
+        <li>India needs 2,200 commercial aircraft over 20 years (Boeing)</li>
+        <li>Government aerospace PLI ₹1,200Cr incentive pool</li>
+        <li>HAL production capacity doubling by FY2028</li>
+      </ul>
+    </div>
+    <div class="tier-card">
+      <div class="tier-badge">Force 04</div>
+      <h3>Engineering Talent Surplus</h3>
+      <ul>
+        <li>800,000 engineering graduates annually (world's largest)</li>
+        <li>Rising STEM specialisation in aerospace/manufacturing</li>
+        <li>IIT + IIM quality research-to-industry pipeline emerging</li>
+        <li>30% cost advantage over US/European engineering teams</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: ECOSYSTEM -->
+<section class="section" id="ecosystem">
+  <div class="section-number">02 · Complete Ecosystem Value Chain</div>
+  <div class="section-title">Seven Tiers. One Compounding Machine.</div>
+  <div class="section-deck">The precision manufacturing value chain is not a simple hierarchy — it is an interconnected web where each layer's economics depend on the layers above and below it.</div>
+
+  <!-- ECOSYSTEM VISUAL -->
+  <div class="ecosystem-visual">
+    <div class="eco-title">India Precision Manufacturing Value Chain · Margin Stack & Moat Intensity</div>
+    <div class="eco-flow">
+      <div class="eco-tier-label">Highest Moat Density</div>
+      <div class="eco-node">
+        <div class="eco-node-icon">✈️</div>
+        <div class="eco-node-body">
+          <div class="eco-node-title">Tier 1 — Aerospace & Mission-Critical Components</div>
+          <div class="eco-node-sub">Turbine blades, engine components, precision castings, defence subassemblies, medical implants</div>
+        </div>
+        <div class="eco-node-margin">EBITDA: 22–38%<br><span style="color:var(--green-light)">★★★★★ Moat</span></div>
+      </div>
+      <div class="eco-node">
+        <div class="eco-node-icon">⚗️</div>
+        <div class="eco-node-body">
+          <div class="eco-node-title">Tier 2 — Specialty Forgings, Alloys & Materials</div>
+          <div class="eco-node-sub">Titanium, nickel superalloys, aerospace metallurgy, defence-grade steel, heat-resistant systems</div>
+        </div>
+        <div class="eco-node-margin">EBITDA: 18–30%<br><span style="color:var(--green-light)">★★★★☆ Moat</span></div>
+      </div>
+      <div class="eco-node">
+        <div class="eco-node-icon">⚙️</div>
+        <div class="eco-node-body">
+          <div class="eco-node-title">Tier 3 — High-Tolerance Machining & Advanced Engineering</div>
+          <div class="eco-node-sub">5-axis CNC, micron-level precision, complex assembly, robotic integration, tooling systems</div>
+        </div>
+        <div class="eco-node-margin">EBITDA: 16–28%<br><span style="color:var(--gold)">★★★★☆ Moat</span></div>
+      </div>
+      <div class="eco-node">
+        <div class="eco-node-icon">🔬</div>
+        <div class="eco-node-body">
+          <div class="eco-node-title">Tier 4 — Semiconductor & Electronics Precision</div>
+          <div class="eco-node-sub">PCB precision systems, connector ecosystems, sensor arrays, high-reliability electronics</div>
+        </div>
+        <div class="eco-node-margin">EBITDA: 14–24%<br><span style="color:var(--gold)">★★★☆☆ Moat</span></div>
+      </div>
+      <div class="eco-node">
+        <div class="eco-node-icon">🛡️</div>
+        <div class="eco-node-body">
+          <div class="eco-node-title">Tier 5 — Defence, Space & Aero Subassemblies</div>
+          <div class="eco-node-sub">Missile subsystems, satellite components, aircraft precision systems, space-grade components</div>
+        </div>
+        <div class="eco-node-margin">EBITDA: 20–34%<br><span style="color:var(--green-light)">★★★★★ Moat</span></div>
+      </div>
+      <div class="eco-node">
+        <div class="eco-node-icon">🤖</div>
+        <div class="eco-node-body">
+          <div class="eco-node-title">Tier 6 — Industrial Automation & Smart Factories</div>
+          <div class="eco-node-sub">Robotics, motion control, smart manufacturing, machine tools, industrial software</div>
+        </div>
+        <div class="eco-node-margin">EBITDA: 12–22%<br><span style="color:var(--gold)">★★★☆☆ Moat</span></div>
+      </div>
+      <div class="eco-node">
+        <div class="eco-node-icon">🔩</div>
+        <div class="eco-node-body">
+          <div class="eco-node-title">Tier 7 — Industrial Consumables & Picks-and-Shovels</div>
+          <div class="eco-node-sub">Cutting tools, bearings, abrasives, industrial gases, precision lubricants, measurement systems</div>
+        </div>
+        <div class="eco-node-margin">EBITDA: 18–32%<br><span style="color:var(--gold)">★★★★☆ Moat</span></div>
+      </div>
+      <div class="eco-tier-label" style="margin-top:1rem;">Lowest Moat Density (but annuity volume)</div>
+    </div>
+  </div>
+
+  <h2>2.1 Tier 1: Mission-Critical Component Suppliers</h2>
+  <p>Mission-critical component manufacturers occupy the most defensible position in the entire value chain. Their moat is not primarily technological — it is <strong>institutional</strong>. The qualification process to supply aerospace-grade components to Boeing, Airbus, or Pratt & Whitney involves an AS9100D quality management audit, followed by component-specific NADCAP accreditation (which alone takes 12–24 months), followed by First Article Inspection (FAI) approvals, followed by a shadow-supply period where components are built and tested in parallel for 6–18 months before any production orders flow.</p>
+
+  <p>This qualification maze is not bureaucratic inefficiency — it is <strong>engineered lock-in</strong>. OEMs structure their qualification programmes to make switching suppliers economically irrational even when cheaper alternatives exist. Every switch requires repeating the full qualification cycle, which costs the OEM $500,000–$5M in engineering time and disrupts production schedules. The supplier knows this. The supplier's CFO knows this. And the best suppliers compound their pricing power accordingly.</p>
+
+  <div class="callout">
+    <div class="callout-headline">The Qualification Barrier in Numbers</div>
+    <p>To achieve AS9100D + NADCAP certification for aerospace turbine components: <strong>24–36 months</strong> of dedicated process development. Cost: <strong>₹8–25 crore</strong> for a mid-sized Indian supplier. Success rate for first-time applicants: <strong>~40%</strong>. This is why India currently has fewer than 50 NADCAP-certified suppliers — and why each one is structurally valuable.</p>
+  </div>
+
+  <h2>2.2 Tier 2: Specialty Forgings, Alloys & Material Science</h2>
+  <p>Aerospace-grade forgings represent the intersection of metallurgy, process engineering, and quality systems. The titanium ecosystem is particularly critical: titanium alloys (Ti-6Al-4V being the workhorse grade) are used in airframes, landing gear, and engine components due to their exceptional strength-to-weight ratio and corrosion resistance. India currently imports ~95% of its aerospace-grade titanium billets — this import substitution gap represents a multi-decade opportunity for domestic metallurgists willing to invest in the capability.</p>
+
+  <p>Nickel superalloys (grades like Inconel 718, Waspaloy, René 104) are used in the hot section of gas turbines where temperatures exceed 1,400°C. The process of casting, heat-treating, and inspecting these components demands equipment and process knowledge that takes 10–15 years to develop from scratch. Companies that have developed this capability — whether through internal R&D, technology licensing, or joint ventures — possess near-permanent competitive advantages.</p>
+
+  <h2>2.3 Tier 7: Picks-and-Shovels — The Hidden Annuity Business</h2>
+  <p>The most systematically underappreciated segment in Indian precision manufacturing is the industrial consumables layer. Companies like <strong>AIA Engineering</strong> (high-chrome grinding media), <strong>Timken India</strong> (precision bearings), and domestic cutting tool manufacturers operate what is effectively an annuity business: their products are consumed by customers who cannot switch suppliers without disrupting production, who purchase on repeat cycles, and whose usage volumes grow directly with the expansion of manufacturing in India.</p>
+
+  <p>AIA Engineering's business model is particularly elegant: cement and mining companies use high-chrome grinding media to pulverise ore and clinker. The replacement cycle is fixed by physics — the balls wear down at a predictable rate. AIA's customers have no incentive to switch suppliers because the process optimisation required to switch is more expensive than any price saving the switch could generate. This is a true toll booth.</p>
+</section>
+
+<!-- SECTION 3: POLICY -->
+<section class="section" id="policy">
+  <div class="section-number">03 · India Policy & Industrial Strategy</div>
+  <div class="section-title">The Policy Architecture Enabling the Super-Cycle</div>
+  <div class="section-deck">Government policy is not sufficient to create a manufacturing ecosystem — but it is necessary to catalyse one. India's current policy stack is the most coherent industrial strategy the country has deployed since liberalisation.</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Policy / Scheme</th>
+          <th>Focus Area</th>
+          <th>Incentive Quantum</th>
+          <th>Duration</th>
+          <th>Key Beneficiaries (Listed)</th>
+          <th>Assessment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>PLI — Aerospace & Defence</strong></td>
+          <td>Aerospace components, defence manufacturing</td>
+          <td>₹1,200 Cr incentive pool; 3% turnover-linked</td>
+          <td>FY23–FY28</td>
+          <td>HAL, Dynamatic, MTAR</td>
+          <td><span class="tag tag-green">High Impact</span></td>
+        </tr>
+        <tr>
+          <td><strong>Defence Acquisition Policy 2020</strong></td>
+          <td>Indigenisation; 25% private sector procurement</td>
+          <td>509-item Positive Indigenisation List</td>
+          <td>Ongoing</td>
+          <td>Bharat Forge, Data Patterns, Paras Defence</td>
+          <td><span class="tag tag-green">Transformative</span></td>
+        </tr>
+        <tr>
+          <td><strong>India Semiconductor Mission</strong></td>
+          <td>Chip fabrication, packaging, design</td>
+          <td>₹76,000 Cr; 50% subsidy on capex</td>
+          <td>FY23–FY27</td>
+          <td>Kaynes Technology, Cyient DLM</td>
+          <td><span class="tag tag-gold">Medium-Term</span></td>
+        </tr>
+        <tr>
+          <td><strong>Make in India 2.0</strong></td>
+          <td>Broad manufacturing competitiveness</td>
+          <td>Various sector-specific PLIs (~₹1.97L Cr total)</td>
+          <td>Ongoing</td>
+          <td>Broad; precision mfg disproportionate beneficiary</td>
+          <td><span class="tag tag-gold">Structural</span></td>
+        </tr>
+        <tr>
+          <td><strong>Space Sector Liberalisation</strong></td>
+          <td>Private space manufacturing; ISRO supply chain</td>
+          <td>IN-SPACe regulatory framework; FDI up to 100%</td>
+          <td>2023–ongoing</td>
+          <td>MTAR, Azad Engineering</td>
+          <td><span class="tag tag-blue">Early Stage</span></td>
+        </tr>
+        <tr>
+          <td><strong>National Logistics Policy</strong></td>
+          <td>Reduce logistics cost from 13% to 8% of GDP</td>
+          <td>₹10.5L Cr infrastructure investment pipeline</td>
+          <td>FY22–FY30</td>
+          <td>All exporters benefit</td>
+          <td><span class="tag tag-gold">Enabling</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>3.1 The Defence Indigenisation Mandate: A Structural Game Changer</h2>
+  <p>India's Defence Acquisition Policy 2020 is not incremental reform — it is structural transformation. The creation of <strong>Positive Indigenisation Lists (PIL)</strong> — now covering 509 defence items that <em>can no longer be imported</em> — forces the Indian industrial base to develop capabilities it previously outsourced. These lists include complex electronic warfare systems, radar sub-assemblies, aero-engine components, and precision munitions.</p>
+
+  <p>The private sector procurement reservation (25% of capital defence procurement) combined with the iDEX (Innovation for Defence Excellence) programme, which has funded 300+ deep-tech defence startups with up to ₹1.5 crore each, is creating a supplier ecosystem from scratch. The listed companies best positioned to harvest this ecosystem are those with existing government customer relationships, established quality systems, and manufacturing versatility to migrate across categories.</p>
+</section>
+
+<!-- SECTION 4: CHINA+1 -->
+<section class="section" id="china1">
+  <div class="section-number">04 · China+1 & The Global Supply-Chain Reset</div>
+  <div class="section-title">India's Asymmetric Opportunity Window</div>
+  <div class="section-deck">The China+1 opportunity is real, but it is not automatic. India must compete for manufacturing FDI against Vietnam, Mexico, Indonesia, and Thailand. Understanding where India wins — and where it loses — is critical for precision allocation.</div>
+
+  <h2>4.1 Where India Wins Definitively</h2>
+
+  <div class="tier-grid">
+    <div class="tier-card">
+      <div class="tier-badge">India Advantage</div>
+      <h3>Complex, High-Mix, Low-Volume Manufacturing</h3>
+      <p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.5rem;">India's engineering cost structure and talent depth are optimal for high-complexity, customised components where design flexibility and engineering problem-solving matter more than pure throughput efficiency.</p>
+    </div>
+    <div class="tier-card">
+      <div class="tier-badge">India Advantage</div>
+      <h3>Defence & Dual-Use Manufacturing</h3>
+      <p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.5rem;">Western OEMs increasingly mandate "trusted ally" sourcing for defence-related components. India's strategic partnership status with the US (GSOMIA, BECA agreements) creates a structural preference over Vietnam or Thailand.</p>
+    </div>
+    <div class="tier-card">
+      <div class="tier-badge">India Advantage</div>
+      <h3>Engineering Services + Manufacturing Integration</h3>
+      <p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.5rem;">India's unique combination of engineering design capability (IT services heritage) + physical manufacturing creates an integrated offer competitors cannot match — the DLM (Design-Led Manufacturing) model.</p>
+    </div>
+    <div class="tier-card">
+      <div class="tier-badge">India Advantage</div>
+      <h3>English-Language, IP-Safe Ecosystem</h3>
+      <p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.5rem;">IP protection concerns are the primary reason many Western OEMs resist China-only sourcing. India's common law legal system, English-language interface, and democratic governance create structural trust premium.</p>
+    </div>
+  </div>
+
+  <h2>4.2 Where India Must Urgently Improve</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Bottleneck</th><th>Current State</th><th>China Gap</th><th>Timeline to Close</th><th>Key Risk</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Logistics Infrastructure</strong></td>
+          <td>13% logistics cost as % of GDP vs China's 8%</td>
+          <td>500 bps cost disadvantage</td>
+          <td>2028–2032 (PM Gati Shakti)</td>
+          <td>Political execution risk</td>
+        </tr>
+        <tr>
+          <td><strong>Supply Chain Depth</strong></td>
+          <td>Tier-2/3 supplier base thin; imports still ~40% of precision inputs</td>
+          <td>10+ years of ecosystem depth advantage</td>
+          <td>2030–2040</td>
+          <td>Supplier investment inertia</td>
+        </tr>
+        <tr>
+          <td><strong>Power & Utilities</strong></td>
+          <td>Industrial electricity ~₹8/unit; reliability improving but variable</td>
+          <td>~30% cheaper, more reliable industrial power</td>
+          <td>2027–2030</td>
+          <td>Renewable transition risk</td>
+        </tr>
+        <tr>
+          <td><strong>Skilled Labour</strong></td>
+          <td>800K engineers/year but vocational/technical skill gaps persist</td>
+          <td>4x larger technically-trained manufacturing workforce</td>
+          <td>2030–2035</td>
+          <td>Brain drain to IT sector</td>
+        </tr>
+        <tr>
+          <td><strong>Industrial Finance</strong></td>
+          <td>MSME access to capital: 14–18% lending rates vs 5–8% in China</td>
+          <td>700–1000 bps cost of capital disadvantage for small suppliers</td>
+          <td>Structural; banking reform needed</td>
+          <td>Credit cycle dependence</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <div class="callout-headline">The Honest China+1 Assessment</div>
+    <p>India will not replace China in mass electronics manufacturing in the next decade. The supply chain depth, power infrastructure, and MSME capital access gaps are too large to bridge quickly. However, India will <strong>dominate</strong> the high-complexity, defence-linked, trusted-ally manufacturing segment — and this segment happens to be where margins are highest, customer lock-in is strongest, and listed equity compounders are most likely to emerge. Investors who confuse "India is not the next China" with "India's manufacturing story is not investable" are making a categorical error.</p>
+  </div>
+</section>
+
+<!-- SECTION 5: CAPITAL CYCLE -->
+<section class="section" id="capital">
+  <div class="section-number">05 · Capital Cycle Analysis</div>
+  <div class="section-title">Where ROIC Compounds and Where it Collapses</div>
+  <div class="section-deck">Understanding capital cycle dynamics separates the true industrial compounders from the value traps dressed in manufacturing narrative.</div>
+
+  <div class="cycle-grid">
+    <div class="cycle-card">
+      <div class="cycle-roic high-roic">28–40%</div>
+      <div class="cycle-label">Mission-Critical Monopolies<br>(NADCAP-certified Tier-1)</div>
+      <div class="cycle-desc">ROIC consistently exceeds WACC by 15–25 ppts. Pricing power is real. Reinvestment needs are modest once capacity is built. ASML-type economics at Indian scale.</div>
+    </div>
+    <div class="cycle-card">
+      <div class="cycle-roic high-roic">20–30%</div>
+      <div class="cycle-label">Engineering Toll Booths<br>(Consumables, bearings, cutting tools)</div>
+      <div class="cycle-desc">High repeat purchases, low customer churn, inflation pass-through. AIA Engineering archetype. Annuity economics with manufacturing characteristics.</div>
+    </div>
+    <div class="cycle-card">
+      <div class="cycle-roic mid-roic">14–22%</div>
+      <div class="cycle-label">Platform Manufacturers<br>(Multi-sector precision)</div>
+      <div class="cycle-desc">Good ROIC but requires perpetual reinvestment. Bharat Forge archetype. Capex-intensive but builds scale moat over time. Must manage through cyclicality.</div>
+    </div>
+    <div class="cycle-card">
+      <div class="cycle-roic mid-roic">10–16%</div>
+      <div class="cycle-label">Defence Electronics<br>(Systems integration)</div>
+      <div class="cycle-desc">Growing ROIC as government procurement scales. Currently underearning due to programme delays and working capital intensity. Multi-year latent compounding.</div>
+    </div>
+    <div class="cycle-card">
+      <div class="cycle-roic low-roic">6–12%</div>
+      <div class="cycle-label">Standard Forgings<br>(Commodity processing)</div>
+      <div class="cycle-desc">Margin compression from overcapacity. ROIC at or below WACC in trough years. Often mis-narrated as precision businesses. Avoid unless management is disciplined about capital allocation.</div>
+    </div>
+    <div class="cycle-card">
+      <div class="cycle-roic low-roic">4–10%</div>
+      <div class="cycle-label">Volume Assembly<br>(Low-end EMS, standard machining)</div>
+      <div class="cycle-desc">Commodity economics. Labour cost only advantage. Structurally vulnerable to automation. Not the precision manufacturing story — avoid conflation.</div>
+    </div>
+  </div>
+
+  <h2>5.1 The Mission-Criticality Premium: Why OEMs Never Switch</h2>
+  <p>The core economic argument for mission-critical supplier concentration can be expressed as a simple decision tree. Suppose an OEM can save 12% on a precision component by switching suppliers. The switching cost includes: full re-qualification (₹3–15 crore, 18–30 months), shadow-supply parallel production (6 months), risk of production line disruption (potential cost: hundreds of millions), and the intangible cost of rebuilding the knowledge-transfer relationship. The NPV of switching is negative in almost every realistic scenario — which is why OEMs don't switch. And why their suppliers compound.</p>
+</section>
+
+<!-- SECTION 6: EQUITY DEEP DIVES -->
+<section class="section" id="equities">
+  <div class="section-number">06 · India Listed Equity Mapping</div>
+  <div class="section-title">Institutional Deep Dive: 13 Companies</div>
+  <div class="section-deck">Every company below is assessed on mission-criticality, moat durability, capital allocation quality, and risk-adjusted asymmetry. These are not narratives — they are forensic engineering-economic analyses.</div>
+
+  <!-- AZAD ENGINEERING -->
+  <div class="company-card">
+    <div class="company-header">
+      <div>
+        <div class="company-name">Azad Engineering</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--slate);letter-spacing:0.1em;margin-top:0.2rem;">AZAD · NSE | Aerospace & Energy Precision Components</div>
+      </div>
+      <div class="company-meta">
+        <span class="tag tag-green">Mission-Critical Monopoly</span>
+        <span class="tag tag-gold">Export Champion</span>
+      </div>
+    </div>
+    <div class="company-body">
+      <div>
+        <p style="font-size:0.9rem;"><strong>Azad Engineering</strong> manufactures ultra-precision components for gas turbines (aerospace and industrial), steam turbines, and defence — directly supplying Tier-1 OEMs including GE, Honeywell, Siemens Energy, and MHI. Their defining characteristic is an extraordinary qualification depth: they are one of only ~6 Indian companies with NADCAP accreditation for aerospace. Every component they manufacture is used in an application where <em>failure means catastrophic loss of life or equipment</em> — the definition of mission-critical.</p>
+        <p style="font-size:0.9rem;">Their business model is the Indian equivalent of a niche German Mittelstand: hyper-specialised, technically deep, with customer relationships that are sticky by engineering necessity. Revenue visibility stretches 3–5 years because aerospace programmes have fixed production schedules and approved vendor lists.</p>
+        <div class="bull-bear">
+          <div class="bull"><strong>Bull Case</strong>Becomes India's first globally recognised precision aerospace subcontractor; 5-year revenue CAGR 35–45%; margin expansion as mix shifts to aerospace from industrial energy.</div>
+          <div class="bear"><strong>Bear Case</strong>Execution risk in scaling to 10× current capacity; single customer concentration (top-3 >60%); qualified-vendor list exclusion risk if any quality event occurs.</div>
+        </div>
+      </div>
+      <div>
+        <div class="company-metrics">
+          <div class="metric-cell"><div class="metric-key">EBITDA Margin</div><div class="metric-val">~34%</div></div>
+          <div class="metric-cell"><div class="metric-key">Revenue CAGR (3Y)</div><div class="metric-val">~45%</div></div>
+          <div class="metric-cell"><div class="metric-key">ROIC (est.)</div><div class="metric-val">18–22%</div></div>
+          <div class="metric-cell"><div class="metric-key">Export %</div><div class="metric-val">~80%</div></div>
+          <div class="metric-cell"><div class="metric-key">Certification</div><div class="metric-val">NADCAP, AS9100D</div></div>
+          <div class="metric-cell"><div class="metric-key">Moat Type</div><div class="metric-val">Qualification lock-in</div></div>
+        </div>
+        <div style="margin-top:1rem;padding:0.9rem;background:rgba(201,168,76,0.07);border:1px solid var(--border);font-size:0.82rem;">
+          <strong style="color:var(--gold);display:block;font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem;">Moat Assessment</strong>
+          ASML-like niche manufacturer. Qualification moat is near-unassailable. The question is execution at scale — a risk common to all precision manufacturers growing from ₹100Cr to ₹500Cr+ revenue. <em>Conviction: HIGH at price discipline.</em>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MTAR TECHNOLOGIES -->
+  <div class="company-card">
+    <div class="company-header">
+      <div>
+        <div class="company-name">MTAR Technologies</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--slate);letter-spacing:0.1em;margin-top:0.2rem;">MTAR · NSE | Defence, Space & Nuclear Precision Manufacturing</div>
+      </div>
+      <div class="company-meta">
+        <span class="tag tag-green">Mission-Critical</span>
+        <span class="tag tag-blue">Space Exposure</span>
+      </div>
+    </div>
+    <div class="company-body">
+      <div>
+        <p style="font-size:0.9rem;"><strong>MTAR Technologies</strong> is one of India's rarest manufacturing assets: a company with simultaneous supply relationships across ISRO (space), DRDO (defence), NPCIL (nuclear), and Bloom Energy (clean energy fuel cells). This multi-vertical qualification profile means that MTAR's institutional knowledge base cannot be replicated by any new entrant without 15+ years of investment and relationship-building.</p>
+        <p style="font-size:0.9rem;">Their Bloom Energy relationship (manufacturing solid oxide fuel cell components for the US market) is particularly noteworthy — it validates their global quality system and provides visibility into a structurally growing clean energy market. The nuclear precision division positions them uniquely as India accelerates its nuclear energy programme.</p>
+        <div class="bull-bear">
+          <div class="bull"><strong>Bull Case</strong>Space commercialisation (ISRO + IN-SPACe) drives 10× demand growth; nuclear energy programme acceleration; Bloom Energy fuel cell volumes scale 3–5×; company becomes India's first true multi-domain mission-critical conglomerate.</div>
+          <div class="bear"><strong>Bear Case</strong>Government procurement delays endemic; Bloom Energy remains sub-scale; nuclear programme slippage; quality event in any vertical damages all customer relationships simultaneously.</div>
+        </div>
+      </div>
+      <div>
+        <div class="company-metrics">
+          <div class="metric-cell"><div class="metric-key">EBITDA Margin</div><div class="metric-val">~26%</div></div>
+          <div class="metric-cell"><div class="metric-key">Revenue CAGR (3Y)</div><div class="metric-val">~28%</div></div>
+          <div class="metric-cell"><div class="metric-key">Govt Revenue %</div><div class="metric-val">~55%</div></div>
+          <div class="metric-cell"><div class="metric-key">Export %</div><div class="metric-val">~35%</div></div>
+          <div class="metric-cell"><div class="metric-key">Verticals</div><div class="metric-val">4 (unique)</div></div>
+          <div class="metric-cell"><div class="metric-key">Moat Type</div><div class="metric-val">Multi-domain qual.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DATA PATTERNS -->
+  <div class="company-card">
+    <div class="company-header">
+      <div>
+        <div class="company-name">Data Patterns (India)</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--slate);letter-spacing:0.1em;margin-top:0.2rem;">DATAPATTNS · NSE | Defence Electronics & Avionics Systems</div>
+      </div>
+      <div class="company-meta">
+        <span class="tag tag-green">Industrial Toll Booth</span>
+        <span class="tag tag-blue">Defence Electronics</span>
+      </div>
+    </div>
+    <div class="company-body">
+      <div>
+        <p style="font-size:0.9rem;"><strong>Data Patterns</strong> designs and manufactures defence electronics systems — radar systems, avionics, electronic warfare systems — entirely indigenously, from PCB design through system integration and final testing. This integrated design-to-manufacture model creates the deepest possible moat: they own the intellectual property, which means the DRDO/HAL/Indian Navy cannot switch to an alternative supplier without redeveloping the design from scratch.</p>
+        <p style="font-size:0.9rem;">Their addressable market expands directly with India's defence indigenisation programme — every item on the Positive Indigenisation List that involves electronics is a potential Data Patterns opportunity. Order books typically carry 3–4 years of revenue visibility.</p>
+        <div class="bull-bear">
+          <div class="bull"><strong>Bull Case</strong>India's defence electronics market grows from ₹25,000Cr to ₹75,000Cr by 2030; Data Patterns captures 3–5% market share; margin expands to 35%+ as fixed costs are leveraged.</div>
+          <div class="bear"><strong>Bear Case</strong>Programme delays are the Indian defence sector's chronic disease; valuation leaves no room for execution slippage; single customer (government) creates extraordinary revenue concentration.</div>
+        </div>
+      </div>
+      <div>
+        <div class="company-metrics">
+          <div class="metric-cell"><div class="metric-key">EBITDA Margin</div><div class="metric-val">~30%</div></div>
+          <div class="metric-cell"><div class="metric-key">Order Book</div><div class="metric-val">3–4× Revenue</div></div>
+          <div class="metric-cell"><div class="metric-key">ROIC</div><div class="metric-val">20–25%</div></div>
+          <div class="metric-cell"><div class="metric-key">Govt Revenue %</div><div class="metric-val">~90%</div></div>
+          <div class="metric-cell"><div class="metric-key">IP Ownership</div><div class="metric-val">Full (unique)</div></div>
+          <div class="metric-cell"><div class="metric-key">Moat Type</div><div class="metric-val">IP + system qual.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BHARAT FORGE -->
+  <div class="company-card">
+    <div class="company-header">
+      <div>
+        <div class="company-name">Bharat Forge</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--slate);letter-spacing:0.1em;margin-top:0.2rem;">BHARATFORG · NSE | World's Largest Forging Company | Multi-Sector</div>
+      </div>
+      <div class="company-meta">
+        <span class="tag tag-gold">Platform Manufacturer</span>
+        <span class="tag tag-blue">Export Leader</span>
+      </div>
+    </div>
+    <div class="company-body">
+      <div>
+        <p style="font-size:0.9rem;"><strong>Bharat Forge</strong> is India's most sophisticated precision manufacturer — a globally recognised forge master with supply relationships spanning automotive, aerospace, defence, energy, and oil & gas. With plants in India, Germany, Sweden, and the US, it operates as a genuinely global industrial platform. Their European acquisitions (CDP Bharat Forge GmbH) give them direct access to German and European OEM supply chains, making them perhaps the only Indian industrial company that competes on an equal footing with global Tier-1 suppliers.</p>
+        <p style="font-size:0.9rem;">The strategic shift toward defence and aerospace (now ~20% of revenue) is meaningful because it increases the mission-criticality premium in their margin stack. Their artillery gun manufacturing capability (K9 Vajra supply chain participation) makes them the rare example of an Indian private sector company supplying the Indian Army directly with weapons systems components.</p>
+        <div class="bull-bear">
+          <div class="bull"><strong>Bull Case</strong>Defence revenue doubles to 35–40% of mix by FY28; EV transition benefits Bharat Forge disproportionately (complex aluminium forgings for EV drivetrains); global manufacturing diversification drives European order acceleration.</div>
+          <div class="bear"><strong>Bear Case</strong>Automotive cyclicality creates earnings volatility; European operations drag on returns; defence programme delays persistent; premium valuation requires execution consistency that history has only partially demonstrated.</div>
+        </div>
+      </div>
+      <div>
+        <div class="company-metrics">
+          <div class="metric-cell"><div class="metric-key">Revenue (FY25E)</div><div class="metric-val">~₹17,500Cr</div></div>
+          <div class="metric-cell"><div class="metric-key">EBITDA Margin</div><div class="metric-val">~20–22%</div></div>
+          <div class="metric-cell"><div class="metric-key">Defence Mix</div><div class="metric-val">~20% & rising</div></div>
+          <div class="metric-cell"><div class="metric-key">Export %</div><div class="metric-val">~60%</div></div>
+          <div class="metric-cell"><div class="metric-key">Global Plants</div><div class="metric-val">4 countries</div></div>
+          <div class="metric-cell"><div class="metric-key">Moat Type</div><div class="metric-val">Scale + geography</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AIA ENGINEERING -->
+  <div class="company-card">
+    <div class="company-header">
+      <div>
+        <div class="company-name">AIA Engineering</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--slate);letter-spacing:0.1em;margin-top:0.2rem;">AIAENG · NSE | High-Chrome Grinding Media | Mining & Cement</div>
+      </div>
+      <div class="company-meta">
+        <span class="tag tag-green">Engineering Toll Booth</span>
+        <span class="tag tag-gold">Hidden Compounder</span>
+      </div>
+    </div>
+    <div class="company-body">
+      <div>
+        <p style="font-size:0.9rem;"><strong>AIA Engineering</strong> manufactures high-chrome grinding media (grinding balls and liners) used in mining and cement operations worldwide. This is a perfect industrial toll booth: every cement plant and every mining operation must consume these components. They cannot be stockpiled (they wear out by design). AIA has developed proprietary metallurgical formulations that extend the wear life of their media vs. cast iron alternatives — directly reducing the customer's total cost of operation. This value-add makes price comparisons irrelevant and creates deep customer loyalty.</p>
+        <p style="font-size:0.9rem;">AIA's penetration of global mining — particularly copper mining in the Americas and Africa — represents a massive underpenetrated opportunity. Every new mine that switches from forged steel to AIA's high-chrome media locks in a recurring revenue stream for 15–20 years.</p>
+        <div class="bull-bear">
+          <div class="bull"><strong>Bull Case</strong>Mining capex supercycle drives volumes; copper demand explosion for EV/grid accelerates mine openings; AIA's market share in global mining grinding media grows from ~6% to 12%+; FCF compounding makes this a 10-bagger over a decade.</div>
+          <div class="bear"><strong>Bear Case</strong>Chrome ore input cost inflation; Chinese grinding media competition; mining cyclicality creates volume volatility; innovation in alternative grinding technologies (ultrasonic, etc.) over very long term.</div>
+        </div>
+      </div>
+      <div>
+        <div class="company-metrics">
+          <div class="metric-cell"><div class="metric-key">EBITDA Margin</div><div class="metric-val">~28–32%</div></div>
+          <div class="metric-cell"><div class="metric-key">ROCE</div><div class="metric-val">~26%</div></div>
+          <div class="metric-cell"><div class="metric-key">Export %</div><div class="metric-val">~65%</div></div>
+          <div class="metric-cell"><div class="metric-key">FCF Yield</div><div class="metric-val">~3.5–4.5%</div></div>
+          <div class="metric-cell"><div class="metric-key">Customer Churn</div><div class="metric-val">~2% (very low)</div></div>
+          <div class="metric-cell"><div class="metric-key">Moat Type</div><div class="metric-val">Technical + annuity</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KAYNES TECHNOLOGY -->
+  <div class="company-card">
+    <div class="company-header">
+      <div>
+        <div class="company-name">Kaynes Technology India</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--slate);letter-spacing:0.1em;margin-top:0.2rem;">KAYNES · NSE | Electronics Manufacturing Services | Defence & Industrial</div>
+      </div>
+      <div class="company-meta">
+        <span class="tag tag-green">DLM Pioneer</span>
+        <span class="tag tag-blue">Semiconductor Adjacent</span>
+      </div>
+    </div>
+    <div class="company-body">
+      <div>
+        <p style="font-size:0.9rem;"><strong>Kaynes Technology</strong> is India's leading integrated Electronics Manufacturing Services (EMS) company with a Design-Led Manufacturing (DLM) differentiation. Unlike pure-play EMS companies that assemble components to customer specifications, Kaynes participates in product design — which increases their switching cost dramatically and improves margin profile. Their customer base spans aerospace, defence, industrial, medical, and automotive electronics.</p>
+        <p style="font-size:0.9rem;">The planned foray into OSAT (Outsourced Semiconductor Assembly and Testing) in Mysuru positions them directly in India's semiconductor value chain — a segment that could be worth ₹20,000+ crore of domestic demand by 2030 if the India Semiconductor Mission delivers on its targets.</p>
+        <div class="bull-bear">
+          <div class="bull"><strong>Bull Case</strong>India's electronics manufacturing grows 5× by 2030; Kaynes captures DLM premium over pure EMS; OSAT facility becomes semiconductor supply chain anchor; defence electronics indigenisation is a permanent tailwind.</div>
+          <div class="bear"><strong>Bear Case</strong>EMS is inherently lower-margin than perceived; DLM differentiation difficult to protect at scale; OSAT execution risk very high (capital-intensive, technically demanding); concentrated customer risks.</div>
+        </div>
+      </div>
+      <div>
+        <div class="company-metrics">
+          <div class="metric-cell"><div class="metric-key">EBITDA Margin</div><div class="metric-val">~12–14%</div></div>
+          <div class="metric-cell"><div class="metric-key">Revenue CAGR (3Y)</div><div class="metric-val">~35%</div></div>
+          <div class="metric-cell"><div class="metric-key">Defence Mix</div><div class="metric-val">~25%</div></div>
+          <div class="metric-cell"><div class="metric-key">DLM %</div><div class="metric-val">~30% (high val.)</div></div>
+          <div class="metric-cell"><div class="metric-key">OSAT</div><div class="metric-val">In development</div></div>
+          <div class="metric-cell"><div class="metric-key">Moat Type</div><div class="metric-val">Design integration</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCHAEFFLER / TIMKEN -->
+  <div class="company-card">
+    <div class="company-header">
+      <div>
+        <div class="company-name">Schaeffler India & Timken India</div>
+        <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--slate);letter-spacing:0.1em;margin-top:0.2rem;">SCHAEFFLER · TIMKEN · NSE/BSE | Precision Bearings & Industrial Components</div>
+      </div>
+      <div class="company-meta">
+        <span class="tag tag-gold">Quality Compounder</span>
+        <span class="tag tag-green">Global Parent Backing</span>
+      </div>
+    </div>
+    <div class="company-body">
+      <div>
+        <p style="font-size:0.9rem;"><strong>Schaeffler India and Timken India</strong> represent the most conservative way to play precision engineering in India — through the listed subsidiaries of world-class global industrial parents. Both companies manufacture precision bearings, linear guides, and related components for automotive, industrial, and railway applications. The parent company technology access, global quality systems, and established brand recognition create a durable competitive moat that no domestic Indian bearing manufacturer can replicate without 20+ years of investment.</p>
+        <p style="font-size:0.9rem;">As India's railway modernisation (Vande Bharat trains, High-Speed Rail) and industrial capex cycle accelerates, both companies benefit from structurally growing demand for precision bearings. Their EV transition optionality is particularly interesting — EV drivetrains require bearings with tighter tolerances and more complex geometries than ICE vehicles, playing directly to their engineering strengths.</p>
+        <div class="bull-bear">
+          <div class="bull"><strong>Bull Case</strong>Railway modernisation drives 5–7 year demand upcycle; EV adoption increases per-vehicle bearing content by 40%; parent technology transfer accelerates wind energy and robotics bearing exposure; subsidiary re-rating toward global peer multiples.</div>
+          <div class="bear"><strong>Bear Case</strong>Minority shareholder risk (parent decisions may not optimise listed sub); ICE automotive slowdown before EV ramp; commodity steel input cost inflation; parent may delist at unfavourable valuations.</div>
+        </div>
+      </div>
+      <div>
+        <div class="company-metrics">
+          <div class="metric-cell"><div class="metric-key">EBITDA Margin</div><div class="metric-val">~18–22%</div></div>
+          <div class="metric-cell"><div class="metric-key">ROCE</div><div class="metric-val">~22–28%</div></div>
+          <div class="metric-cell"><div class="metric-key">Dividend Yield</div><div class="metric-val">~1.5–2.0%</div></div>
+          <div class="metric-cell"><div class="metric-key">Parent</div><div class="metric-val">German/US MNC</div></div>
+          <div class="metric-cell"><div class="metric-key">Revenue Growth</div><div class="metric-val">12–18% CAGR</div></div>
+          <div class="metric-cell"><div class="metric-key">Moat Type</div><div class="metric-val">Brand + tech access</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY TABLE ALL COMPANIES -->
+  <h2>6.1 Master Conviction Matrix: All 13 Companies</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Sector Tier</th>
+          <th>Moat Type</th>
+          <th>EBITDA %</th>
+          <th>Export %</th>
+          <th>Mission-Criticality</th>
+          <th>Conviction Score</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Azad Engineering</strong></td>
+          <td>Tier 1 — Aerospace</td>
+          <td>Qualification lock-in</td>
+          <td>~34%</td>
+          <td>~80%</td>
+          <td><span class="tag tag-green">Extreme</span></td>
+          <td style="font-family:var(--font-mono);color:var(--gold);">9.2 / 10</td>
+          <td><span class="tag tag-green">Mission-Critical Monopoly</span></td>
+        </tr>
+        <tr>
+          <td><strong>MTAR Technologies</strong></td>
+          <td>Tier 1 / Tier 5</td>
+          <td>Multi-domain qualification</td>
+          <td>~26%</td>
+          <td>~35%</td>
+          <td><span class="tag tag-green">Extreme</span></td>
+          <td style="font-family:var(--font-mono);color:var(--gold);">8.8 / 10</td>
+          <td><span class="tag tag-green">Mission-Critical Monopoly</span></td>
+        </tr>
+        <tr>
+          <td><strong>Data Patterns</strong></td>
+          <td>Tier 5 — Defence Electronics</td>
+          <td>IP + system qualification</td>
+          <td>~30%</td>
+          <td>~5%</td>
+          <td><span class="tag tag-green">Extreme</span></td>
+          <td style="font-family:var(--font-mono);color:var(--gold);">8.5 / 10</td>
+          <td><span class="tag tag-green">Industrial Toll Booth</span></td>
+        </tr>
+        <tr>
+          <td><strong>AIA Engineering</strong></td>
+          <td>Tier 7 — Consumables</td>
+          <td>Technical + annuity</td>
+          <td>~30%</td>
+          <td>~65%</td>
+          <td><span class="tag tag-gold">High</span></td>
+          <td style="font-family:var(--font-mono);color:var(--gold);">8.8 / 10</td>
+          <td><span class="tag tag-green">Hidden Compounder</span></td>
+        </tr>
+        <tr>
+          <td><strong>Bharat Forge</strong></td>
+          <td>Tier 2 / Platform</td>
+          <td>Scale + geography</td>
+          <td>~21%</td>
+          <td>~60%</td>
+          <td><span class="tag tag-gold">High</span></td>
+          <td style="font-family:var(--font-mono);color:var(--gold);">7.5 / 10</td>
+          <td><span class="tag tag-blue">Platform Manufacturer</span></td>
+        </tr>
+        <tr>
+          <td><strong>Kaynes Technology</strong></td>
+          <td>Tier 4 / Electronics</td>
+          <td>Design integration</td>
+          <td>~13%</td>
+          <td>~25%</td>
+          <td><span class="tag tag-gold">Medium-High</span></td>
+          <td style="font-family:var(--font-mono);color:var(--gold);">7.2 / 10</td>
+          <td><span class="tag tag-blue">DLM Compounder</span></td>
+        </tr>
+        <tr>
+          <td><strong>Schaeffler India</strong></td>
+          <td>Tier 7 — Bearings</td>
+          <td>Brand + tech access</td>
+          <td>~20%</td>
+          <td>~20%</td>
+          <td><span class="tag tag-gold">High</span></td>
+          <td style="font-family:var(--font-mono);color:var(--gold);">7.8 / 10</td>
+          <td><span class="tag tag-green">Quality Compounder</span></td>
+        </tr>
+        <tr>
+          <td><strong>Timken India</strong></td>
+          <td>Tier 7 — Bearings</td>
+          <td>Brand + tech access</td>
+          <td>~22%</td>
+          <td>~15%</td>
+          <td><span class="tag tag-gold">High</span></td>
+          <td style="font-family:var(--font-mono);color:var(--gold);">7.5 / 10</td>
+          <td><span class="tag tag-green">Quality Compounder</span></td>
+        </tr>
+        <tr>
+          <td><strong>Dynamatic Technologies</strong></td>
+          <td>Tier 1 / Tier 5</td>
+          <td>Aerospace qual. + flap tracks</td>
+          <td>~14%</td>
+          <td>~60%</td>
+          <td><span class="tag tag-green">Extreme</span></td>
+          <td style="font-family:var(--font-mono);color:var(--gold);">7.0 / 10</td>
+          <td><span class="tag tag-blue">Export Precision Leader</span></td>
+        </tr>
+        <tr>
+          <td><strong>Rolex Rings</strong></td>
+          <td>Tier 2 — Forgings</td>
+          <td>Process expertise + export</td>
+          <td>~22%</td>
+          <td>~45%</td>
+          <td><span class="tag tag-gold">Medium</span></td>
+          <td style="font-family:var(--font-mono);color:var(--gold);">6.8 / 10</td>
+          <td><span class="tag tag-gold">Deep Value Industrial</span></td>
+        </tr>
+        <tr>
+          <td><strong>Paras Defence</strong></td>
+          <td>Tier 5 — Defence</td>
+          <td>Optics + indigenisation</td>
+          <td>~28%</td>
+          <td>~10%</td>
+          <td><span class="tag tag-gold">High</span></td>
+          <td style="font-family:var(--font-mono);color:var(--gold);">6.5 / 10</td>
+          <td><span class="tag tag-blue">Speculative Growth</span></td>
+        </tr>
+        <tr>
+          <td><strong>Cyient DLM</strong></td>
+          <td>Tier 4 / Electronics</td>
+          <td>Parent engineering + DLM</td>
+          <td>~10–12%</td>
+          <td>~40%</td>
+          <td><span class="tag tag-gold">Medium</span></td>
+          <td style="font-family:var(--font-mono);color:var(--gold);">6.2 / 10</td>
+          <td><span class="tag tag-grey">Developing Moat</span></td>
+        </tr>
+        <tr>
+          <td><strong>Zen Technologies</strong></td>
+          <td>Tier 5 — Defence Training</td>
+          <td>Simulation IP + MoD lock-in</td>
+          <td>~35%</td>
+          <td>~15%</td>
+          <td><span class="tag tag-gold">Medium-High</span></td>
+          <td style="font-family:var(--font-mono);color:var(--gold);">7.0 / 10</td>
+          <td><span class="tag tag-green">Niche Toll Booth</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 7: RISKS -->
+<section class="section" id="risks">
+  <div class="section-number">07 · Risk Architecture</div>
+  <div class="section-title">What Could Break the Thesis</div>
+  <div class="section-deck">Precision manufacturing businesses are not immune to risk — but the risks are structural and manageable. Investors who understand the risk architecture can distinguish between temporary dislocations and permanent impairments.</div>
+
+  <div class="risk-grid">
+    <div class="risk-card">
+      <div class="risk-severity risk-high">● HIGH SEVERITY</div>
+      <h3>Government Programme Delays</h3>
+      <p style="font-size:0.83rem;color:var(--text-muted);">India's defence and aerospace procurement system is structurally slow. Orders announced with fanfare often take 3–5 years longer to materialise than projected. Companies with >70% government revenue are chronically at risk of working capital stress from payment delays and programme postponements.</p>
+      <p style="font-size:0.83rem;"><strong>Mitigation:</strong> Prefer companies with ≥30% export or private sector revenue as a structural buffer.</p>
+    </div>
+    <div class="risk-card">
+      <div class="risk-severity risk-high">● HIGH SEVERITY</div>
+      <h3>Single Quality Event = Multi-Year Damage</h3>
+      <p style="font-size:0.83rem;color:var(--text-muted);">A significant quality failure in a mission-critical component — even if not the manufacturer's fault — can trigger removal from qualified vendor lists for 12–36 months. For small-cap precision manufacturers with 2–3 key customers, this can be existential. Quality systems are the single most important underwriting criterion.</p>
+      <p style="font-size:0.83rem;"><strong>Mitigation:</strong> Monitor quality certification renewal dates; check customer concentration; scrutinise capex for quality system investment.</p>
+    </div>
+    <div class="risk-card">
+      <div class="risk-severity risk-high">● HIGH SEVERITY</div>
+      <h3>Valuation Risk: Narrative vs. Earnings Reality</h3>
+      <p style="font-size:0.83rem;color:var(--text-muted);">The India defence/precision manufacturing theme has attracted significant narrative-driven capital, compressing yields and elevating multiples well beyond what near-term earnings can support. Several companies trade at 80–120× earnings on the expectation of order flows that may take 5–8 years to materialise.</p>
+      <p style="font-size:0.83rem;"><strong>Mitigation:</strong> Require revenue visibility (order book) of ≥2× annual revenue; refuse to pay >40× on current earnings for sub-scale businesses.</p>
+    </div>
+    <div class="risk-card">
+      <div class="risk-severity risk-medium">● MEDIUM SEVERITY</div>
+      <h3>Technological Obsolescence (Long-Term)</h3>
+      <p style="font-size:0.83rem;color:var(--text-muted);">Advanced manufacturing technology (AI-guided machining, additive manufacturing/3D printing for metals, digital twins) could potentially compress the qualification advantage of established precision manufacturers if adopted by new entrants. This is a 10–20 year risk, not a near-term concern, but must be monitored in R&D investment patterns.</p>
+    </div>
+    <div class="risk-card">
+      <div class="risk-severity risk-medium">● MEDIUM SEVERITY</div>
+      <h3>Input Cost Volatility (Specialty Alloys)</h3>
+      <p style="font-size:0.83rem;color:var(--text-muted);">Titanium, nickel, chromium, and specialty steel prices are determined by global commodity cycles with India-specific supply vulnerabilities. Most Indian precision manufacturers lack the scale to hedge commodity exposure effectively, creating earnings volatility during upcycles. Contracts with cost-plus pricing provisions partially mitigate this.</p>
+    </div>
+    <div class="risk-card">
+      <div class="risk-severity risk-medium">● MEDIUM SEVERITY</div>
+      <h3>Capital Allocation Discipline</h3>
+      <p style="font-size:0.83rem;color:var(--text-muted);">The precision manufacturing sector is experiencing a capex boom driven by government incentives and access to fresh equity capital. Not all capex will generate adequate returns — several companies are expanding into adjacent categories where they lack competitive advantage, diluting ROIC and compounding execution risk.</p>
+    </div>
+    <div class="risk-card">
+      <div class="risk-severity risk-low">● MANAGEABLE</div>
+      <h3>Currency Risk (Export Businesses)</h3>
+      <p style="font-size:0.83rem;color:var(--text-muted);">Export-oriented precision manufacturers invoice predominantly in USD/EUR. A structural INR appreciation would compress rupee revenues, though India's current account dynamics make sustained appreciation unlikely over the investment horizon. Natural hedging through dollar-denominated input costs partially offsets this.</p>
+    </div>
+    <div class="risk-card">
+      <div class="risk-severity risk-low">● MANAGEABLE</div>
+      <h3>Management Succession & Governance</h3>
+      <p style="font-size:0.83rem;color:var(--text-muted);">Many of India's best precision manufacturers are promoter-led businesses built on deep technical expertise. Succession planning and governance standards are improving but remain a watchlist item, particularly in smaller companies where the founder IS the engineering capability.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: STRATEGY -->
+<section class="section" id="strategy">
+  <div class="section-number">08 · Investor Strategy</div>
+  <div class="section-title">Portfolio Construction for the Super-Cycle</div>
+  <div class="section-deck">Five investor archetypes require five different portfolio approaches. This framework provides the allocation logic for each.</div>
+
+  <div class="basket-grid">
+    <div class="basket-card">
+      <div class="basket-title">The Quality Compounder Basket</div>
+      <div class="basket-subtitle">Conservative · 10-Year Horizon · Low Volatility</div>
+      <ul class="basket-holdings">
+        <li><span class="holding-name">AIA Engineering</span><span class="holding-wt">25%</span></li>
+        <li><span class="holding-name">Schaeffler India</span><span class="holding-wt">20%</span></li>
+        <li><span class="holding-name">Timken India</span><span class="holding-wt">20%</span></li>
+        <li><span class="holding-name">Bharat Forge</span><span class="holding-wt">20%</span></li>
+        <li><span class="holding-name">Kaynes Technology</span><span class="holding-wt">15%</span></li>
+      </ul>
+      <p style="margin-top:1rem;font-size:0.8rem;color:var(--text-muted);">Profile: High-quality businesses with proven cash generation, established moats, and global validation. Lower volatility. 15–20% CAGR target. Suitable for institutional core allocation.</p>
+    </div>
+
+    <div class="basket-card">
+      <div class="basket-title">The Mission-Critical Monopoly Basket</div>
+      <div class="basket-subtitle">Conviction · 7–15 Year Horizon · High Concentration</div>
+      <ul class="basket-holdings">
+        <li><span class="holding-name">Azad Engineering</span><span class="holding-wt">30%</span></li>
+        <li><span class="holding-name">MTAR Technologies</span><span class="holding-wt">30%</span></li>
+        <li><span class="holding-name">Data Patterns</span><span class="holding-wt">25%</span></li>
+        <li><span class="holding-name">Zen Technologies</span><span class="holding-wt">15%</span></li>
+      </ul>
+      <p style="margin-top:1rem;font-size:0.8rem;color:var(--text-muted);">Profile: Concentrated exposure to aerospace/defence mission-critical suppliers. High valuation risk but extraordinary moat depth. 25–40% CAGR potential; requires patience through programme delays.</p>
+    </div>
+
+    <div class="basket-card">
+      <div class="basket-title">The Export Precision Leaders Basket</div>
+      <div class="basket-subtitle">Global · China+1 · Currency Tailwind</div>
+      <ul class="basket-holdings">
+        <li><span class="holding-name">Bharat Forge</span><span class="holding-wt">30%</span></li>
+        <li><span class="holding-name">Azad Engineering</span><span class="holding-wt">25%</span></li>
+        <li><span class="holding-name">AIA Engineering</span><span class="holding-wt">25%</span></li>
+        <li><span class="holding-name">Dynamatic Technologies</span><span class="holding-wt">20%</span></li>
+      </ul>
+      <p style="margin-top:1rem;font-size:0.8rem;color:var(--text-muted);">Profile: Companies earning >50% revenue in hard currency. Benefits from INR weakness, global supply chain diversification, and China+1 procurement shifts. Hedge against domestic demand slowdown.</p>
+    </div>
+
+    <div class="basket-card">
+      <div class="basket-title">The Defence Indigenisation Basket</div>
+      <div class="basket-subtitle">India-Specific · Long-Duration · Government Tailwind</div>
+      <ul class="basket-holdings">
+        <li><span class="holding-name">Data Patterns</span><span class="holding-wt">25%</span></li>
+        <li><span class="holding-name">Paras Defence</span><span class="holding-wt">20%</span></li>
+        <li><span class="holding-name">Zen Technologies</span><span class="holding-wt">20%</span></li>
+        <li><span class="holding-name">MTAR Technologies</span><span class="holding-wt">20%</span></li>
+        <li><span class="holding-name">Kaynes Technology</span><span class="holding-wt">15%</span></li>
+      </ul>
+      <p style="margin-top:1rem;font-size:0.8rem;color:var(--text-muted);">Profile: Pure-play India defence indigenisation exposure. High programme delay risk; compensated by structural policy tailwind of 25+ years duration. Require 5+ year holding patience.</p>
+    </div>
+
+    <div class="basket-card">
+      <div class="basket-title">The Multibagger Asymmetry Basket</div>
+      <div class="basket-subtitle">High Risk · Emerging Moat · Deep Research Required</div>
+      <ul class="basket-holdings">
+        <li><span class="holding-name">Azad Engineering</span><span class="holding-wt">35%</span></li>
+        <li><span class="holding-name">Cyient DLM</span><span class="holding-wt">25%</span></li>
+        <li><span class="holding-name">Paras Defence</span><span class="holding-wt">20%</span></li>
+        <li><span class="holding-name">Zen Technologies</span><span class="holding-wt">20%</span></li>
+      </ul>
+      <p style="margin-top:1rem;font-size:0.8rem;color:var(--text-muted);">Profile: Small-cap, emerging moat businesses with binary outcomes. 50%+ upside potential in bull case; 40–60% drawdown risk in bear case. Sizing discipline critical — maximum 10% of total portfolio.</p>
+    </div>
+  </div>
+
+  <h2>8.1 Allocation Framework: Risk-Reward Matrix</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Investor Type</th>
+          <th>Recommended Basket</th>
+          <th>Max Basket Allocation</th>
+          <th>Expected CAGR</th>
+          <th>Holding Period</th>
+          <th>Key Risk Monitor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Conservative (HNI/Institutional)</strong></td>
+          <td>Quality Compounder</td>
+          <td>4–6% of equity portfolio</td>
+          <td>15–20%</td>
+          <td>7–10 years</td>
+          <td>ROIC vs. WACC erosion</td>
+        </tr>
+        <tr>
+          <td><strong>Long-Duration Compounder</strong></td>
+          <td>Mission-Critical Monopoly</td>
+          <td>3–5% of equity portfolio</td>
+          <td>25–40%</td>
+          <td>10–15 years</td>
+          <td>Qualification status; customer concentration</td>
+        </tr>
+        <tr>
+          <td><strong>Export-Focused</strong></td>
+          <td>Export Precision Leaders</td>
+          <td>3–4% of equity portfolio</td>
+          <td>18–25%</td>
+          <td>5–8 years</td>
+          <td>INR/USD movement; global manufacturing cycle</td>
+        </tr>
+        <tr>
+          <td><strong>India Deep-Value Industrial</strong></td>
+          <td>Defence Indigenisation</td>
+          <td>2–4% of equity portfolio</td>
+          <td>20–35%</td>
+          <td>8–12 years</td>
+          <td>Government procurement delays; programme cancellations</td>
+        </tr>
+        <tr>
+          <td><strong>High-Risk/High-Return</strong></td>
+          <td>Multibagger Asymmetry</td>
+          <td>1–2% of equity portfolio</td>
+          <td>40–80% (bull case)</td>
+          <td>5–10 years</td>
+          <td>Quality event; funding; execution; valuation</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 9: GLOBAL COMPARABLES -->
+<section class="section">
+  <div class="section-number">09 · Global Comparables</div>
+  <div class="section-title">How India's Champions Compare to Global Archetypes</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Indian Company</th>
+          <th>Global Archetype</th>
+          <th>Current Similarity %</th>
+          <th>Gap to Close</th>
+          <th>Timeline</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Azad Engineering</strong></td>
+          <td>MTU Aero Engines (Germany) / TransDigm Group (US)</td>
+          <td>30–35%</td>
+          <td>Scale, programme diversification, certification breadth</td>
+          <td>8–15 years</td>
+        </tr>
+        <tr>
+          <td><strong>AIA Engineering</strong></td>
+          <td>Magotteaux International (Belgium) / ME Elecmetal (Chile)</td>
+          <td>60–70%</td>
+          <td>Mining market penetration in Americas/Africa</td>
+          <td>5–8 years</td>
+        </tr>
+        <tr>
+          <td><strong>Data Patterns</strong></td>
+          <td>Elbit Systems (Israel) — early stage / HEICO (US)</td>
+          <td>15–20%</td>
+          <td>Scale, export capability, product breadth</td>
+          <td>12–20 years</td>
+        </tr>
+        <tr>
+          <td><strong>Bharat Forge</strong></td>
+          <td>Precision Castparts (US) / Schuler Group (Germany)</td>
+          <td>45–55%</td>
+          <td>Aerospace precision certification depth</td>
+          <td>5–10 years</td>
+        </tr>
+        <tr>
+          <td><strong>Kaynes Technology</strong></td>
+          <td>Kimball Electronics (US) — early stage / Fabrinet (Thailand)</td>
+          <td>25–30%</td>
+          <td>Scale, customer diversification, OSAT capability</td>
+          <td>7–12 years</td>
+        </tr>
+        <tr>
+          <td><strong>MTAR Technologies</strong></td>
+          <td>Moog Inc. (US) / Ducommun (US)</td>
+          <td>20–25%</td>
+          <td>Commercial aerospace scale; international customer base</td>
+          <td>10–15 years</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 10: FINAL VERDICT -->
+<section class="section" id="verdict">
+  <div class="section-number">10 · Final Investment Verdict</div>
+  <div class="section-title">The Definitive Assessment</div>
+
+  <div class="verdict-box">
+    <h2 style="color:var(--gold);margin-top:0;font-size:1.5rem;">The Super-Cycle Is Real. The Opportunity Is Asymmetric. The Execution Risk Is the Variable.</h2>
+    <p>India's precision and mission-critical manufacturing super-cycle is not a 3-year theme — it is a structural multi-decade industrial transformation. The policy architecture, geopolitical tailwinds, talent base, and corporate ecosystem are all in place. What remains uncertain is the <em>speed</em> of execution, not the <em>direction</em> of travel.</p>
+    <p>The businesses that will compound most powerfully are not the large OEMs with government contracts — they are the <strong>invisible Tier-1 and Tier-2 suppliers</strong> whose NADCAP certifications, metallurgical know-how, and customer relationships make them structurally irreplaceable. Azad Engineering, MTAR Technologies, Data Patterns, AIA Engineering, and Schaeffler India represent the cleanest exposures to this dynamic.</p>
+    <p>The greatest systematic investor error in this sector is <strong>paying OEM multiples for supplier businesses</strong> — and conversely, <strong>ignoring supplier businesses because they are invisible</strong>. The best compounders in German and Japanese manufacturing history were never the famous brands — they were the Mittelstand companies nobody outside their industry had heard of. India's equivalents are being built today.</p>
+  </div>
+
+  <h2>Where the Asymmetric Opportunities Lie Today</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Opportunity</th>
+          <th>Why Underappreciated</th>
+          <th>Asymmetry</th>
+          <th>Time Horizon</th>
+          <th>Primary Vehicle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Aerospace Tier-1 Qualification Ladder</strong></td>
+          <td>Investors don't understand 24-month qualification lag in revenue</td>
+          <td>5–7× upside if 3 global OEM qualifications achieved</td>
+          <td>5–8 years</td>
+          <td>Azad Engineering, Dynamatic</td>
+        </tr>
+        <tr>
+          <td><strong>India Mining Grinding Media (AIA)</strong></td>
+          <td>Perceived as boring industrial; misunderstood toll booth economics</td>
+          <td>3–4× upside as global mining capex supercycle accelerates</td>
+          <td>7–10 years</td>
+          <td>AIA Engineering</td>
+        </tr>
+        <tr>
+          <td><strong>Defence Electronics IP Compounders</strong></td>
+          <td>Government procurement delays mask long-term order momentum</td>
+          <td>4–6× upside as indigenous defence electronics market grows 4–5×</td>
+          <td>8–12 years</td>
+          <td>Data Patterns, Zen Technologies</td>
+        </tr>
+        <tr>
+          <td><strong>Nuclear Precision (MTAR's Hidden Optionality)</strong></td>
+          <td>Nuclear energy acceleration underpriced in MTAR valuation</td>
+          <td>2–3× from nuclear programme alone</td>
+          <td>5–10 years</td>
+          <td>MTAR Technologies</td>
+        </tr>
+        <tr>
+          <td><strong>Bearing Subsidiaries (EV Ramp)</strong></td>
+          <td>Seen as auto cyclical; EV content increase underappreciated</td>
+          <td>2–3× re-rating as EV content per vehicle rises 40%</td>
+          <td>4–7 years</td>
+          <td>Schaeffler India, Timken India</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- THE NEXT DECADE ROADMAP -->
+  <h2>The Next Decade of India's Industrial Ascent: A Probabilistic Roadmap</h2>
+
+  <div class="roadmap">
+    <div class="roadmap-item">
+      <div class="roadmap-year">2025–2027 · Phase 1: Ecosystem Foundation</div>
+      <div class="roadmap-title">Capability Building & Initial Qualifications</div>
+      <div class="roadmap-desc">Defence PLI incentives flow to established manufacturers. First 10–15 Indian companies achieve NADCAP aerospace certification. HAL doubles production capacity. Private space ecosystem (IN-SPACe) generates first commercial contracts. India semiconductor fab Phase 1 commences. Logistics cost falls from 13% to 11% of GDP. Estimated probability: 75%.</div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-year">2027–2030 · Phase 2: Export Breakout</div>
+      <div class="roadmap-title">India Enters Global Aerospace Tier-1 Supply Chains</div>
+      <div class="roadmap-desc">5–8 Indian companies achieve Boeing/Airbus Tier-1 qualification. India aerospace exports reach $3B (from $800M today). Defence exports reach $10B (government target). Semiconductor OSAT facilities operational. First Indian precision components on commercial satellite platforms. Manufacturing FDI from Japan, US, Europe accelerates significantly. Estimated probability: 55%.</div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-year">2030–2033 · Phase 3: Industrial Maturation</div>
+      <div class="roadmap-title">Indian Precision Champions Achieve Global Scale</div>
+      <div class="roadmap-desc">2–3 Indian precision manufacturers achieve global category leadership (AIA Engineering in grinding media; Azad/MTAR in aerospace components). Defence budget reaches ₹4T; private sector capture >35%. India listed precision manufacturing market cap reaches ₹5–8T. First Indian precision manufacturer acquires European Mittelstand company. Estimated probability: 40%.</div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-year">2033–2037 · Phase 4: Structural Lock-In</div>
+      <div class="roadmap-title">India Becomes Irreplaceable in Global Value Chains</div>
+      <div class="roadmap-desc">India achieves "chokepoint" status in 3–5 manufacturing categories (analogous to Taiwan in semiconductors). Western defence procurement programmes formally mandate India-qualified sourcing. Indian precision manufacturing compound equity returns over 15-year period: 22–28% CAGR for top-quartile companies. India's manufacturing share of GDP rises from 16% to 22%. Estimated probability: 30%.</div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-year">2037–2040 · Phase 5: Global Industrial Peer</div>
+      <div class="roadmap-title">India as the Third Manufacturing Superpower</div>
+      <div class="roadmap-desc">India sits alongside Germany and Japan as a global precision manufacturing hub. 20–30 Indian companies rank in the global top-100 of their respective precision niches. India's industrial equity market matches South Korea's 2024 scale (~$1.5T market cap). The companies identified in this report as "emerging" have become household names in global industrial procurement. Estimated probability: 20%.</div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:3rem;">
+    <div class="callout-headline">The Final Word</div>
+    <p>The precision manufacturing super-cycle is the most intellectually honest large-scale growth story available in Indian equities today — because it is grounded not in consumption growth narratives, but in <strong>engineering complexity, qualification barriers, certification moats, and the compounding of institutional trust</strong>. These are the rarest and most durable foundations for corporate value creation. The investor who understands both the engineering economics and the capital cycle dynamics of this sector will, over a 10–15 year horizon, likely own some of the greatest wealth compounding engines in the history of Indian equities. The companies are not hidden — they are simply invisible to analysts who don't read metallurgical specifications, don't understand what NADCAP means, and don't see that a ₹400Cr company supplying turbine blades to Honeywell is more strategically important than a ₹40,000Cr company assembling smartphones.</p>
+    <p style="margin-top:1rem;"><em>The industrial age never ended. It just got more precise.</em></p>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">India Precision Manufacturing · Institutional Research Unit</div>
+  <p class="footer-disc">This report is produced for informational and educational purposes only and does not constitute investment advice, a solicitation, or a recommendation to buy or sell any securities. All financial data, estimates, and projections are sourced from publicly available company filings, industry reports, and analyst estimates as of April 2026 and are clearly marked where they represent inference or assumption. Past performance is not indicative of future results. Precision manufacturing investments are subject to cyclical, execution, and regulatory risks outlined herein. Readers should conduct independent due diligence and consult qualified financial advisors before making any investment decisions. All data points marked as (inferred) or (estimated) represent analyst judgment, not verified financial fact.</p>
+  <p style="margin-top:1rem;font-family:var(--font-mono);font-size:0.58rem;color:var(--navy-light);letter-spacing:0.1em;">© 2026 INSTITUTIONAL RESEARCH · INDIA PRECISION MANUFACTURING SUPER-CYCLE DOSSIER · ALL RIGHTS RESERVED</p>
+</footer>
+
+<script>
+// Active nav link on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { threshold: 0.3 });
+
+sections.forEach(s => observer.observe(s));
+
+// Fade-in on scroll
+const fadeEls = document.querySelectorAll('.stat-card, .tier-card, .company-card, .risk-card, .basket-card, .cycle-card, .roadmap-item');
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+      fadeObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+fadeEls.forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+  fadeObserver.observe(el);
+});
+</script>
+</body>
+</html>

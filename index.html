@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reports</title>
+</head>
+<body>
+  <h2>Earnings Reports</h2>
+  <div id="list">Loading files...</div>
+
+  <script>
+    const repo = "Earnings-concall-analysis-genAI";
+
+    fetch(`https://api.github.com/repos/estrangedsoul48/${repo}/contents/`)
+      .then(res => res.json())
+      .then(files => {
+        let html = "<ul>";
+
+        files.forEach(file => {
+          if(file.name.endsWith(".html")) {
+            html += `<li><a href="${file.name}">${file.name}</a></li>`;
+          }
+        });
+
+        html += "</ul>";
+        document.getElementById("list").innerHTML = html;
+      });
+  </script>
+</body>
+</html>

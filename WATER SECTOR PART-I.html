@@ -1,0 +1,2795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Water Management Super-Cycle & India's Water Security Transformation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================
+   CSS VARIABLES & RESET
+   ============================================ */
+:root {
+  --bg-0: #04081A;
+  --bg-1: #070D22;
+  --bg-2: #0C1530;
+  --bg-3: #111E3E;
+  --bg-card: #0D1836;
+  --bg-card-hover: #132048;
+  --border: #1C2D50;
+  --border-light: #243460;
+  --gold: #C8943C;
+  --gold-light: #E2AF62;
+  --gold-dim: #7A5A20;
+  --teal: #00B8A3;
+  --teal-light: #00D4BD;
+  --teal-dim: #005B52;
+  --blue: #3A7BD5;
+  --blue-light: #5B9BF5;
+  --red: #E05252;
+  --red-dim: #6B2424;
+  --green: #3DBD7D;
+  --amber: #E89535;
+  --text-0: #EDF0F7;
+  --text-1: #B8C4D8;
+  --text-2: #7A8CAA;
+  --text-3: #4A5C7A;
+  --heading-font: 'Cormorant Garamond', Georgia, serif;
+  --body-font: 'Outfit', sans-serif;
+  --mono-font: 'JetBrains Mono', 'Courier New', monospace;
+  --sidebar-w: 260px;
+  --header-h: 56px;
+  --radius: 6px;
+  --radius-lg: 12px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.6);
+  --shadow-lg: 0 8px 48px rgba(0,0,0,0.8);
+  --glow-gold: 0 0 20px rgba(200,148,60,0.25);
+  --glow-teal: 0 0 20px rgba(0,184,163,0.25);
+  --transition: 0.25s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-0);
+  color: var(--text-0);
+  font-family: var(--body-font);
+  font-size: 15px;
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-1); }
+::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+h1, h2, h3, h4, h5 {
+  font-family: var(--heading-font);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--text-0);
+  letter-spacing: 0.01em;
+}
+
+.display-title {
+  font-family: var(--heading-font);
+  font-size: clamp(2.8rem, 5vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--text-0);
+}
+
+.section-title {
+  font-family: var(--heading-font);
+  font-size: clamp(2rem, 3vw, 3.2rem);
+  font-weight: 600;
+  color: var(--text-0);
+}
+
+.section-subtitle {
+  font-family: var(--heading-font);
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  font-weight: 400;
+  color: var(--gold-light);
+  font-style: italic;
+}
+
+.part-label {
+  font-family: var(--mono-font);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+
+p { margin-bottom: 1.1rem; color: var(--text-1); }
+p:last-child { margin-bottom: 0; }
+
+a { color: var(--teal-light); text-decoration: none; transition: var(--transition); }
+a:hover { color: var(--gold-light); }
+
+strong { color: var(--text-0); font-weight: 600; }
+em { color: var(--gold-light); font-style: italic; }
+
+code {
+  font-family: var(--mono-font);
+  font-size: 0.85em;
+  color: var(--teal-light);
+  background: rgba(0,184,163,0.08);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+}
+
+/* ============================================
+   TOP HEADER
+   ============================================ */
+.top-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-h);
+  background: rgba(4,8,26,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 20px;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.header-logo-icon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--teal), var(--blue));
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.header-logo-text {
+  font-family: var(--mono-font);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.header-divider {
+  width: 1px;
+  height: 28px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.header-title {
+  font-family: var(--heading-font);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-1);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.header-badge {
+  font-family: var(--mono-font);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+  border: 1px solid var(--gold-dim);
+  color: var(--gold);
+}
+
+.header-date {
+  font-family: var(--mono-font);
+  font-size: 0.7rem;
+  color: var(--text-3);
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* ============================================
+   SIDEBAR NAVIGATION
+   ============================================ */
+.sidebar {
+  position: fixed;
+  top: var(--header-h);
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-w);
+  background: var(--bg-1);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  z-index: 900;
+  padding: 20px 0;
+  transition: transform 0.3s ease;
+}
+
+.sidebar::-webkit-scrollbar { width: 3px; }
+
+.sidebar-section {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
+}
+
+.sidebar-section-label {
+  font-family: var(--mono-font);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  padding: 6px 20px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 7px 20px;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+}
+
+.nav-item:hover {
+  background: rgba(255,255,255,0.03);
+  border-left-color: var(--gold-dim);
+}
+
+.nav-item.active {
+  background: rgba(200,148,60,0.07);
+  border-left-color: var(--gold);
+}
+
+.nav-num {
+  font-family: var(--mono-font);
+  font-size: 0.65rem;
+  color: var(--teal);
+  margin-top: 2px;
+  flex-shrink: 0;
+  min-width: 28px;
+}
+
+.nav-text {
+  font-size: 0.78rem;
+  color: var(--text-2);
+  line-height: 1.3;
+}
+
+.nav-item.active .nav-text { color: var(--text-1); }
+.nav-item:hover .nav-text { color: var(--text-1); }
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+.main-content {
+  margin-left: var(--sidebar-w);
+  margin-top: var(--header-h);
+  min-height: 100vh;
+}
+
+/* ============================================
+   COVER SECTION
+   ============================================ */
+.cover {
+  position: relative;
+  min-height: calc(100vh - var(--header-h));
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--bg-0);
+  padding: 60px;
+}
+
+.cover-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 80% 60% at 70% 50%, rgba(0,184,163,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 30% 70%, rgba(58,123,213,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 80% 20%, rgba(200,148,60,0.04) 0%, transparent 50%);
+}
+
+.cover-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(28,45,80,0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(28,45,80,0.3) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.4;
+}
+
+.cover-watermark {
+  position: absolute;
+  right: -60px;
+  bottom: -40px;
+  font-family: var(--heading-font);
+  font-size: 22rem;
+  font-weight: 700;
+  color: rgba(28,45,80,0.18);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.cover-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+}
+
+.cover-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  animation: fadeUp 0.8s ease both;
+}
+
+.cover-tag {
+  font-family: var(--mono-font);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--teal);
+  padding: 4px 12px;
+  border: 1px solid var(--teal-dim);
+  border-radius: 3px;
+  background: rgba(0,184,163,0.05);
+}
+
+.cover-tag-line {
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--teal), transparent);
+}
+
+.cover-h1 {
+  margin-bottom: 12px;
+  animation: fadeUp 0.8s 0.1s ease both;
+}
+
+.cover-h1 em {
+  color: var(--gold-light);
+  font-style: italic;
+}
+
+.cover-subtitle {
+  font-family: var(--heading-font);
+  font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+  font-weight: 300;
+  color: var(--text-2);
+  font-style: italic;
+  margin-bottom: 40px;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+
+.cover-divider {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  margin-bottom: 40px;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+
+.cover-thesis {
+  font-size: 1.05rem;
+  color: var(--text-1);
+  max-width: 680px;
+  line-height: 1.8;
+  margin-bottom: 48px;
+  animation: fadeUp 0.8s 0.4s ease both;
+}
+
+.cover-stats {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  max-width: 700px;
+  animation: fadeUp 0.8s 0.5s ease both;
+}
+
+.cover-stat {
+  background: var(--bg-card);
+  padding: 20px 24px;
+}
+
+.cover-stat-value {
+  font-family: var(--heading-font);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.cover-stat-label {
+  font-family: var(--mono-font);
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.cover-meta {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 48px;
+  animation: fadeUp 0.8s 0.6s ease both;
+}
+
+.cover-meta-item {
+  font-family: var(--mono-font);
+  font-size: 0.7rem;
+  color: var(--text-3);
+  letter-spacing: 0.1em;
+}
+
+.cover-meta-item strong {
+  color: var(--text-2);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.cover-scroll-indicator {
+  position: absolute;
+  bottom: 32px;
+  left: 60px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: fadeUp 0.8s 0.8s ease both;
+}
+
+.scroll-line {
+  width: 40px;
+  height: 1px;
+  background: var(--text-3);
+}
+
+.scroll-text {
+  font-family: var(--mono-font);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+/* ============================================
+   CONTENT SECTIONS
+   ============================================ */
+.content-section {
+  padding: 80px 60px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.content-section:nth-child(even) {
+  background: rgba(12,21,48,0.4);
+}
+
+.section-header {
+  margin-bottom: 48px;
+}
+
+.section-header-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.section-number {
+  font-family: var(--mono-font);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--teal);
+  padding: 3px 8px;
+  border: 1px solid var(--teal-dim);
+  border-radius: 3px;
+  background: rgba(0,184,163,0.05);
+}
+
+.section-tag-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--border-light), transparent);
+}
+
+.section-intro {
+  font-size: 1.05rem;
+  color: var(--text-2);
+  font-style: italic;
+  font-family: var(--heading-font);
+  margin-top: 12px;
+  max-width: 780px;
+  line-height: 1.7;
+}
+
+/* ============================================
+   CONTENT GRID
+   ============================================ */
+.col-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.col-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+.col-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.col-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; }
+.col-1-2 { display: grid; grid-template-columns: 1fr 2fr; gap: 32px; }
+
+/* ============================================
+   CARDS
+   ============================================ */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  transition: var(--transition);
+  position: relative;
+}
+
+.card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-light);
+  box-shadow: var(--shadow);
+  transform: translateY(-1px);
+}
+
+.card-gold {
+  border-color: var(--gold-dim);
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(200,148,60,0.05) 100%);
+}
+
+.card-teal {
+  border-color: var(--teal-dim);
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0,184,163,0.05) 100%);
+}
+
+.card-blue {
+  border-color: rgba(58,123,213,0.3);
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(58,123,213,0.05) 100%);
+}
+
+.card-title {
+  font-family: var(--heading-font);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-0);
+  margin-bottom: 8px;
+}
+
+.card-subtitle {
+  font-size: 0.8rem;
+  color: var(--teal);
+  font-family: var(--mono-font);
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+
+.card-body {
+  font-size: 0.9rem;
+  color: var(--text-1);
+  line-height: 1.7;
+}
+
+/* ============================================
+   PULL QUOTE
+   ============================================ */
+.pull-quote {
+  border-left: 3px solid var(--gold);
+  padding: 20px 28px;
+  background: rgba(200,148,60,0.04);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin: 32px 0;
+  position: relative;
+}
+
+.pull-quote::before {
+  content: '"';
+  font-family: var(--heading-font);
+  font-size: 5rem;
+  color: var(--gold-dim);
+  position: absolute;
+  top: -10px;
+  left: 12px;
+  line-height: 1;
+  opacity: 0.4;
+}
+
+.pull-quote-text {
+  font-family: var(--heading-font);
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--text-1);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.pull-quote-source {
+  font-family: var(--mono-font);
+  font-size: 0.7rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+}
+
+/* ============================================
+   CALLOUT BOXES
+   ============================================ */
+.callout {
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 24px 0;
+  border: 1px solid;
+}
+
+.callout-gold {
+  background: rgba(200,148,60,0.05);
+  border-color: var(--gold-dim);
+}
+
+.callout-teal {
+  background: rgba(0,184,163,0.05);
+  border-color: var(--teal-dim);
+}
+
+.callout-red {
+  background: rgba(224,82,82,0.05);
+  border-color: var(--red-dim);
+}
+
+.callout-blue {
+  background: rgba(58,123,213,0.05);
+  border-color: rgba(58,123,213,0.3);
+}
+
+.callout-label {
+  font-family: var(--mono-font);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.callout-gold .callout-label { color: var(--gold); }
+.callout-teal .callout-label { color: var(--teal); }
+.callout-red .callout-label { color: var(--red); }
+.callout-blue .callout-label { color: var(--blue-light); }
+
+.callout-text {
+  font-size: 0.9rem;
+  color: var(--text-1);
+  line-height: 1.65;
+}
+
+/* ============================================
+   STAT BLOCKS
+   ============================================ */
+.stat-block {
+  text-align: center;
+  padding: 20px 16px;
+}
+
+.stat-value {
+  font-family: var(--heading-font);
+  font-size: 2.8rem;
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-value.gold { color: var(--gold-light); }
+.stat-value.teal { color: var(--teal-light); }
+.stat-value.blue { color: var(--blue-light); }
+.stat-value.red { color: var(--red); }
+
+.stat-label {
+  font-family: var(--mono-font);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  line-height: 1.4;
+}
+
+.stat-desc {
+  font-size: 0.8rem;
+  color: var(--text-2);
+  margin-top: 6px;
+}
+
+/* ============================================
+   TABLES
+   ============================================ */
+.table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  margin: 24px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+thead {
+  background: var(--bg-3);
+  border-bottom: 1px solid var(--border-light);
+}
+
+thead th {
+  padding: 12px 16px;
+  text-align: left;
+  font-family: var(--mono-font);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: var(--transition);
+}
+
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: rgba(255,255,255,0.02); }
+
+tbody td {
+  padding: 12px 16px;
+  color: var(--text-1);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+tbody td:first-child {
+  color: var(--text-0);
+  font-weight: 500;
+}
+
+.td-mono {
+  font-family: var(--mono-font);
+  font-size: 0.8rem;
+}
+
+/* ============================================
+   BADGES & RATINGS
+   ============================================ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 3px;
+  font-family: var(--mono-font);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.badge-gold { background: rgba(200,148,60,0.15); color: var(--gold-light); }
+.badge-teal { background: rgba(0,184,163,0.15); color: var(--teal-light); }
+.badge-green { background: rgba(61,189,125,0.15); color: var(--green); }
+.badge-red { background: rgba(224,82,82,0.15); color: var(--red); }
+.badge-blue { background: rgba(58,123,213,0.15); color: var(--blue-light); }
+.badge-amber { background: rgba(232,149,53,0.15); color: var(--amber); }
+.badge-gray { background: rgba(255,255,255,0.05); color: var(--text-2); }
+
+.rating-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rating-track {
+  flex: 1;
+  height: 4px;
+  background: var(--bg-3);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.rating-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1s ease;
+}
+
+.rating-fill.gold { background: linear-gradient(90deg, var(--gold-dim), var(--gold-light)); }
+.rating-fill.teal { background: linear-gradient(90deg, var(--teal-dim), var(--teal-light)); }
+.rating-fill.blue { background: linear-gradient(90deg, var(--blue), var(--blue-light)); }
+.rating-fill.red { background: linear-gradient(90deg, var(--red-dim), var(--red)); }
+
+.rating-value {
+  font-family: var(--mono-font);
+  font-size: 0.7rem;
+  color: var(--text-2);
+  min-width: 32px;
+  text-align: right;
+}
+
+/* ============================================
+   TIER VISUALIZER
+   ============================================ */
+.tier-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 32px 0;
+}
+
+.tier-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.tier-label {
+  background: var(--bg-3);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid var(--border);
+}
+
+.tier-num {
+  font-family: var(--mono-font);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--text-3);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.tier-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-0);
+}
+
+.tier-body {
+  background: var(--bg-card);
+  padding: 14px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-left: none;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.tier-row:hover .tier-body {
+  background: var(--bg-card-hover);
+  border-color: var(--border-light);
+}
+
+.tier-item {
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.04);
+  color: var(--text-1);
+  border: 1px solid var(--border);
+  cursor: default;
+  transition: var(--transition);
+}
+
+.tier-item:hover {
+  background: rgba(255,255,255,0.08);
+  color: var(--text-0);
+}
+
+.tier-margin {
+  margin-left: auto;
+  font-family: var(--mono-font);
+  font-size: 0.72rem;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+/* ============================================
+   COMPANY SCORECARD
+   ============================================ */
+.company-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.company-card:hover {
+  border-color: var(--border-light);
+  box-shadow: var(--shadow);
+}
+
+.company-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.company-name {
+  font-family: var(--heading-font);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-0);
+  margin-bottom: 4px;
+}
+
+.company-ticker {
+  font-family: var(--mono-font);
+  font-size: 0.7rem;
+  color: var(--teal);
+  letter-spacing: 0.1em;
+}
+
+.company-rating-badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-family: var(--mono-font);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.rating-star { background: rgba(200,148,60,0.15); color: var(--gold); border: 1px solid var(--gold-dim); }
+.rating-strong { background: rgba(0,184,163,0.15); color: var(--teal); border: 1px solid var(--teal-dim); }
+.rating-watch { background: rgba(232,149,53,0.15); color: var(--amber); border: 1px solid rgba(232,149,53,0.3); }
+
+.company-body {
+  padding: 20px 24px;
+}
+
+.company-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin: 16px 0;
+}
+
+.company-metric {
+  background: var(--bg-2);
+  padding: 12px 14px;
+  text-align: center;
+}
+
+.company-metric-value {
+  font-family: var(--mono-font);
+  font-size: 1.1rem;
+  color: var(--gold-light);
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+.company-metric-label {
+  font-family: var(--mono-font);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.company-ratings {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.company-rating-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 36px;
+  align-items: center;
+  gap: 10px;
+}
+
+.company-rating-label {
+  font-family: var(--mono-font);
+  font-size: 0.65rem;
+  color: var(--text-2);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.company-bull-bear {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.bull-bear-box {
+  padding: 12px;
+  border-radius: var(--radius);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.bull-box {
+  background: rgba(61,189,125,0.06);
+  border: 1px solid rgba(61,189,125,0.2);
+  color: var(--text-1);
+}
+
+.bear-box {
+  background: rgba(224,82,82,0.06);
+  border: 1px solid rgba(224,82,82,0.2);
+  color: var(--text-1);
+}
+
+.bull-bear-label {
+  font-family: var(--mono-font);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.bull-box .bull-bear-label { color: var(--green); }
+.bear-box .bull-bear-label { color: var(--red); }
+
+/* ============================================
+   BOTTLENECK TABLE
+   ============================================ */
+.severity-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.sev-critical { background: var(--red); box-shadow: 0 0 6px rgba(224,82,82,0.5); }
+.sev-high { background: var(--amber); box-shadow: 0 0 6px rgba(232,149,53,0.4); }
+.sev-medium { background: var(--gold); box-shadow: 0 0 6px rgba(200,148,60,0.3); }
+.sev-low { background: var(--green); }
+
+/* ============================================
+   ROADMAP TIMELINE
+   ============================================ */
+.timeline {
+  position: relative;
+  padding-left: 32px;
+  margin: 32px 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--teal), var(--gold), var(--red));
+  opacity: 0.5;
+}
+
+.timeline-item {
+  position: relative;
+  padding: 0 0 36px 24px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -28px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bg-0);
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 8px rgba(200,148,60,0.4);
+}
+
+.timeline-period {
+  font-family: var(--mono-font);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.timeline-title {
+  font-family: var(--heading-font);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-0);
+  margin-bottom: 10px;
+}
+
+.timeline-body {
+  font-size: 0.88rem;
+  color: var(--text-2);
+  line-height: 1.65;
+}
+
+.timeline-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+/* ============================================
+   MOAT RADAR
+   ============================================ */
+.moat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.moat-item {
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+}
+
+.moat-label {
+  font-family: var(--mono-font);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 8px;
+}
+
+.moat-bar {
+  height: 6px;
+  background: var(--bg-3);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.moat-fill {
+  height: 100%;
+  border-radius: 3px;
+}
+
+.moat-score {
+  font-family: var(--mono-font);
+  font-size: 0.72rem;
+  color: var(--text-2);
+}
+
+/* ============================================
+   SEGMENT RANKING
+   ============================================ */
+.ranking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ranking-item {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+
+.ranking-item:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-light);
+}
+
+.ranking-num {
+  font-family: var(--heading-font);
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--text-3);
+  text-align: center;
+}
+
+.ranking-item:nth-child(1) .ranking-num { color: var(--gold-light); }
+.ranking-item:nth-child(2) .ranking-num { color: var(--text-2); }
+.ranking-item:nth-child(3) .ranking-num { color: var(--amber); }
+
+.ranking-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-0);
+  margin-bottom: 3px;
+}
+
+.ranking-desc {
+  font-size: 0.78rem;
+  color: var(--text-2);
+}
+
+.ranking-score {
+  text-align: right;
+}
+
+.ranking-score-value {
+  font-family: var(--mono-font);
+  font-size: 1.1rem;
+  color: var(--teal-light);
+  font-weight: 500;
+}
+
+.ranking-score-label {
+  font-family: var(--mono-font);
+  font-size: 0.6rem;
+  color: var(--text-3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   COMPOUNDER CARD
+   ============================================ */
+.compounder-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition);
+  position: relative;
+}
+
+.compounder-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--teal), var(--gold));
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.compounder-card:hover::before { opacity: 1; }
+
+.compounder-card:hover {
+  border-color: var(--border-light);
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.compounder-header {
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.compounder-name {
+  font-family: var(--heading-font);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-0);
+}
+
+.compounder-ticker {
+  font-family: var(--mono-font);
+  font-size: 0.65rem;
+  color: var(--teal);
+  margin-top: 2px;
+}
+
+.multibagger-score {
+  font-family: var(--mono-font);
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(200,148,60,0.12);
+  color: var(--gold);
+  border: 1px solid var(--gold-dim);
+}
+
+.compounder-body {
+  padding: 16px 20px;
+}
+
+.compounder-why {
+  font-size: 0.82rem;
+  color: var(--text-1);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.compounder-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.compounder-tag {
+  font-family: var(--mono-font);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.04);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+  text-transform: uppercase;
+}
+
+/* ============================================
+   TOLL BOOTH CARD
+   ============================================ */
+.toll-booth {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.toll-booth::after {
+  content: '⬡';
+  position: absolute;
+  bottom: -20px;
+  right: -10px;
+  font-size: 8rem;
+  color: rgba(255,255,255,0.015);
+  line-height: 1;
+}
+
+.toll-booth:hover {
+  border-color: var(--gold-dim);
+  box-shadow: var(--glow-gold);
+}
+
+.toll-rank {
+  font-family: var(--mono-font);
+  font-size: 0.65rem;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.toll-name {
+  font-family: var(--heading-font);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-0);
+  margin-bottom: 6px;
+}
+
+.toll-archetype {
+  font-size: 0.78rem;
+  color: var(--teal);
+  margin-bottom: 14px;
+}
+
+.toll-strength {
+  height: 8px;
+  background: var(--bg-3);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.toll-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+  border-radius: 4px;
+}
+
+.toll-description {
+  font-size: 0.85rem;
+  color: var(--text-2);
+  line-height: 1.6;
+  margin-top: 12px;
+}
+
+/* ============================================
+   REGION CARDS
+   ============================================ */
+.region-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.region-card:hover { border-color: var(--border-light); }
+
+.region-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.region-name {
+  font-family: var(--heading-font);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.stress-level {
+  font-family: var(--mono-font);
+  font-size: 0.65rem;
+  padding: 3px 10px;
+  border-radius: 3px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.stress-extreme { background: rgba(224,82,82,0.15); color: var(--red); border: 1px solid var(--red-dim); }
+.stress-high { background: rgba(232,149,53,0.15); color: var(--amber); border: 1px solid rgba(232,149,53,0.3); }
+.stress-moderate { background: rgba(200,148,60,0.15); color: var(--gold); border: 1px solid var(--gold-dim); }
+.stress-rising { background: rgba(0,184,163,0.15); color: var(--teal); border: 1px solid var(--teal-dim); }
+
+.region-body {
+  padding: 16px 20px;
+}
+
+.region-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.region-metric {
+  padding: 10px 12px;
+  background: var(--bg-2);
+  border-radius: var(--radius);
+}
+
+.region-metric-label {
+  font-family: var(--mono-font);
+  font-size: 0.6rem;
+  color: var(--text-3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.region-metric-value {
+  font-size: 0.9rem;
+  color: var(--text-1);
+  font-weight: 500;
+}
+
+.region-text {
+  font-size: 0.82rem;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+/* ============================================
+   SECTION DIVIDER
+   ============================================ */
+.s-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-light), transparent);
+  margin: 40px 0;
+}
+
+.s-divider-gold {
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+}
+
+/* ============================================
+   FOOTNOTES
+   ============================================ */
+.footnotes {
+  border-top: 1px solid var(--border);
+  padding: 24px 60px;
+  background: var(--bg-1);
+}
+
+.footnote-text {
+  font-family: var(--mono-font);
+  font-size: 0.65rem;
+  color: var(--text-3);
+  line-height: 1.6;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.report-footer {
+  background: var(--bg-1);
+  border-top: 1px solid var(--border);
+  padding: 40px 60px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.footer-block-title {
+  font-family: var(--mono-font);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 10px;
+}
+
+.footer-block-text {
+  font-size: 0.8rem;
+  color: var(--text-3);
+  line-height: 1.6;
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-disclaimer {
+  font-family: var(--mono-font);
+  font-size: 0.62rem;
+  color: var(--text-3);
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+.footer-logo-text {
+  font-family: var(--heading-font);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--gold);
+  font-style: italic;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(0,184,163,0.2); }
+  50% { box-shadow: 0 0 20px rgba(0,184,163,0.5); }
+}
+
+.fade-in { animation: fadeIn 0.6s ease both; }
+
+/* ============================================
+   HIGHLIGHT TEXT
+   ============================================ */
+.highlight-gold { color: var(--gold-light); }
+.highlight-teal { color: var(--teal-light); }
+.highlight-blue { color: var(--blue-light); }
+.highlight-red { color: var(--red); }
+
+/* ============================================
+   EXEC SUMMARY BOX
+   ============================================ */
+.exec-box {
+  background: linear-gradient(135deg, var(--bg-2) 0%, rgba(200,148,60,0.03) 100%);
+  border: 1px solid var(--gold-dim);
+  border-radius: var(--radius-lg);
+  padding: 36px 40px;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.exec-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--teal), var(--gold));
+}
+
+.exec-box-title {
+  font-family: var(--heading-font);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text-0);
+  margin-bottom: 8px;
+}
+
+.exec-box-subtitle {
+  font-family: var(--heading-font);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--gold-light);
+  margin-bottom: 24px;
+}
+
+.exec-thesis {
+  font-size: 1rem;
+  color: var(--text-1);
+  line-height: 1.8;
+}
+
+/* ============================================
+   ARCHETYPE GRID (ASML/NVIDIA/TSMC/VISA equivalents)
+   ============================================ */
+.archetype-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 32px 0;
+}
+
+.archetype-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.archetype-card:hover {
+  border-color: var(--border-light);
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.archetype-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(200,148,60,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.archetype-icon {
+  font-size: 2rem;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.archetype-ref {
+  font-family: var(--mono-font);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--text-3);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.archetype-title {
+  font-family: var(--heading-font);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-bottom: 6px;
+}
+
+.archetype-eq {
+  font-family: var(--mono-font);
+  font-size: 0.7rem;
+  color: var(--teal);
+  margin-bottom: 10px;
+}
+
+.archetype-desc {
+  font-size: 0.78rem;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  :root { --sidebar-w: 220px; }
+  .col-4 { grid-template-columns: repeat(2, 1fr); }
+  .archetype-grid { grid-template-columns: repeat(2, 1fr); }
+  .cover-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  :root { --sidebar-w: 0px; }
+  .sidebar { transform: translateX(-100%); width: 260px; }
+  .sidebar.open { transform: translateX(0); box-shadow: var(--shadow-lg); }
+  .main-content { margin-left: 0; }
+  .menu-toggle { display: flex; }
+  .content-section { padding: 48px 24px; }
+  .cover { padding: 32px 24px; }
+  .col-2, .col-3, .col-2-1, .col-1-2 { grid-template-columns: 1fr; }
+  .col-4 { grid-template-columns: 1fr 1fr; }
+  .archetype-grid { grid-template-columns: 1fr 1fr; }
+  .cover-stats { grid-template-columns: repeat(2, 1fr); }
+  .company-metrics { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .header-title { display: none; }
+}
+</style>
+</head>
+<body>
+<!-- ============================================
+     TOP HEADER
+     ============================================ -->
+<header class="top-header">
+  <div class="header-logo">
+    <div class="header-logo-icon">💧</div>
+    <span class="header-logo-text">Hydra Research</span>
+  </div>
+  <div class="header-divider"></div>
+  <span class="header-title">Global Water Management Super-Cycle & India's Water Security Transformation</span>
+  <div class="header-meta">
+    <span class="header-badge">Institutional Grade</span>
+    <span class="header-date">June 2025</span>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </div>
+</header>
+
+<!-- ============================================
+     SIDEBAR
+     ============================================ -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Overview</div>
+    <a href="#cover" class="nav-item active">
+      <span class="nav-num">—</span>
+      <span class="nav-text">Cover & Executive Summary</span>
+    </a>
+    <a href="#exec" class="nav-item">
+      <span class="nav-num">—</span>
+      <span class="nav-text">Investment Thesis</span>
+    </a>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Global Framework</div>
+    <a href="#part1" class="nav-item">
+      <span class="nav-num">01</span>
+      <span class="nav-text">Global Water Super-Cycle</span>
+    </a>
+    <a href="#part2" class="nav-item">
+      <span class="nav-num">02</span>
+      <span class="nav-text">Water Value Chain (Tier 1–5)</span>
+    </a>
+    <a href="#part3" class="nav-item">
+      <span class="nav-num">03</span>
+      <span class="nav-text">Global Bottleneck Analysis</span>
+    </a>
+    <a href="#part4" class="nav-item">
+      <span class="nav-num">04</span>
+      <span class="nav-text">Water Economics</span>
+    </a>
+    <a href="#part5" class="nav-item">
+      <span class="nav-num">05</span>
+      <span class="nav-text">Value Capture Rankings</span>
+    </a>
+    <a href="#part6" class="nav-item">
+      <span class="nav-num">06</span>
+      <span class="nav-text">Global Winners Analysis</span>
+    </a>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">India Deep-Dive</div>
+    <a href="#part7" class="nav-item">
+      <span class="nav-num">07</span>
+      <span class="nav-text">India Water Super-Cycle</span>
+    </a>
+    <a href="#part8" class="nav-item">
+      <span class="nav-num">08</span>
+      <span class="nav-text">India Value Chain</span>
+    </a>
+    <a href="#part9" class="nav-item">
+      <span class="nav-num">09</span>
+      <span class="nav-text">India's 25 Hidden Bottlenecks</span>
+    </a>
+    <a href="#part10" class="nav-item">
+      <span class="nav-num">10</span>
+      <span class="nav-text">India Listed Equity Mapping</span>
+    </a>
+    <a href="#part11" class="nav-item">
+      <span class="nav-num">11</span>
+      <span class="nav-text">Hidden Compounder Hunt</span>
+    </a>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Advanced Analysis</div>
+    <a href="#part12" class="nav-item">
+      <span class="nav-num">12</span>
+      <span class="nav-text">Water Toll Booths</span>
+    </a>
+    <a href="#part13" class="nav-item">
+      <span class="nav-num">13</span>
+      <span class="nav-text">AI, Data Centers & Semis</span>
+    </a>
+    <a href="#part14" class="nav-item">
+      <span class="nav-num">14</span>
+      <span class="nav-text">Capital Cycle Analysis</span>
+    </a>
+    <a href="#part15" class="nav-item">
+      <span class="nav-num">15</span>
+      <span class="nav-text">Final Verdict & Roadmap 2040</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ============================================
+     MAIN CONTENT
+     ============================================ -->
+<main class="main-content">
+
+<!-- ============================================
+     COVER
+     ============================================ -->
+<section id="cover" class="cover">
+  <div class="cover-bg"></div>
+  <div class="cover-grid"></div>
+  <div class="cover-watermark">H₂O</div>
+  <div class="cover-content">
+    <div class="cover-eyebrow">
+      <span class="cover-tag">Institutional Equity Research</span>
+      <div class="cover-tag-line"></div>
+      <span class="cover-tag">Hydra Research Consortium · June 2025</span>
+    </div>
+    <h1 class="display-title cover-h1">
+      Global Water Management<br>
+      <em>Super-Cycle</em> &amp;<br>
+      India's Water Security<br>
+      Transformation
+    </h1>
+    <p class="cover-subtitle">Identifying the ASMLs, Nvidias and Toll Booths of the Water Economy</p>
+    <div class="cover-divider"></div>
+    <p class="cover-thesis">
+      Water is transitioning from a utility commodity to a geopolitical asset class. 
+      A once-in-a-generation infrastructure super-cycle — driven by scarcity, 
+      industrial demand, AI-era compute cooling, and semiconductor ultrapurity 
+      requirements — is creating asymmetric investment opportunities in technology moats, 
+      recurring revenue franchises, and mission-critical infrastructure across the global water value chain.
+      India sits at the epicentre.
+    </p>
+    <div class="cover-stats">
+      <div class="cover-stat">
+        <div class="cover-stat-value">$1.3T</div>
+        <div class="cover-stat-label">Global water infrastructure gap by 2030</div>
+      </div>
+      <div class="cover-stat">
+        <div class="cover-stat-value">4B+</div>
+        <div class="cover-stat-label">People facing severe water scarcity annually</div>
+      </div>
+      <div class="cover-stat">
+        <div class="cover-stat-value">45%</div>
+        <div class="cover-stat-label">India's groundwater overexploited or critical</div>
+      </div>
+      <div class="cover-stat">
+        <div class="cover-stat-value">600M</div>
+        <div class="cover-stat-label">Indians facing high-to-extreme water stress</div>
+      </div>
+    </div>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <strong>Classification</strong>
+        Institutional Research — Not for Public Distribution
+      </div>
+      <div class="cover-meta-item">
+        <strong>Coverage Universe</strong>
+        Global + India (25+ companies)
+      </div>
+      <div class="cover-meta-item">
+        <strong>Report Length</strong>
+        15 Parts · Comprehensive Framework
+      </div>
+    </div>
+  </div>
+  <div class="cover-scroll-indicator">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Scroll to explore</span>
+  </div>
+</section>
+
+<!-- ============================================
+     EXEC SUMMARY / INVESTMENT THESIS
+     ============================================ -->
+<section id="exec" class="content-section">
+  <div class="section-header">
+    <div class="section-header-top">
+      <span class="section-number">EXECUTIVE SUMMARY</span>
+      <div class="section-tag-line"></div>
+    </div>
+    <h2 class="section-title">Where Value Lives in Water</h2>
+    <p class="section-intro">The water sector is not a single investment thesis — it is an ecosystem of ten distinct value pools, each with radically different margin profiles, competitive dynamics, and scalability characteristics. This report identifies where capital should concentrate.</p>
+  </div>
+
+  <div class="exec-box">
+    <div class="exec-box-title">The Central Thesis</div>
+    <div class="exec-box-subtitle">Water is not a commodity problem. It is a technology and infrastructure monopoly problem.</div>
+    <p class="exec-thesis">
+      Every water crisis in the 21st century will be solved not by building more dams, but by deploying more sophisticated technology: membranes, sensors, digital twins, ultrapure systems, and AI-optimised distribution networks. The companies that own the <em>critical technology</em>, the <em>IP</em>, the <em>software layers</em>, and the <em>recurring service contracts</em> inside water infrastructure will compound like software businesses even as they serve industrial and municipal markets. The companies that merely build the pipes will be margin-compressed commodities. This report draws that distinction with surgical precision.
+    </p>
+  </div>
+
+  <div class="col-2">
+    <div>
+      <h3 style="font-family:var(--heading-font);font-size:1.5rem;margin-bottom:20px;color:var(--text-0);">The Four Water Archetypes</h3>
+      <p style="color:var(--text-2);font-size:0.9rem;margin-bottom:20px;">Within water, four archetypes deliver vastly superior economics. These are businesses that parallel the most profitable franchises in semiconductors and payments:</p>
+      <div class="archetype-grid" style="grid-template-columns:1fr 1fr;">
+        <div class="archetype-card">
+          <span class="archetype-icon">🔬</span>
+          <div class="archetype-ref">The ASML Equivalent</div>
+          <div class="archetype-title">Critical Process Technology</div>
+          <div class="archetype-eq">Membrane / RO / UPW Systems</div>
+          <div class="archetype-desc">Monopoly-like IP in critical water purification processes with no substitutes, 40–55% gross margins, and decade-long customer lock-in.</div>
+        </div>
+        <div class="archetype-card">
+          <span class="archetype-icon">⚡</span>
+          <div class="archetype-ref">The Nvidia Equivalent</div>
+          <div class="archetype-title">Intelligence Layer</div>
+          <div class="archetype-eq">Smart Sensors / AI Optimisation</div>
+          <div class="archetype-desc">Platform businesses owning the data and analytics layer of water networks. Software-like margins on hardware-anchored recurring revenue streams.</div>
+        </div>
+        <div class="archetype-card">
+          <span class="archetype-icon">🏭</span>
+          <div class="archetype-ref">The TSMC Equivalent</div>
+          <div class="archetype-title">Mission-Critical Services</div>
+          <div class="archetype-eq">Water Treatment O&M / EPC</div>
+          <div class="archetype-desc">Irreplaceable operators of water infrastructure with long-duration contracts, government backing, and entrenched switching costs.</div>
+        </div>
+        <div class="archetype-card">
+          <span class="archetype-icon">💳</span>
+          <div class="archetype-ref">The Visa Equivalent</div>
+          <div class="archetype-title">Invisible Toll Booths</div>
+          <div class="archetype-eq">Chemicals / Consumables / Flow Control</div>
+          <div class="archetype-desc">Businesses embedded inside every water system, collecting small but recurring tolls on every gallon treated. Near-zero churn, pricing power, and scale economies.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-family:var(--heading-font);font-size:1.5rem;margin-bottom:20px;color:var(--text-0);">Top-Line Investment Conclusions</h3>
+      <div class="callout callout-gold" style="margin-bottom:14px;">
+        <div class="callout-label">⭐ Highest Conviction</div>
+        <div class="callout-text"><strong>Water Intelligence Software + Ultrapure Water Technology</strong> — Highest margins (35–55% gross), lowest competition, fastest growth driven by semiconductor and data centre demand. India exposure: Ion Exchange, VA Tech Wabag's UPW business.</div>
+      </div>
+      <div class="callout callout-teal" style="margin-bottom:14px;">
+        <div class="callout-label">✓ Strong Positioning</div>
+        <div class="callout-text"><strong>Membrane Technology + Specialty Chemicals</strong> — Recurring consumable revenues, strong IP moats, 30–45% gross margins. Global: Pentair, Kurita. India: Ion Exchange specialty chemicals.</div>
+      </div>
+      <div class="callout callout-blue" style="margin-bottom:14px;">
+        <div class="callout-label">→ Structural Growth</div>
+        <div class="callout-text"><strong>Efficient Pumps + Flow Control + Valves</strong> — Infrastructure capex beneficiaries, Jal Jeevan Mission tailwinds, moderate margins but long order books. India: Kirloskar Brothers, Shakti Pumps, Jash Engineering.</div>
+      </div>
+      <div class="callout callout-red">
+        <div class="callout-label">⚠ Commodity Trap</div>
+        <div class="callout-text"><strong>Pure EPC / Civil Construction</strong> — Capital-intensive, low-margin, no recurring revenue, dependent on government capex cycles. Avoid treating these as quality compounders.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="s-divider s-divider-gold" style="margin:48px 0;"></div>
+
+  <div class="col-4">
+    <div class="stat-block">
+      <div class="stat-value gold">$700B+</div>
+      <div class="stat-label">Annual global water sector revenues</div>
+      <div class="stat-desc">Growing at ~6% CAGR through 2035</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-value teal">₹2.87L Cr</div>
+      <div class="stat-label">India's Jal Jeevan Mission budget</div>
+      <div class="stat-desc">Largest household water programme in history</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-value blue">3.1x</div>
+      <div class="stat-label">Data centre water intensity growth by 2030</div>
+      <div class="stat-desc">AI training driving ultrapure water demand</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-value red">40%</div>
+      <div class="stat-label">India's NRW (non-revenue water) losses</div>
+      <div class="stat-desc">vs. global best practice of 8–12%</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     PART 1: GLOBAL WATER SUPER-CYCLE
+     ============================================ -->
+<section id="part1" class="content-section">
+  <div class="section-header">
+    <div class="section-header-top">
+      <span class="section-number">Part 01</span>
+      <div class="section-tag-line"></div>
+    </div>
+    <h2 class="section-title">Global Water Super-Cycle</h2>
+    <p class="section-intro">Why water is transitioning from a public utility to the most strategically contested resource of the 21st century — and why this creates a multi-decade investment super-cycle comparable in magnitude to the energy transition.</p>
+  </div>
+
+  <div class="pull-quote">
+    <div class="pull-quote-text">By 2040, the global water deficit will exceed 40% of supply — not because water disappears, but because the infrastructure to capture, treat, and distribute it has been chronically underfunded for five decades.</div>
+    <div class="pull-quote-source">— Synthesised from World Resources Institute, OECD, UN Water 2024 projections</div>
+  </div>
+
+  <div class="col-2" style="margin-bottom:40px;">
+    <div>
+      <h3 style="font-family:var(--heading-font);font-size:1.6rem;margin-bottom:16px;">The Five Structural Drivers</h3>
+      <p>Unlike most infrastructure investment cycles driven by a single variable, the water super-cycle is overdetermined — five simultaneous and compounding forces are creating a structural demand inflection that will not reverse within any investment horizon relevant today.</p>
+      <p><strong>Population growth and urbanisation</strong> are the baseline driver. The UN projects 9.7 billion people by 2050, with 68% living in urban areas. Urban water systems require 10–15x more infrastructure investment per capita than rural systems, and existing urban water infrastructure in every major economy is beyond optimal service life.</p>
+      <p><strong>Climate volatility</strong> is the acceleration driver. Monsoon patterns are becoming less predictable across South Asia, the Sahel, and South America. Groundwater recharge cycles that took centuries are being disrupted in decades. The practical result is that water systems designed for historical precipitation averages are structurally mismatched to the climate they now operate within.</p>
+      <p><strong>Industrial and digital demand</strong> is the surprise driver. Semiconductor fabs consume 10–20 million litres of ultrapure water per day. Large AI hyperscale data centres are becoming among the most water-intensive facilities ever built. Pharmaceutical manufacturing, food processing, and green hydrogen production all have growing and non-substitutable water requirements.</p>
+    </div>
+    <div>
+      <div class="card card-gold" style="margin-bottom:20px;">
+        <div class="card-title">The Groundwater Crisis</div>
+        <div class="card-subtitle">Irreversible on any human timescale</div>
+        <div class="card-body">
+          <p>Groundwater accounts for 30% of global freshwater supplies and is the primary source for 2.5 billion people. Aquifer depletion is occurring at rates 2–5x faster than natural recharge in the world's most productive agricultural regions: the North China Plain, India's Indo-Gangetic Plain, California's Central Valley, and the MENA region's fossil aquifers.</p>
+          <p>Once an aquifer is depleted, the land subsides and the natural storage capacity is permanently lost. This is not a reversible problem. It is a one-way ratchet creating a structural floor under demand for alternative water sources: desalination, recycling, and atmospheric water generation.</p>
+        </div>
+      </div>
+      <div class="card card-teal">
+        <div class="card-title">The Infrastructure Investment Gap</div>
+        <div class="card-subtitle">$26 trillion deficit through 2030</div>
+        <div class="card-body">The American Society of Civil Engineers estimates a $434 billion drinking water and $271 billion wastewater deficit in the US alone. OECD studies place the global water infrastructure financing gap at $6.7 trillion by 2050. The critical distinction for investors: this is not a gap in desire to invest — it is a gap in <em>technology capacity</em> and <em>execution capability</em>, meaning the beneficiaries are not financiers but technology and service providers.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="s-divider"></div>
+
+  <h3 style="font-family:var(--heading-font);font-size:1.8rem;margin-bottom:28px;color:var(--text-0);">Regional Water Stress Analysis</h3>
+
+  <div class="col-3" style="margin-bottom:32px;">
+    <div class="region-card">
+      <div class="region-header">
+        <div class="region-name">🇺🇸 United States</div>
+        <span class="stress-level stress-moderate">Moderate→High</span>
+      </div>
+      <div class="region-body">
+        <div class="region-metrics">
+          <div class="region-metric">
+            <div class="region-metric-label">Capex Pipeline</div>
+            <div class="region-metric-value">$1.2T (IIJA)</div>
+          </div>
+          <div class="region-metric">
+            <div class="region-metric-label">Avg. Pipe Age</div>
+            <div class="region-metric-value">47 years</div>
+          </div>
+        </div>
+        <div class="region-text">The Infrastructure Investment and Jobs Act allocates $55B for water. The West faces existential drought (Colorado River at 25% historical capacity). PFAS contamination creates a $400B+ remediation opportunity. Key beneficiary: membrane and sensor technology providers. Xylem, Veolia US, and Evoqua (now Xylem) are primary beneficiaries.</div>
+      </div>
+    </div>
+    <div class="region-card">
+      <div class="region-header">
+        <div class="region-name">🇨🇳 China</div>
+        <span class="stress-level stress-extreme">Extreme</span>
+      </div>
+      <div class="region-body">
+        <div class="region-metrics">
+          <div class="region-metric">
+            <div class="region-metric-label">Annual Deficit</div>
+            <div class="region-metric-value">500B m³</div>
+          </div>
+          <div class="region-metric">
+            <div class="region-metric-label">Capex (2021–25)</div>
+            <div class="region-metric-value">$125B+</div>
+          </div>
+        </div>
+        <div class="region-text">North China, home to 40% of population and 60% of farmland, has less than 7% of water resources. The South-North Water Transfer Project (world's largest ever) is expanding. China is the world's largest desalination market by addition. State-directed investment creates massive but often captured market — foreign technology plays are the primary beneficiaries.</div>
+      </div>
+    </div>
+    <div class="region-card">
+      <div class="region-header">
+        <div class="region-name">🇪🇺 Europe</div>
+        <span class="stress-level stress-high">High (Rising)</span>
+      </div>
+      <div class="region-body">
+        <div class="region-metrics">
+          <div class="region-metric">
+            <div class="region-metric-label">NRW Loss</div>
+            <div class="region-metric-value">20–35%</div>
+          </div>
+          <div class="region-metric">
+            <div class="region-metric-label">EU Water Policy</div>
+            <div class="region-metric-value">€100B+ fund</div>
+          </div>
+        </div>
+        <div class="region-text">Southern Europe (Spain, Portugal, Italy) facing chronic drought. EU Water Framework Directive mandates upgrades. Smart metering regulations driving €40B+ investment in next decade. Primary beneficiaries: Veolia, Suez (now Veolia consolidated), and smart metering technology providers like Landis+Gyr, Itron, Sensus.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-3">
+    <div class="region-card">
+      <div class="region-header">
+        <div class="region-name">🇸🇦 Middle East</div>
+        <span class="stress-level stress-extreme">Extreme</span>
+      </div>
+      <div class="region-body">
+        <div class="region-metrics">
+          <div class="region-metric">
+            <div class="region-metric-label">Desal Capacity</div>
+            <div class="region-metric-value">#1 Globally</div>
+          </div>
+          <div class="region-metric">
+            <div class="region-metric-label">Water/GDP</div>
+            <div class="region-metric-value">1–2% GDP</div>
+          </div>
+        </div>
+        <div class="region-text">Zero natural freshwater replenishment in GCC countries. Saudi Arabia spending $80B+ on water through 2030 (NEOM alone: $10B water systems). UAE mandating 100% wastewater reuse. The region is the world's test laboratory for advanced desalination, zero-liquid-discharge, and solar-powered water systems. ACWA Power, Veolia, Metito are primary operators.</div>
+      </div>
+    </div>
+    <div class="region-card">
+      <div class="region-header">
+        <div class="region-name">🌏 Southeast Asia</div>
+        <span class="stress-level stress-high">High</span>
+      </div>
+      <div class="region-body">
+        <div class="region-metrics">
+          <div class="region-metric">
+            <div class="region-metric-label">Urban Access</div>
+            <div class="region-metric-value">65% piped</div>
+          </div>
+          <div class="region-metric">
+            <div class="region-metric-label">Semicon Water</div>
+            <div class="region-metric-value">Fast growing</div>
+          </div>
+        </div>
+        <div class="region-text">Vietnam, Indonesia, and the Philippines are building massive semiconductor and electronics manufacturing bases, driving industrial water demand. Singapore is the global model for water reuse (NEWater programme achieves 40% supply from recycled water). Vietnam's Mekong Delta faces saltwater intrusion affecting 40% of agricultural land.</div>
+      </div>
+    </div>
+    <div class="region-card" style="border-color:var(--gold-dim);">
+      <div class="region-header">
+        <div class="region-name">🇮🇳 India</div>
+        <span class="stress-level stress-extreme">Extreme</span>
+      </div>
+      <div class="region-body">
+        <div class="region-metrics">
+          <div class="region-metric">
+            <div class="region-metric-label">Groundwater OE</div>
+            <div class="region-metric-value">45% of blocks</div>
+          </div>
+          <div class="region-metric">
+            <div class="region-metric-label">Invest. Required</div>
+            <div class="region-metric-value">₹10L Cr+</div>
+          </div>
+        </div>
+        <div class="region-text">India represents the single largest water investment opportunity globally over the next 15 years. 21 cities facing Day Zero scenarios by 2030. Only 28% of wastewater is treated. NRW losses average 40% in urban systems. Semiconductor fabs, data centres, and pharmaceutical corridors creating high-quality industrial water demand. <em>Detailed in Parts 7–15.</em></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     PART 2: WATER VALUE CHAIN
+     ============================================ -->
+<section id="part2" class="content-section">
+  <div class="section-header">
+    <div class="section-header-top">
+      <span class="section-number">Part 02</span>
+      <div class="section-tag-line"></div>
+    </div>
+    <h2 class="section-title">The Complete Water Value Chain</h2>
+    <p class="section-intro">A full systems map of the water economy across five tiers, from primary source extraction to digital optimisation — with margin profiles, moat assessments, and key technology inflection points at each layer.</p>
+  </div>
+
+  <div class="callout callout-gold" style="margin-bottom:32px;">
+    <div class="callout-label">📊 Reading This Section</div>
+    <div class="callout-text">Each tier represents a distinct value pool with different economic characteristics. Margins increase significantly as you move from commodity infrastructure (Tier 1) toward technology and intelligence (Tier 4–5). The most common investor error is weighting Tier 1–2 too heavily because they are most visible, while the real compounders are overwhelmingly in Tier 4–5.</div>
+  </div>
+
+  <div class="tier-stack">
+    <div class="tier-row" style="border-top:2px solid var(--teal-dim);">
+      <div class="tier-label">
+        <div class="tier-num">Tier 5 — Highest Value</div>
+        <div class="tier-name">Water Intelligence</div>
+      </div>
+      <div class="tier-body">
+        <span class="tier-item">AI Optimisation Platforms</span>
+        <span class="tier-item">Digital Twins</span>
+        <span class="tier-item">Smart Metering / AMI</span>
+        <span class="tier-item">Leak Detection Software</span>
+        <span class="tier-item">IoT Sensor Networks</span>
+        <span class="tier-item">Real-time Monitoring</span>
+        <span class="tier-item">Predictive Maintenance</span>
+        <span class="tier-item">Compliance Reporting SaaS</span>
+        <div class="tier-margin">GM: 55–75%</div>
+      </div>
+    </div>
+    <div class="tier-row">
+      <div class="tier-label">
+        <div class="tier-num">Tier 4</div>
+        <div class="tier-name">Advanced Treatment Tech</div>
+      </div>
+      <div class="tier-body">
+        <span class="tier-item">Reverse Osmosis Membranes</span>
+        <span class="tier-item">Nanofiltration</span>
+        <span class="tier-item">Ultrafiltration</span>
+        <span class="tier-item">Ultrapure Water Systems</span>
+        <span class="tier-item">UV Disinfection</span>
+        <span class="tier-item">Ozone Treatment</span>
+        <span class="tier-item">Electrocoagulation</span>
+        <span class="tier-item">ZLD Systems</span>
+        <span class="tier-item">PFAS Remediation</span>
+        <div class="tier-margin">GM: 35–55%</div>
+      </div>
+    </div>
+    <div class="tier-row">
+      <div class="tier-label">
+        <div class="tier-num">Tier 3</div>
+        <div class="tier-name">Water Treatment</div>
+      </div>
+      <div class="tier-body">
+        <span class="tier-item">Municipal WTP / STP</span>
+        <span class="tier-item">Industrial ETP</span>
+        <span class="tier-item">Desalination Plants</span>
+        <span class="tier-item">Specialty Treatment Chemicals</span>
+        <span class="tier-item">Coagulants / Flocculants</span>
+        <span class="tier-item">Ion Exchange Resins</span>
+        <span class="tier-item">Activated Carbon</span>
+        <span class="tier-item">O&M Services</span>
+        <div class="tier-margin">GM: 20–45%</div>
+      </div>
+    </div>
+    <div class="tier-row">
+      <div class="tier-label">
+        <div class="tier-num">Tier 2</div>
+        <div class="tier-name">Transportation</div>
+      </div>
+      <div class="tier-body">
+        <span class="tier-item">Centrifugal Pumps</span>
+        <span class="tier-item">Submersible Pumps</span>
+        <span class="tier-item">Valves & Actuators</span>
+        <span class="tier-item">Flow Meters</span>
+        <span class="tier-item">Pressure Management</span>
+        <span class="tier-item">Pipes & Fittings</span>
+        <span class="tier-item">HDPE Systems</span>
+        <span class="tier-item">Storage Tanks</span>
+        <div class="tier-margin">GM: 25–40%</div>
+      </div>
+    </div>
+    <div class="tier-row" style="border-bottom:2px solid var(--border);">
+      <div class="tier-label">
+        <div class="tier-num">Tier 1 — Lowest Value</div>
+        <div class="tier-name">Water Sources</div>
+      </div>
+      <div class="tier-body">
+        <span class="tier-item">Surface Water Abstraction</span>
+        <span class="tier-item">Groundwater Extraction</span>
+        <span class="tier-item">Desalination Feed</span>
+        <span class="tier-item">Rainwater Harvesting</span>
+        <span class="tier-item">Recycled Water</span>
+        <span class="tier-item">River/Reservoir Management</span>
+        <div class="tier-margin">GM: 5–20%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="s-divider"></div>
+
+  <div class="col-2" style="margin-top:40px;">
+    <div>
+      <h3 style="font-family:var(--heading-font);font-size:1.6rem;margin-bottom:20px;">Tier 4: Advanced Treatment Technologies Deep Dive</h3>
+      <p>This tier represents the highest-margin, highest-moat segment of the physical water value chain. Reverse osmosis membranes are the paradigmatic case: the core technology is well-established, but the <em>manufacturing precision</em>, <em>proprietary membrane chemistry</em>, and <em>system integration knowledge</em> create genuine barriers. The three global membrane technology leaders — DuPont Water Solutions, Toray, and Nitto Denko — collectively hold ~70% of the global RO membrane market, comparable to ASML's dominance in EUV lithography.</p>
+      <div class="card card-teal" style="margin-top:16px;">
+        <div class="card-title">The Ultrapure Water (UPW) Opportunity</div>
+        <div class="card-subtitle">Semiconductor's invisible requirement</div>
+        <div class="card-body">UPW systems for semiconductor fabs require water purified to 18.2 megohm-cm resistivity — purer than any naturally occurring water on earth. A single 300mm wafer fab requires 10,000 litres of UPW per minute. As fab construction accelerates globally (CHIPS Act, India's semiconductor mission), UPW system providers have multi-year order backlogs with near-zero substitution risk. This is the most structurally attractive sub-segment in water technology today.</div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-family:var(--heading-font);font-size:1.6rem;margin-bottom:20px;">Tier 5: The Software Layer — Why It Becomes the Winner</h3>
+      <p>Every utility, industrial operator, and municipal system will eventually run on a digital water management platform. The analogy is power grid software: once a utility adopts a SCADA or ADMS platform, the switching cost is effectively infinite. The same dynamic is playing out in water.</p>
+      <p>Companies like Xylem's Vue platform, Itron's water analytics suite, and Siemens' WaterExpert are early movers in what will become a winner-take-most market for water intelligence software. The economics are compelling: 70%+ gross margins, zero marginal cost of scaling, and 95%+ net revenue retention on enterprise contracts.</p>
+      <div class="callout callout-teal" style="margin-top:16px;">
+        <div class="callout-label">Key Insight: India's Software Lag = Future Opportunity</div>
+        <div class="callout-text">India's water utilities currently operate at <1% digital penetration (vs. 15–20% in developed markets). As Jal Jeevan Mission Phase II mandates SCADA-based water distribution monitoring, Indian smart water technology companies are positioned for a decade-long adoption wave with negligible competitive pressure from incumbents.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="s-divider" style="margin-top:40px;"></div>
+
+  <h3 style="font-family:var(--heading-font);font-size:1.6rem;margin:32px 0 20px;">Desalination: The Ultimate Water Source Technology</h3>
+  <div class="col-3">
+    <div class="card">
+      <div class="card-title">Thermal Desalination (MSF/MED)</div>
+      <div class="card-subtitle">Dominant in GCC, declining globally</div>
+      <div class="card-body">Multi-stage flash and multi-effect distillation require massive energy inputs (10–15 kWh/m³). Economically viable only where energy is virtually free (GCC). Declining share globally as RO becomes economically superior. Primary beneficiaries: ACWA Power, Veolia, Doosan Heavy Industries. Limited IP content; largely commoditised.</div>
+    </div>
+    <div class="card card-teal">
+      <div class="card-title">Reverse Osmosis Desalination</div>
+      <div class="card-subtitle">The technology winner — 3.5 kWh/m³</div>
+      <div class="card-body">RO desalination energy costs have fallen 90% since 1990, making it cost-competitive with conventional water treatment in water-stressed regions. LCOW (levelised cost of water) is now $0.30–0.70/m³ in optimal conditions. Energy recovery devices (ERI, Danfoss) capture 95%+ of pressure energy. The IP is in membranes, energy recovery, and system integration — not civil construction.</div>
+    </div>
+    <div class="card card-gold">
+      <div class="card-title">Next-Gen: Forward Osmosis & Graphene</div>
+      <div class="card-subtitle">2030+ commercial scale expected</div>
+      <div class="card-body">Forward osmosis eliminates the high-pressure pump requirement, potentially reducing energy to <1 kWh/m³. Graphene oxide membranes offer 10x higher water permeability than conventional polymeric membranes. These technologies are 5–10 years from commercial scale but represent a potential platform shift. Early-stage investment opportunity in university spinouts and specialist firms.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     PART 3: GLOBAL BOTTLENECK ANALYSIS
+     ============================================ -->
+<section id="part3" class="content-section">
+  <div class="section-header">
+    <div class="section-header-top">
+      <span class="section-number">Part 03</span>
+      <div class="section-tag-line"></div>
+    </div>
+    <h2 class="section-title">Global Bottleneck Analysis</h2>
+    <p class="section-intro">The most compelling investment opportunities in water do not reside in the largest problems — they reside in problems where the <em>solution is technically achievable</em>, the <em>capital is available</em>, and there exist <em>identifiable private beneficiaries</em> who capture disproportionate value from providing the solution.</p>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Bottleneck</th>
+          <th>Severity</th>
+          <th>Global Scale</th>
+          <th>Capital Required</th>
+          <th>Time to Solve</th>
+          <th>Primary Beneficiaries</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Non-Revenue Water (NRW) Losses</strong><br><span style="font-size:0.78rem;color:var(--text-2);">30–40% of treated water lost before billing</span></td>
+          <td><span class="severity-dot sev-critical"></span><span class="badge badge-red">Critical</span></td>
+          <td class="td-mono">$39B/yr loss</td>
+          <td class="td-mono">$150B (10yr)</td>
+          <td class="td-mono">5–15 yrs</td>
+          <td>Leak detection software, smart meters, AMI networks, pipe rehabilitation</td>
+        </tr>
+        <tr>
+          <td><strong>Wastewater Treatment Deficit</strong><br><span style="font-size:0.78rem;color:var(--text-2);">56% of global wastewater untreated</span></td>
+          <td><span class="severity-dot sev-critical"></span><span class="badge badge-red">Critical</span></td>
+          <td class="td-mono">380B m³/yr</td>
+          <td class="td-mono">$250B+</td>
+          <td class="td-mono">10–20 yrs</td>
+          <td>STP EPC contractors, membrane bioreactors, UV disinfection, sludge management</td>
+        </tr>
+        <tr>
+          <td><strong>Groundwater Depletion & Contamination</strong><br><span style="font-size:0.78rem;color:var(--text-2);">Aquifer depletion 3–5x recharge rates</span></td>
+          <td><span class="severity-dot sev-critical"></span><span class="badge badge-red">Critical</span></td>
+          <td class="td-mono">Global</td>
+          <td class="td-mono">$500B+</td>
+          <td class="td-mono">20–30 yrs</td>
+          <td>Desalination technology, recycled water systems, groundwater monitoring sensors</td>
+        </tr>
+        <tr>
+          <td><strong>Aging Water Infrastructure</strong><br><span style="font-size:0.78rem;color:var(--text-2);">Avg. pipe age 47+ yrs in developed markets</span></td>
+          <td><span class="severity-dot sev-high"></span><span class="badge badge-amber">High</span></td>
+          <td class="td-mono">US: $434B</td>
+          <td class="td-mono">$2T+ (global)</td>
+          <td class="td-mono">20–40 yrs</td>
+          <td>Pipe rehabilitation (CIPP), pump replacement, valve automation, SCADA systems</td>
+        </tr>
+        <tr>
+          <td><strong>Industrial Recycling Limitations</strong><br><span style="font-size:0.78rem;color:var(--text-2);">Industrial sector reuses <15% of process water</span></td>
+          <td><span class="severity-dot sev-high"></span><span class="badge badge-amber">High</span></td>
+          <td class="td-mono">$80B market</td>
+          <td class="td-mono">$200B (10yr)</td>
+          <td class="td-mono">5–10 yrs</td>
+          <td>ZLD systems, industrial RO, specialty chemicals, water auditing services</td>
+        </tr>
+        <tr>
+          <td><strong>Desalination Cost & Scale</strong><br><span style="font-size:0.78rem;color:var(--text-2);">LCOW still 3–5x conventional treatment</span></td>
+          <td><span class="severity-dot sev-high"></span><span class="badge badge-amber">High</span></td>
+          <td class="td-mono">$20B/yr market</td>
+          <td class="td-mono">$150B+ (15yr)</td>
+          <td class="td-mono">10–20 yrs</td>
+          <td>RO membrane manufacturers, energy recovery device makers, solar-powered desal systems</td>
+        </tr>
+        <tr>
+          <td><strong>Water Quality Monitoring Gaps</strong><br><span style="font-size:0.78rem;color:var(--text-2);">75% of water quality violations undetected</span></td>
+          <td><span class="severity-dot sev-high"></span><span class="badge badge-amber">High</span></td>
+          <td class="td-mono">Global</td>
+          <td class="td-mono">$30B (10yr)</td>
+          <td class="td-mono">5–8 yrs</td>
+          <td>Real-time water quality sensors, portable test kits, digital monitoring platforms</td>
+        </tr>
+        <tr>
+          <td><strong>Semiconductor UPW Supply Constraints</strong><br><span style="font-size:0.78rem;color:var(--text-2);">New fab construction outpacing UPW system supply</span></td>
+          <td><span class="severity-dot sev-medium"></span><span class="badge badge-gold">Medium</span></td>
+          <td class="td-mono">$8B market</td>
+          <td class="td-mono">$40B (10yr)</td>
+          <td class="td-mono">3–7 yrs</td>
+          <td>UPW system integrators, high-purity resins, specialty membranes, TOC analysers</td>
+        </tr>
+        <tr>
+          <td><strong>Data Centre Water Intensity</strong><br><span style="font-size:0.78rem;color:var(--text-2);">1L water per 7–10 ChatGPT queries; growing fast</span></td>
+          <td><span class="severity-dot sev-medium"></span><span class="badge badge-gold">Medium</span></td>
+          <td class="td-mono">$5B market</td>
+          <td class="td-mono">$25B (10yr)</td>
+          <td class="td-mono">3–5 yrs</td>
+          <td>Closed-loop cooling systems, direct liquid cooling technology, water recycling for DC</td>
+        </tr>
+        <tr>
+          <td><strong>Smart Metering Penetration</strong><br><span style="font-size:0.78rem;color:var(--text-2);">Only 12% of global water meters are smart</span></td>
+          <td><span class="severity-dot sev-medium"></span><span class="badge badge-gold">Medium</span></td>
+          <td class="td-mono">$15B market</td>
+          <td class="td-mono">$60B (10yr)</td>
+          <td class="td-mono">8–12 yrs</td>
+          <td>AMI technology providers, meter manufacturers, analytics platform companies</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pull-quote" style="margin-top:40px;">
+    <div class="pull-quote-text">The most investable water bottlenecks share a common characteristic: they are solved not by building more infrastructure, but by making existing infrastructure dramatically smarter and more efficient. This is why software and technology companies will capture more value than civil contractors in the coming decade.</div>
+    <div class="pull-quote-source">— Hydra Research Consortium Analysis</div>
+  </div>
+</section>
+
+<!-- ============================================
+     PART 4: WATER ECONOMICS
+     ============================================ -->
+<section id="part4" class="content-section">
+  <div class="section-header">
+    <div class="section-header-top">
+      <span class="section-number">Part 04</span>
+      <div class="section-tag-line"></div>
+    </div>
+    <h2 class="section-title">Water Economics</h2>
+    <p class="section-intro">Rigorous margin, returns, and scalability analysis across every segment of the water economy. This is the most critical section for capital allocation decisions — the difference between segments is not incremental, it is structural.</p>
+  </div>
+
+  <div class="callout callout-red" style="margin-bottom:32px;">
+    <div class="callout-label">⚠ The Structural Mistake Most Investors Make</div>
+    <div class="callout-text">Water is perceived as a single sector. In reality, water software companies trade at 6–8x revenue while water EPC contractors trade at 0.4–0.8x revenue. Treating them as comparable is the same error as treating Adobe and an IT services firm as peers. This section maps exactly where value accrues and where it evaporates.</div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Segment</th>
+          <th>Gross Margin</th>
+          <th>EBITDA Margin</th>
+          <th>ROIC</th>
+          <th>Asset Intensity</th>
+          <th>Pricing Power</th>
+          <th>Recurring Rev %</th>
+          <th>Scalability</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Water Intelligence Software</strong></td>
+          <td class="td-mono" style="color:var(--green);">60–75%</td>
+          <td class="td-mono" style="color:var(--green);">25–40%</td>
+          <td class="td-mono" style="color:var(--green);">30–50%</td>
+          <td><span class="badge badge-green">Low</span></td>
+          <td><span class="badge badge-gold">Very High</span></td>
+          <td class="td-mono" style="color:var(--teal);">80–95%</td>
+          <td><span class="badge badge-teal">Global</span></td>
+        </tr>
+        <tr>
+          <td><strong>Ultrapure Water Systems</strong></td>
+          <td class="td-mono" style="color:var(--green);">40–55%</td>
+          <td class="td-mono" style="color:var(--green);">20–30%</td>
+          <td class="td-mono" style="color:var(--teal);">18–28%</td>
+          <td><span class="badge badge-teal">Medium</span></td>
+          <td><span class="badge badge-gold">Very High</span></td>
+          <td class="td-mono" style="color:var(--teal);">60–80%</td>
+          <td><span class="badge badge-gold">High</span></td>
+        </tr>
+        <tr>
+          <td><strong>Membrane Technology (RO/NF/UF)</strong></td>
+          <td class="td-mono" style="color:var(--green);">35–50%</td>
+          <td class="td-mono" style="color:var(--teal);">15–25%</td>
+          <td class="td-mono" style="color:var(--teal);">14–22%</td>
+          <td><span class="badge badge-teal">Medium</span></td>
+          <td><span class="badge badge-gold">High</span></td>
+          <td class="td-mono" style="color:var(--teal);">50–65%</td>
+          <td><span class="badge badge-gold">High</span></td>
+        </tr>
+        <tr>
+          <td><strong>Specialty Water Chemicals</strong></td>
+          <td class="td-mono" style="color:var(--green);">40–55%</td>
+          <td class="td-mono" style="color:var(--teal);">18–28%</td>
+          <td class="td-mono" style="color:var(--teal);">20–32%</td>
+          <td><span class="badge badge-green">Low</span></td>
+          <td><span class="badge badge-gold">High</span></td>
+          <td class="td-mono" style="color:var(--teal);">70–85%</td>
+          <td><span class="badge badge-gold">High</span></td>
+        </tr>
+        <tr>
+          <td><strong>Advanced Pump Systems</strong></td>
+          <td class="td-mono" style="color:var(--teal);">28–40%</td>
+          <td class="td-mono" style="color:var(--amber);">12–18%</td>
+          <td class="td-mono" style="color:var(--amber);">12–18%</td>
+          <td><span class="badge badge-amber">Med-High</span></td>
+          <td><span class="badge badge-teal">Medium</span></td>
+          <td class="td-mono" style="color:var(--amber);">30–45%</td>
+          <td><span class="badge badge-teal">Regional</span></td>
+        </tr>
+        <tr>
+          <td><strong>Flow Control (Valves/Actuators)</strong></td>
+          <td class="td-mono" style="color:var(--teal);">30–42%</td>
+          <td class="td-mono" style="color:var(--amber);">14–20%</td>
+          <td class="td-mono" style="color:var(--amber);">13–20%</td>
+          <td><span class="badge badge-amber">Medium</span></td>
+          <td><span class="badge badge-teal">Medium</span></td>
+          <td class="td-mono" style="color:var(--amber);">25–35%</td>
+          <td><span class="badge badge-teal">Regional</span></td>
+        </tr>
+        <tr>
+          <td><strong>Water Treatment O&M Services</strong></td>
+          <td class="td-mono" style="color:var(--amber);">20–30%</td>
+          <td class="td-mono" style="color:var(--amber);">8–14%</td>
+          <td class="td-mono" style="color:var(--amber);">8–14%</td>
+          <td><span class="badge badge-red">High</span></td>
+          <td><span class="badge badge-amber">Low-Med</span></td>
+          <td class="td-mono" style="color:var(--green);">85–95%</td>
+          <td><span class="badge badge-amber">Limited</span></td>
+        </tr>
+        <tr>
+          <td><strong>Industrial WTP / WWTP EPC</strong></td>
+          <td class="td-mono" style="color:var(--amber);">14–22%</td>
+          <td class="td-mono" style="color:var(--red);">6–11%</td>
+          <td class="td-mono" style="color:var(--red);">6–10%</td>
+          <td><span class="badge badge-red">High</span></td>
+          <td><span class="badge badge-red">Low</span></td>
+          <td class="td-mono" style="color:var(--red);">20–30%</td>
+          <td><span class="badge badge-red">Low</span></td>
+        </tr>
+        <tr>
+          <td><strong>Municipal EPC / Civil</strong></td>
+          <td class="td-mono" style="color:var(--red);">8–16%</td>
+          <td class="td-mono" style="color:var(--red);">4–8%</td>
+          <td class="td-mono" style="color:var(--red);">4–8%</td>
+          <td><span class="badge badge-red">Very High</span></td>
+          <td><span class="badge badge-red">Very Low</span></td>
+          <td class="td-mono" style="color:var(--red);">0–10%</td>
+          <td><span class="badge badge-red">None</span></td>
+        </tr>
+        <tr>
+          <td><strong>Desalination (BOOT/O&M)</strong></td>
+          <td class="td-mono" style="color:var(--amber);">18–28%</td>
+          <td class="td-mono" style="color:var(--amber);">25–40%</td>
+          <td class="td-mono" style="color:var(--amber);">7–12%</td>
+          <td><span class="badge badge-red">Very High</span></td>
+          <td><span class="badge badge-teal">Medium</span></td>
+          <td class="td-mono" style="color:var(--green);">90–100%</td>
+          <td><span class="badge badge-amber">Limited</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="s-divider"></div>
+
+  <div class="col-2" style="margin-top:40px;">
+    <div>
+      <h3 style="font-family:var(--heading-font);font-size:1.6rem;margin-bottom:16px;">Where Investors Commonly Make Mistakes</h3>
+      <div class="callout callout-red" style="margin-bottom:16px;">
+        <div class="callout-label">Mistake #1: Revenue Size Confusion</div>
+        <div class="callout-text">The largest revenue pools in water (municipal utilities, large EPC contractors) are also the worst investment cases. Revenue is enormous; shareholder value creation is minimal. Don't mistake market size for investability.</div>
+      </div>
+      <div class="callout callout-red" style="margin-bottom:16px;">
+        <div class="callout-label">Mistake #2: Government Contract Safety</div>
+        <div class="callout-text">Government water contracts look safe but typically mean low-margin, delayed payment, rebidding risk, and political pricing pressure. The safer bet is technology providers to government projects, not the EPC contractor itself.</div>
+      </div>
+      <div class="callout callout-red">
+        <div class="callout-label">Mistake #3: Ignoring the Consumable Revenue</div>
+        <div class="callout-text">Many water technology sales include a perpetual consumable tail: membranes replace every 5–7 years, resins every 3–5 years, chemicals monthly. Investors who price water companies on capital sale revenues systematically undervalue the recurring consumable business embedded within.</div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-family:var(--heading-font);font-size:1.6rem;margin-bottom:16px;">Where Value Accrues: The Hierarchy</h3>
+      <p style="color:var(--text-2);font-size:0.88rem;margin-bottom:16px;">Based on the margin analysis above, a clear value hierarchy emerges. Capital should follow this priority order:</p>
+      <div class="ranking-list">
+        <div class="ranking-item">
+          <div class="ranking-num">1</div>
+          <div>
+            <div class="ranking-name">Technology IP + Recurring Consumables</div>
+            <div class="ranking-desc">Membrane chemistry, ion exchange resins, specialty chemicals</div>
+          </div>
+          <div class="ranking-score">
+            <div class="ranking-score-value">9.4</div>
+            <div class="ranking-score-label">Score /10</div>
+          </div>
+        </div>
+        <div class="ranking-item">
+          <div class="ranking-num">2</div>
+          <div>
+            <div class="ranking-name">Water Intelligence Software & Analytics</div>
+            <div class="ranking-desc">SaaS platforms, digital twins, leak detection</div>
+          </div>
+          <div class="ranking-score">
+            <div class="ranking-score-value">9.1</div>
+            <div class="ranking-score-label">Score /10</div>
+          </div>
+        </div>
+        <div class="ranking-item">
+          <div class="ranking-num">3</div>
+          <div>
+            <div class="ranking-name">Critical System Integrators (UPW/Semicon)</div>
+            <div class="ranking-desc">Fab-critical water systems with embedded service contracts</div>
+          </div>
+          <div class="ranking-score">
+            <div class="ranking-score-value">8.7</div>
+            <div class="ranking-score-label">Score /10</div>
+          </div>
+        </div>
+        <div class="ranking-item">
+          <div class="ranking-num">4</div>
+          <div>
+            <div class="ranking-name">Precision Flow Control & Instrumentation</div>
+            <div class="ranking-desc">High-spec valves, flowmeters, pressure management</div>
+          </div>
+          <div class="ranking-score">
+            <div class="ranking-score-value">7.8</div>
+            <div class="ranking-score-label">Score /10</div>
+          </div>
+        </div>
+        <div class="ranking-item">
+          <div class="ranking-num">5</div>
+          <div>
+            <div class="ranking-name">Efficient Pump OEM + Service Aftermarket</div>
+            <div class="ranking-desc">High-efficiency centrifugal/submersible with spares ecosystem</div>
+          </div>
+          <div class="ranking-score">
+            <div class="ranking-score-value">7.1</div>
+            <div class="ranking-score-label">Score /10</div>
+          </div>
+        </div>
+        <div class="ranking-item">
+          <div class="ranking-num" style="color:var(--text-3);">6</div>
+          <div>
+            <div class="ranking-name">Integrated Water Services (O&M + EPC)</div>
+            <div class="ranking-desc">Veolia-type broad service platforms</div>
+          </div>
+          <div class="ranking-score">
+            <div class="ranking-score-value">5.9</div>
+            <div class="ranking-score-label">Score /10</div>
+          </div>
+        </div>
+        <div class="ranking-item">
+          <div class="ranking-num" style="color:var(--text-3);">7</div>
+          <div>
+            <div class="ranking-name">Pure EPC / Construction</div>
+            <div class="ranking-desc">Civil contractors on government water projects</div>
+          </div>
+          <div class="ranking-score">
+            <div class="ranking-score-value" style="color:var(--red);">3.2</div>
+            <div class="ranking-score-label">Score /10</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+function toggleMenu() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+// Active nav tracking
+const sections = document.querySelectorAll('section[id], div[id]');
+const navItems = document.querySelectorAll('.nav-item');
+
+function updateActiveNav() {
+  let current = '';
+  sections.forEach(s => {
+    const top = s.getBoundingClientRect().top;
+    if (top <= 80) current = s.getAttribute('id');
+  });
+  navItems.forEach(item => {
+    item.classList.remove('active');
+    if (item.getAttribute('href') === '#' + current) {
+      item.classList.add('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', updateActiveNav, { passive: true });
+
+// Close sidebar on outside click (mobile)
+document.addEventListener('click', (e) => {
+  const sidebar = document.getElementById('sidebar');
+  const toggle = document.querySelector('.menu-toggle');
+  if (sidebar.classList.contains('open') && !sidebar.contains(e.target) && e.target !== toggle) {
+    sidebar.classList.remove('open');
+  }
+});
+</script>
+</body>
+</html>

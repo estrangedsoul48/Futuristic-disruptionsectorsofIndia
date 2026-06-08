@@ -1,0 +1,2192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Global Automotive Super-Cycle — Part I: Architecture of Transformation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #07090F;
+  --bg2:     #0B0E18;
+  --bg3:     #0F1320;
+  --bg4:     #141828;
+  --bg5:     #1A2030;
+  --text:    #DDD5C4;
+  --text2:   #8A8070;
+  --text3:   #504840;
+  --gold:    #C0983A;
+  --gold2:   #D4AF68;
+  --golddim: #6A5020;
+  --blue:    #3D82B0;
+  --bluedim: #1A3A58;
+  --green:   #38946A;
+  --greendim:#163828;
+  --red:     #BC3838;
+  --reddim:  #481414;
+  --amber:   #C27030;
+  --border:  #181E2C;
+  --border2: #222A3A;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  font-size:15px;
+  line-height:1.78;
+  display:flex;
+  min-height:100vh;
+}
+
+/* ─── SIDEBAR ─── */
+.sidebar{
+  width:264px;min-width:264px;
+  height:100vh;position:sticky;top:0;
+  background:var(--bg2);
+  border-right:1px solid var(--border);
+  overflow-y:auto;
+  padding:24px 0 40px;
+  flex-shrink:0;
+}
+.sidebar::-webkit-scrollbar{width:3px;}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+
+.sb-brand{
+  padding:0 24px 20px;
+  border-bottom:1px solid var(--border);
+  margin-bottom:16px;
+}
+.sb-series{
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:6px;
+}
+.sb-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14.5px;font-weight:500;
+  color:var(--text);line-height:1.45;
+}
+.sb-part{
+  display:inline-block;
+  margin-top:8px;
+  background:var(--golddim);
+  color:var(--gold2);
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:.18em;
+  text-transform:uppercase;
+  padding:3px 9px;
+}
+
+.sb-group{margin-bottom:4px;}
+.sb-group-label{
+  font-family:'DM Mono',monospace;
+  font-size:8px;letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--text3);
+  padding:10px 24px 4px;
+}
+.sb-link{
+  display:block;
+  padding:6px 24px;
+  font-size:12.5px;
+  color:var(--text2);
+  text-decoration:none;
+  border-left:2px solid transparent;
+  transition:all .14s;
+  line-height:1.4;
+}
+.sb-link:hover{color:var(--text);background:rgba(255,255,255,.03);}
+.sb-link.active{color:var(--gold2);border-left-color:var(--gold);background:rgba(192,152,58,.06);}
+
+/* ─── MAIN ─── */
+.main{flex:1;overflow-x:hidden;min-width:0;}
+
+/* ─── COVER ─── */
+.cover{
+  min-height:100vh;
+  background:linear-gradient(150deg,#07090F 0%,#0A0D18 45%,#07090F 100%);
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;
+  justify-content:center;
+  padding:80px 88px;
+}
+.cover-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(24,30,44,.55) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(24,30,44,.55) 1px,transparent 1px);
+  background-size:64px 64px;
+  pointer-events:none;
+}
+.cover-glow{
+  position:absolute;top:-10%;right:-5%;
+  width:700px;height:700px;
+  background:radial-gradient(ellipse,rgba(192,152,58,.05) 0%,transparent 68%);
+  pointer-events:none;
+}
+.cover-glow2{
+  position:absolute;bottom:-15%;left:15%;
+  width:500px;height:500px;
+  background:radial-gradient(ellipse,rgba(61,130,176,.04) 0%,transparent 68%);
+  pointer-events:none;
+}
+.cover-eyebrow{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:24px;
+}
+.cover-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(40px,5vw,68px);
+  font-weight:300;line-height:1.1;
+  color:var(--text);margin-bottom:6px;
+}
+.cover-title em{font-style:italic;color:var(--gold2);}
+.cover-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(17px,2vw,24px);
+  font-style:italic;font-weight:300;
+  color:var(--text2);margin-bottom:52px;
+  line-height:1.45;
+}
+.cover-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  background:var(--border);
+  border:1px solid var(--border);gap:1px;
+  max-width:840px;margin-bottom:52px;
+}
+.c-stat{background:var(--bg3);padding:22px 26px;}
+.c-stat-v{
+  font-family:'Cormorant Garamond',serif;
+  font-size:30px;font-weight:600;
+  color:var(--gold2);display:block;line-height:1;
+  margin-bottom:4px;
+}
+.c-stat-l{
+  font-family:'DM Mono',monospace;
+  font-size:10px;color:var(--text2);
+  text-transform:uppercase;letter-spacing:.06em;
+  line-height:1.4;
+}
+.cover-meta{
+  display:flex;gap:36px;align-items:center;
+  flex-wrap:wrap;
+}
+.c-meta-item{
+  font-family:'DM Mono',monospace;
+  font-size:10.5px;color:var(--text3);
+  letter-spacing:.1em;
+}
+.c-meta-item span{color:var(--text2);}
+.cover-rule{
+  height:1px;
+  background:linear-gradient(90deg,var(--golddim) 0%,transparent 60%);
+  max-width:840px;margin-bottom:32px;
+}
+
+/* ─── SECTIONS ─── */
+section{
+  padding:80px 88px;
+  border-bottom:1px solid var(--border);
+}
+section:nth-child(even){background:var(--bg2);}
+section:nth-child(odd){background:var(--bg);}
+
+.sec-tag{
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--gold);margin-bottom:14px;
+}
+.sec-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(26px,3vw,42px);
+  font-weight:400;line-height:1.2;
+  color:var(--text);margin-bottom:10px;
+}
+.sec-title em{font-style:italic;color:var(--gold2);}
+.sec-lead{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(16px,1.5vw,20px);
+  font-style:italic;color:var(--text2);
+  margin-bottom:36px;line-height:1.55;
+  max-width:68ch;
+  border-left:2px solid var(--golddim);
+  padding-left:20px;
+}
+
+h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:21px;font-weight:600;
+  color:var(--text);
+  margin:44px 0 16px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--border);
+}
+h4{
+  font-family:'DM Sans',sans-serif;
+  font-size:12px;font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--text3);margin:28px 0 10px;
+}
+p{color:var(--text);margin-bottom:16px;max-width:75ch;}
+p.full{max-width:none;}
+strong{color:var(--text);font-weight:600;}
+
+/* ─── CALLOUTS ─── */
+.callout{
+  border-left:3px solid var(--gold);
+  background:rgba(192,152,58,.06);
+  padding:20px 24px;margin:28px 0;
+  border-radius:0 3px 3px 0;
+}
+.callout.blue{border-left-color:var(--blue);background:rgba(61,130,176,.06);}
+.callout.green{border-left-color:var(--green);background:rgba(56,148,106,.06);}
+.callout.red{border-left-color:var(--red);background:rgba(188,56,56,.06);}
+.callout.amber{border-left-color:var(--amber);background:rgba(194,112,48,.06);}
+.cl-label{
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--gold);margin-bottom:6px;
+}
+.callout.blue .cl-label{color:var(--blue);}
+.callout.green .cl-label{color:var(--green);}
+.callout.red .cl-label{color:var(--red);}
+.callout.amber .cl-label{color:var(--amber);}
+.callout p{margin-bottom:0;font-size:14px;}
+
+/* ─── PULL QUOTE ─── */
+.pq{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(20px,2.2vw,27px);
+  font-style:italic;font-weight:300;
+  color:var(--text2);line-height:1.5;
+  border-top:1px solid var(--golddim);
+  border-bottom:1px solid var(--golddim);
+  padding:28px 0;margin:44px 0;
+  max-width:70ch;
+}
+
+/* ─── TABLES ─── */
+.tw{overflow-x:auto;margin:28px 0;border:1px solid var(--border);}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+thead tr{background:var(--bg4);}
+th{
+  font-family:'DM Mono',monospace;
+  font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text3);
+  padding:12px 16px;text-align:left;
+  border-bottom:1px solid var(--border2);
+  white-space:nowrap;
+}
+td{
+  padding:11px 16px;
+  border-bottom:1px solid var(--border);
+  color:var(--text);vertical-align:top;
+}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(255,255,255,.018);}
+.mono{font-family:'DM Mono',monospace;font-size:12px;}
+.tgold{color:var(--gold2);font-weight:500;}
+.tgreen{color:var(--green);}
+.tblue{color:var(--blue);}
+.tred{color:var(--red);}
+.tamber{color:var(--amber);}
+.tdim{color:var(--text2);}
+
+/* ─── BADGES ─── */
+.badge{
+  display:inline-block;padding:2px 8px;
+  border-radius:2px;font-size:10px;
+  font-family:'DM Mono',monospace;
+  letter-spacing:.07em;text-transform:uppercase;
+}
+.bg-gold{background:var(--golddim);color:var(--gold2);}
+.bg-blue{background:var(--bluedim);color:var(--blue);}
+.bg-green{background:var(--greendim);color:var(--green);}
+.bg-red{background:var(--reddim);color:var(--red);}
+.bg-amber{background:rgba(194,112,48,.18);color:var(--amber);}
+.bg-muted{background:rgba(80,72,64,.22);color:var(--text2);}
+
+/* ─── FORCE GRID ─── */
+.force-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);margin:32px 0;
+}
+.fc{
+  background:var(--bg3);padding:26px 24px;
+  transition:background .18s;
+}
+.fc:hover{background:var(--bg4);}
+.fc-num{
+  font-family:'DM Mono',monospace;
+  font-size:28px;color:var(--golddim);
+  font-weight:500;display:block;margin-bottom:10px;
+}
+.fc-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:600;
+  color:var(--gold2);margin-bottom:10px;
+}
+.fc-impact{
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--text3);
+  margin-bottom:10px;
+}
+.fc-impact.high{color:var(--red);}
+.fc-impact.very-high{color:var(--gold);}
+.fc-desc{
+  font-size:13px;color:var(--text2);
+  line-height:1.65;margin:0;max-width:100%;
+}
+
+/* ─── TIER STACK ─── */
+.tier-header{
+  display:grid;
+  grid-template-columns:40px 170px 1fr 130px 120px 110px;
+  gap:0;background:var(--bg4);
+  border:1px solid var(--border);border-bottom:none;
+}
+.tier-header>div{
+  padding:10px 16px;
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--text3);
+  border-right:1px solid var(--border);
+}
+.tier-header>div:last-child{border-right:none;}
+.tier-row{
+  display:grid;
+  grid-template-columns:40px 170px 1fr 130px 120px 110px;
+  gap:0;
+  border:1px solid var(--border);border-bottom:none;
+  transition:background .14s;
+}
+.tier-row:last-child{border-bottom:1px solid var(--border);}
+.tier-row:hover{background:rgba(255,255,255,.015);}
+.tn{
+  background:var(--bg4);
+  display:flex;align-items:center;
+  justify-content:center;
+  border-right:1px solid var(--border);
+  font-family:'DM Mono',monospace;
+  font-size:11px;color:var(--text3);
+  padding:14px 0;
+}
+.td1{
+  padding:14px 18px;
+  border-right:1px solid var(--border);
+}
+.td1-name{font-weight:600;font-size:13px;color:var(--text);display:block;}
+.td1-sub{font-size:11px;color:var(--text2);font-family:'DM Mono',monospace;}
+.td2{
+  padding:14px 18px;font-size:12.5px;
+  color:var(--text2);border-right:1px solid var(--border);
+  line-height:1.55;
+}
+.td3{
+  padding:14px 16px;text-align:center;
+  border-right:1px solid var(--border);
+}
+.td3-v{
+  font-family:'DM Mono',monospace;
+  font-size:13px;color:var(--gold2);
+  display:block;font-weight:500;
+}
+.td3-l{font-size:10px;color:var(--text3);}
+.td4{
+  padding:14px 16px;text-align:center;
+  border-right:1px solid var(--border);
+}
+.td5{padding:14px 16px;text-align:center;}
+
+/* ─── BIG STATS ─── */
+.big-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--border);
+  margin:32px 0;
+}
+.bstat{background:var(--bg3);padding:28px 32px;}
+.bstat-v{
+  font-family:'Cormorant Garamond',serif;
+  font-size:50px;font-weight:300;
+  color:var(--gold2);line-height:1;
+  display:block;margin-bottom:6px;
+}
+.bstat-l{font-size:13px;color:var(--text2);line-height:1.5;}
+
+/* ─── COMPANY CARDS ─── */
+.cc{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  margin:24px 0;
+}
+.cc-head{
+  display:flex;justify-content:space-between;
+  align-items:center;
+  padding:18px 24px;
+  background:var(--bg4);
+  border-bottom:1px solid var(--border);
+}
+.cc-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:600;color:var(--text);
+}
+.cc-body{padding:24px;}
+.cc-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--border);margin-bottom:20px;
+}
+.cc-metric{background:var(--bg);padding:16px 20px;}
+.ccm-v{
+  font-family:'DM Mono',monospace;
+  font-size:17px;color:var(--gold2);
+  font-weight:500;display:block;margin-bottom:2px;
+}
+.ccm-l{
+  font-size:10px;color:var(--text3);
+  text-transform:uppercase;letter-spacing:.07em;
+}
+.cc-analysis{font-size:13.5px;color:var(--text2);line-height:1.7;margin:0;}
+.cc-barriers{
+  margin-top:16px;
+  display:flex;flex-wrap:wrap;gap:6px;
+}
+
+/* ─── BOTTLENECK TABLE ─── */
+.btn-cat{
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;
+  padding:14px 16px 6px;
+  color:var(--gold);
+  background:var(--bg4);
+  border-top:2px solid var(--golddim);
+}
+
+/* Score bar */
+.sbar-wrap{
+  display:flex;align-items:center;gap:8px;
+}
+.sbar{
+  height:3px;background:var(--border2);
+  border-radius:2px;flex:1;
+  max-width:80px;overflow:hidden;
+}
+.sbar-fill{height:100%;border-radius:2px;}
+.snum{
+  font-family:'DM Mono',monospace;
+  font-size:11px;color:var(--gold2);
+  min-width:22px;text-align:right;
+}
+
+/* ─── VALUE RANK ─── */
+.vrank{margin:8px 0;}
+.vr-row{
+  display:grid;
+  grid-template-columns:36px 200px 100px 100px 1fr;
+  align-items:start;gap:0;
+  border:1px solid var(--border);border-bottom:none;
+  transition:background .14s;
+}
+.vr-row:last-child{border-bottom:1px solid var(--border);}
+.vr-row:hover{background:rgba(255,255,255,.015);}
+.vr-num{
+  background:var(--bg4);
+  display:flex;align-items:center;justify-content:center;
+  border-right:1px solid var(--border);
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:600;color:var(--golddim);
+  padding:16px 0;
+}
+.vr-name{
+  padding:14px 18px;border-right:1px solid var(--border);
+  font-weight:600;font-size:13px;color:var(--text);
+  line-height:1.4;
+}
+.vr-gm{padding:14px 16px;text-align:center;border-right:1px solid var(--border);}
+.vr-roic{padding:14px 16px;text-align:center;border-right:1px solid var(--border);}
+.vr-why{padding:14px 18px;font-size:13px;color:var(--text2);}
+.vr-header{
+  display:grid;
+  grid-template-columns:36px 200px 100px 100px 1fr;
+  background:var(--bg4);
+  border:1px solid var(--border);border-bottom:none;
+}
+.vr-header>div{
+  padding:10px 16px;
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--text3);
+  border-right:1px solid var(--border);
+}
+.vr-header>div:last-child{border-right:none;}
+
+/* ─── SVG CHART ─── */
+.chart-wrap{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  padding:32px;margin:28px 0;
+}
+.chart-title{
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--text3);
+  margin-bottom:20px;
+}
+
+/* ─── DIVIDER ─── */
+.divider{
+  height:1px;
+  background:linear-gradient(90deg,var(--golddim),transparent);
+  margin:44px 0;
+}
+
+/* ─── HIGHLIGHT NUMBERS ─── */
+.stat-inline{
+  font-family:'DM Mono',monospace;
+  font-size:13px;color:var(--gold2);
+  font-weight:500;
+}
+
+/* ─── FINDING BOXES ─── */
+.findings{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:12px;margin:28px 0;
+}
+.finding{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  padding:20px;
+  border-radius:2px;
+}
+.finding-num{
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold);
+  margin-bottom:8px;
+}
+.finding-text{
+  font-size:13.5px;color:var(--text);
+  line-height:1.65;margin:0;max-width:100%;
+}
+
+/* ─── ANIMATIONS ─── */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;}
+.reveal.vis{opacity:1;transform:none;}
+
+/* Progress bar */
+#progress{
+  position:fixed;top:0;left:264px;right:0;height:2px;
+  background:var(--bg4);z-index:100;
+}
+#progress-fill{
+  height:100%;background:var(--gold);
+  width:0;transition:width .1s linear;
+}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1140px){
+  .sidebar{width:230px;min-width:230px;}
+  #progress{left:230px;}
+  section,.cover{padding:64px 48px;}
+  .cover-stats{grid-template-columns:repeat(2,1fr);}
+  .force-grid{grid-template-columns:repeat(2,1fr);}
+  .big-stats{grid-template-columns:repeat(2,1fr);}
+  .cc-grid{grid-template-columns:repeat(2,1fr);}
+  .tier-header,.tier-row{grid-template-columns:36px 140px 1fr 110px 100px 90px;}
+  .findings{grid-template-columns:1fr;}
+}
+@media(max-width:860px){
+  body{flex-direction:column;}
+  .sidebar{width:100%;min-width:100%;height:auto;position:relative;}
+  #progress{left:0;}
+  section,.cover{padding:48px 24px;}
+  .tier-header,.tier-row{grid-template-columns:1fr;}
+  .vr-header,.vr-row{grid-template-columns:1fr;}
+  .force-grid{grid-template-columns:1fr;}
+  .big-stats{grid-template-columns:1fr;}
+  .cc-grid{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div id="progress"><div id="progress-fill"></div></div>
+
+<!-- ─────────────────────── SIDEBAR ─────────────────────── -->
+<nav class="sidebar" id="sidebar">
+  <div class="sb-brand">
+    <div class="sb-series">Institutional Research Series</div>
+    <div class="sb-title">The Global Automotive Super-Cycle &amp; India's Auto Technology Ecosystem</div>
+    <div class="sb-part">Part I of II</div>
+  </div>
+
+  <div class="sb-group">
+    <div class="sb-group-label">Introduction</div>
+    <a class="sb-link" href="#cover">Cover</a>
+    <a class="sb-link" href="#exec-summary">Executive Summary</a>
+  </div>
+
+  <div class="sb-group">
+    <div class="sb-group-label">Chapter 1</div>
+    <a class="sb-link" href="#ch1">The Automotive Revolution</a>
+    <a class="sb-link" href="#ch1-forces">Nine Convergent Forces</a>
+    <a class="sb-link" href="#ch1-why">Why This Decade Decides Everything</a>
+  </div>
+
+  <div class="sb-group">
+    <div class="sb-group-label">Chapter 2</div>
+    <a class="sb-link" href="#ch2">Global Value Chain Map</a>
+    <a class="sb-link" href="#tier1">Tier 1 — Vehicle OEMs</a>
+    <a class="sb-link" href="#tier2">Tier 2 — Semiconductors</a>
+    <a class="sb-link" href="#tier3">Tier 3 — Batteries</a>
+    <a class="sb-link" href="#tier4">Tier 4 — Power Electronics</a>
+    <a class="sb-link" href="#tier5">Tier 5 — Sensors &amp; ADAS</a>
+    <a class="sb-link" href="#tier6">Tier 6 — Thermal Management</a>
+    <a class="sb-link" href="#tier7">Tier 7 — Software Layer</a>
+    <a class="sb-link" href="#tier8">Tier 8 — Precision Components</a>
+  </div>
+
+  <div class="sb-group">
+    <div class="sb-group-label">Chapter 3</div>
+    <a class="sb-link" href="#ch3">Bottleneck Company Analysis</a>
+    <a class="sb-link" href="#ch3-tesla">Tesla</a>
+    <a class="sb-link" href="#ch3-byd">BYD</a>
+    <a class="sb-link" href="#ch3-bosch">Bosch</a>
+    <a class="sb-link" href="#ch3-denso">Denso</a>
+    <a class="sb-link" href="#ch3-mobileye">Mobileye</a>
+    <a class="sb-link" href="#ch3-nvidia">NVIDIA</a>
+    <a class="sb-link" href="#ch3-infineon">Infineon</a>
+    <a class="sb-link" href="#ch3-nxp">NXP Semiconductors</a>
+  </div>
+
+  <div class="sb-group">
+    <div class="sb-group-label">Chapter 4</div>
+    <a class="sb-link" href="#ch4">The 50 Real Bottlenecks</a>
+    <a class="sb-link" href="#ch4-tech">Technology Bottlenecks</a>
+    <a class="sb-link" href="#ch4-material">Material &amp; Supply</a>
+    <a class="sb-link" href="#ch4-mfg">Manufacturing Process</a>
+    <a class="sb-link" href="#ch4-reg">Regulatory &amp; Safety</a>
+    <a class="sb-link" href="#ch4-infra">Infrastructure &amp; Ecosystem</a>
+  </div>
+
+  <div class="sb-group">
+    <div class="sb-group-label">Chapter 5</div>
+    <a class="sb-link" href="#ch5">Where Does Value Live?</a>
+    <a class="sb-link" href="#ch5-rank">Segment Attractiveness Ranking</a>
+    <a class="sb-link" href="#ch5-verdict">Part I Verdict</a>
+  </div>
+</nav>
+
+<!-- ─────────────────────── MAIN ─────────────────────── -->
+<main class="main">
+
+<!-- ═══════════════════════ COVER ═══════════════════════ -->
+<section class="cover" id="cover" style="border-bottom:1px solid var(--border);">
+  <div class="cover-grid"></div>
+  <div class="cover-glow"></div>
+  <div class="cover-glow2"></div>
+  <div class="cover-eyebrow">Institutional Investment Research &nbsp;·&nbsp; Automotive Technology &nbsp;·&nbsp; Q2 2025</div>
+  <h1 class="cover-title">
+    The Global <em>Automotive</em><br>Super-Cycle
+  </h1>
+  <p class="cover-sub">India's Auto Technology Ecosystem &amp; the Global Hunt for<br>ASMLs, Nvidias, Toll Booths &amp; Hidden Compounders</p>
+
+  <div class="cover-rule"></div>
+
+  <div class="cover-stats">
+    <div class="c-stat">
+      <span class="c-stat-v">$8.1T</span>
+      <span class="c-stat-l">Global auto industry<br>addressable transformation</span>
+    </div>
+    <div class="c-stat">
+      <span class="c-stat-v">9×</span>
+      <span class="c-stat-l">Simultaneous technology<br>revolutions converging</span>
+    </div>
+    <div class="c-stat">
+      <span class="c-stat-v">$5,000+</span>
+      <span class="c-stat-l">Semiconductor content per<br>Level 4 autonomous vehicle</span>
+    </div>
+    <div class="c-stat">
+      <span class="c-stat-v">25×</span>
+      <span class="c-stat-l">Expected software content<br>growth in vehicles by 2035</span>
+    </div>
+  </div>
+
+  <div class="cover-meta">
+    <div class="c-meta-item">CLASSIFICATION &nbsp;<span>Institutional Research</span></div>
+    <div class="c-meta-item">SCOPE &nbsp;<span>Global + India Focus</span></div>
+    <div class="c-meta-item">HORIZON &nbsp;<span>2025 — 2045</span></div>
+    <div class="c-meta-item">PART &nbsp;<span>I of II — Architecture of Transformation</span></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ EXECUTIVE SUMMARY ═══════════════════════ -->
+<section id="exec-summary">
+  <div class="sec-tag">Executive Summary</div>
+  <h2 class="sec-title">Where the <em>Next Twenty Years</em> of Automotive Wealth Will Be Created</h2>
+  <p class="sec-lead">The automotive industry is not merely transitioning — it is being structurally rebuilt. Those who own the indispensable layers of the new architecture will compound wealth at rates the old industry never permitted.</p>
+
+  <p>The automotive industry stands at the intersection of its most consequential transformation since the introduction of the moving assembly line. Unlike the sequential innovations of the past century — leaded to unleaded fuel, carburettors to fuel injection, analogue to electronic dashboards — the current transformation is <strong>simultaneous, interdependent, and structurally discontinuous</strong>. Nine distinct revolutions are converging at once: electrification, autonomous driving, software-defined architecture, connectivity, AI integration, advanced manufacturing robotics, lightweighting materials, mobility platform business models, and energy storage convergence.</p>
+
+  <p>The critical investment insight is that this transformation does not primarily reward the firms that sell the most vehicles. History is instructive: the PC revolution did not make Dell or Compaq the richest companies in technology — it created TSMC, NVIDIA, Intel, Microsoft, and Qualcomm. The smartphone revolution did not crown Nokia or Motorola — it crowned Apple, Qualcomm, ARM, and TSMC. The automotive revolution will similarly redistribute enormous economic value from vehicle assemblers toward the owners of indispensable technology layers: semiconductors, software, battery chemistry, power electronics, and precision systems that cannot be easily substituted or replicated.</p>
+
+  <div class="pq">"The right question is never which OEM sells the most cars. The right question is which firms own the bottlenecks that every OEM must pass through to build a competitive vehicle."</div>
+
+  <p>This report, across two parts, answers that question with institutional rigour. Part I maps the architecture of the transformation: the nine convergent forces reshaping the industry, the eight-tier value chain and where margins concentrate within it, the eight companies that have already become ecosystem bottlenecks and why, the fifty most significant structural constraints across the entire value chain, and a ranked analysis of every segment by long-term attractiveness for capital. Part II will apply this framework specifically to India's auto technology ecosystem, identifying hidden compounders, emerging export champions, and the Indian firms most closely positioned to the global value pools mapped here.</p>
+
+  <h4>Five Foundational Findings</h4>
+  <div class="findings">
+    <div class="finding">
+      <div class="finding-num">Finding 01</div>
+      <p class="finding-text"><strong>Semiconductor content per vehicle will grow 10-15× by 2035</strong>, from approximately $450 in a typical ICE vehicle today to $4,000–$6,000 in a Level 4 autonomous electric vehicle. This is the single largest value transfer in the automotive supply chain.</p>
+    </div>
+    <div class="finding">
+      <div class="finding-num">Finding 02</div>
+      <p class="finding-text"><strong>Software will become the primary profit centre of vehicle ownership</strong> within a decade. OTA-delivered features, subscriptions, and fleet intelligence will generate recurring high-margin revenue streams that dwarf one-time hardware sales.</p>
+    </div>
+    <div class="finding">
+      <div class="finding-num">Finding 03</div>
+      <p class="finding-text"><strong>Silicon Carbide substrate scarcity creates the most immediate near-term bottleneck</strong> in the EV powertrain supply chain. A single SiC boule grows at 1–1.5 inches per day, making capacity expansion a multi-year process with no shortcut.</p>
+    </div>
+    <div class="finding">
+      <div class="finding-num">Finding 04</div>
+      <p class="finding-text"><strong>Vehicle OEMs face structural margin compression</strong> as they transition to EVs. Battery costs dominate the bill of materials, differentiated software requires enormous ongoing investment, and pure-play Chinese EV manufacturers are compressing pricing globally.</p>
+    </div>
+    <div class="finding">
+      <div class="finding-num">Finding 05</div>
+      <p class="finding-text"><strong>India's $60B auto component industry is entering its highest-value phase</strong>, with precision engineering, power electronics, thermal systems, and automotive software positioned to capture growing global supply chain share as OEMs diversify away from China-centric supply.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="cl-label">Investment Framework</div>
+    <p>Throughout this report, every company and segment is evaluated against a consistent framework: <strong>criticality</strong> (what stops if this disappears?), <strong>replication difficulty</strong> (how long and how expensive is it to duplicate?), <strong>switching costs</strong> (what is the cost of change to an OEM customer?), and <strong>margin sustainability</strong> (can pricing power be maintained as volume scales?). Firms that score highly across all four dimensions represent the most durable long-term compounders.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════ CHAPTER 1 ═══════════════════════ -->
+<section id="ch1">
+  <div class="sec-tag">Chapter One</div>
+  <h2 class="sec-title">The Automotive <em>Revolution</em></h2>
+  <p class="sec-lead">Why nine simultaneous transformations create exponentially more disruption — and exponentially more opportunity — than any single transition could.</p>
+
+  <p>The history of the automotive industry is a history of linear progressions: one technology superseding another over a span of decades, with each transition creating clear winners and manageable losers. The shift from steam to petrol, from mechanical to electronic fuel injection, from analogue to digital dashboards — each was a significant change, but each was fundamentally singular. Incumbents could adapt, supply chains could restructure, and the industry's basic economics remained intact.</p>
+
+  <p>The current transformation is categorically different. What is underway is not one transition but nine, all happening simultaneously, each accelerating the others. Electrification changes the powertrain. Software-defined architecture changes the electronics. Autonomous driving changes the purpose of the vehicle. Connectivity changes the business model. AI integration changes the manufacturing process. The interactions between these forces create compounding disruption that no firm in the value chain can fully insulate itself from — and that creates both the greatest risks and the greatest investment opportunities in the industry's modern history.</p>
+
+  <div class="big-stats">
+    <div class="bstat">
+      <span class="bstat-v">$500B+</span>
+      <span class="bstat-l">Capital committed globally to automotive electrification and autonomy through 2030, across OEMs, suppliers, and startups</span>
+    </div>
+    <div class="bstat">
+      <span class="bstat-v">2,000+</span>
+      <span class="bstat-l">Moving parts eliminated per vehicle in the ICE-to-BEV transition, restructuring the entire service and component aftermarket</span>
+    </div>
+    <div class="bstat">
+      <span class="bstat-v">35–40%</span>
+      <span class="bstat-l">Projected global EV share of new vehicle sales by 2030, up from approximately 18% in 2024</span>
+    </div>
+  </div>
+</section>
+
+<section id="ch1-forces">
+  <div class="sec-tag">Chapter One — Nine Forces</div>
+  <h2 class="sec-title">The <em>Nine Convergent</em> Forces</h2>
+  <p class="sec-lead">Each force alone would be a generational industry shift. Together, they constitute a structural rebuilding of everything the automotive industry has been for 120 years.</p>
+
+  <div class="force-grid">
+    <div class="fc">
+      <span class="fc-num">01</span>
+      <div class="fc-title">Electrification</div>
+      <div class="fc-impact very-high">Value Impact: Transformative</div>
+      <p class="fc-desc">The BEV powertrain eliminates the internal combustion engine and its 2,000+ moving parts, replacing them with battery pack, inverter, motor, and single-speed reducer. Every supplier of ICE-specific components faces existential obsolescence risk. Every supplier of power electronics, thermal management, and battery systems faces generational growth. Global EV penetration tracking to 35–40% of new sales by 2030, with leading markets (China, Europe, Norway) already past 50%.</p>
+    </div>
+    <div class="fc">
+      <span class="fc-num">02</span>
+      <div class="fc-title">Autonomous Driving</div>
+      <div class="fc-impact high">Value Impact: Semiconductor-Creating</div>
+      <p class="fc-desc">The SAE Levels 0–5 framework charts a path from human-operated to fully autonomous vehicles. L2/L2+ is the current mass-market standard; L3 is emerging under strict operational design domains. L4 robotaxis operate in geofenced zones (Waymo, Baidu Apollo). Full L5 remains 10–15+ years distant. The compute requirement is extraordinary: a Level 4 vehicle requires 254–2,000 TOPS of AI inference, creating $3,000–5,000 of semiconductor content from compute alone.</p>
+    </div>
+    <div class="fc">
+      <span class="fc-num">03</span>
+      <div class="fc-title">Software-Defined Vehicles</div>
+      <div class="fc-impact very-high">Value Impact: Platform-Creating</div>
+      <p class="fc-desc">The transition from hardware-defined vehicles (where each feature requires a dedicated ECU) to software-defined vehicles (where features are software layers on centralised compute) is the "iPhone moment" for cars. It creates OTA revenue models, enables feature-on-demand monetisation, and concentrates value in the OS and middleware layer. Tesla proved the model: a single software update can add genuine vehicle capability years post-purchase. By 2030, software content per vehicle is projected to reach $4,000–6,000, up from ~$400 today.</p>
+    </div>
+    <div class="fc">
+      <span class="fc-num">04</span>
+      <div class="fc-title">Connected Vehicles</div>
+      <div class="fc-impact very-high">Value Impact: Data-Creating</div>
+      <p class="fc-desc">5G-enabled V2X (vehicle-to-everything) connectivity allows real-time communication with infrastructure, other vehicles, and the cloud. This enables: continuous HD map updates for autonomous systems, usage-based insurance through telematics, predictive maintenance via sensor telemetry, fleet optimisation for commercial operators, and in-vehicle commerce. Every vehicle becomes a data-generating endpoint worth monetising. OTA update capability is now a baseline expectation, not a luxury feature.</p>
+    </div>
+    <div class="fc">
+      <span class="fc-num">05</span>
+      <div class="fc-title">AI Integration</div>
+      <div class="fc-impact high">Value Impact: Compute-Creating</div>
+      <p class="fc-desc">AI permeates the automotive stack: perception algorithms for ADAS, natural language interfaces for in-cabin experience, generative AI for vehicle personalisation, reinforcement learning for autonomous policy, and computer vision for manufacturing quality control. Edge AI inference in the vehicle itself — separate from cloud offloading — requires powerful, thermally efficient, safety-certified SoCs. NVIDIA's DRIVE platform, Qualcomm's Snapdragon Ride, and Mobileye's EyeQ series are the primary battlegrounds.</p>
+    </div>
+    <div class="fc">
+      <span class="fc-num">06</span>
+      <div class="fc-title">Robotics in Manufacturing</div>
+      <div class="fc-impact high">Value Impact: Process-Changing</div>
+      <p class="fc-desc">EV manufacturing is inherently more automatable than ICE manufacturing. Battery module assembly, electrode coating, cell formation, and module welding are high-precision, high-repetition processes suited to robotic execution. Tesla's Gigafactory model — designing the factory as an integrated machine — reduces labour content and cost per vehicle dramatically. Industrial robotics penetration in auto manufacturing is expected to double by 2030. Firms supplying vision systems, cobots, and precision motion equipment benefit directly.</p>
+    </div>
+    <div class="fc">
+      <span class="fc-num">07</span>
+      <div class="fc-title">Advanced Materials &amp; Lightweighting</div>
+      <div class="fc-impact high">Value Impact: Materials-Creating</div>
+      <p class="fc-desc">Range anxiety and battery cost economics create enormous pressure to reduce vehicle mass. Every 10% weight reduction in a BEV extends range by approximately 6–8% without adding battery capacity. This drives adoption of ultra-high-strength steel (UHSS), aerospace-grade aluminium alloys, carbon fibre reinforced polymers (CFRP) for structural components, and engineered thermoplastics for non-structural parts. Multi-material body structures require new joining technologies (self-piercing rivets, structural adhesives, friction stir welding), creating barriers for qualified suppliers.</p>
+    </div>
+    <div class="fc">
+      <span class="fc-num">08</span>
+      <div class="fc-title">Mobility Platforms &amp; New Business Models</div>
+      <div class="fc-impact high">Value Impact: Ecosystem-Creating</div>
+      <p class="fc-desc">Ridesharing, vehicle subscriptions, fleet-as-a-service, and autonomous robotaxi networks are restructuring vehicle utilisation patterns. A robotaxi fleet vehicle may travel 100,000+ km per year versus 15,000 km for a privately owned car, altering durability requirements, servicing economics, and replacement cycles. Commercial vehicle transformation — electrification of delivery fleets, autonomous long-haul trucking — represents perhaps the largest near-term autonomous opportunity given the regularity of routes and the scale of economic benefit.</p>
+    </div>
+    <div class="fc">
+      <span class="fc-num">09</span>
+      <div class="fc-title">Energy Storage Convergence</div>
+      <div class="fc-impact very-high">Value Impact: Infrastructure-Creating</div>
+      <p class="fc-desc">Vehicle-to-Grid (V2G) technology is transforming EVs from energy consumers into grid assets. A parked EV connected to V2G can provide peak-shaving, frequency regulation, and backup power. Second-life automotive batteries, retired from vehicle use at 70–80% state of health, find new careers in stationary energy storage — extending the economic life of battery materials. The convergence of EV, grid, and renewable energy ecosystems creates interconnected investment opportunities spanning auto, utilities, and clean energy.</p>
+    </div>
+  </div>
+</section>
+
+<section id="ch1-why">
+  <div class="sec-tag">Chapter One — The Convergence Thesis</div>
+  <h2 class="sec-title">Why <em>This Decade</em> Decides Everything</h2>
+  <p class="sec-lead">Historical transitions were sequential. This one is simultaneous. The compounding of nine forces creates exponential disruption — and an exponentially larger opportunity to own the critical infrastructure.</p>
+
+  <p>The intellectual case for why the next decade will create more change than the previous fifty years rests on a simple but powerful observation: the nine forces described above are not independent. They are mutually reinforcing. Electrification creates the platform that makes software-definable vehicles economical. Software-defined architecture creates the compute density that makes AI integration practical. AI integration accelerates the path to autonomy. Autonomous capability creates the fleet utilisation economics that justify robotaxis. Robotaxi economics demand battery longevity, which accelerates battery chemistry innovation. Battery chemistry improvement reduces vehicle cost, which accelerates EV adoption. Each loop tightens the others.</p>
+
+  <div class="callout blue">
+    <div class="cl-label">Historical Parallel</div>
+    <p>The PC industry transitioned from hardware-centric to software-centric over roughly fifteen years (1980–1995). The smartphone compressed that same structural shift into five years (2007–2012). The automotive industry, with its greater regulatory complexity and capital intensity, will take longer — but the direction of travel is identical. Value will migrate from assemblers to platform and component owners.</p>
+  </div>
+
+  <p>The regulatory dimension amplifies the urgency. The European Union has legislated a complete end to ICE vehicle sales by 2035. China's New Energy Vehicle (NEV) mandate effectively requires OEMs to sell increasing percentages of electric vehicles to retain market access. The Inflation Reduction Act in the United States has deployed $369B in clean energy and automotive incentives. Unlike prior industry transitions, this one has sovereign mandates and hundreds of billions in public subsidy behind it — which means it will happen faster, and on a more compressed timeline, than pure market forces would dictate.</p>
+
+  <div class="tw">
+    <table>
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Prior Major Transitions</th>
+          <th>Current Transformation</th>
+          <th>Implication</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Scope</td>
+          <td class="tdim">Single-domain (powertrain, safety, infotainment)</td>
+          <td class="tgold">Nine simultaneous domains</td>
+          <td class="tdim">No incumbent can defend all frontiers at once</td>
+        </tr>
+        <tr>
+          <td>Capital required</td>
+          <td class="tdim">$10–50B per OEM transition cycle</td>
+          <td class="tgold">$500B+ committed industry-wide</td>
+          <td class="tdim">Creates moats for best-capitalised component owners</td>
+        </tr>
+        <tr>
+          <td>Technology origin</td>
+          <td class="tdim">Automotive-native innovation</td>
+          <td class="tgold">Consumer tech, defence, aerospace cross-pollination</td>
+          <td class="tdim">New entrants (NVIDIA, Qualcomm, Waymo) gain leverage</td>
+        </tr>
+        <tr>
+          <td>Regulatory driver</td>
+          <td class="tdim">Safety mandates (seatbelts, airbags)</td>
+          <td class="tgold">Climate and energy security mandates</td>
+          <td class="tdim">Government accelerates timeline regardless of market readiness</td>
+        </tr>
+        <tr>
+          <td>Winner profile</td>
+          <td class="tdim">OEMs and Tier 1 systems integrators</td>
+          <td class="tgold">Semiconductor, software, and critical component specialists</td>
+          <td class="tdim">Highest ROIC accrues to technology owners, not assemblers</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout green">
+    <div class="cl-label">Core Investment Principle</div>
+    <p>In every prior technology mega-cycle — mainframes, PCs, internet, smartphones — the richest long-term returns accrued not to the visible, branded device makers, but to the companies that owned the picks, shovels, and tollgates: the instruction set architectures, the operating systems, the chip designs, the critical materials, and the test equipment without which no device could be built. The automotive super-cycle will follow the same logic. Identify the picks, shovels, and tollgates. That is the mandate of this report.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════ CHAPTER 2 ═══════════════════════ -->
+<section id="ch2">
+  <div class="sec-tag">Chapter Two</div>
+  <h2 class="sec-title">The Global Automotive <em>Value Chain Map</em></h2>
+  <p class="sec-lead">Eight distinct tiers separate the raw earth from the finished vehicle. Value does not distribute evenly across them — it concentrates ruthlessly in layers defined by technology intensity, qualification barriers, and switching costs.</p>
+
+  <p>Understanding where value lives in a supply chain requires analysing each layer on four dimensions: gross margin (what percentage of revenue becomes profit before operating costs?), return on invested capital (how efficiently does the business convert invested capital into earnings?), pricing power (can the firm raise prices without losing volume?), and switching cost (how costly, in time and money, would it be for a customer to replace this supplier?). The automotive value chain, mapped across these dimensions, reveals a counterintuitive picture: the biggest brands at the top of the chain — the OEMs whose logos appear on every vehicle — are often the weakest value generators. The most durable value frequently sits two or three layers below the surface, in firms most investors have never heard of.</p>
+
+  <div class="chart-wrap">
+    <div class="chart-title">Semiconductor Content Per Vehicle — ICE to Level 4 AV (USD)</div>
+    <svg viewBox="0 0 760 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:760px;">
+      <!-- Bars -->
+      <rect x="30" y="148" width="70" height="32" fill="#1A2030" rx="1"/>
+      <rect x="30" y="148" width="30" height="32" fill="#3D82B0" rx="1"/>
+      <text x="65" y="140" fill="#8A8070" font-size="10" font-family="DM Mono,monospace" text-anchor="middle">$450</text>
+      <text x="65" y="195" fill="#504840" font-size="9" font-family="DM Sans,sans-serif" text-anchor="middle">ICE 2015</text>
+
+      <rect x="130" y="128" width="70" height="52" fill="#1A2030" rx="1"/>
+      <rect x="130" y="128" width="40" height="52" fill="#3D82B0" rx="1"/>
+      <text x="165" y="120" fill="#8A8070" font-size="10" font-family="DM Mono,monospace" text-anchor="middle">$680</text>
+      <text x="165" y="195" fill="#504840" font-size="9" font-family="DM Sans,sans-serif" text-anchor="middle">ICE 2023</text>
+
+      <rect x="230" y="98" width="70" height="82" fill="#1A2030" rx="1"/>
+      <rect x="230" y="98" width="55" height="82" fill="#4A8AB8" rx="1"/>
+      <text x="265" y="90" fill="#8A8070" font-size="10" font-family="DM Mono,monospace" text-anchor="middle">$1,100</text>
+      <text x="265" y="195" fill="#504840" font-size="9" font-family="DM Sans,sans-serif" text-anchor="middle">BEV 2023</text>
+
+      <rect x="330" y="68" width="70" height="112" fill="#1A2030" rx="1"/>
+      <rect x="330" y="68" width="65" height="112" fill="#C0983A" rx="1"/>
+      <text x="365" y="60" fill="#D4AF68" font-size="10" font-family="DM Mono,monospace" text-anchor="middle">$2,000</text>
+      <text x="365" y="195" fill="#504840" font-size="9" font-family="DM Sans,sans-serif" text-anchor="middle">BEV+L2+ '25</text>
+
+      <rect x="430" y="38" width="70" height="142" fill="#1A2030" rx="1"/>
+      <rect x="430" y="38" width="70" height="142" fill="#C0983A" rx="1"/>
+      <text x="465" y="30" fill="#D4AF68" font-size="10" font-family="DM Mono,monospace" text-anchor="middle">$3,500</text>
+      <text x="465" y="195" fill="#504840" font-size="9" font-family="DM Sans,sans-serif" text-anchor="middle">L3 EV 2028</text>
+
+      <rect x="530" y="8" width="70" height="172" fill="#1A2030" rx="1"/>
+      <rect x="530" y="8" width="70" height="172" fill="#D4AF68" rx="1"/>
+      <text x="565" y="0" fill="#D4AF68" font-size="10" font-family="DM Mono,monospace" text-anchor="middle">$5,500+</text>
+      <text x="565" y="195" fill="#504840" font-size="9" font-family="DM Sans,sans-serif" text-anchor="middle">L4 AV 2032</text>
+
+      <!-- Baseline -->
+      <line x1="20" y1="180" x2="740" y2="180" stroke="#1A2030" stroke-width="1"/>
+      <!-- Label -->
+      <text x="740" y="30" fill="#C0983A" font-size="9" font-family="DM Mono,monospace" text-anchor="end">10-15× GROWTH</text>
+      <text x="740" y="40" fill="#C0983A" font-size="9" font-family="DM Mono,monospace" text-anchor="end">IN SEMI CONTENT</text>
+    </svg>
+  </div>
+
+  <h4>Tier Summary Overview</h4>
+  <div class="tier-header">
+    <div></div>
+    <div>Tier / Segment</div>
+    <div>Nature of Business</div>
+    <div>Gross Margin</div>
+    <div>ROIC Range</div>
+    <div>Moat Depth</div>
+  </div>
+  <div class="tier-row">
+    <div class="tn">T1</div>
+    <div class="td1"><span class="td1-name">Vehicle OEMs</span><span class="td1-sub">Toyota, VW, BYD, GM</span></div>
+    <div class="td2">Design, assemble, brand, and distribute finished vehicles. High capital intensity, low technology differentiation at mass market.</div>
+    <div class="td3"><span class="td3-v">15–22%</span><span class="td3-l">Gross Margin</span></div>
+    <div class="td4"><span class="td3-v tblue">10–18%</span><span class="td3-l">ROIC</span></div>
+    <div class="td5"><span class="badge bg-muted">Moderate</span></div>
+  </div>
+  <div class="tier-row">
+    <div class="tn">T2</div>
+    <div class="td1"><span class="td1-name">Semiconductors</span><span class="td1-sub">NVIDIA, NXP, Infineon</span></div>
+    <div class="td2">Design and supply chips for compute, power management, ADAS, connectivity, and MCU functions. Safety certification creates multi-year qualification moats.</div>
+    <div class="td3"><span class="td3-v tgold">45–65%</span><span class="td3-l">Gross Margin</span></div>
+    <div class="td4"><span class="td3-v tblue">15–40%</span><span class="td3-l">ROIC</span></div>
+    <div class="td5"><span class="badge bg-gold">Very Deep</span></div>
+  </div>
+  <div class="tier-row">
+    <div class="tn">T3</div>
+    <div class="td1"><span class="td1-name">Battery Systems</span><span class="td1-sub">CATL, LG Energy, BYD</span></div>
+    <div class="td2">Cell chemistry, cathode/anode materials, electrolyte, separator, and BMS. Value splits between cell chemistry IP holders and commodity cell makers.</div>
+    <div class="td3"><span class="td3-v tamber">15–35%</span><span class="td3-l">Gross Margin</span></div>
+    <div class="td4"><span class="td3-v tblue">8–22%</span><span class="td3-l">ROIC</span></div>
+    <div class="td5"><span class="badge bg-amber">High (IP)</span></div>
+  </div>
+  <div class="tier-row">
+    <div class="tn">T4</div>
+    <div class="td1"><span class="td1-name">Power Electronics</span><span class="td1-sub">Infineon, ON Semi, Wolfspeed</span></div>
+    <div class="td2">SiC and GaN devices, IGBTs, inverters, converters, and power modules. SiC substrate scarcity creates genuine near-term bottleneck with multi-year lead times.</div>
+    <div class="td3"><span class="td3-v tgold">40–55%</span><span class="td3-l">Gross Margin</span></div>
+    <div class="td4"><span class="td3-v tblue">12–28%</span><span class="td3-l">ROIC</span></div>
+    <div class="td5"><span class="badge bg-gold">Very Deep</span></div>
+  </div>
+  <div class="tier-row">
+    <div class="tn">T5</div>
+    <div class="td1"><span class="td1-name">Sensors &amp; ADAS</span><span class="td1-sub">Mobileye, Bosch, Continental</span></div>
+    <div class="td2">Cameras, radar, LiDAR, ultrasonic, and vision processing. Safety-critical qualification creates strong switching costs. Camera CMOS dominated by Sony.</div>
+    <div class="td3"><span class="td3-v tgold">35–55%</span><span class="td3-l">Gross Margin</span></div>
+    <div class="td4"><span class="td3-v tblue">12–25%</span><span class="td3-l">ROIC</span></div>
+    <div class="td5"><span class="badge bg-gold">Deep</span></div>
+  </div>
+  <div class="tier-row">
+    <div class="tn">T6</div>
+    <div class="td1"><span class="td1-name">Thermal Management</span><span class="td1-sub">Modine, Hanon, Gentherm</span></div>
+    <div class="td2">Battery cooling, heat pumps, motor/inverter cooling, HVAC integration. EV thermal 3–5× more complex than ICE thermal; expanding addressable market.</div>
+    <div class="td3"><span class="td3-v tamber">25–40%</span><span class="td3-l">Gross Margin</span></div>
+    <div class="td4"><span class="td3-v tblue">12–22%</span><span class="td3-l">ROIC</span></div>
+    <div class="td5"><span class="badge bg-amber">Medium-High</span></div>
+  </div>
+  <div class="tier-row">
+    <div class="tn">T7</div>
+    <div class="td1"><span class="td1-name">Software Layer</span><span class="td1-sub">NVIDIA DRIVE, QNX, Mobileye</span></div>
+    <div class="td2">OS, middleware, ADAS stack, OTA platform, fleet intelligence, and V2X protocols. Highest potential ROIC; recurring revenue once platform adoption is achieved.</div>
+    <div class="td3"><span class="td3-v tgold">65–85%</span><span class="td3-l">Gross Margin</span></div>
+    <div class="td4"><span class="td3-v tblue">20–60%</span><span class="td3-l">ROIC</span></div>
+    <div class="td5"><span class="badge bg-gold">Platform Moat</span></div>
+  </div>
+  <div class="tier-row">
+    <div class="tn">T8</div>
+    <div class="td1"><span class="td1-name">Precision Components</span><span class="td1-sub">SKF, Schaeffler, TE Connectivity</span></div>
+    <div class="td2">Bearings, forgings, castings, high-voltage connectors, wiring harnesses. Hidden compounders with long qualification cycles; India has structural advantage here.</div>
+    <div class="td3"><span class="td3-v tamber">20–38%</span><span class="td3-l">Gross Margin</span></div>
+    <div class="td4"><span class="td3-v tblue">10–22%</span><span class="td3-l">ROIC</span></div>
+    <div class="td5"><span class="badge bg-amber">Medium</span></div>
+  </div>
+</section>
+
+<!-- INDIVIDUAL TIERS -->
+<section id="tier1">
+  <div class="sec-tag">Chapter Two — Tier 1</div>
+  <h2 class="sec-title">Vehicle OEMs — <em>The Assembler's Dilemma</em></h2>
+  <p>OEMs occupy the most visible position in the automotive industry and generate the most revenue — the global top ten by volume collectively turn over approximately $2.0–2.2 trillion annually. Yet they are arguably the least attractive tier for long-term value capture. The reasons are structural and, in the current transformation, worsening.</p>
+
+  <p>The economics of a mass-market OEM are characterised by extreme capital intensity (factory networks representing $50–100B+ in fixed assets), high labour content (unionised workforces in legacy markets), commodity product competition at the margin (where price, not technology, drives volume), and regulatory burden (safety, emissions, homologation compliance across hundreds of markets). Gross margins at mass-market OEMs typically run <span class="stat-inline">15–18%</span>; net margins in good years are <span class="stat-inline">4–7%</span>. Premium OEMs (BMW, Mercedes) do better — gross margins of <span class="stat-inline">18–22%</span> — because brand pricing power supplements engineering differentiation.</p>
+
+  <p>The EV transition exacerbates OEM margin pressure in the near term. Battery costs dominate the EV bill of materials at <span class="stat-inline">35–40%</span> of total vehicle cost at current pricing, compared to perhaps <span class="stat-inline">15–20%</span> for the ICE powertrain they replace. The software investment required to compete with Tesla and BYD is massive and ongoing. Chinese EV manufacturers, many carrying implicit state support and operating with lower legacy cost structures, are establishing price points that compress global margin pools. Ford's EV division lost $4.7B in 2023 on approximately 100,000 vehicles sold — a structural loss that illustrates the transition cost for legacy OEMs.</p>
+
+  <div class="callout red">
+    <div class="cl-label">Risk Alert</div>
+    <p>The most dangerous scenario for legacy OEMs is the "Foxconn outcome" — being commoditised into high-volume, low-margin assemblers while their suppliers of semiconductors, software, and advanced components capture the structural value. This is not a theoretical risk. Apple's relationship with its contract manufacturers illustrates exactly how platform and component owners can extract the lion's share of value while the assembler competes on cost alone.</p>
+  </div>
+
+  <p>The investment implication is clear: OEM shares may trade at low multiples for justifiable reasons, not simply because the market misunderstands them. The firms that survive the transition with their economics intact will be those with premium brand positions (Toyota's hybrid advantage, BMW/Mercedes on luxury software experience), proprietary battery technology (BYD's Blade Battery vertical integration), or unique manufacturing cost advantages (Tesla's gigacasting and integrated energy ecosystem). The majority of OEMs face a decade of margin compression before the software monetisation opportunity they are investing toward begins to materialise.</p>
+</section>
+
+<section id="tier2">
+  <div class="sec-tag">Chapter Two — Tier 2</div>
+  <h2 class="sec-title">Automotive Semiconductors — <em>The Brain of the Future Vehicle</em></h2>
+  <p>No tier in the automotive value chain offers a more compelling long-duration investment thesis than automotive semiconductors. Semiconductor content per vehicle is on the clearest, most quantifiable upward trajectory of any component category — growing from approximately <span class="stat-inline">$450</span> in a typical ICE vehicle to a projected <span class="stat-inline">$5,000–6,000</span> in a fully autonomous EV by the early 2030s. This is not extrapolation; it is arithmetic. Each additional ADAS feature requires specific silicon. Each EV powertrain function — motor control, battery management, DC-DC conversion, on-board charging — requires power semiconductors. Each connected vehicle requires cellular modems, Wi-Fi chipsets, and V2X processors. Each Level 3+ vehicle requires multiple high-performance SoCs running neural network inference in real time.</p>
+
+  <p>The automotive semiconductor market is distinct from consumer semiconductor markets in one critical respect: <strong>qualification cycles</strong>. An automotive chip designed into a vehicle platform cannot be replaced for the duration of that platform's production life — typically 5–8 years. Before a chip can even be designed in, it must pass ISO 26262 functional safety certification (ASIL-A through ASIL-D), AEC-Q100 reliability qualification, and OEM-specific testing protocols that typically consume 18–36 months. This creates profound switching costs. Once a semiconductor firm wins a design-in on a major platform, it has an annuity-like revenue stream for the life of that programme.</p>
+
+  <div class="tw">
+    <table>
+      <thead>
+        <tr>
+          <th>Sub-Segment</th>
+          <th>Key Application</th>
+          <th>Market Leaders</th>
+          <th>Content/Vehicle</th>
+          <th>Gross Margin</th>
+          <th>Moat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Microcontrollers (MCU)</strong></td>
+          <td class="tdim">Body electronics, powertrain ECU</td>
+          <td class="tdim">Renesas (36% share), Infineon, NXP, TI</td>
+          <td class="mono tgold">$80–180</td>
+          <td class="mono tgold">48–58%</td>
+          <td><span class="badge bg-gold">ASIL Cert</span></td>
+        </tr>
+        <tr>
+          <td><strong>Power Semiconductors</strong></td>
+          <td class="tdim">Inverter, OBC, DC-DC</td>
+          <td class="tdim">Infineon, ON Semi, STMicro, Wolfspeed</td>
+          <td class="mono tgold">$200–600</td>
+          <td class="mono tgold">42–55%</td>
+          <td><span class="badge bg-gold">SiC Scarcity</span></td>
+        </tr>
+        <tr>
+          <td><strong>ADAS / AI SoCs</strong></td>
+          <td class="tdim">Perception, planning compute</td>
+          <td class="tdim">NVIDIA, Mobileye, Qualcomm</td>
+          <td class="mono tgold">$300–2,000+</td>
+          <td class="mono tgold">55–70%</td>
+          <td><span class="badge bg-gold">Ecosystem</span></td>
+        </tr>
+        <tr>
+          <td><strong>Application Processors</strong></td>
+          <td class="tdim">Central compute, infotainment</td>
+          <td class="tdim">Qualcomm, Samsung, NXP, Renesas</td>
+          <td class="mono tamber">$80–400</td>
+          <td class="mono tgold">50–65%</td>
+          <td><span class="badge bg-amber">Platform Lock</span></td>
+        </tr>
+        <tr>
+          <td><strong>Connectivity Chips</strong></td>
+          <td class="tdim">5G, Wi-Fi, V2X, Bluetooth</td>
+          <td class="tdim">Qualcomm, NXP, Autotalks, Sequans</td>
+          <td class="mono tamber">$40–150</td>
+          <td class="mono tamber">40–55%</td>
+          <td><span class="badge bg-amber">Standard IP</span></td>
+        </tr>
+        <tr>
+          <td><strong>Radar Chipsets</strong></td>
+          <td class="tdim">Adaptive cruise, blind spot</td>
+          <td class="tdim">TI, NXP, Infineon, Imec</td>
+          <td class="mono tamber">$30–120</td>
+          <td class="mono tamber">38–50%</td>
+          <td><span class="badge bg-amber">Qual Cycle</span></td>
+        </tr>
+        <tr>
+          <td><strong>Imaging Sensors</strong></td>
+          <td class="tdim">Camera-based ADAS</td>
+          <td class="tdim">Sony Semi (dominant), Samsung, ON Semi</td>
+          <td class="mono tamber">$40–200</td>
+          <td class="mono tgold">45–60%</td>
+          <td><span class="badge bg-gold">Process IP</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <div class="cl-label">Investment Insight</div>
+    <p>The ADAS/AI SoC sub-segment is the single highest-value semiconductor category in the future vehicle. NVIDIA's DRIVE Orin chip (254 TOPS) and its successor Thor (2,000 TOPS) are not merely components — they are the central nervous system around which the entire autonomous stack is built. OEMs that have designed their ADAS software around NVIDIA's hardware abstraction layer face multi-year re-engineering programmes to switch suppliers. This is the definition of a durable moat.</p>
+  </div>
+</section>
+
+<section id="tier3">
+  <div class="sec-tag">Chapter Two — Tier 3</div>
+  <h2 class="sec-title">Battery Systems — <em>Chemistry Is the Moat, Cells Are the Commodity</em></h2>
+  <p>The battery system is the most capital-intensive and cost-dominant component of an electric vehicle, representing <span class="stat-inline">35–40%</span> of total vehicle manufacturing cost at current pricing. The battery ecosystem is vast, with value distributed across a complex chain from lithium mining through cell manufacturing to battery management software. Understanding where within this chain durable value concentrates is essential.</p>
+
+  <p>The cell itself is increasingly commoditised at the manufacturing level. CATL, LG Energy Solution, Panasonic, Samsung SDI, and BYD collectively supply the vast majority of global EV batteries, and competition among them is intense. However, chemistry innovation above the cell level — cathode formulation patents, silicon anode technology, electrolyte additives, and solid-state breakthroughs — creates pockets of very durable IP. CATL's CTP (Cell-to-Pack) architecture and BYD's Blade Battery prismatic cell design are proprietary manufacturing advantages that translate directly into cost per kWh and pack energy density. Companies that achieve technology leadership in next-generation chemistry (solid-state, sodium-ion, lithium-sulphur) will command significant pricing power when these technologies scale.</p>
+
+  <p>Battery management systems (BMS) represent an underappreciated value tier. The BMS determines state of charge, state of health, thermal management strategy, and cell balancing — functions that have an enormous impact on battery longevity, range, and safety. Software intelligence in the BMS is a compounding asset: a BMS that learns from real-world driving data improves continuously. Texas Instruments and Analog Devices supply the analogue front-end ICs; but the software layer above the hardware is where OEMs like Tesla have built proprietary advantages that are difficult for competitors to replicate quickly.</p>
+</section>
+
+<section id="tier4">
+  <div class="sec-tag">Chapter Two — Tier 4</div>
+  <h2 class="sec-title">Power Electronics — <em>The SiC Revolution and Its Chokepoints</em></h2>
+  <p>Power electronics — the inverter, on-board charger, and DC-DC converter at the heart of every EV powertrain — represent one of the most attractive investment themes in the entire automotive supply chain. The shift from silicon IGBTs to Silicon Carbide (SiC) MOSFETs is not a gradual evolution; it is a step-change that significantly improves EV range (by <span class="stat-inline">3–10%</span> at system level), reduces thermal load, and enables faster charging. Tesla adopted SiC inverters in the Model 3 in 2018; every major EV platform now specifies SiC for the main traction inverter.</p>
+
+  <p>The bottleneck that makes SiC so strategically important as an investment theme is fundamental materials science. SiC crystals are grown in high-temperature furnaces at a rate of <strong>approximately 1 to 1.5 inches per day</strong>. A single boule (ingot) grows for several days. The substrate wafers sliced from these boules must then go through epitaxy, device fabrication, packaging, and testing before reaching an inverter. From crystal-growth furnace investment to revenue-generating chip: typically 18–24 months minimum. This structural constraint means that SiC capacity cannot be rapidly increased regardless of capital availability, creating a sustained supply tightness as EV volumes ramp.</p>
+
+  <div class="callout">
+    <div class="cl-label">Key Bottleneck</div>
+    <p>Wolfspeed (formerly Cree) is the world's largest pure-play SiC manufacturer and the primary bottleneck in the global EV power electronics supply chain. Its Mohawk Valley fab in New York is the world's largest SiC manufacturing facility. Infineon, STMicroelectronics, and ON Semiconductor are expanding SiC capacity aggressively, but remain behind Wolfspeed in substrate production capability. All four have multi-year OEM supply contracts in place — visible revenue visibility that is rare in the semiconductor industry.</p>
+  </div>
+</section>
+
+<section id="tier5">
+  <div class="sec-tag">Chapter Two — Tier 5</div>
+  <h2 class="sec-title">Sensors &amp; ADAS — <em>The Eyes of Autonomy</em></h2>
+  <p>Every ADAS function — from emergency braking to lane centring to pedestrian detection — requires the vehicle to perceive its environment through a sensor array. The sensor ecosystem comprises four primary modalities: cameras, radar, LiDAR, and ultrasonics. Each has distinct economics, technology trajectories, and competitive dynamics.</p>
+
+  <p><strong>Cameras</strong> are the highest-volume, lowest-unit-cost sensor in the ADAS stack. A modern L2+ vehicle carries 8–12 cameras for full surround perception. Sony Semiconductor is overwhelmingly dominant in automotive-grade CMOS image sensors, with a technology lead in pixel sensitivity, dynamic range, and NIR performance that has proven extremely difficult for competitors to close. The entire global autonomous vehicle industry effectively depends on Sony's Pregius and IMX series sensors. This is an ASML-equivalent position in the camera supply chain.</p>
+
+  <p><strong>Radar</strong> remains indispensable for adverse-weather robustness that cameras cannot match, providing range and velocity data through rain, snow, and fog. The 77GHz radar market is mature; Texas Instruments, NXP, and Infineon dominate the chipset layer. Radar is commoditising at the module level but retains value at the silicon level.</p>
+
+  <p><strong>LiDAR</strong> provides the highest-quality 3D point cloud of any sensor modality, but cost remains the critical barrier. Having fallen from $75,000 (Velodyne HDL-64, 2010) to $200–2,000 (Luminar Iris, Innoviz One, 2024), LiDAR is not yet cost-effective for mass-market vehicles. Solid-state FMCW LiDAR — which eliminates moving parts and offers higher interference resistance — represents the next generation. Luminar, Innoviz, Aeva, and Hesai (China's dominant player) are in intense competition to cross the $100 unit cost threshold that would enable high-volume adoption.</p>
+</section>
+
+<section id="tier6">
+  <div class="sec-tag">Chapter Two — Tier 6</div>
+  <h2 class="sec-title">Thermal Management — <em>The Underappreciated Critical System</em></h2>
+  <p>Thermal management is the least glamorous and most underappreciated technology shift in the EV value chain. In an ICE vehicle, thermal management means cooling the engine, lubricating the drivetrain, and managing cabin climate. Adequate, but not strategically critical. In an EV, thermal management becomes a safety system, a performance system, and an economic system simultaneously.</p>
+
+  <p>Battery cells operate optimally in a narrow temperature range of approximately <span class="stat-inline">20–40°C</span>. Below this range, chemical reactions slow, reducing available power and range. Above this range, degradation accelerates, and at extreme temperatures, thermal runaway — a self-sustaining exothermic reaction — becomes a fire risk. The battery thermal management system (BTMS) must maintain uniform cell temperatures within the pack, heat the battery in cold climates (at an energy cost), and cool it rapidly during high-power charging (where heat generation is significant). This is a precision engineering problem of the highest order.</p>
+
+  <p>Heat pump technology adds another layer of complexity. A heat pump can deliver <span class="stat-inline">2.5–3.5 kWh of heating for every 1 kWh of electrical energy</span> consumed, dramatically reducing the range penalty of cabin heating in cold weather. Valeo is the global leader in automotive heat pumps; Denso, MAHLE, and Hanon Systems are key competitors. The addressable market for EV thermal management systems is growing from approximately $7B today to a projected $25–30B by 2030 — a 3–4× expansion driven purely by the EV mix shift.</p>
+
+  <p>For India specifically, thermal management is one of the highest-priority capability-building areas. India's climate — extreme heat, high humidity, monsoon cycles — places unique demands on battery thermal systems. Indian suppliers building expertise here have both a domestic market driver and an export story, as their climatic knowledge is relevant to Southeast Asian, Middle Eastern, and African EV markets that global Tier 1 suppliers have designed less thoroughly for.</p>
+</section>
+
+<section id="tier7">
+  <div class="sec-tag">Chapter Two — Tier 7</div>
+  <h2 class="sec-title">The Software Layer — <em>The Platform That Owns the Vehicle</em></h2>
+  <p>Software will be the most consequential value creation theme in the automotive industry over the next fifteen years. The transition from hardware-defined to software-defined vehicles transforms the economics of the industry in a way that is structurally analogous to the transformation of mobile phones from feature phones to smartphones: an industry that sold devices becomes an industry that sells platforms, and the platform owner captures recurring, compounding, high-margin revenue.</p>
+
+  <p>The automotive software stack has multiple distinct layers. At the base is the <strong>real-time operating system</strong>: QNX (BlackBerry) dominates safety-critical automotive RTOS; Green Hills INTEGRITY is its primary competitor. Above that sits the <strong>vehicle abstraction layer</strong> — AUTOSAR Classic for MCU-based ECUs, AUTOSAR Adaptive for high-compute SoCs running Linux-based stacks. The <strong>middleware and application layer</strong> is where the commercial opportunity is largest: NVIDIA's DRIVE software platform, Mobileye's EyeQ software ecosystem, and Qualcomm's Snapdragon Ride software stack each create "lock-in at the platform level" that makes switching a multi-year re-engineering project.</p>
+
+  <p>OTA revenue represents the clearest near-term software monetisation pathway. Tesla has charged $10,000–15,000 for its Full Self-Driving package as a software option. BMW briefly introduced (and then withdrew after public backlash) subscriptions for heated seats. General Motors is building a $25B software and services revenue ambition for 2030. The market consensus is that automotive software and services revenue will reach $500–600B globally by 2030, representing some of the highest-margin revenue in the industry.</p>
+
+  <div class="callout blue">
+    <div class="cl-label">Platform Toll Booth</div>
+    <p>The automotive OS is the most important platform battle of the coming decade. Whoever owns the OS layer owns the abstraction interface that all application software must conform to — equivalent to Windows in PCs or iOS/Android in smartphones. Google's Android Automotive OS, BlackBerry QNX, and NVIDIA's DRIVE OS are in active competition. An OEM that standardises on one OS for millions of vehicles creates a captive platform for that OS provider to monetise indefinitely through developer tools, certification services, and application stores.</p>
+  </div>
+</section>
+
+<section id="tier8">
+  <div class="sec-tag">Chapter Two — Tier 8</div>
+  <h2 class="sec-title">Precision Components — <em>Hidden Moats Below the Surface</em></h2>
+  <p>The precision components tier is where the most underappreciated investment opportunities in the global automotive supply chain reside — and where India has some of its strongest structural advantages. This tier encompasses bearings, forgings, castings, high-voltage connectors, specialty fasteners, wiring harnesses, and the full range of mechanical and electromechanical components that link the vehicle's subsystems together.</p>
+
+  <p>The moats here are less obvious than in semiconductors but no less real. A forged steel control arm that has been validated through ten years of fatigue testing and integrated into an OEM's structural simulation models cannot be replaced by a new supplier in a short timeframe. The qualification investment — tooling, testing, crash simulation, approval documentation — is substantial. Tier 8 suppliers that serve multiple OEM platforms build compounding relationships where each qualification feeds the next, creating an increasingly formidable barrier to entry over time.</p>
+
+  <p>The EV transition does not eliminate precision component demand — it transforms it. Crankshafts and camshafts disappear; e-axle housings, motor end shields, battery enclosure structural members, and thermal management manifolds appear in their place. The suppliers with engineering capability to migrate their precision manufacturing expertise to these new geometries and materials will compound through the transition. Those who cannot will face structural decline.</p>
+
+  <p>High-voltage connectors and busbars deserve specific attention. Every EV requires substantial copper busbars to distribute 400V–800V power from the battery to the inverter and charging port, along with dozens of connectors carrying current levels that would destroy conventional automotive connectors. TE Connectivity, Amphenol, Aptiv, and Molex (Koch Industries) are global leaders. In India, companies building capability in high-voltage connector engineering represent a significant hidden opportunity, as this is a segment where domestic demand is growing rapidly alongside EV production scale.</p>
+</section>
+
+<!-- ═══════════════════════ CHAPTER 3 ═══════════════════════ -->
+<section id="ch3">
+  <div class="sec-tag">Chapter Three</div>
+  <h2 class="sec-title">Global Bottleneck <em>Company Analysis</em></h2>
+  <p class="sec-lead">Eight companies have already established positions that no vehicle programme can ignore. Understanding why illuminates the anatomy of an automotive bottleneck — and the investment framework for identifying the next generation of them.</p>
+
+  <p>A bottleneck company in the automotive ecosystem is defined by a specific combination of attributes: <strong>technology depth</strong> that took years or decades to develop; <strong>qualification inertia</strong> that makes replacement prohibitively expensive in time and money; <strong>ecosystem advantages</strong> that mean the entire software and hardware environment around the component was built assuming this supplier's interface; and <strong>customer concentration risk on the buyer side</strong>, meaning OEMs are more dependent on the supplier than the supplier is on any individual OEM. The eight companies examined here have achieved this status through different routes — and each provides a different lesson.</p>
+</section>
+
+<section id="ch3-tesla">
+  <div class="sec-tag">Chapter Three — Company Analysis</div>
+  <div class="cc" id="tesla-card">
+    <div class="cc-head">
+      <div class="cc-name">Tesla</div>
+      <div style="display:flex;gap:8px;">
+        <span class="badge bg-gold">OEM + Tech Platform</span>
+        <span class="badge bg-blue">Vertical Integration</span>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-grid">
+        <div class="cc-metric"><span class="ccm-v">~22%</span><span class="ccm-l">Auto Gross Margin</span></div>
+        <div class="cc-metric"><span class="ccm-v">$10,000</span><span class="ccm-l">FSD Software Revenue</span></div>
+        <div class="cc-metric"><span class="ccm-v">254 TOPS</span><span class="ccm-l">In-house HW4 AI Chip</span></div>
+        <div class="cc-metric"><span class="ccm-v">6M+</span><span class="ccm-l">Vehicles on FSD Beta Fleet</span></div>
+      </div>
+      <p class="cc-analysis">Tesla is the most important proof-of-concept in the automotive super-cycle. It demonstrated that a vertically integrated EV-native OEM could achieve gross margins exceeding those of most legacy manufacturers, not through volume but through software, technology, and manufacturing innovation. Tesla's Dojo supercomputer trains the FSD neural network on real-world driving data at a scale no competitor can match; its proprietary HW4 chip eliminates dependence on NVIDIA or Mobileye for its own vehicles while creating competitive moat in compute architecture. The Gigacasting process — casting entire vehicle underbody sections in a single aluminium piece — reduces assembly steps by 600+ and cut manufacturing cost materially.</p>
+      <p class="cc-analysis">Tesla is a bottleneck for the industry not because OEMs depend on it directly, but because it sets the benchmark that all others must respond to — in range, charging speed, OTA capability, manufacturing efficiency, and software monetisation. Every legacy OEM's current EV strategy is effectively a response to Tesla's model. Its fleet of <span class="stat-inline">6M+</span> vehicles feeding real-world data to FSD training is a compounding data moat that Waymo, Cruise, and others with smaller fleets cannot replicate quickly.</p>
+      <div class="cc-barriers">
+        <span class="badge bg-gold">FSD Data Moat</span>
+        <span class="badge bg-blue">Vertical Integration</span>
+        <span class="badge bg-amber">Proprietary Silicon</span>
+        <span class="badge bg-green">Gigacasting IP</span>
+        <span class="badge bg-muted">Supercharger Network</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ch3-byd">
+  <div class="sec-tag">Chapter Three — Company Analysis</div>
+  <div class="cc">
+    <div class="cc-head">
+      <div class="cc-name">BYD</div>
+      <div style="display:flex;gap:8px;">
+        <span class="badge bg-gold">OEM + Battery Integration</span>
+        <span class="badge bg-blue">Blade Battery IP</span>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-grid">
+        <div class="cc-metric"><span class="ccm-v">#1</span><span class="ccm-l">Global EV Sales 2023</span></div>
+        <div class="cc-metric"><span class="ccm-v">LFP</span><span class="ccm-l">Blade Battery Chemistry</span></div>
+        <div class="cc-metric"><span class="ccm-v">~30%</span><span class="ccm-l">Battery Self-Supply</span></div>
+        <div class="cc-metric"><span class="ccm-v">8th Gen</span><span class="ccm-l">e-Platform Architecture</span></div>
+      </div>
+      <p class="cc-analysis">BYD's competitive position is built on one of the most unusual strategic assets in global manufacturing: it makes the most critical and most expensive component of its own vehicles — the battery cell — better and more cheaply than almost any competitor. The Blade Battery, using lithium iron phosphate (LFP) chemistry in a novel prismatic configuration that eliminates the need for modules, achieves pack-level energy density competitive with NMC chemistry at materially lower cost. This vertical integration creates a cost advantage of roughly $1,000–2,000 per vehicle compared to OEMs buying cells from CATL or LG.</p>
+      <p class="cc-analysis">BYD is a bottleneck for the global auto industry in a different sense from Tesla: it is redefining the minimum cost at which a competitive EV can be manufactured. Its entry into Europe, Southeast Asia, and South America is compressing the margins available to all other EV manufacturers. Importantly, BYD is now also developing its own semiconductor capability (FinDreams Semiconductor) to further reduce component costs and dependence on external suppliers. If successful, this would make BYD the most vertically integrated automotive company in history.</p>
+      <div class="cc-barriers">
+        <span class="badge bg-gold">Blade Battery IP</span>
+        <span class="badge bg-blue">Vertical Cell Mfg</span>
+        <span class="badge bg-amber">Cost Structure</span>
+        <span class="badge bg-green">Scale in China</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ch3-bosch">
+  <div class="sec-tag">Chapter Three — Company Analysis</div>
+  <div class="cc">
+    <div class="cc-head">
+      <div class="cc-name">Robert Bosch</div>
+      <div style="display:flex;gap:8px;">
+        <span class="badge bg-gold">Tier 1 Systems Integrator</span>
+        <span class="badge bg-blue">Safety Systems Monopoly</span>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-grid">
+        <div class="cc-metric"><span class="ccm-v">€91B</span><span class="ccm-l">Revenue (FY2023)</span></div>
+        <div class="cc-metric"><span class="ccm-v">ABS/ESP</span><span class="ccm-l">Global Safety System Leader</span></div>
+        <div class="cc-metric"><span class="ccm-v">~$6B</span><span class="ccm-l">Annual R&amp;D Spend</span></div>
+        <div class="cc-metric"><span class="ccm-v">400+</span><span class="ccm-l">OEM Customer Relationships</span></div>
+      </div>
+      <p class="cc-analysis">Bosch is the most diversified Tier 1 supplier in the world and occupies bottleneck positions in multiple subsystems simultaneously. Its ABS/ESP safety systems are present in virtually every new vehicle globally; its fuel injection systems define ICE technology; its radar sensors are in approximately 45% of all ADAS systems; and its powertrain electrification portfolio (e-axles, power electronics, charging infrastructure) is growing rapidly. The breadth of its customer relationships — spanning virtually every OEM globally — creates an unmatched intelligence advantage about where the industry is heading and what technologies are being standardised.</p>
+      <p class="cc-analysis">Bosch's challenge in the transition is its sheer scale of ICE-related revenue that must be replaced. Approximately 35–40% of its auto revenue still derives from ICE powertrain components that face decline. The company is investing aggressively in electrification, ADAS, and software, but managing the decline of a legacy business while funding the growth of a new one is the central execution challenge for any legacy Tier 1. Bosch's success in navigating this is a bellwether for the entire traditional Tier 1 supplier cohort.</p>
+      <div class="cc-barriers">
+        <span class="badge bg-gold">ABS/ESP Platform</span>
+        <span class="badge bg-blue">ADAS Sensor Qual</span>
+        <span class="badge bg-amber">OEM Relationships</span>
+        <span class="badge bg-muted">ICE Legacy Risk</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ch3-denso">
+  <div class="sec-tag">Chapter Three — Company Analysis</div>
+  <div class="cc">
+    <div class="cc-head">
+      <div class="cc-name">Denso</div>
+      <div style="display:flex;gap:8px;">
+        <span class="badge bg-gold">Japan Thermal &amp; Electrification Leader</span>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-grid">
+        <div class="cc-metric"><span class="ccm-v">¥7.2T</span><span class="ccm-l">Revenue (FY2024)</span></div>
+        <div class="cc-metric"><span class="ccm-v">~9%</span><span class="ccm-l">Operating Margin</span></div>
+        <div class="ccm-v">#1</span><span class="ccm-l" style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;">Toyota Group Tier 1</span></div>
+        <div class="cc-metric"><span class="ccm-v">220+</span><span class="ccm-l">Manufacturing Facilities</span></div>
+      </div>
+      <p class="cc-analysis">Denso is the world's second-largest automotive supplier and Toyota's most critical Tier 1 partner. Its bottleneck status derives from three areas: thermal management (the global benchmark for HVAC and powertrain cooling systems, now pivoting to EV-specific heat pump technology), electrification components (inverters, motors, on-board chargers — where Toyota's hybrid technology leadership gives Denso unmatched production volume and learning curves), and semiconductor design (Denso develops a significant portion of its own chip designs through its semiconductor subsidiary, giving it integration advantages no pure-component supplier can match).</p>
+      <p class="cc-analysis">Denso's deepest moat is its co-engineering relationship with Toyota accumulated over seven decades. The institutional knowledge embedded in that relationship — shared design language, simulation models, failure mode databases, and qualification history — cannot be replicated by any new entrant. As Toyota continues its electrification ramp, Denso is the most direct beneficiary of every electrified vehicle Toyota ships globally.</p>
+      <div class="cc-barriers">
+        <span class="badge bg-gold">Toyota Captive Tier 1</span>
+        <span class="badge bg-blue">Thermal Sys IP</span>
+        <span class="badge bg-amber">Electrification Volume</span>
+        <span class="badge bg-green">Hybrid Learning Curve</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ch3-mobileye">
+  <div class="sec-tag">Chapter Three — Company Analysis</div>
+  <div class="cc">
+    <div class="cc-head">
+      <div class="cc-name">Mobileye</div>
+      <div style="display:flex;gap:8px;">
+        <span class="badge bg-gold">ADAS Silicon + Software Monopolist</span>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-grid">
+        <div class="cc-metric"><span class="ccm-v">~70%</span><span class="ccm-l">Global ADAS Design Share</span></div>
+        <div class="cc-metric"><span class="ccm-v">EyeQ6</span><span class="ccm-l">Current Flagship SoC</span></div>
+        <div class="cc-metric"><span class="ccm-v">REM</span><span class="ccm-l">Proprietary HD Mapping</span></div>
+        <div class="cc-metric"><span class="ccm-v">$54</span><span class="ccm-l">Revenue Per Chip</span></div>
+      </div>
+      <p class="cc-analysis">Mobileye is the closest existing analogue to the "ASML of automotive ADAS." With approximately 70% share of ADAS design-wins globally as of 2023, its EyeQ series chips and associated software stack are the default choice for any OEM implementing camera-based ADAS. The switching cost is extraordinary: an OEM that has designed its ADAS software, calibration processes, and functional safety documentation around the EyeQ platform faces a two-to-three year re-engineering programme to move to a competitor's architecture. Accumulated qualification documentation alone runs into thousands of pages per vehicle programme.</p>
+      <p class="cc-analysis">Mobileye's proprietary Road Experience Management (REM) system — which uses a fleet of production vehicles to crowdsource sub-metre accurate HD map data at low bandwidth — is a second-order moat. The more vehicles running REM, the more accurate the map, and the more attractive the platform to new OEM customers. This is a genuine network effect, rare in the hardware supply chain. Mobileye's SuperVision (11 cameras, no radar/LiDAR) and Chauffeur (L3/L4 system) platforms extend this moat into the highest-value ADAS tiers.</p>
+      <div class="cc-barriers">
+        <span class="badge bg-gold">EyeQ Platform Lock</span>
+        <span class="badge bg-blue">REM Mapping Network</span>
+        <span class="badge bg-gold">ASIL-D Certification</span>
+        <span class="badge bg-amber">Software Ecosystem</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ch3-nvidia">
+  <div class="sec-tag">Chapter Three — Company Analysis</div>
+  <div class="cc">
+    <div class="cc-head">
+      <div class="cc-name">NVIDIA</div>
+      <div style="display:flex;gap:8px;">
+        <span class="badge bg-gold">Automotive AI Platform</span>
+        <span class="badge bg-blue">DRIVE Ecosystem</span>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-grid">
+        <div class="cc-metric"><span class="ccm-v">$14B</span><span class="ccm-l">Auto Pipeline (Forward)</span></div>
+        <div class="cc-metric"><span class="ccm-v">2,000 TOPS</span><span class="ccm-l">Thor Compute (Next Gen)</span></div>
+        <div class="cc-metric"><span class="ccm-v">CUDA</span><span class="ccm-l">Irreplaceable SW Stack</span></div>
+        <div class="cc-metric"><span class="ccm-v">254 TOPS</span><span class="ccm-l">Orin Current Generation</span></div>
+      </div>
+      <p class="cc-analysis">NVIDIA's position in automotive is the clearest expression of the "platform beats component" thesis. NVIDIA does not merely sell chips to automakers; it sells an integrated hardware-software ecosystem — the DRIVE platform — that includes the SoC hardware, the DriveWorks software SDK, the DRIVE Sim simulation environment, and the DRIVE Hyperion sensor reference architecture. An OEM that builds its autonomous stack on NVIDIA's hardware is also building on NVIDIA's software abstractions, debugging tools, and simulation infrastructure. The cost of migrating away from this ecosystem is comparable to rewriting a major enterprise software application.</p>
+      <p class="cc-analysis">NVIDIA's disclosed automotive design-win pipeline of approximately $14B (as of 2024 guidance) provides unusual revenue visibility for a semiconductor company — multi-year OEM platform commitments translate into predictable long-duration revenue once vehicles enter production. The Thor SoC, delivering 2,000 TOPS — eight times the compute of Orin — positions NVIDIA for the L3/L4 vehicle architectures expected to scale through the late 2020s, where no competitor currently offers a commercially validated alternative with equivalent software ecosystem maturity.</p>
+      <div class="cc-barriers">
+        <span class="badge bg-gold">DRIVE Platform Ecosystem</span>
+        <span class="badge bg-blue">CUDA SW Stack</span>
+        <span class="badge bg-gold">Simulation (DRIVE Sim)</span>
+        <span class="badge bg-amber">Design Win Pipeline</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ch3-infineon">
+  <div class="sec-tag">Chapter Three — Company Analysis</div>
+  <div class="cc">
+    <div class="cc-head">
+      <div class="cc-name">Infineon Technologies</div>
+      <div style="display:flex;gap:8px;">
+        <span class="badge bg-gold">Power Semi + MCU Leader</span>
+        <span class="badge bg-blue">SiC Expansion</span>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-grid">
+        <div class="cc-metric"><span class="ccm-v">€16.3B</span><span class="ccm-l">Revenue (FY2023)</span></div>
+        <div class="cc-metric"><span class="ccm-v">~45%</span><span class="ccm-l">Auto Revenue Share</span></div>
+        <div class="cc-metric"><span class="ccm-v">#1</span><span class="ccm-l">Global Auto MCU Share</span></div>
+        <div class="cc-metric"><span class="ccm-v">SiC</span><span class="ccm-l">€7B+ Capacity Investment</span></div>
+      </div>
+      <p class="cc-analysis">Infineon occupies bottleneck positions across three critical semiconductor categories simultaneously: automotive microcontrollers (AURIX family, #1 globally with ~35% market share), power semiconductors (IGBTs and SiC for EV powertrain), and automotive radar chipsets (BGT series, standard in most European OEM ADAS systems). This breadth across safety-critical, high-qualification-barrier markets provides exceptional revenue stability: each category independently benefits from multi-year design-in cycles that insulate Infineon from both competitive threats and economic cycles.</p>
+      <p class="cc-analysis">Infineon's SiC strategy is particularly significant. Its €7B investment commitment in SiC capacity expansion — including its new Kulim, Malaysia facility — represents a generational bet on EV powertrain electrification. The company's CoolSiC MOSFET family is already designed into numerous high-volume EV programmes globally, and its IDM (integrated device manufacturer) model gives it cost advantages over pure-play SiC firms that must outsource manufacturing.</p>
+      <div class="cc-barriers">
+        <span class="badge bg-gold">AURIX MCU Platform</span>
+        <span class="badge bg-blue">SiC Process IP</span>
+        <span class="badge bg-gold">Radar Chip Qual</span>
+        <span class="badge bg-amber">IDM Cost Structure</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ch3-nxp">
+  <div class="sec-tag">Chapter Three — Company Analysis</div>
+  <div class="cc">
+    <div class="cc-head">
+      <div class="cc-name">NXP Semiconductors</div>
+      <div style="display:flex;gap:8px;">
+        <span class="badge bg-gold">Auto Networking + Compute</span>
+        <span class="badge bg-blue">S32 Platform</span>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-grid">
+        <div class="cc-metric"><span class="ccm-v">$13.3B</span><span class="ccm-l">Revenue (FY2023)</span></div>
+        <div class="cc-metric"><span class="ccm-v">~55%</span><span class="ccm-l">Auto Revenue Share</span></div>
+        <div class="cc-metric"><span class="ccm-v">S32</span><span class="ccm-l">Vehicle Computer Platform</span></div>
+        <div class="cc-metric"><span class="ccm-v">V2X</span><span class="ccm-l">C-V2X Standard Leadership</span></div>
+      </div>
+      <p class="cc-analysis">NXP is the dominant player in automotive networking and vehicle compute platforms. Its S32 family of automotive processors is the reference architecture for zone controllers in the software-defined vehicle transition — the central "zone ECUs" that replace dozens of distributed domain-specific ECUs in modern zonal architectures. This positions NXP directly on the most important architectural trend in automotive electronics: as vehicles move to centralised compute, NXP's hardware becomes the default fabric through which all vehicle software runs.</p>
+      <p class="cc-analysis">NXP is also the leading supplier of CAN/CAN-FD and Automotive Ethernet (100BASE-T1, 1000BASE-T1) physical layer components — the networking silicon that connects every ECU in the vehicle. Its leadership in V2X (Vehicle-to-Everything) chipsets positions it for the connected vehicle infrastructure build-out. With roughly 55% of its revenue from automotive, NXP is the most automotive-pure-play among the major semiconductor IDMs, making it a direct instrument on the semiconductor content per vehicle growth thesis.</p>
+      <div class="cc-barriers">
+        <span class="badge bg-gold">S32 Zone Controller</span>
+        <span class="badge bg-blue">CAN/Ethernet Domination</span>
+        <span class="badge bg-amber">V2X Standards Position</span>
+        <span class="badge bg-gold">Software Ecosystem</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ CHAPTER 4 ═══════════════════════ -->
+<section id="ch4">
+  <div class="sec-tag">Chapter Four</div>
+  <h2 class="sec-title">The <em>50 Real Bottlenecks</em></h2>
+  <p class="sec-lead">Not all constraints are created equal. A bottleneck that can be resolved by spending money is a business opportunity. A bottleneck constrained by physics, chemistry, or regulatory architecture is a durable moat. The distinction determines which limitations create investable positions.</p>
+
+  <p>The fifty bottlenecks catalogued here span five categories: technology constraints (where the limiting factor is state-of-the-art knowledge or capability), material and supply chain constraints (where physical resource scarcity or geographic concentration is the binding limit), manufacturing process constraints (where production complexity or learning curve creates the barrier), regulatory and safety constraints (where certification and legal approval timelines create inevitable delays), and infrastructure and ecosystem constraints (where the absence of complementary systems limits deployment speed). Each bottleneck is assessed on severity, capital intensity required to resolve it, replication difficulty, and the primary beneficiaries of that constraint's existence.</p>
+</section>
+
+<section id="ch4-tech">
+  <div class="sec-tag">Chapter Four — Technology Bottlenecks</div>
+  <h2 class="sec-title" style="font-size:28px;">Technology Bottlenecks</h2>
+  <div class="tw">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Bottleneck</th>
+          <th>Description</th>
+          <th>Severity</th>
+          <th>Replication Difficulty</th>
+          <th>Primary Beneficiaries</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono tdim">T-01</td>
+          <td><strong>ADAS AI SoC Design Capability</strong></td>
+          <td class="tdim">Designing automotive-grade AI inference chips meeting ASIL-D, operating at 100°C+ with guaranteed functional safety — requires 5–7 years and $1B+ of R&amp;D to approach</td>
+          <td><span class="badge bg-red">Critical</span></td>
+          <td class="mono tred">9/10</td>
+          <td class="tdim">NVIDIA, Mobileye, Qualcomm</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">T-02</td>
+          <td><strong>SiC Crystal Growth Technology</strong></td>
+          <td class="tdim">Growing defect-free 150mm/200mm SiC boules at commercially viable rates requires proprietary furnace design, process control, and materials expertise built over decades</td>
+          <td><span class="badge bg-red">Critical</span></td>
+          <td class="mono tred">10/10</td>
+          <td class="tdim">Wolfspeed, Infineon, STMicro, ON Semi</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">T-03</td>
+          <td><strong>Solid-State Electrolyte Scalability</strong></td>
+          <td class="tdim">Producing solid-state electrolyte at cost-competitive yields with adequate ionic conductivity remains unsolved at commercial scale; Toyota, QuantumScape racing for 2027–2030 solutions</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="mono tamber">8/10</td>
+          <td class="tdim">Toyota, QuantumScape, Solid Power, Samsung SDI</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">T-04</td>
+          <td><strong>Sensor Fusion Software Stack</strong></td>
+          <td class="tdim">Fusing camera, radar, LiDAR, and ultrasonic data into a reliable real-time 3D scene understanding requires millions of miles of data and years of algorithm refinement</td>
+          <td><span class="badge bg-red">Critical</span></td>
+          <td class="mono tred">9/10</td>
+          <td class="tdim">Mobileye, NVIDIA, Waymo, Aurora</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">T-05</td>
+          <td><strong>HD Mapping at Global Scale</strong></td>
+          <td class="tdim">Maintaining sub-metre accurate HD maps for entire road networks globally requires a persistent fleet-scale data pipeline; no solution scales economically without millions of vehicles contributing</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="mono tamber">8/10</td>
+          <td class="tdim">Mobileye (REM), HERE Technologies, TomTom</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">T-06</td>
+          <td><strong>ISO 26262 ASIL-D Verification</strong></td>
+          <td class="tdim">Automotive functional safety certification for highest-integrity components requires specialised tool chains, safety cases, and independent assessment — 18–36 month process per component</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="mono tamber">7/10</td>
+          <td class="tdim">Vector, LDRA, dSPACE (safety tools); all incumbent chip makers</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">T-07</td>
+          <td><strong>Battery Thermal Runaway Prevention</strong></td>
+          <td class="tdim">Cell-to-cell thermal propagation prevention requires materials innovation (intumescent barriers), system design (venting architecture), and BMS algorithms working in concert — safety-critical with no tolerance for failure</td>
+          <td><span class="badge bg-red">Critical</span></td>
+          <td class="mono tamber">7/10</td>
+          <td class="tdim">3M (thermal materials), Dana, Gentherm, specialty BMS firms</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">T-08</td>
+          <td><strong>GaN-on-SiC Process Mastery</strong></td>
+          <td class="tdim">GaN power devices on SiC substrates offer superior performance for high-frequency applications (OBC, DC-DC) but require precise process control in epitaxy and gate dielectric that few fabs master</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="mono tamber">8/10</td>
+          <td class="tdim">Infineon (GaN Systems acq.), Navitas, Power Integrations</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">T-09</td>
+          <td><strong>Automotive OS / Adaptive AUTOSAR</strong></td>
+          <td class="tdim">Adaptive AUTOSAR implementation for high-compute, service-oriented vehicle architectures requires deep ecosystem investment in tooling, middleware, and OEM integration — only 3–4 viable global implementations</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="mono tamber">7/10</td>
+          <td class="tdim">QNX (BlackBerry), ETAS, Vector Informatik</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">T-10</td>
+          <td><strong>LiDAR FMCW Technology</strong></td>
+          <td class="tdim">Frequency-modulated continuous-wave LiDAR offers interference immunity and velocity measurement advantages over ToF LiDAR but requires photonic integration expertise that limits the competitive field to 5–6 global players</td>
+          <td><span class="badge bg-gold">Moderate</span></td>
+          <td class="mono tamber">7/10</td>
+          <td class="tdim">Aeva, Silc Technologies, Aurora Innovation</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="ch4-material">
+  <div class="sec-tag">Chapter Four — Material &amp; Supply Chain Bottlenecks</div>
+  <h2 class="sec-title" style="font-size:28px;">Material &amp; Supply Chain Bottlenecks</h2>
+  <div class="tw">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Bottleneck</th>
+          <th>Description</th>
+          <th>Severity</th>
+          <th>Replication Difficulty</th>
+          <th>Primary Beneficiaries</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono tdim">M-01</td>
+          <td><strong>SiC Substrate Supply</strong></td>
+          <td class="tdim">Global SiC boule production capacity is the primary physical constraint on EV traction inverter volumes. 200mm wafer transition underway but adds limited near-term capacity</td>
+          <td><span class="badge bg-red">Critical</span></td>
+          <td class="mono tred">10/10</td>
+          <td class="tdim">Wolfspeed, II-VI (Coherent), Iljin Materials</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">M-02</td>
+          <td><strong>Battery-Grade Lithium</strong></td>
+          <td class="tdim">Lithium carbonate/hydroxide for battery electrolyte requires high-purity refining; Chile, Australia, and Argentina control ~85% of reserves; refining dominated by China (65%+ of global capacity)</td>
+          <td><span class="badge bg-red">Critical</span></td>
+          <td class="mono tamber">7/10</td>
+          <td class="tdim">Albemarle, Ganfeng, SQM, Livent (Allkem)</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">M-03</td>
+          <td><strong>Rare Earth Magnets (NdFeB)</strong></td>
+          <td class="tdim">Permanent magnet synchronous motors in EVs require neodymium-iron-boron magnets; China produces ~90% of global rare earth supply and ~85% of refined NdFeB magnets</td>
+          <td><span class="badge bg-red">Critical</span></td>
+          <td class="mono tred">9/10</td>
+          <td class="tdim">MP Materials (US), Lynas (AU), Vacuumschmelze (DE)</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">M-04</td>
+          <td><strong>Battery-Grade Nickel (Class 1)</strong></td>
+          <td class="tdim">NMC cathode requires low-cobalt, high-nickel chemistry; Class 1 nickel supply is distinct from stainless steel-grade nickel and requires separate processing; Indonesia becoming dominant</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="mono tamber">6/10</td>
+          <td class="tdim">Norilsk, Vale, BHP, Nickel Industries</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">M-05</td>
+          <td><strong>Natural Graphite (Anode)</strong></td>
+          <td class="tdim">Natural graphite for battery anodes: China controls ~85% of mining and ~95% of spheronisation processing. US/EU diversification programmes underway but 5–7 year development horizon</td>
+          <td><span class="badge bg-red">Critical</span></td>
+          <td class="mono tred">8/10</td>
+          <td class="tdim">BTR New Material, Shanshan, Syrah Resources</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">M-06</td>
+          <td><strong>Cobalt Supply</strong></td>
+          <td class="tdim">DRC accounts for ~70% of global cobalt mining; concentration risk and ESG concerns driving cathode chemistry shift to lower-cobalt formulations (NMC811, LFP), but cobalt not fully eliminatable for NMC</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="mono tamber">6/10</td>
+          <td class="tdim">Glencore (primary beneficiary), Umicore (recycler)</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">M-07</td>
+          <td><strong>Copper for EV Wiring</strong></td>
+          <td class="tdim">EVs use 3–4× more copper than ICE vehicles (80–100kg vs 20–25kg); global copper supply is already tight; EV plus charging infrastructure buildout represents a 10M+ tonne demand increment by 2035</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="mono tamber">5/10</td>
+          <td class="tdim">Freeport-McMoRan, BHP, Codelco, copper wire harness suppliers</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">M-08</td>
+          <td><strong>Silicon for Anode Enhancement</strong></td>
+          <td class="tdim">Silicon can deliver 10× higher theoretical capacity vs graphite as anode material but expansion during charging cycles creates engineering challenges; nano-silicon producers control a scarce capability</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="mono tamber">8/10</td>
+          <td class="tdim">Sila Nanotechnologies, Group14, Nexeon, BTR</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">M-09</td>
+          <td><strong>Battery Separator Supply</strong></td>
+          <td class="tdim">Wet-process polyethylene separators with ceramic coating require highly specialised wet stretching lines; effectively a duopoly between Asahi Kasei and Toray (Japan) for high-quality automotive separators</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="mono tamber">7/10</td>
+          <td class="tdim">Asahi Kasei, Toray, Celgard (Polypore), Entek</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">M-10</td>
+          <td><strong>Carbon Fibre for Lightweighting</strong></td>
+          <td class="tdim">Automotive-grade CFRP requires specific tow sizes and resin systems; large-scale auto production demands cycle times &lt;2 minutes — far below aerospace standard; Toray, SGL Carbon control key IP</td>
+          <td><span class="badge bg-gold">Moderate</span></td>
+          <td class="mono tamber">6/10</td>
+          <td class="tdim">Toray, Teijin (Toho), Hexcel, SGL Carbon</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="ch4-mfg">
+  <div class="sec-tag">Chapter Four — Manufacturing Process Bottlenecks</div>
+  <h2 class="sec-title" style="font-size:28px;">Manufacturing Process Bottlenecks</h2>
+  <div class="tw">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Bottleneck</th>
+          <th>Description</th>
+          <th>Severity</th>
+          <th>Key Beneficiaries</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono tdim">P-01</td>
+          <td><strong>Battery Cell Formation (Aging)</strong></td>
+          <td class="tdim">After cell assembly, each cell must undergo 12–24 hours of controlled charge/discharge cycling to form the SEI layer; this "formation" step dominates factory footprint and capital — 30–40% of gigafactory capex</td>
+          <td><span class="badge bg-red">Critical</span></td>
+          <td class="tdim">Maccor, Arbin, BioLogic (formation equipment); CATL's proprietary fast-formation IP</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">P-02</td>
+          <td><strong>Electrode Coating &amp; Calendering</strong></td>
+          <td class="tdim">Slurry coating of cathode/anode materials onto copper/aluminium foils at uniform thickness (±2μm tolerance) at 100m/min speeds requires precision coating machines; Hirano Tecseed, Panasonic IDS key equipment makers</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="tdim">Hirano Tecseed, Targray, Panasonic IDS (equipment)</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">P-03</td>
+          <td><strong>Gigacasting Die Manufacturing</strong></td>
+          <td class="tdim">Casting entire underbody sections in single aluminium pour requires 8,000–9,000 tonne die casting machines and specialised tooling; Idra Group (Italy) makes the Giga Press; tooling lead times of 12–18 months</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="tdim">Idra Group, Bühler AG (die casting OEMs)</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">P-04</td>
+          <td><strong>Automotive Chip Fab Qualification</strong></td>
+          <td class="tdim">Moving automotive chip production to a new fab requires full AEC-Q qualification, OEM approval, and 12–24 months of parallel production runs — creating sticky revenue for incumbent foundries (TSMC, GlobalFoundries, ON Semi)</td>
+          <td><span class="badge bg-red">Critical</span></td>
+          <td class="tdim">TSMC, GlobalFoundries, NXP IDM, Infineon IDM, STMicro IDM</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">P-05</td>
+          <td><strong>Battery Pack Assembly Automation</strong></td>
+          <td class="tdim">High-voltage battery pack assembly (module stacking, busbar welding, thermal pad application, HV connector installation) requires specialised robotics with dielectric isolation requirements unique to the process</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="tdim">KUKA, Comau, Manz AG, Grob Werke (battery assembly automation)</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">P-06</td>
+          <td><strong>Wiring Harness Complex Assembly</strong></td>
+          <td class="tdim">Modern vehicle wiring harness (~3km of wire, 1,500+ connectors) remains predominantly hand-assembled due to flexibility challenges for robotics; EV "800V architecture" harnesses add HV safety complexity</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="tdim">Aptiv, Lear, Sumitomo Electric, Yazaki, Motherson (India)</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">P-07</td>
+          <td><strong>High-Precision E-Axle Assembly</strong></td>
+          <td class="tdim">E-axle (integrated motor + inverter + reducer) assembly requires micron-level rotor/stator concentricity tolerances and high-voltage isolation testing; a fundamentally new manufacturing competency for most auto plants</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="tdim">Bosch, ZF, Vitesco; precision tooling makers (Marposs, Renishaw)</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">P-08</td>
+          <td><strong>Laser Welding of Battery Tabs</strong></td>
+          <td class="tdim">Welding thin copper/aluminium battery tabs at high speed without thermal damage requires specialised nanosecond-pulse lasers and real-time vision alignment; IPG Photonics and Coherent dominate laser supply</td>
+          <td><span class="badge bg-gold">Moderate</span></td>
+          <td class="tdim">IPG Photonics, Coherent (II-VI), Trumpf (lasers)</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">P-09</td>
+          <td><strong>Automotive-Grade OSAT (Packaging)</strong></td>
+          <td class="tdim">Packaging and testing automotive-grade chips — especially SiC power devices — requires specialised substrate materials, die attach processes, and burn-in facilities qualified for AEC-Q101; limited global capacity at Amkor, ASE</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="tdim">Amkor, ASE Group, AT&amp;S (substrates)</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">P-10</td>
+          <td><strong>Insulated Bearing Manufacturing for EV Motors</strong></td>
+          <td class="tdim">EV motor bearings must prevent electrical current passage (which causes pitting failure) through ceramic or hybrid ball bearings; this is a new qualification category with limited supplier base</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="tdim">SKF (Hybrid bearings), Schaeffler, NSK, FAG</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="ch4-reg">
+  <div class="sec-tag">Chapter Four — Regulatory &amp; Safety Bottlenecks</div>
+  <h2 class="sec-title" style="font-size:28px;">Regulatory &amp; Safety Bottlenecks</h2>
+  <div class="tw">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Bottleneck</th>
+          <th>Description</th>
+          <th>Severity</th>
+          <th>Key Beneficiaries</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono tdim">R-01</td>
+          <td><strong>UNECE WP.29 Cybersecurity (R155/R156)</strong></td>
+          <td class="tdim">UN Regulation R155 mandates cybersecurity management systems for all new vehicle types globally (EU, Japan, Korea, others) and requires type approval — creating a mandatory compliance market estimated at $4–5B annually</td>
+          <td><span class="badge bg-red">Critical</span></td>
+          <td class="tdim">Upstream Security, Argus (Continental), Harman (Samsung), C2A Security</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">R-02</td>
+          <td><strong>L3 Autonomous Liability Framework</strong></td>
+          <td class="tdim">Level 3 automation (driver can fully disengage attention within ODD) requires legal clarity on liability when the system fails; Germany passed L3 law in 2021; US patchwork; absent framework blocks commercial deployment</td>
+          <td><span class="badge bg-red">Critical</span></td>
+          <td class="tdim">Mercedes (L3 Drive Pilot certified), Waymo, Mobileye</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">R-03</td>
+          <td><strong>Battery Passport (EU Battery Regulation)</strong></td>
+          <td class="tdim">From 2027, EU requires digital passport for all EV batteries documenting carbon footprint, material sourcing, and recycled content — requiring full supply chain traceability that most battery makers do not currently have</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="tdim">SAP, Oracle, Sphera (ESG software); battery recyclers (Umicore, Li-Cycle)</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">R-04</td>
+          <td><strong>ADAS Type Approval (Euro NCAP 2025+)</strong></td>
+          <td class="tdim">Euro NCAP and NHTSA are dramatically raising ADAS performance requirements for 5-star ratings; vehicles requiring AEB, lane centering, and driver monitoring by regulation by 2025–2026 in major markets</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="tdim">Mobileye, Bosch, Continental, Aptiv (ADAS system Tier 1s)</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">R-05</td>
+          <td><strong>AV Cross-Border Regulation Fragmentation</strong></td>
+          <td class="tdim">No unified global framework for autonomous vehicle type approval; each market (EU, US, China, Japan) has different requirements, forcing AV developers to maintain multiple regulatory compliance programmes in parallel</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="tdim">Legal/compliance consultancies; large incumbents with regulatory expertise (Bosch, Continental)</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">R-06</td>
+          <td><strong>Battery Fire Safety (UL/IEC 62133)</strong></td>
+          <td class="tdim">Battery pack safety certification requires nail penetration, overcharge, short circuit, and thermal propagation testing at accredited facilities; test cycle 3–6 months; limited accredited test labs globally</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="tdim">TÜV Rheinland, UL, SGS, Intertek (test &amp; certification labs)</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">R-07</td>
+          <td><strong>Charging Standard Fragmentation</strong></td>
+          <td class="tdim">CCS1/CCS2, CHAdeMO, NACS (Tesla), and GB/T standards create infrastructure investment paralysis and consumer range anxiety; NACS emerging as North American standard but global resolution incomplete</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="tdim">ChargePoint, IONITY, EVgo, Tritium (winners once standard emerges)</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">R-08</td>
+          <td><strong>Functional Safety Tool Chain Qualification</strong></td>
+          <td class="tdim">Software development tools (compilers, debuggers, verification tools) used for ASIL-D code must themselves be qualified per IEC 61508; only 3–4 global tool vendors have qualified toolchains</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="tdim">IAR Systems, Green Hills, LDRA, Vector (qualification toolchains)</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">R-09</td>
+          <td><strong>Insurance for Autonomous Vehicles</strong></td>
+          <td class="tdim">No actuarial history for autonomous vehicles makes underwriting impossible using conventional models; limits OEM willingness to deploy L3/L4 at scale; new insurance frameworks being developed</td>
+          <td><span class="badge bg-gold">Moderate</span></td>
+          <td class="tdim">Munich Re, Swiss Re (developing AV actuarial frameworks); Waymo (self-insuring)</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">R-10</td>
+          <td><strong>Skilled Talent for SDV Development</strong></td>
+          <td class="tdim">Software-defined vehicle development requires engineers proficient in functional safety, AUTOSAR Adaptive, MISRA C, and real-time systems — a skill set with fewer than 100,000 qualified practitioners globally</td>
+          <td><span class="badge bg-red">Critical</span></td>
+          <td class="tdim">KPIT Technologies, Tata Elxsi (India), Harman, Bosch Engineering</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="ch4-infra">
+  <div class="sec-tag">Chapter Four — Infrastructure &amp; Ecosystem Bottlenecks</div>
+  <h2 class="sec-title" style="font-size:28px;">Infrastructure &amp; Ecosystem Bottlenecks</h2>
+  <div class="tw">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Bottleneck</th>
+          <th>Description</th>
+          <th>Severity</th>
+          <th>Key Beneficiaries</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono tdim">I-01</td>
+          <td><strong>Grid Capacity for Fast EV Charging</strong></td>
+          <td class="tdim">350kW DC fast chargers draw power equivalent to small substations; upgrading grid infrastructure to support widespread fast-charging requires $100B+ of utility investment globally through 2030</td>
+          <td><span class="badge bg-red">Critical</span></td>
+          <td class="tdim">ABB (chargers), Eaton, Schneider Electric (grid infrastructure)</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">I-02</td>
+          <td><strong>Dedicated AV Proving Grounds</strong></td>
+          <td class="tdim">Testing autonomous vehicles at scale requires specialised facilities that can recreate edge cases in controlled environments; only 15–20 accredited facilities exist globally</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="tdim">Waymo, Mobileye (virtual simulation supplementing); CARIAD, Aurora</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">I-03</td>
+          <td><strong>Battery Recycling Infrastructure</strong></td>
+          <td class="tdim">By 2030, ~11M tonnes of spent EV batteries will require recycling annually; hydrometallurgical and direct recycling capacity is a fraction of projected need; regulatory mandates (EU Battery Regulation) creating urgency</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="tdim">Umicore, Li-Cycle, Redwood Materials (Straubel), Fortum</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">I-04</td>
+          <td><strong>OTA Security Infrastructure</strong></td>
+          <td class="tdim">Over-the-air vehicle updates require automotive-grade PKI (public key infrastructure), secure boot, rollback protection, and fleet management — a nascent market with very few qualified providers</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="tdim">Harman (Samsung), Aptiv, Airbiquity, CARIAD (VW)</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">I-05</td>
+          <td><strong>V2X Communication Infrastructure</strong></td>
+          <td class="tdim">Vehicle-to-infrastructure communication requires roadside units (RSUs) at every intersection; global deployment would require 500M+ RSUs; government funding essential but timelines highly uncertain</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="tdim">Qualcomm (C-V2X chips), Kapsch TrafficCom, Q-Free (RSU makers)</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">I-06</td>
+          <td><strong>Hydrogen Refuelling for Commercial Vehicles</strong></td>
+          <td class="tdim">Hydrogen fuel cell trucks require ~10–20kg refuelling in 10–15 minutes at 700 bar; fewer than 200 heavy-duty H₂ stations exist globally versus 200,000+ CNG/diesel truck stops; chicken-and-egg barrier to FCEV truck adoption</td>
+          <td><span class="badge bg-red">Critical</span></td>
+          <td class="tdim">Nikola, Hyundai (XCIENT), Shell, Air Products (H₂ distribution)</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">I-07</td>
+          <td><strong>AV Training Data Infrastructure</strong></td>
+          <td class="tdim">Training state-of-the-art autonomous driving models requires petabytes of labelled sensor data; Tesla's fleet advantage in data generation cannot be replicated without a large deployed vehicle base</td>
+          <td><span class="badge bg-red">Critical</span></td>
+          <td class="tdim">Tesla (unmatched), Scale AI (data labelling), Waymo</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">I-08</td>
+          <td><strong>5G Network for V2X Latency</strong></td>
+          <td class="tdim">C-V2X requires &lt;10ms end-to-end latency for safety-critical communications; 5G coverage in suburban and rural areas remains limited globally, particularly in developing markets including India</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="tdim">Ericsson, Nokia (5G infrastructure), Qualcomm (C-V2X modem)</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">I-09</td>
+          <td><strong>Semiconductor Geopolitical Risk</strong></td>
+          <td class="tdim">TSMC concentration in Taiwan for advanced automotive logic nodes (below 28nm) represents a systemic geopolitical risk; US CHIPS Act and EU Chips Act funding efforts to diversify are 5–10 year endeavours</td>
+          <td><span class="badge bg-red">Critical</span></td>
+          <td class="tdim">GlobalFoundries (non-Taiwan), Intel Foundry, Infineon IDM, STMicro IDM</td>
+        </tr>
+        <tr>
+          <td class="mono tdim">I-10</td>
+          <td><strong>ADAS Simulation at Scale</strong></td>
+          <td class="tdim">Virtual testing of autonomous systems requires photorealistic simulation environments with physically accurate sensor models; only 3–4 platforms (NVIDIA DRIVE Sim, CARLA, IPG CarMaker, rFpro) have sufficient fidelity</td>
+          <td><span class="badge bg-amber">High</span></td>
+          <td class="tdim">NVIDIA (DRIVE Sim), IPG Automotive, rFpro, Applied Intuition</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════ CHAPTER 5 ═══════════════════════ -->
+<section id="ch5">
+  <div class="sec-tag">Chapter Five</div>
+  <h2 class="sec-title">Where Does <em>Value Live?</em></h2>
+  <p class="sec-lead">When capital is deployed into the automotive transformation, it does not earn equal returns in every layer. The spread between the most and least attractive segments is wider than in almost any other industrial mega-cycle — precisely because of the winner-take-most dynamics of technology platforms.</p>
+
+  <p>The following analysis ranks every segment of the automotive value chain by long-term wealth creation potential, using a composite of gross margin profile, return on invested capital, pricing power trajectory, moat durability, and scalability. This is not a near-term earnings ranking — some of the highest-potential segments are currently loss-making as they invest for scale. It is an assessment of where economic value will concentrate over a ten-to-twenty-year horizon.</p>
+
+  <div class="callout">
+    <div class="cl-label">Ranking Methodology</div>
+    <p>Rankings are based on four weighted factors: <strong>Gross Margin</strong> (current and projected at scale, 25% weight), <strong>ROIC at maturity</strong> (25% weight), <strong>Moat durability</strong> — assessed by qualification barriers, IP depth, and switching costs (30% weight), and <strong>Revenue scalability</strong> — assessed by addressable market growth and pricing power (20% weight). A segment that scores well on moat durability and ROIC but has limited scaling opportunity (high-quality niche suppliers) will rank lower than a segment with both deep moats and large scalable markets.</p>
+  </div>
+</section>
+
+<section id="ch5-rank">
+  <div class="sec-tag">Chapter Five — Segment Attractiveness Rankings</div>
+  <h2 class="sec-title">Segment Attractiveness <em>Rankings</em></h2>
+  <p>The following table ranks all eight value chain segments from most to least attractive for long-term wealth creation. Following the table, a qualitative assessment of each segment's investment thesis and key risks is provided.</p>
+
+  <div class="vrank">
+    <div class="vr-header">
+      <div>#</div>
+      <div>Segment</div>
+      <div>Gross Margin</div>
+      <div>ROIC (Mature)</div>
+      <div>Investment Thesis Summary</div>
+    </div>
+
+    <div class="vr-row">
+      <div class="vr-num">1</div>
+      <div class="vr-name">Automotive Software &amp; AI Platform</div>
+      <div class="vr-gm"><span class="mono tgold">65–85%+</span></div>
+      <div class="vr-roic"><span class="mono tgold">25–60%</span></div>
+      <div class="vr-why">Platform economics, recurring revenue, network effects. NVIDIA DRIVE, Mobileye EyeQ, QNX OS exhibit winner-take-most dynamics. Software once deployed into production programmes generates annuity cash flows. Every new vehicle sold expands the installed base. Most difficult to replicate — the qualification and ecosystem investment required is a multi-year, multi-billion dollar moat.</div>
+    </div>
+
+    <div class="vr-row">
+      <div class="vr-num">2</div>
+      <div class="vr-name">Automotive Semiconductor (ADAS/AI SoC)</div>
+      <div class="vr-gm"><span class="mono tgold">55–70%</span></div>
+      <div class="vr-roic"><span class="mono tgold">20–40%</span></div>
+      <div class="vr-why">Design-win annuities spanning 5–8 year programme lives, ASIL safety certification moats, and explosive content-per-vehicle growth create the strongest hardware investment case. NVIDIA Orin/Thor, Mobileye EyeQ6, Qualcomm SA8775 dominate. New entrants face an impossible combination of capital, time, and ecosystem requirements. The only risk: OEM in-sourcing (Tesla, BYD, GM) which reduces the addressable market but does not eliminate it.</div>
+    </div>
+
+    <div class="vr-row">
+      <div class="vr-num">3</div>
+      <div class="vr-name">Power Electronics / SiC-GaN</div>
+      <div class="vr-gm"><span class="mono tgold">40–55%</span></div>
+      <div class="vr-roic"><span class="mono tamber">15–28%</span></div>
+      <div class="vr-why">Physical substrate scarcity (SiC crystal growth rate), combined with rapidly expanding EV traction inverter demand, creates a supply-constrained growth market for 5–7 years minimum. Wolfspeed, Infineon, ON Semi, STMicro all have multi-year supply agreements in place. The risk is over-investment eventually causing supply surplus, but the timeline to any meaningful oversupply is comfortably distant given the 18–24 month minimum expansion cycle.</div>
+    </div>
+
+    <div class="vr-row">
+      <div class="vr-num">4</div>
+      <div class="vr-name">Automotive MCU &amp; Power Management ICs</div>
+      <div class="vr-gm"><span class="mono tgold">45–58%</span></div>
+      <div class="vr-roic"><span class="mono tamber">15–25%</span></div>
+      <div class="vr-why">Less glamorous than ADAS SoCs but extremely durable: Renesas, Infineon, NXP, TI have MCU design-wins locked in across virtually every vehicle platform on earth. Content per vehicle grows meaningfully as BEV adds powertrain MCUs and ADAS proliferates. Long qualification cycles prevent new entrants at every generation. This segment is the "boring compounder" tier of automotive semiconductors — predictable, defensible, and with 15–20 year investment horizons.</div>
+    </div>
+
+    <div class="vr-row">
+      <div class="vr-num">5</div>
+      <div class="vr-name">Battery Chemistry IP &amp; Specialty Materials</div>
+      <div class="vr-gm"><span class="mono tamber">35–60%</span></div>
+      <div class="vr-roic"><span class="mono tamber">15–30%</span></div>
+      <div class="vr-why">IP holders (CATL's battery patents, BYD's Blade design, solid-state IP from Toyota/QuantumScape) command durable pricing premiums. Specialty material producers (Umicore for cathode materials, Asahi Kasei for separators) are harder to replicate than pure cell manufacturers. The risk in this segment is technology obsolescence — a battery chemistry breakthrough (solid-state, sodium-ion) can rapidly devalue existing material supply chains.</div>
+    </div>
+
+    <div class="vr-row">
+      <div class="vr-num">6</div>
+      <div class="vr-name">ADAS Sensors (Camera, Radar, LiDAR)</div>
+      <div class="vr-gm"><span class="mono tamber">35–55%</span></div>
+      <div class="vr-roic"><span class="mono tamber">12–25%</span></div>
+      <div class="vr-why">Camera sensors (Sony dominant with 60%+ share) and radar chipsets (TI, NXP, Infineon) are structurally advantaged. LiDAR remains a high-risk, high-reward bet — extraordinary potential if cost drops below $100/unit, but binary outcomes around technology and commercial model. The sensor-per-vehicle count growth (from 5–8 sensors today to 20–30 for L3+) drives strong unit volume growth even without price increases.</div>
+    </div>
+
+    <div class="vr-row">
+      <div class="vr-num">7</div>
+      <div class="vr-name">Thermal Management Systems</div>
+      <div class="vr-gm"><span class="mono tamber">25–40%</span></div>
+      <div class="vr-roic"><span class="mono tamber">12–22%</span></div>
+      <div class="vr-why">The most underappreciated structural growth story in the EV supply chain. Market size growing 3–4× as ICE mix shifts to EV; complexity growing faster than volume. OEM co-development relationships create sticky business. Margins are lower than semiconductors but quality of earnings is high — long contract durations, OEM co-investment in tooling, and India-relevant opportunity. Hanon, Modine, Gentherm, and specialty pump/valve suppliers are the primary beneficiaries.</div>
+    </div>
+
+    <div class="vr-row">
+      <div class="vr-num">8</div>
+      <div class="vr-name">Precision Components &amp; Connectors</div>
+      <div class="vr-gm"><span class="mono tamber">20–38%</span></div>
+      <div class="vr-roic"><span class="mono tamber">10–22%</span></div>
+      <div class="vr-why">The hidden compounders of the value chain. Long qualification cycles, customer intimacy built over decades, and critical function (a bearing failure is a safety event) create durable positions. High-voltage connectors (TE Connectivity, Amphenol) are the strongest sub-segment as EV architecture mandates new designs. India has specific structural advantages in forgings, castings, and machined components that make this a particularly important segment for Indian equity analysis in Part II.</div>
+    </div>
+
+    <div class="vr-row">
+      <div class="vr-num">9</div>
+      <div class="vr-name">Battery Cell Manufacturing</div>
+      <div class="vr-gm"><span class="mono tred">15–28%</span></div>
+      <div class="vr-roic"><span class="mono tred">8–18%</span></div>
+      <div class="vr-why">Scale-intensive, capital-intensive, and technology-evolving — a difficult combination for sustained ROIC. CATL has proven superior scale economics, but the business is fundamentally manufacturing, not technology. As chemistry commoditises, gross margins compress. Long-term supply agreements provide revenue visibility but lock in pricing. Value in this segment accrues to IP holders and those with structural cost advantages, not pure-scale cell manufacturers.</div>
+    </div>
+
+    <div class="vr-row">
+      <div class="vr-num">10</div>
+      <div class="vr-name">Vehicle OEMs (Mass Market)</div>
+      <div class="vr-gm"><span class="mono tred">15–20%</span></div>
+      <div class="vr-roic"><span class="mono tred">10–16%</span></div>
+      <div class="vr-why">The Foxconn risk is real. Legacy OEMs are simultaneously managing ICE decline, funding EV investment, and competing with Chinese manufacturers on cost. The transition cost is enormous and near-term margin compression is structural, not cyclical. Premium OEMs (BMW, Mercedes) with genuine brand pricing power and software monetisation strategies rank significantly higher than their mass-market peers, but even they face a decade of heavy investment before their software revenue models mature.</div>
+    </div>
+  </div>
+
+  <div class="callout red">
+    <div class="cl-label">Capital Cycle Warning</div>
+    <p>The battery cell manufacturing segment is particularly vulnerable to overcapacity in the 2026–2028 timeframe. CATL, LG Energy, Panasonic, Samsung SDI, and SAIC collectively have announced over 3TWh of annual capacity expansion — against projected global EV demand of approximately 2.2TWh by 2028. This pattern of over-investment relative to near-term demand is a classic late-cycle capital allocation error in commoditising industries. Investors in pure-play cell manufacturing capacity (versus chemistry IP or BMS software) should model significant margin compression in this period.</p>
+  </div>
+</section>
+
+<section id="ch5-verdict">
+  <div class="sec-tag">Chapter Five — Part I Verdict</div>
+  <h2 class="sec-title">Part I <em>Verdict</em></h2>
+  <p class="sec-lead">Nine forces. Eight value chain tiers. Fifty structural bottlenecks. Ten ranked segments. The architecture of the automotive super-cycle is now mapped. The conclusion that emerges is both clear and actionable.</p>
+
+  <p>The automotive transformation over the next two decades will create enormous wealth — but that wealth will not distribute uniformly across the industry. It will concentrate, with extraordinary intensity, in firms that own the indispensable layers of the new architecture: the compute platforms that run the intelligent vehicle's brain, the power semiconductors that convert stored energy into motion, the software ecosystems that every OEM must traverse to ship a competitive product, the battery chemistry that defines energy density and cost, and the precision systems that cannot be easily replicated.</p>
+
+  <p>The firms that will compound most durably share a common profile: they are <strong>not easily replaced</strong> (qualification cycles of 18–36 months minimum, ecosystem dependencies, certified IP), they <strong>benefit from content-per-vehicle growth</strong> rather than merely volume growth (each new vehicle sold at any OEM adds to their revenue), they <strong>operate in segments where switching costs compound over time</strong> (the more integrated a supplier becomes, the more expensive it becomes to replace), and they <strong>have software or IP leverage</strong> that scales margins without proportional capital reinvestment.</p>
+
+  <div class="pq">"The automotive revolution will create its largest fortunes not in Silicon Valley garages or Detroit assembly plants, but in the unglamorous companies that own the qualified, certified, irreplaceable components without which no vehicle can be built, no battery can be managed, and no autonomous system can function safely."</div>
+
+  <p>Part II of this research series will apply these frameworks to India's specific automotive ecosystem — mapping the country's OEM landscape, component industry, semiconductor ambitions, software services sector, and emerging battery supply chain against the global value pools identified here. The hunt for India's hidden compounders, future export champions, and nascent toll-booth suppliers will draw directly on the analytical architecture constructed in Part I.</p>
+
+  <div class="callout green">
+    <div class="cl-label">Bridge to Part II</div>
+    <p>Part II will specifically address: India's competitive position in each of the eight value chain tiers; the complete Indian automotive ecosystem map across OEM, component, semiconductor, software, and battery layers; the Top 25 hidden small-cap compounders and Top 15 emerging mid-cap compounders in India; company deep-dives using the full eleven-point analysis framework; capital cycle analysis for Indian segments; global comparable analysis identifying which Indian firms most closely resemble Bosch, Denso, Aptiv, and Continental; and a probabilistic twenty-year roadmap for India's rise in the global automotive supply chain.</p>
+  </div>
+
+  <div class="tw" style="margin-top:44px;">
+    <table>
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Part I Answer</th>
+          <th>Part II Investigation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Where does automotive value concentrate?</td>
+          <td class="tdim">Semiconductors, software, power electronics, chemistry IP</td>
+          <td class="tblue">Which Indian firms operate in these layers?</td>
+        </tr>
+        <tr>
+          <td>What creates an automotive bottleneck?</td>
+          <td class="tdim">Qualification inertia + ecosystem lock-in + irreplaceability</td>
+          <td class="tblue">Which Indian suppliers are building these attributes?</td>
+        </tr>
+        <tr>
+          <td>Which technologies are hardest to replicate?</td>
+          <td class="tdim">SiC crystal growth, ADAS AI SoC design, automotive OS</td>
+          <td class="tblue">Where can India gain foothold in harder-to-replicate tiers?</td>
+        </tr>
+        <tr>
+          <td>Where is capital allocation risk highest?</td>
+          <td class="tdim">Battery cell overcapacity 2026–2028, ICE supplier decline</td>
+          <td class="tblue">Which Indian ICE-exposed companies need transition assessment?</td>
+        </tr>
+        <tr>
+          <td>What are the dominant long-term themes?</td>
+          <td class="tdim">SDV software, SiC power, automotive AI, thermal management</td>
+          <td class="tblue">Indian companies best positioned to each theme</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top:48px;padding-top:32px;border-top:1px solid var(--border);text-align:center;">
+    <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--text3);margin-bottom:12px;">End of Part I</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--text2);font-style:italic;">Part II: India's Automotive Ecosystem, Hidden Compounders &amp; the Next Twenty Years</div>
+    <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);margin-top:8px;letter-spacing:.1em;">Forthcoming — Chapters 6 through 15 + Final Investment Table</div>
+  </div>
+</section>
+
+</main>
+
+<script>
+// Scroll progress bar
+const progressFill = document.getElementById('progress-fill');
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.body.scrollHeight - window.innerHeight;
+  const pct = (scrollTop / docHeight) * 100;
+  progressFill.style.width = pct + '%';
+});
+
+// Active nav link on scroll
+const sections = document.querySelectorAll('section[id], div[id]');
+const navLinks = document.querySelectorAll('.sb-link');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + id) {
+          link.classList.add('active');
+        }
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+
+sections.forEach(s => observer.observe(s));
+
+// Reveal animations
+const reveals = document.querySelectorAll('.fc, .c-stat, .bstat, .cc, .finding, .tier-row');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '0';
+      entry.target.style.transform = 'translateY(12px)';
+      entry.target.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+      setTimeout(() => {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'none';
+      }, i * 40);
+      revealObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.05 });
+
+reveals.forEach(el => revealObs.observe(el));
+</script>
+</body>
+</html>

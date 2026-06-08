@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Global Automotive Super-Cycle — Part II: India, Compounders & the 2045 Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07090F;--bg2:#0B0E18;--bg3:#0F1320;--bg4:#141828;--bg5:#1A2030;
+  --text:#DDD5C4;--text2:#8A8070;--text3:#504840;
+  --gold:#C0983A;--gold2:#D4AF68;--golddim:#6A5020;
+  --blue:#3D82B0;--bluedim:#1A3A58;
+  --green:#38946A;--greendim:#163828;
+  --red:#BC3838;--reddim:#481414;
+  --amber:#C27030;
+  --teal:#2E8A7A;--tealdim:#103828;
+  --border:#181E2C;--border2:#222A3A;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.78;display:flex;min-height:100vh;}
+
+/* SIDEBAR */
+.sidebar{width:264px;min-width:264px;height:100vh;position:sticky;top:0;background:var(--bg2);border-right:1px solid var(--border);overflow-y:auto;padding:24px 0 40px;flex-shrink:0;}
+.sidebar::-webkit-scrollbar{width:3px;}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+.sb-brand{padding:0 24px 20px;border-bottom:1px solid var(--border);margin-bottom:16px;}
+.sb-series{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.sb-title{font-family:'Cormorant Garamond',serif;font-size:14.5px;font-weight:500;color:var(--text);line-height:1.45;}
+.sb-part{display:inline-block;margin-top:8px;background:var(--golddim);color:var(--gold2);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:3px 9px;}
+.sb-group{margin-bottom:4px;}
+.sb-group-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--text3);padding:10px 24px 4px;}
+.sb-link{display:block;padding:6px 24px;font-size:12.5px;color:var(--text2);text-decoration:none;border-left:2px solid transparent;transition:all .14s;line-height:1.4;}
+.sb-link:hover{color:var(--text);background:rgba(255,255,255,.03);}
+.sb-link.active{color:var(--gold2);border-left-color:var(--gold);background:rgba(192,152,58,.06);}
+.sb-back{display:block;padding:8px 24px;font-size:11.5px;color:var(--text3);text-decoration:none;font-family:'DM Mono',monospace;letter-spacing:.06em;transition:color .14s;}
+.sb-back:hover{color:var(--text2);}
+
+/* MAIN */
+.main{flex:1;overflow-x:hidden;min-width:0;}
+
+/* COVER */
+.cover{min-height:100vh;background:linear-gradient(155deg,#07090F 0%,#0C1018 45%,#07090F 100%);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:80px 88px;}
+.cover-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(24,30,44,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(24,30,44,.5) 1px,transparent 1px);background-size:64px 64px;pointer-events:none;}
+.cover-glow{position:absolute;top:-5%;right:-5%;width:700px;height:700px;background:radial-gradient(ellipse,rgba(192,152,58,.05) 0%,transparent 68%);pointer-events:none;}
+.cover-glow2{position:absolute;bottom:-10%;left:20%;width:500px;height:500px;background:radial-gradient(ellipse,rgba(56,148,106,.04) 0%,transparent 68%);pointer-events:none;}
+.cover-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;}
+.cover-title{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,5vw,68px);font-weight:300;line-height:1.1;color:var(--text);margin-bottom:6px;}
+.cover-title em{font-style:italic;color:var(--gold2);}
+.cover-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2vw,24px);font-style:italic;font-weight:300;color:var(--text2);margin-bottom:52px;line-height:1.45;}
+.cover-stats{display:grid;grid-template-columns:repeat(4,1fr);background:var(--border);border:1px solid var(--border);gap:1px;max-width:840px;margin-bottom:52px;}
+.c-stat{background:var(--bg3);padding:22px 26px;}
+.c-stat-v{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:var(--gold2);display:block;line-height:1;margin-bottom:4px;}
+.c-stat-l{font-family:'DM Mono',monospace;font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;line-height:1.4;}
+.cover-meta{display:flex;gap:36px;align-items:center;flex-wrap:wrap;}
+.c-meta-item{font-family:'DM Mono',monospace;font-size:10.5px;color:var(--text3);letter-spacing:.1em;}
+.c-meta-item span{color:var(--text2);}
+.cover-rule{height:1px;background:linear-gradient(90deg,var(--golddim) 0%,transparent 60%);max-width:840px;margin-bottom:32px;}
+
+/* SECTIONS */
+section{padding:80px 88px;border-bottom:1px solid var(--border);}
+section:nth-child(even){background:var(--bg2);}
+section:nth-child(odd){background:var(--bg);}
+.sec-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3vw,42px);font-weight:400;line-height:1.2;color:var(--text);margin-bottom:10px;}
+.sec-title em{font-style:italic;color:var(--gold2);}
+.sec-lead{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,1.5vw,20px);font-style:italic;color:var(--text2);margin-bottom:36px;line-height:1.55;max-width:68ch;border-left:2px solid var(--golddim);padding-left:20px;}
+h3{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:var(--text);margin:44px 0 16px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+h4{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin:28px 0 10px;}
+p{color:var(--text);margin-bottom:16px;max-width:75ch;}
+strong{color:var(--text);font-weight:600;}
+
+/* CALLOUTS */
+.callout{border-left:3px solid var(--gold);background:rgba(192,152,58,.06);padding:20px 24px;margin:28px 0;border-radius:0 3px 3px 0;}
+.callout.blue{border-left-color:var(--blue);background:rgba(61,130,176,.06);}
+.callout.green{border-left-color:var(--green);background:rgba(56,148,106,.06);}
+.callout.red{border-left-color:var(--red);background:rgba(188,56,56,.06);}
+.callout.teal{border-left-color:var(--teal);background:rgba(46,138,122,.06);}
+.cl-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.callout.blue .cl-label{color:var(--blue);}
+.callout.green .cl-label{color:var(--green);}
+.callout.red .cl-label{color:var(--red);}
+.callout.teal .cl-label{color:var(--teal);}
+.callout p{margin-bottom:0;font-size:14px;}
+
+/* PULL QUOTE */
+.pq{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.2vw,27px);font-style:italic;font-weight:300;color:var(--text2);line-height:1.5;border-top:1px solid var(--golddim);border-bottom:1px solid var(--golddim);padding:28px 0;margin:44px 0;max-width:70ch;}
+
+/* TABLES */
+.tw{overflow-x:auto;margin:28px 0;border:1px solid var(--border);}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+thead tr{background:var(--bg4);}
+th{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);padding:12px 16px;text-align:left;border-bottom:1px solid var(--border2);white-space:nowrap;}
+td{padding:11px 16px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(255,255,255,.018);}
+.mono{font-family:'DM Mono',monospace;font-size:12px;}
+.tgold{color:var(--gold2);font-weight:500;}
+.tgreen{color:var(--green);}
+.tblue{color:var(--blue);}
+.tred{color:var(--red);}
+.tamber{color:var(--amber);}
+.tteal{color:var(--teal);}
+.tdim{color:var(--text2);}
+
+/* BADGES */
+.badge{display:inline-block;padding:2px 8px;border-radius:2px;font-size:10px;font-family:'DM Mono',monospace;letter-spacing:.07em;text-transform:uppercase;}
+.bg-gold{background:var(--golddim);color:var(--gold2);}
+.bg-blue{background:var(--bluedim);color:var(--blue);}
+.bg-green{background:var(--greendim);color:var(--green);}
+.bg-red{background:var(--reddim);color:var(--red);}
+.bg-amber{background:rgba(194,112,48,.18);color:var(--amber);}
+.bg-teal{background:var(--tealdim);color:var(--teal);}
+.bg-muted{background:rgba(80,72,64,.22);color:var(--text2);}
+
+/* SCORE BAR */
+.sbar-wrap{display:flex;align-items:center;gap:8px;}
+.sbar{height:4px;background:var(--border2);border-radius:2px;flex:1;max-width:90px;overflow:hidden;}
+.sbar-fill{height:100%;border-radius:2px;}
+.snum{font-family:'DM Mono',monospace;font-size:12px;color:var(--gold2);min-width:28px;text-align:right;font-weight:500;}
+
+/* COMPANY CARDS */
+.cc{background:var(--bg3);border:1px solid var(--border);margin:24px 0;}
+.cc-head{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;background:var(--bg4);border-bottom:1px solid var(--border);}
+.cc-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--text);}
+.cc-body{padding:24px;}
+.cc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-bottom:20px;}
+.cc-metric{background:var(--bg);padding:16px 20px;}
+.ccm-v{font-family:'DM Mono',monospace;font-size:17px;color:var(--gold2);font-weight:500;display:block;margin-bottom:2px;}
+.ccm-l{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;}
+.cc-analysis{font-size:13.5px;color:var(--text2);line-height:1.7;margin:0;}
+.cc-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+.cc-row-item{background:var(--bg);border:1px solid var(--border);padding:14px 16px;}
+.cc-row-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);margin-bottom:6px;}
+.cc-row-text{font-size:13px;color:var(--text2);line-height:1.55;}
+.cc-barriers{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px;}
+
+/* BIG STATS */
+.big-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin:32px 0;}
+.bstat{background:var(--bg3);padding:28px 32px;}
+.bstat-v{font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:300;color:var(--gold2);line-height:1;display:block;margin-bottom:6px;}
+.bstat-l{font-size:13px;color:var(--text2);line-height:1.5;}
+
+/* INDIA ECOSYSTEM GRID */
+.eco-layer{margin-bottom:1px;}
+.eco-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);padding:10px 16px;background:var(--bg4);border:1px solid var(--border);border-bottom:none;}
+.eco-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
+.eco-card{background:var(--bg3);padding:18px;transition:background .15s;}
+.eco-card:hover{background:var(--bg4);}
+.eco-card-name{font-weight:600;font-size:13px;color:var(--text);margin-bottom:4px;}
+.eco-card-sub{font-size:11.5px;color:var(--text2);}
+.eco-card-ev{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);margin-top:6px;}
+
+/* COMPOUNDER CARDS */
+.comp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:28px 0;}
+.comp-card{background:var(--bg3);border:1px solid var(--border);padding:20px;}
+.comp-rank{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.comp-name{font-weight:600;font-size:15px;color:var(--text);margin-bottom:6px;}
+.comp-ticker{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);}
+.comp-tag{font-size:12.5px;color:var(--gold2);margin:8px 0 4px;font-weight:600;}
+.comp-why{font-size:13px;color:var(--text2);line-height:1.6;margin:0;}
+.comp-metrics{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap;}
+.comp-met{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);}
+.comp-met strong{color:var(--text2);}
+
+/* CYCLE QUADRANT */
+.quad{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin:28px 0;}
+.quad-cell{background:var(--bg3);padding:24px;min-height:180px;}
+.quad-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;}
+.quad-label.win{color:var(--green);}
+.quad-label.cyc{color:var(--blue);}
+.quad-label.trap{color:var(--red);}
+.quad-label.narr{color:var(--amber);}
+.quad-item{font-size:13px;color:var(--text2);padding:4px 0;border-bottom:1px solid var(--border);}
+.quad-item:last-child{border-bottom:none;}
+.quad-item strong{color:var(--text);font-weight:600;}
+
+/* THEME BARS */
+.theme-row{display:grid;grid-template-columns:28px 220px 1fr 100px;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--border);}
+.theme-row:last-child{border-bottom:none;}
+.th-num{font-family:'DM Mono',monospace;font-size:16px;color:var(--golddim);font-weight:500;}
+.th-name{font-weight:600;font-size:13px;color:var(--text);line-height:1.3;}
+.th-bar-wrap{position:relative;height:6px;background:var(--border2);border-radius:3px;overflow:hidden;}
+.th-bar{height:100%;border-radius:3px;}
+.th-score{font-family:'DM Mono',monospace;font-size:12px;color:var(--gold2);text-align:right;}
+
+/* TIMELINE */
+.timeline{margin:40px 0;position:relative;}
+.tl-line{position:absolute;left:160px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--golddim),var(--border));pointer-events:none;}
+.tl-item{display:grid;grid-template-columns:160px 32px 1fr;gap:0;align-items:start;margin-bottom:2px;}
+.tl-period{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);padding:20px 20px 20px 0;text-align:right;line-height:1.3;}
+.tl-dot{width:32px;display:flex;justify-content:center;padding-top:22px;}
+.tl-dot-inner{width:10px;height:10px;border-radius:50%;background:var(--golddim);border:2px solid var(--gold);position:relative;z-index:1;}
+.tl-dot-inner.active{background:var(--gold);box-shadow:0 0 12px rgba(192,152,58,.4);}
+.tl-content{background:var(--bg3);border:1px solid var(--border);padding:20px 24px;margin-left:20px;margin-bottom:12px;}
+.tl-phase{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.tl-head{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--text);margin-bottom:10px;}
+.tl-events{list-style:none;}
+.tl-events li{font-size:13px;color:var(--text2);padding:3px 0;border-bottom:1px solid var(--border);}
+.tl-events li:last-child{border-bottom:none;}
+.tl-events li::before{content:"→ ";color:var(--golddim);}
+
+/* DIVIDER */
+.divider{height:1px;background:linear-gradient(90deg,var(--golddim),transparent);margin:44px 0;}
+.stat-inline{font-family:'DM Mono',monospace;font-size:13px;color:var(--gold2);font-weight:500;}
+
+/* FINDINGS */
+.findings{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:28px 0;}
+.finding{background:var(--bg3);border:1px solid var(--border);padding:20px;border-radius:2px;}
+.finding-num{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.finding-text{font-size:13.5px;color:var(--text);line-height:1.65;margin:0;max-width:100%;}
+
+/* COMPARABLE TABLE */
+.comp-table{width:100%;}
+
+/* FINAL TABLE WRAPPER */
+.ft-wrap{overflow-x:auto;margin:28px 0;}
+.ft-table{border-collapse:collapse;font-size:12px;min-width:1100px;width:100%;}
+.ft-table thead tr{background:var(--bg4);}
+.ft-table th{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);padding:10px 12px;border-bottom:1px solid var(--border2);border-right:1px solid var(--border);white-space:nowrap;}
+.ft-table th:last-child{border-right:none;}
+.ft-table td{padding:10px 12px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);vertical-align:middle;}
+.ft-table td:last-child{border-right:none;}
+.ft-table tr:last-child td{border-bottom:none;}
+.ft-table tr:hover td{background:rgba(255,255,255,.016);}
+.ft-table .section-head td{background:var(--bg4);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);padding:8px 12px;border-top:2px solid var(--golddim);}
+
+/* PROBABILITY PILL */
+.prob{font-family:'DM Mono',monospace;font-size:10px;padding:3px 8px;border-radius:2px;white-space:nowrap;}
+.prob-h{background:var(--greendim);color:var(--green);}
+.prob-m{background:rgba(194,112,48,.18);color:var(--amber);}
+.prob-l{background:var(--reddim);color:var(--red);}
+
+/* INDIA FLAG ACCENT */
+.india-badge{display:inline-flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);}
+.india-badge::before{content:"🇮🇳";font-size:12px;}
+
+/* RESPONSIVE */
+@media(max-width:1140px){
+  .sidebar{width:230px;min-width:230px;}
+  section,.cover{padding:64px 48px;}
+  .cover-stats{grid-template-columns:repeat(2,1fr);}
+  .big-stats{grid-template-columns:repeat(2,1fr);}
+  .cc-grid{grid-template-columns:repeat(2,1fr);}
+  .comp-grid{grid-template-columns:1fr;}
+  .eco-grid{grid-template-columns:repeat(2,1fr);}
+  .findings{grid-template-columns:1fr;}
+  .theme-row{grid-template-columns:28px 180px 1fr 80px;}
+  .tl-item{grid-template-columns:130px 32px 1fr;}
+  .tl-line{left:130px;}
+}
+@media(max-width:860px){
+  body{flex-direction:column;}
+  .sidebar{width:100%;min-width:100%;height:auto;position:relative;}
+  section,.cover{padding:48px 24px;}
+  .eco-grid{grid-template-columns:1fr 1fr;}
+  .cc-grid{grid-template-columns:repeat(2,1fr);}
+  .tl-item{grid-template-columns:1fr;}
+  .tl-line{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sb-brand">
+    <div class="sb-series">Institutional Research Series</div>
+    <div class="sb-title">The Global Automotive Super-Cycle &amp; India's Auto Technology Ecosystem</div>
+    <div class="sb-part">Part II of II</div>
+  </div>
+  <a class="sb-back" href="automotive_supercycle_part1.html">← Back to Part I</a>
+
+  <div class="sb-group">
+    <div class="sb-group-label">Chapter 6–7 · Framework</div>
+    <a class="sb-link" href="#ch6">The ASML Framework &amp; Scores</a>
+    <a class="sb-link" href="#ch7">Future Automotive Toll Booths</a>
+  </div>
+  <div class="sb-group">
+    <div class="sb-group-label">Chapter 8–9 · India</div>
+    <a class="sb-link" href="#ch8">India's Automotive Opportunity</a>
+    <a class="sb-link" href="#ch9">India Ecosystem Map</a>
+    <a class="sb-link" href="#ch9-oem">OEM Layer</a>
+    <a class="sb-link" href="#ch9-comp">Component Layer</a>
+    <a class="sb-link" href="#ch9-sw">Software Layer</a>
+    <a class="sb-link" href="#ch9-batt">Battery &amp; Power Layer</a>
+  </div>
+  <div class="sb-group">
+    <div class="sb-group-label">Chapter 10 · Compounders</div>
+    <a class="sb-link" href="#ch10">India Hidden Compounder Hunt</a>
+    <a class="sb-link" href="#ch10-small">Top 25 Small-Cap</a>
+    <a class="sb-link" href="#ch10-mid">Top 15 Mid-Cap</a>
+  </div>
+  <div class="sb-group">
+    <div class="sb-group-label">Chapter 11 · Deep Dives</div>
+    <a class="sb-link" href="#dd-kpit">KPIT Technologies</a>
+    <a class="sb-link" href="#dd-elxsi">Tata Elxsi</a>
+    <a class="sb-link" href="#dd-sona">Sona BLW Precision</a>
+    <a class="sb-link" href="#dd-bharat">Bharat Forge</a>
+    <a class="sb-link" href="#dd-motherson">Motherson Sumi</a>
+    <a class="sb-link" href="#dd-schaeffler">Schaeffler India</a>
+    <a class="sb-link" href="#dd-rkforge">Ramkrishna Forgings</a>
+    <a class="sb-link" href="#dd-subros">Subros</a>
+  </div>
+  <div class="sb-group">
+    <div class="sb-group-label">Chapter 12–14 · Analysis</div>
+    <a class="sb-link" href="#ch12">Capital Cycle Analysis</a>
+    <a class="sb-link" href="#ch13">Global Comparable Analysis</a>
+    <a class="sb-link" href="#ch14">India's Next Auto Champions</a>
+  </div>
+  <div class="sb-group">
+    <div class="sb-group-label">Chapter 15 · Verdict</div>
+    <a class="sb-link" href="#ch15">Final Investment Verdict</a>
+  </div>
+  <div class="sb-group">
+    <div class="sb-group-label">Special Sections</div>
+    <a class="sb-link" href="#themes">Top 10 Themes Ranked</a>
+    <a class="sb-link" href="#final-table">Final Scoring Table</a>
+    <a class="sb-link" href="#conclusion">2025–2045 Roadmap</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- COVER -->
+<section class="cover" id="cover" style="border-bottom:1px solid var(--border);">
+  <div class="cover-grid"></div>
+  <div class="cover-glow"></div>
+  <div class="cover-glow2"></div>
+  <div class="cover-eyebrow">Institutional Investment Research &nbsp;·&nbsp; Part II of II &nbsp;·&nbsp; Q2 2025</div>
+  <h1 class="cover-title">India's <em>Automotive</em><br>Ecosystem &amp; the<br>2045 <em>Roadmap</em></h1>
+  <p class="cover-sub">Hidden Compounders · Future Toll Booths · Capital Cycles · The 20-Year Wealth Creation Map</p>
+  <div class="cover-rule"></div>
+  <div class="cover-stats">
+    <div class="c-stat"><span class="c-stat-v">$60B</span><span class="c-stat-l">India auto component<br>industry FY2024</span></div>
+    <div class="c-stat"><span class="c-stat-v">$100B+</span><span class="c-stat-l">India component industry<br>target by 2026–27</span></div>
+    <div class="c-stat"><span class="c-stat-v">25</span><span class="c-stat-l">Hidden small-cap<br>compounders identified</span></div>
+    <div class="c-stat"><span class="c-stat-v">2045</span><span class="c-stat-l">Probabilistic roadmap<br>horizon</span></div>
+  </div>
+  <div class="cover-meta">
+    <div class="c-meta-item">CLASSIFICATION &nbsp;<span>Institutional Research</span></div>
+    <div class="c-meta-item">CONTINUES &nbsp;<span>From Part I</span></div>
+    <div class="c-meta-item">HORIZON &nbsp;<span>2025 — 2045</span></div>
+    <div class="c-meta-item">PART &nbsp;<span>II of II — India, Compounders &amp; Final Verdicts</span></div>
+  </div>
+</section>
+
+<!-- ══════════════════ CHAPTER 6: ASML FRAMEWORK ══════════════════ -->
+<section id="ch6">
+  <div class="sec-tag">Chapter Six</div>
+  <h2 class="sec-title">The <em>ASML Framework</em></h2>
+  <p class="sec-lead">If this company disappeared tomorrow, would vehicle production stop? Would OEMs spend 18 months rebuilding a replacement? Would the entire ecosystem have to be redesigned? The companies that score highest on these questions are the ones most worthy of long-duration capital.</p>
+
+  <p>The ASML of semiconductors is not remarkable because its machines are large or expensive — it is remarkable because every advanced logic chip on earth requires its EUV lithography systems, and replicating them would take a competitor approximately fifteen years and $50B+. The ASML Score framework applies this same lens to the automotive supply chain: how irreplaceable is each firm, and how long and expensive would replacement be?</p>
+
+  <p>The scoring rubric assigns 0–10 across four factors, equally weighted: <strong>Criticality</strong> (what halts if this firm disappears?), <strong>Technology Depth</strong> (how many years of R&amp;D investment is embedded?), <strong>Replication Difficulty</strong> (cost in time and capital to duplicate), and <strong>Customer Dependence</strong> (how asymmetric is the relationship — does the OEM need the supplier more than vice versa?).</p>
+
+  <div class="tw">
+    <table>
+      <thead>
+        <tr><th>Company</th><th>Irreplaceable Bottleneck</th><th>Criticality</th><th>Tech Depth</th><th>Replication</th><th>Cust. Depend.</th><th>ASML Score</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>NVIDIA</strong><span style="display:block;font-size:11px;color:var(--text3);">DRIVE Orin / Thor</span></td>
+          <td class="tdim">ADAS AI SoC + complete software ecosystem; no commercial L3 vehicle ships without NVIDIA or an equivalent that doesn't exist</td>
+          <td class="mono tgold">10</td><td class="mono tgold">9</td><td class="mono tgold">9</td><td class="mono tgold">10</td>
+          <td>
+            <div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:96%;background:var(--gold);"></div></div><span class="snum">9.5</span></div>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Mobileye</strong><span style="display:block;font-size:11px;color:var(--text3);">EyeQ Series + REM</span></td>
+          <td class="tdim">70% global ADAS design share; platform lock-in comparable to Windows in PCs; REM mapping network creates irreplaceable data flywheel</td>
+          <td class="mono tgold">9</td><td class="mono tgold">9</td><td class="mono tgold">9</td><td class="mono tgold">9</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:90%;background:var(--gold);"></div></div><span class="snum">9.0</span></div></td>
+        </tr>
+        <tr>
+          <td><strong>TSMC</strong><span style="display:block;font-size:11px;color:var(--text3);">Automotive Foundry</span></td>
+          <td class="tdim">Sole manufacturer of advanced automotive logic nodes; every major ADAS SoC is fabricated at TSMC; Taiwan concentration = systemic geopolitical risk</td>
+          <td class="mono tgold">9</td><td class="mono tgold">10</td><td class="mono tgold">10</td><td class="mono tgold">8</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:93%;background:var(--gold);"></div></div><span class="snum">9.2</span></div></td>
+        </tr>
+        <tr>
+          <td><strong>Wolfspeed</strong><span style="display:block;font-size:11px;color:var(--text3);">SiC Substrate</span></td>
+          <td class="tdim">World's largest SiC crystal grower; 1.5 inches/day growth rate physically constrains global EV inverter supply; multi-year OEM supply agreements in place</td>
+          <td class="mono tgold">9</td><td class="mono tgold">9</td><td class="mono tgold">10</td><td class="mono tamber">7</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:88%;background:var(--gold);"></div></div><span class="snum">8.8</span></div></td>
+        </tr>
+        <tr>
+          <td><strong>Sony Semiconductor</strong><span style="display:block;font-size:11px;color:var(--text3);">Automotive CMOS</span></td>
+          <td class="tdim">60%+ global market share in automotive image sensors; Pregius/IMX series process IP is 8–10 years ahead of any competitor; every camera-based ADAS system runs on Sony silicon</td>
+          <td class="mono tgold">9</td><td class="mono tgold">9</td><td class="mono tgold">9</td><td class="mono tamber">7</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:85%;background:var(--gold);"></div></div><span class="snum">8.5</span></div></td>
+        </tr>
+        <tr>
+          <td><strong>BlackBerry QNX</strong><span style="display:block;font-size:11px;color:var(--text3);">Automotive RTOS</span></td>
+          <td class="tdim">Runs in 255M+ vehicles on road today; RTOS with ASIL-D certification that took 15+ years to accumulate; Google, Linux, and VxWorks compete but none has QNX's automotive safety track record depth</td>
+          <td class="mono tgold">8</td><td class="mono tgold">9</td><td class="mono tgold">8</td><td class="mono tgold">9</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:85%;background:var(--gold);"></div></div><span class="snum">8.5</span></div></td>
+        </tr>
+        <tr>
+          <td><strong>Infineon Technologies</strong><span style="display:block;font-size:11px;color:var(--text3);">MCU + SiC + Radar</span></td>
+          <td class="tdim">Bottleneck positions in three categories simultaneously: AURIX MCU (35% share), CoolSiC power devices, and 77GHz radar chipsets for every European OEM</td>
+          <td class="mono tgold">8</td><td class="mono tgold">8</td><td class="mono tgold">8</td><td class="mono tgold">8</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:80%;background:var(--gold);"></div></div><span class="snum">8.0</span></div></td>
+        </tr>
+        <tr>
+          <td><strong>NXP Semiconductors</strong><span style="display:block;font-size:11px;color:var(--text3);">S32 + CAN/Ethernet</span></td>
+          <td class="tdim">Dominant in automotive networking silicon (CAN-FD, 100/1000BASE-T1) and zone controller processors; S32 platform is the reference architecture for SDV transition</td>
+          <td class="mono tgold">8</td><td class="mono tamber">7</td><td class="mono tgold">8</td><td class="mono tgold">9</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:80%;background:var(--gold);"></div></div><span class="snum">8.0</span></div></td>
+        </tr>
+        <tr>
+          <td><strong>Renesas Electronics</strong><span style="display:block;font-size:11px;color:var(--text3);">Auto MCU Leader</span></td>
+          <td class="tdim">36% global auto MCU market share; deeply embedded in powertrain and body ECU designs; R-Car SoC platform for infotainment and ADAS growing share</td>
+          <td class="mono tgold">8</td><td class="mono tamber">7</td><td class="mono tamber">7</td><td class="mono tgold">8</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:75%;background:var(--amber);"></div></div><span class="snum">7.5</span></div></td>
+        </tr>
+        <tr>
+          <td><strong>CATL</strong><span style="display:block;font-size:11px;color:var(--text3);">Battery Cell + CTP</span></td>
+          <td class="tdim">37% global EV battery market share; CTP architecture and Kirin battery design are proprietary; long-term OEM supply agreements effectively lock in volume</td>
+          <td class="mono tgold">8</td><td class="mono tamber">7</td><td class="mono tamber">7</td><td class="mono tamber">7</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:73%;background:var(--amber);"></div></div><span class="snum">7.5</span></div></td>
+        </tr>
+        <tr>
+          <td><strong>Asahi Kasei</strong><span style="display:block;font-size:11px;color:var(--text3);">Battery Separator</span></td>
+          <td class="tdim">Effectively a global duopolist (with Toray) in high-quality wet-process battery separators; ceramic-coated PE separator IP is critical for thermal safety in high-energy-density cells</td>
+          <td class="mono tamber">7</td><td class="mono tgold">8</td><td class="mono tgold">8</td><td class="mono tamber">6</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:73%;background:var(--amber);"></div></div><span class="snum">7.3</span></div></td>
+        </tr>
+        <tr>
+          <td><strong class="india-badge">KPIT Technologies</strong></td>
+          <td class="tdim">AUTOSAR Adaptive + EV powertrain software; 3,000+ AUTOSAR engineers globally (scarce talent), deeply integrated in OEM software architectures</td>
+          <td class="mono tamber">6</td><td class="mono tgold">8</td><td class="mono tamber">7</td><td class="mono tgold">8</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:73%;background:var(--teal);"></div></div><span class="snum tblue">7.3</span></div></td>
+        </tr>
+        <tr>
+          <td><strong class="india-badge">Tata Elxsi</strong></td>
+          <td class="tdim">Digital cockpit + ADAS integration design capability; one of &lt;5 global firms that can do full-stack SDV product design from architecture to production</td>
+          <td class="mono tamber">6</td><td class="mono tamber">7</td><td class="mono tamber">7</td><td class="mono tgold">8</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:70%;background:var(--teal);"></div></div><span class="snum tblue">7.0</span></div></td>
+        </tr>
+        <tr>
+          <td><strong class="india-badge">Schaeffler India</strong></td>
+          <td class="tdim">EV motor bearings (insulated hybrid bearings) + global Schaeffler parent technology pipeline for e-axle and thermal management components</td>
+          <td class="mono tamber">6</td><td class="mono tamber">7</td><td class="mono tamber">7</td><td class="mono tamber">6</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:65%;background:var(--teal);"></div></div><span class="snum tblue">6.5</span></div></td>
+        </tr>
+        <tr>
+          <td><strong class="india-badge">Sona BLW Precision</strong></td>
+          <td class="tdim">EV differential gear assemblies + BLDC motor systems; precision manufacturing moat + growing EV motor engineering capability</td>
+          <td class="mono tamber">5</td><td class="mono tamber">7</td><td class="mono tamber">6</td><td class="mono tamber">6</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:60%;background:var(--teal);"></div></div><span class="snum tblue">6.0</span></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout teal">
+    <div class="cl-label">India ASML Score Interpretation</div>
+    <p>Indian companies currently score 6.0–7.3 on this framework — meaningful but not yet in the 8.0+ territory of global bottleneck monopolists. This gap is not a reason to dismiss them; it is the <em>investment opportunity</em>. Companies moving from 6.0 to 7.5 on this scale — through technology deepening, ecosystem building, and qualification accumulation — are on a path toward becoming genuine global automotive toll booths. The journey from 6.0 to 8.0 is where the most durable investment returns are generated.</p>
+  </div>
+</section>
+
+<!-- ══════════════════ CHAPTER 7: TOLL BOOTHS ══════════════════ -->
+<section id="ch7">
+  <div class="sec-tag">Chapter Seven</div>
+  <h2 class="sec-title">Future Automotive <em>Toll Booths</em></h2>
+  <p class="sec-lead">History shows that every technology mega-cycle creates 5–10 companies that become permanent toll booths — firms through which every market participant must pass indefinitely. The automotive super-cycle will be no different.</p>
+
+  <p>A toll booth company possesses three simultaneous properties: it serves a function that is <strong>structural</strong> (required by the architecture of the system, not optional), it has <strong>no viable near-term substitute</strong> (the cost of switching is prohibitive), and it <strong>sits between a large paying population and something they need</strong>. In payments, that is Visa and Mastercard between merchants and consumers. In semiconductors, it is TSMC between chip designers and the physical world. In automotive, the next generation of toll booths is already forming.</p>
+
+  <div class="findings">
+    <div class="finding">
+      <div class="finding-num">NVIDIA of Automotive</div>
+      <p class="finding-text"><strong>NVIDIA DRIVE</strong> — already arrived. DRIVE Orin/Thor is the de facto AI compute platform for L2+ and above. The CUDA software stack, DriveWorks SDK, and DRIVE Sim simulation environment create a platform moat that deepens every year as more OEM teams build their stacks on NVIDIA's abstractions. Every ADAS validation framework, every simulation library, every developer hired in the next five years will reinforce this standard.</p>
+    </div>
+    <div class="finding">
+      <div class="finding-num">ASML of ADAS Vision</div>
+      <p class="finding-text"><strong>Mobileye</strong> — the closest existing automotive bottleneck to ASML's role in semiconductors. 70% ADAS design share with 18–36 month switching cycles, the REM mapping network as a data flywheel, and SuperVision + Chauffeur extending reach into the highest-value ADAS tiers. No competing platform offers equivalent production-validated scale.</p>
+    </div>
+    <div class="finding">
+      <div class="finding-num">Microsoft of Automotive OS</div>
+      <p class="finding-text"><strong>BlackBerry QNX</strong> — embedded in 255M+ vehicles, with an ASIL-D certified RTOS track record that no alternative OS can match in the near term. The transition to Adaptive AUTOSAR on Linux-based systems creates a potential disruption risk, but QNX's safety certification depth and OEM relationships make displacement a multi-decade, not multi-year, process.</p>
+    </div>
+    <div class="finding">
+      <div class="finding-num">ASML of SiC</div>
+      <p class="finding-text"><strong>Wolfspeed</strong> — the physical constraint on global EV traction inverter supply. Crystal growth physics cannot be circumvented with capital. The 200mm wafer transition extends Wolfspeed's technology lead for another 5–8 years. Infineon and ON Semi are viable #2/#3 suppliers but cannot displace Wolfspeed's substrate position without matching its 15+ year materials science depth.</p>
+    </div>
+    <div class="finding">
+      <div class="finding-num">Toll Booth — Automotive Vision</div>
+      <p class="finding-text"><strong>Sony Semiconductor</strong> — 60%+ of every automotive camera-based ADAS system runs on Sony image sensors. The pixel-level sensitivity, dynamic range, and NIR performance of the Pregius/IMX series represents 8–10 years of process advantage. The only credible threat is Samsung Semiconductor or OmniVision, and both remain multiple generations behind in automotive-specific process technology.</p>
+    </div>
+    <div class="finding">
+      <div class="finding-num">Emerging India Toll Booth</div>
+      <p class="finding-text"><strong>KPIT Technologies + Tata Elxsi</strong> — jointly and separately, these firms are building toward a toll-booth position in automotive software design and integration in India. As India's domestic EV market scales and Indian OEMs (Tata, Mahindra, Ola) require deep software capability, KPIT and Tata Elxsi become the mandatory pass-through layer for automotive software development in the world's third-largest car market.</p>
+    </div>
+  </div>
+
+  <div class="pq">"The most valuable real estate in the automotive supply chain is not a factory floor — it is the abstraction layer that every vehicle's software must pass through. Own the abstraction, own the toll booth."</div>
+</section>
+
+<!-- ══════════════════ CHAPTER 8: INDIA ══════════════════ -->
+<section id="ch8">
+  <div class="sec-tag">Chapter Eight</div>
+  <h2 class="sec-title">India's Automotive <em>Opportunity</em></h2>
+  <p class="sec-lead">India stands at the intersection of four simultaneous tailwinds: a booming domestic market, an engineering talent pool unmatched in cost-to-quality ratio, a global supply chain diversification wave away from China, and a government willing to deploy capital-scale incentives to attract automotive investment.</p>
+
+  <p>India's auto component industry generated approximately <span class="stat-inline">$60B</span> in revenue in FY2024, targeting <span class="stat-inline">$100B+</span> by 2026–27, with exports of approximately <span class="stat-inline">$21B</span>. The domestic automotive market produces approximately <span class="stat-inline">4.4M passenger vehicles</span>, <span class="stat-inline">2.1M commercial vehicles</span>, and <span class="stat-inline">14M+ two-wheelers</span> annually — making India the world's third-largest vehicle market by volume, and the world's largest by two-wheeler volume. As EV penetration ramps — two-wheeler EV penetration has crossed 5% and is accelerating — the component ecosystem must simultaneously maintain its ICE-serving capability and invest to build EV-serving capability. This creates a brutal but commercially rich transition.</p>
+
+  <div class="big-stats">
+    <div class="bstat"><span class="bstat-v">$21B</span><span class="bstat-l">India's annual auto component exports (FY2024), targeting $30B+ by 2027</span></div>
+    <div class="bstat"><span class="bstat-v">1.5M</span><span class="bstat-l">Engineering graduates per year — the world's largest qualified automotive engineering talent pool by cost</span></div>
+    <div class="bstat"><span class="bstat-v">30–50%</span><span class="bstat-l">Cost advantage vs. Western suppliers for equivalent precision component quality, creating structural export competitiveness</span></div>
+  </div>
+
+  <h3>The Six Structural Advantages India Brings to the Global Automotive Supply Chain</h3>
+
+  <h4>1. Engineering Talent at Scale and Cost</h4>
+  <p>India produces approximately 1.5 million engineering graduates annually, a significant proportion of whom pursue careers in automotive, embedded systems, and precision manufacturing. The cost differential versus German or US engineers — the dominant geographies for incumbent Tier 1 suppliers — remains approximately 30–50% for equivalent quality, even after adjusting for productivity and management overhead. For automotive software specifically, India's engineering talent pool is unique: KPIT Technologies alone employs more AUTOSAR engineers than any single firm outside Germany. This is a structural, not cyclical, advantage.</p>
+
+  <h4>2. Supply Chain Diversification Wave</h4>
+  <p>The COVID-19 pandemic exposed the fragility of China-concentrated automotive supply chains. Every major OEM — Toyota, VW, GM, Ford, Stellantis — has publicly committed to supply chain diversification. India is the only country that simultaneously offers: comparable manufacturing cost, English-language engineering capability, a democratic legal framework, a large domestic market anchoring investment, and government support for export-oriented manufacturing. China+1 is now China+India for most automotive procurement teams.</p>
+
+  <h4>3. Government Incentive Architecture</h4>
+  <p>The Production Linked Incentive (PLI) schemes for advanced chemistry cells (<span class="stat-inline">₹18,100Cr</span>), auto components (<span class="stat-inline">₹25,938Cr</span>), and electronics manufacturing create direct financial incentives for suppliers to invest in India. The National Electric Mobility Mission and FAME-II scheme subsidise EV adoption, accelerating the domestic demand base that justifies supplier investment. India is, for the first time, deploying state support for automotive manufacturing at a scale competitive with China's industrial policy.</p>
+
+  <h4>4. Domestic Market as Investment Anchor</h4>
+  <p>The 14M+ two-wheeler market is already the world's largest and is transitioning to electric at an accelerating rate. The passenger vehicle market, currently dominated by Maruti, Tata, and Hyundai, is growing toward 5–6M units by 2030. This domestic demand base provides the initial volume that makes supplier investment economical, with export volumes providing the additional utilisation that drives returns. Suppliers like Subros, Minda, and Endurance serve 100% of their initial Indian OEM base before exporting — a commercially lower-risk path than export-only models.</p>
+
+  <h4>5. Climate Creates Unique Thermal and Battery Testing Capability</h4>
+  <p>India's extreme climate diversity — extreme summer heat (45°C+), monsoon humidity, cool winters in the North — creates unique testing conditions for EV batteries and thermal management systems. Companies that develop solutions for India's climate are automatically developing solutions for Southeast Asia, Africa, and the Middle East — markets that global Tier 1 suppliers, designed for European and North American conditions, have addressed less thoroughly. This creates an "India-as-laboratory" advantage for thermal and battery system suppliers.</p>
+
+  <h4>6. Growing Precision Manufacturing Ecosystem</h4>
+  <p>India's precision component industry — led by Bharat Forge, Ramkrishna Forgings, Craftsman Automation, Sona BLW, and others — has spent 20–30 years building quality systems (TS16949 certification, AEC-Q compliance equivalent for mechanical components) that meet the exacting standards of global OEM and Tier 1 procurement teams. This is the highest barrier to entry in component manufacturing — the paper trail of qualification history that takes decades to accumulate. India's established component makers have it; new entrants from manufacturing-frontier countries do not.</p>
+
+  <div class="callout green">
+    <div class="cl-label">Strategic Positioning</div>
+    <p>India's largest export opportunity in the next decade is not at the top of the value chain (semiconductor design) or at the bottom (raw materials) — it is in the <strong>precision manufacturing, software services, and system integration middle tier</strong> where India's combination of engineering talent, cost structure, existing qualification history, and government support creates a genuine sustainable competitive advantage. The firms that will compound the most are those that use this advantage to climb up the value ladder from components to systems to software-embedded systems.</p>
+  </div>
+</section>
+
+<!-- ══════════════════ CHAPTER 9: INDIA ECOSYSTEM MAP ══════════════════ -->
+<section id="ch9">
+  <div class="sec-tag">Chapter Nine</div>
+  <h2 class="sec-title">India Automotive <em>Ecosystem Map</em></h2>
+  <p class="sec-lead">From OEM assemblers to sub-Tier-3 specialists, India's automotive ecosystem spans 7 layers and over 10,000 registered component manufacturers. Value, margins, and moats are not evenly distributed across them.</p>
+</section>
+
+<section id="ch9-oem">
+  <div class="sec-tag">Chapter Nine — OEM Layer</div>
+  <h2 class="sec-title" style="font-size:28px;">OEM Layer</h2>
+  <div class="eco-layer">
+    <div class="eco-label">Passenger Vehicle OEMs</div>
+    <div class="eco-grid">
+      <div class="eco-card"><div class="eco-card-name">Maruti Suzuki</div><div class="eco-card-sub">~41% PV market share, Suzuki EV partnership</div><div class="eco-card-ev">EV: 2% currently; EVX launch 2025</div></div>
+      <div class="eco-card"><div class="eco-card-name">Tata Motors</div><div class="eco-card-sub">India's #1 EV OEM, JLR globally</div><div class="eco-card-ev">EV: ~85% of Nexon sales are EV</div></div>
+      <div class="eco-card"><div class="eco-card-name">Mahindra &amp; Mahindra</div><div class="eco-card-sub">UV-focused; BE.05, BE.07 EV range</div><div class="eco-card-ev">EV: Accelerating with ₹8,000Cr EV capex</div></div>
+      <div class="eco-card"><div class="eco-card-name">Hyundai India</div><div class="eco-card-sub">Creta EV, IONIQ 5; parent invests $2.5B India</div><div class="eco-card-ev">EV: 5% of India sales, growing</div></div>
+    </div>
+  </div>
+  <div class="eco-layer" style="margin-top:16px;">
+    <div class="eco-label">Two-Wheeler &amp; Three-Wheeler EV OEMs</div>
+    <div class="eco-grid">
+      <div class="eco-card"><div class="eco-card-name">Ola Electric</div><div class="eco-card-sub">Largest EV 2W, Futurefactory automation</div><div class="eco-card-ev">EV: 100% — vertical integration target</div></div>
+      <div class="eco-card"><div class="eco-card-name">Ather Energy</div><div class="eco-card-sub">Premium 2W EV, IPO 2025</div><div class="eco-card-ev">EV: 100% — premium differentiated</div></div>
+      <div class="eco-card"><div class="eco-card-name">TVS Motor</div><div class="eco-card-sub">iQube EV range, strong execution</div><div class="eco-card-ev">EV: 7%+ of 2W revenue growing</div></div>
+      <div class="eco-card"><div class="eco-card-name">Bajaj Auto</div><div class="eco-card-sub">Chetak EV, 3W dominance</div><div class="eco-card-ev">EV: Chetak growing; 3W export champion</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="ch9-comp">
+  <div class="sec-tag">Chapter Nine — Component Layer</div>
+  <h2 class="sec-title" style="font-size:28px;">Component Layer</h2>
+  <div class="eco-layer">
+    <div class="eco-label">Tier 1 Component Suppliers</div>
+    <div class="eco-grid">
+      <div class="eco-card"><div class="eco-card-name">Motherson Sumi Intl.</div><div class="eco-card-sub">Wiring harnesses, mirrors, modules — global Tier 1</div><div class="eco-card-ev">EV harness content growing; global JVs</div></div>
+      <div class="eco-card"><div class="eco-card-name">Bharat Forge</div><div class="eco-card-sub">Precision forgings; defense; industrials</div><div class="eco-card-ev">EV structural forgings + defense pivot</div></div>
+      <div class="eco-card"><div class="eco-card-name">Uno Minda</div><div class="eco-card-sub">Switches, lighting, acoustic systems, ADAS</div><div class="eco-card-ev">ADAS sensor content increasing; LED shift</div></div>
+      <div class="eco-card"><div class="eco-card-name">Bosch India</div><div class="eco-card-sub">Powertrain, ADAS, 2W fuel systems</div><div class="eco-card-ev">Transitioning ICE→EV powertrain</div></div>
+      <div class="eco-card"><div class="eco-card-name">Sona BLW Precision</div><div class="eco-card-sub">Differential gears + EV BLDC motors</div><div class="eco-card-ev">35%+ EV revenue; accelerating globally</div></div>
+      <div class="eco-card"><div class="eco-card-name">Endurance Technologies</div><div class="eco-card-sub">Die castings, brakes, suspension — 2W focus</div><div class="eco-card-ev">ABS/CBS regulatory tailwind; EV castings</div></div>
+      <div class="eco-card"><div class="eco-card-name">Schaeffler India</div><div class="eco-card-sub">Bearings, clutch, linear motion</div><div class="eco-card-ev">EV motor bearings; e-axle components</div></div>
+      <div class="eco-card"><div class="eco-card-name">Subros</div><div class="eco-card-sub">Thermal / HVAC systems — Denso JV</div><div class="eco-card-ev">EV battery thermal management pipeline</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="ch9-sw">
+  <div class="sec-tag">Chapter Nine — Software Layer</div>
+  <h2 class="sec-title" style="font-size:28px;">Software Layer</h2>
+  <p>India's automotive software layer is the highest-ROIC, most globally competitive tier of its entire automotive ecosystem. The combination of deep automotive domain expertise, large qualified talent pools, and significantly lower cost structures than European and US competitors creates a structural export opportunity that is compounding annually.</p>
+  <div class="eco-layer">
+    <div class="eco-label">Pure-Play Automotive Software</div>
+    <div class="eco-grid">
+      <div class="eco-card"><div class="eco-card-name">KPIT Technologies</div><div class="eco-card-sub">AUTOSAR, EV powertrain SW, ADAS integration</div><div class="eco-card-ev">100% automotive; 3,000+ AUTOSAR engineers</div></div>
+      <div class="eco-card"><div class="eco-card-name">Tata Elxsi</div><div class="eco-card-sub">Design + embedded + digital cockpit + ADAS</div><div class="eco-card-ev">~40% auto; 30%+ EBITDA margins</div></div>
+      <div class="eco-card"><div class="eco-card-name">L&amp;T Technology Services</div><div class="eco-card-sub">Engineering services, EV testing, ADAS validation</div><div class="eco-card-ev">~25% auto revenue; growing EV testing</div></div>
+      <div class="eco-card"><div class="eco-card-name">Infosys / TCS / HCL</div><div class="eco-card-sub">Large-scale automotive IT + connected vehicle</div><div class="eco-card-ev">Telematics, fleet management, OTA</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="ch9-batt">
+  <div class="sec-tag">Chapter Nine — Battery &amp; Power Layer</div>
+  <h2 class="sec-title" style="font-size:28px;">Battery &amp; Power Electronics Layer</h2>
+  <p>India's battery layer remains nascent in cell chemistry but is building rapidly in BMS software, battery assembly, and lithium-ion cell localisation. The PLI scheme for Advanced Chemistry Cell manufacturing (₹18,100Cr) is the primary policy lever. In power electronics, the opportunity is clear — EV inverter and converter manufacturing requires precisely the precision machining and electronics assembly capability that India's component ecosystem already possesses.</p>
+  <div class="eco-layer">
+    <div class="eco-label">Battery &amp; Energy Storage</div>
+    <div class="eco-grid">
+      <div class="eco-card"><div class="eco-card-name">Exide Industries</div><div class="eco-card-sub">Lead-acid dominant; Li-ion JV with SVOLT</div><div class="eco-card-ev">Transitioning; ₹6,000Cr Li-ion investment</div></div>
+      <div class="eco-card"><div class="eco-card-name">Amara Raja</div><div class="eco-card-sub">Lead-acid + Li-ion technology partnership (Gotion)</div><div class="eco-card-ev">Andhra Pradesh gigafactory planned</div></div>
+      <div class="eco-card"><div class="eco-card-name">Ola Electric Cells</div><div class="eco-card-sub">Cell manufacturing ambition; Gigafactory Bharat</div><div class="eco-card-ev">4680-style cylindrical cells targeted</div></div>
+      <div class="eco-card"><div class="eco-card-name">Reliance / Faradion</div><div class="eco-card-sub">Sodium-ion battery acquisition; differentiated chemistry</div><div class="eco-card-ev">Na-ion commercial vehicle application</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CHAPTER 10: COMPOUNDER HUNT ══════════════════ -->
+<section id="ch10">
+  <div class="sec-tag">Chapter Ten</div>
+  <h2 class="sec-title">India Hidden <em>Compounder Hunt</em></h2>
+  <p class="sec-lead">Institutional capital follows the obvious names. The most durable returns are found before the crowd arrives — in firms whose bottleneck positions, ROIC trajectories, and EV linkages have not yet been fully priced by the market.</p>
+  <p>The following selections apply strict criteria: the firm must have a <strong>genuine technology or qualification moat</strong> (not merely a cost advantage), must be <strong>benefiting from at least one of the nine convergent forces</strong> identified in Part I, must demonstrate <strong>ROCE above 15%</strong> with a credible trajectory higher, and must represent a <strong>differentiated investment thesis</strong> that the majority of sell-side coverage has not articulated. Pure narrative plays — companies that announced "EV strategy" without genuine product transition — are excluded.</p>
+</section>
+
+<section id="ch10-small">
+  <div class="sec-tag">Chapter Ten — Top 25 Hidden Small-Cap Compounders</div>
+  <h2 class="sec-title" style="font-size:28px;">Top 25 Hidden Small-Cap Compounders <span style="font-size:16px;color:var(--text3)">(India · &lt;₹10,000Cr Market Cap)</span></h2>
+
+  <div class="comp-grid">
+    <div class="comp-card">
+      <div class="comp-rank">Compounder 01</div>
+      <div class="comp-name">Sona BLW Precision (SONACOMS)</div>
+      <div class="comp-ticker">NSE: SONACOMS · ₹25,000–30,000Cr</div>
+      <div class="comp-tag">The EV Motor Trojan Horse</div>
+      <p class="comp-why">The market prices Sona as a "differential gear company" — a category that should shrink with EVs. The insight the market misses: EV differential gear assemblies are <em>more complex</em> than ICE differentials, and Sona's BLDC motor and BSG (belt starter generator) systems represent a new revenue line growing at 40%+. EV revenue was 35% of FY24 revenue and rising. International OEM client relationships (Mercedes-Benz Bosch Motor Group JV lineage) provide export credibility that most Indian small-caps lack.</p>
+      <div class="comp-metrics">
+        <span class="comp-met">ROCE: <strong>22%+</strong></span>
+        <span class="comp-met">EBITDA: <strong>~28%</strong></span>
+        <span class="comp-met">Export: <strong>~40%</strong></span>
+        <span class="comp-met">EV Rev: <strong>35%+</strong></span>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-rank">Compounder 02</div>
+      <div class="comp-name">Subros Limited</div>
+      <div class="comp-ticker">NSE: SUBROS · ₹3,000–4,000Cr</div>
+      <div class="comp-tag">The Thermal Sleeper</div>
+      <p class="comp-why">Subros is priced as an "AC company" supplying Maruti — and dismissed because Maruti concentration (~65% revenue) and commodity-like perception create a low multiple. The reality: Subros has Denso (Japan) technology access, meaning it gets every Denso EV thermal innovation for the Indian market. As Maruti transitions to EVs (its EVX platform), Subros's per-vehicle content doubles — a cabin HVAC system becomes a cabin HVAC + battery thermal management system. No competitor in India has this combination of relationship + technology access.</p>
+      <div class="comp-metrics">
+        <span class="comp-met">Denso JV: <strong>Yes</strong></span>
+        <span class="comp-met">Maruti Share: <strong>~65%</strong></span>
+        <span class="comp-met">EBITDA: <strong>~11%</strong></span>
+        <span class="comp-met">EV Thermal: <strong>Pipeline</strong></span>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-rank">Compounder 03</div>
+      <div class="comp-name">Craftsman Automation</div>
+      <div class="comp-ticker">NSE: CRAFTSMAN · ₹8,000–12,000Cr</div>
+      <div class="comp-tag">The Three-Cylinder Compounder</div>
+      <p class="comp-why">Three revenue segments — Automotive Powertrain, Storage Solutions (industrial), and Aerospace — create a complexity discount that depresses the multiple. The insight: Storage Solutions is growing at 30%+ and supplies Class-A machined housings for stationary energy storage; Aerospace is early but high-ASP; and Automotive Powertrain is transitioning toward EV motor housings, battery pack enclosures, and reducer gear housings. The CNC machining and aluminum die-casting capability is fully applicable to EV components without new capex. Management's capital allocation discipline (ROCE ~18%) rewards patience.</p>
+      <div class="comp-metrics">
+        <span class="comp-met">ROCE: <strong>~18%</strong></span>
+        <span class="comp-met">EBITDA: <strong>~18%</strong></span>
+        <span class="comp-met">Export: <strong>~20%</strong></span>
+        <span class="comp-met">Segments: <strong>3</strong></span>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-rank">Compounder 04</div>
+      <div class="comp-name">Pricol Limited</div>
+      <div class="comp-ticker">NSE: PRICOLLTD · ₹3,000–4,000Cr</div>
+      <div class="comp-tag">The Dashboard-to-ADAS Bridge</div>
+      <p class="comp-why">Pricol makes instrument clusters, switches, and driver information systems for two-wheelers and passenger vehicles. The transition from analog to digital clusters (ASP goes from ₹800 to ₹3,500–5,000 per unit) is a pure tailwind. The more exciting thesis: Pricol is building ADAS sensor capability — specifically, low-cost radar and camera modules for 2-wheelers, a segment where global Tier 1s have not focused. A 2-wheeler ADAS mandate (ABS is already regulatory in India) creates a multi-year content growth story. Export to Southeast Asian 2-wheeler markets provides additional vector.</p>
+      <div class="comp-metrics">
+        <span class="comp-met">ROCE: <strong>~16%</strong></span>
+        <span class="comp-met">ASP Upside: <strong>4–6×</strong></span>
+        <span class="comp-met">2W ADAS: <strong>Building</strong></span>
+        <span class="comp-met">Export: <strong>Growing</strong></span>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-rank">Compounder 05</div>
+      <div class="comp-name">Happy Forgings</div>
+      <div class="comp-ticker">NSE: HAPPYFORGE · ₹6,000–8,000Cr</div>
+      <div class="comp-tag">The Recently Listed Precision Play</div>
+      <p class="comp-why">Listed in 2024, Happy Forgings brings the Ramkrishna Forgings business model to the PV and global export segment. The firm specialises in precision closed-die forgings for passenger vehicle and commercial vehicle structural components. Its location in Ludhiana (India's precision manufacturing belt) provides both talent and sub-supplier access. ROCE of ~20% pre-IPO suggests genuine economics; the export growth path — piggybacking on India's established reputation in forged components with US/EU Tier 1 procurement — is the most direct value creation lever.</p>
+      <div class="comp-metrics">
+        <span class="comp-met">ROCE: <strong>~20%</strong></span>
+        <span class="comp-met">EBITDA: <strong>~22%</strong></span>
+        <span class="comp-met">Export: <strong>Expanding</strong></span>
+        <span class="comp-met">Listed: <strong>2024</strong></span>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-rank">Compounder 06</div>
+      <div class="comp-name">Minda Corporation</div>
+      <div class="comp-ticker">NSE: MINDACORP · ₹10,000–15,000Cr</div>
+      <div class="comp-tag">The Smart Access Platform</div>
+      <p class="comp-why">Smart keys, TPMS (tyre pressure monitoring), fuel caps, and body control modules — Minda Corporation owns India's smart vehicle access ecosystem. PEPS (Passive Entry Passive Start) systems are safety-critical, OEM-qualified, and carry 3–4× the ASP of mechanical keys. The EV transition adds a new product: EV charging access authentication systems, where the vehicle recognises the charger and manages session billing. Minda is positioned to own this new access category. Export wins with European Tier 1s (Marquardt) validate technology standing.</p>
+      <div class="comp-metrics">
+        <span class="comp-met">ROCE: <strong>~15%</strong></span>
+        <span class="comp-met">PEPS ASP: <strong>3–4×</strong></span>
+        <span class="comp-met">EV Charging: <strong>Pipeline</strong></span>
+        <span class="comp-met">Export: <strong>Marquardt JV</strong></span>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-rank">Compounder 07</div>
+      <div class="comp-name">Alicon Castalloy</div>
+      <div class="comp-ticker">NSE: ALICON · ₹1,500–2,000Cr</div>
+      <div class="comp-tag">The Lightweight Structural Specialist</div>
+      <p class="comp-why">Gravity die cast and squeeze cast aluminum components for automotive and industrial applications — Alicon's technology profile is directly aligned with the lightweighting megatrend. EV battery enclosures, motor housings, and structural castings require the thin-wall, high-integrity aluminum casting processes that Alicon has spent 20+ years perfecting. ~50% export revenue validates quality standing. The firm's JV with Endurance Technologies provides scale access. The casting-to-machining integration (rough cast + precision machined in one facility) commands premium pricing from OEMs seeking single-source accountability.</p>
+      <div class="comp-metrics">
+        <span class="comp-met">Export: <strong>~50%</strong></span>
+        <span class="comp-met">Al Casting: <strong>Core IP</strong></span>
+        <span class="comp-met">EV Housings: <strong>Growing</strong></span>
+        <span class="comp-met">JV: <strong>Endurance</strong></span>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-rank">Compounder 08</div>
+      <div class="comp-name">Hi-Tech Gears</div>
+      <div class="comp-ticker">NSE: HITECHGEAR · ₹1,000–1,500Cr</div>
+      <div class="comp-tag">The EV Reducer Gear Specialist</div>
+      <p class="comp-why">Hi-Tech Gears makes precision gears and shafts for automotive transmission systems — a category that faces structural volume decline as EVs replace multi-speed gearboxes. The overlooked opportunity: every EV drivetrain contains a single-speed <em>reducer gear</em> connecting motor to wheels, and these gears operate at higher speeds (up to 20,000 RPM) and tighter NVH tolerances than conventional transmission gears. Hi-Tech's precision gear manufacturing capability is directly applicable — higher ASP per gear, with growing volumes as EV penetration rises. Early export wins demonstrate the quality benchmark.</p>
+      <div class="comp-metrics">
+        <span class="comp-met">EV Gears: <strong>Growing</strong></span>
+        <span class="comp-met">RPM: <strong>Up to 20k</strong></span>
+        <span class="comp-met">ROCE: <strong>~16%</strong></span>
+        <span class="comp-met">Export: <strong>Developing</strong></span>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-rank">Compounder 09</div>
+      <div class="comp-name">Lumax Industries</div>
+      <div class="comp-ticker">NSE: LUMAXIND · ₹3,000–4,000Cr</div>
+      <div class="comp-tag">The LED Lighting Beneficiary</div>
+      <p class="comp-why">Stanley Electric (Honda group) JV gives Lumax Industries access to Japanese LED headlamp technology in India. The regulatory tailwind is decisive: LED headlamps are being mandated in India for safety reasons, shifting the average selling price per headlamp unit from ₹800 (halogen) to ₹3,500–6,000 (LED). Every vehicle on the road transitioning to LED is a revenue-per-unit multiplication event. The Stanley Electric JV provides technology access that purely domestic lighting firms cannot match. Export to Southeast Asian markets (Honda's regional procurement network) provides an additional growth vector.</p>
+      <div class="comp-metrics">
+        <span class="comp-met">Stanley JV: <strong>Yes</strong></span>
+        <span class="comp-met">ASP Upside: <strong>4–7×</strong></span>
+        <span class="comp-met">LED %: <strong>Growing fast</strong></span>
+        <span class="comp-met">Export: <strong>SE Asia</strong></span>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-rank">Compounder 10</div>
+      <div class="comp-name">Precision Camshafts (PCL)</div>
+      <div class="comp-ticker">NSE: PCL · ₹1,500–2,000Cr</div>
+      <div class="comp-tag">The Precision Engineering Export Bridge</div>
+      <p class="comp-why">Precision Camshafts is among the world's largest assembled camshaft manufacturers (outside Japan) — a position built through 20+ years of OEM qualification and process discipline. While camshafts are an ICE-specific product facing long-term volume decline, PCL is making two EV-related pivots: precision shaft components for EV motors and transmissions, and export of machined precision shafts for industrial applications. Its export-heavy revenue (~55%) and Tier 1 OEM relationships (Ford, GM, Renault) create a bridge from ICE expertise to the EV precision manufacturing opportunity.</p>
+      <div class="comp-metrics">
+        <span class="comp-met">Export: <strong>~55%</strong></span>
+        <span class="comp-met">Clients: <strong>Ford, GM, Renault</strong></span>
+        <span class="comp-met">EV Pivot: <strong>Shafts/rotors</strong></span>
+        <span class="comp-met">ROCE: <strong>~18%</strong></span>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-rank">Compounder 11</div>
+      <div class="comp-name">Suprajit Engineering</div>
+      <div class="comp-ticker">NSE: SUPRAJIT · ₹5,000–7,000Cr</div>
+      <div class="comp-tag">The Global Cable Consolidator</div>
+      <p class="comp-why">Mechanical cables (throttle, braking, parking) remain relevant in EVs for non-drive applications; but the Phoenix Lamps acquisition gives Suprajit a second business in automotive lighting. The deeper thesis: Suprajit is building a global cable and control systems platform through acquisitions, positioning itself as the consolidator in a fragmented global market. The Wescon Controls acquisition (US) and Light Source Europe (UK) establish a platform for bolt-on global cable acquisitions. This is a capital allocation story as much as an EV story.</p>
+      <div class="comp-metrics">
+        <span class="comp-met">Revenue: <strong>~₹3,500Cr</strong></span>
+        <span class="comp-met">Global JVs: <strong>US, UK</strong></span>
+        <span class="comp-met">ROCE: <strong>~16%</strong></span>
+        <span class="comp-met">Model: <strong>Consolidator</strong></span>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-rank">Compounder 12</div>
+      <div class="comp-name">Gabriel India</div>
+      <div class="comp-ticker">NSE: GABRIEL · ₹5,000–6,000Cr</div>
+      <div class="comp-tag">The Ride Comfort Specialist</div>
+      <p class="comp-why">Shock absorbers and ride control products remain relevant in EVs — EV weight (battery mass) actually increases the demand for sophisticated suspension tuning. Gabriel's JV with Anand Group and technology access from global partner KYB Corporation (Japan, #1 globally in shock absorbers) provides a credible technology position. The underappreciated driver: EV suspensions need electronically-controlled semi-active systems to compensate for battery mass — a higher-ASP, higher-technology product that Gabriel is developing. Indian 2-wheeler market dominance provides volume base for R&amp;D amortisation.</p>
+      <div class="comp-metrics">
+        <span class="comp-met">KYB JV: <strong>Yes</strong></span>
+        <span class="comp-met">EBITDA: <strong>~13%</strong></span>
+        <span class="comp-met">EV Susp: <strong>Developing</strong></span>
+        <span class="comp-met">2W Share: <strong>~45%</strong></span>
+      </div>
+    </div>
+
+    <div class="comp-card" style="grid-column:1/-1;">
+      <div class="comp-rank">Compounders 13–25 · Summary</div>
+      <div class="tw" style="margin:12px 0 0;">
+        <table>
+          <thead><tr><th>#</th><th>Company</th><th>Ticker</th><th>Core Thesis</th><th>EV Linkage</th><th>Key Moat</th></tr></thead>
+          <tbody>
+            <tr><td class="mono tdim">13</td><td><strong>Shivam Autotech</strong></td><td class="mono tdim">SHIVAMAUT</td><td class="tdim">Precision forgings + machined components; export-led</td><td class="tgreen">Structural EV parts</td><td class="tdim">OEM qualification history</td></tr>
+            <tr><td class="mono tdim">14</td><td><strong>Automotive Axles</strong></td><td class="mono tdim">AUTOAXLES</td><td class="tdim">CV drive axles; Meritor technology + EV axle development</td><td class="tamber">CV electrification</td><td class="tdim">Meritor technology access</td></tr>
+            <tr><td class="mono tdim">15</td><td><strong>Wheels India</strong></td><td class="mono tdim">WHEELSINDIA</td><td class="tdim">Steel wheels for CV; TVS Group quality standards + export</td><td class="tamber">CV volume resilient</td><td class="tdim">TVS Group relationships</td></tr>
+            <tr><td class="mono tdim">16</td><td><strong>Rico Auto Industries</strong></td><td class="mono tdim">RICOAUTO</td><td class="tdim">Aluminum die castings for 2W and PV; EV housing opportunity</td><td class="tgreen">EV motor housings</td><td class="tdim">Casting process depth</td></tr>
+            <tr><td class="mono tdim">17</td><td><strong>Sterling Tools</strong></td><td class="mono tdim">STERTOOLS</td><td class="tdim">Precision fasteners; EV-specific HV bolt grades developing</td><td class="tamber">HV fastener specs</td><td class="tdim">Metallurgical specifications</td></tr>
+            <tr><td class="mono tdim">18</td><td><strong>MMP Industries</strong></td><td class="mono tdim">MMP</td><td class="tdim">Alloy wheels; lightweighting preference = aluminum vs. steel</td><td class="tgreen">Weight reduction</td><td class="tdim">ACMA-grade quality</td></tr>
+            <tr><td class="mono tdim">19</td><td><strong>Banco Products</strong></td><td class="mono tdim">BANCOINDIA</td><td class="tdim">Gaskets + cooling systems; EV thermal interface materials</td><td class="tgreen">Thermal interface</td><td class="tdim">Specialty elastomers</td></tr>
+            <tr><td class="mono tdim">20</td><td><strong>Minda-Stoneridge (Pricol alt.)</strong></td><td class="mono tdim">—</td><td class="tdim">Driver monitoring systems + ADAS sensors; safety-critical</td><td class="tgreen">Driver monitoring mandate</td><td class="tdim">Safety certification</td></tr>
+            <tr><td class="mono tdim">21</td><td><strong>Sundram Fasteners</strong></td><td class="mono tdim">SUNDRMFAST</td><td class="tdim">Precision fasteners + components; TVS Group; export champion</td><td class="tamber">EV structural fasteners</td><td class="tdim">TVS group quality + export</td></tr>
+            <tr><td class="mono tdim">22</td><td><strong>Tube Investments of India</strong></td><td class="mono tdim">TIINDIA</td><td class="tdim">Precision tubes, cycles, financial services; CG Power (industrial motors)</td><td class="tgreen">CG Power motors for EV</td><td class="tdim">CG Power motor IP</td></tr>
+            <tr><td class="mono tdim">23</td><td><strong>Lumax Auto Tech.</strong></td><td class="mono tdim">LUMAXTECH</td><td class="tdim">Gear shifters, clutch systems, aftermarket lighting</td><td class="tamber">EV shifter design change</td><td class="tdim">Strong 2W relationships</td></tr>
+            <tr><td class="mono tdim">24</td><td><strong>India Motor Parts</strong></td><td class="mono tdim">INDIAMART alt.</td><td class="tdim">Aftermarket distribution platform; EV parts distribution emerging</td><td class="tamber">EV aftermarket</td><td class="tdim">Distribution network</td></tr>
+            <tr><td class="mono tdim">25</td><td><strong>Sandhar Technologies</strong></td><td class="mono tdim">SANDHAR</td><td class="tdim">Locks, mirrors, fuel caps, cast components; diversified Tier 2</td><td class="tamber">EV entry systems</td><td class="tdim">Diversified OEM relationships</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ch10-mid">
+  <div class="sec-tag">Chapter Ten — Top 15 Emerging Mid-Cap Compounders</div>
+  <h2 class="sec-title" style="font-size:28px;">Top 15 Emerging Mid-Cap Compounders <span style="font-size:16px;color:var(--text3)">(India · ₹10,000–50,000Cr)</span></h2>
+
+  <div class="tw">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Company</th><th>Core Automotive Position</th><th>EV Opportunity</th><th>ROCE</th><th>Export Story</th><th>10Y Rating</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="mono tdim">1</td><td><strong>KPIT Technologies</strong><div class="tdim" style="font-size:11px;">KPITTECH</div></td><td class="tdim">100% automotive software; AUTOSAR + EV stack</td><td class="tgold">Direct — every SDV needs KPIT's skills</td><td class="mono tgold">30%+</td><td class="tgreen">Europe/US OEMs: Very High</td><td><span class="badge bg-gold">★★★★★</span></td></tr>
+        <tr><td class="mono tdim">2</td><td><strong>Tata Elxsi</strong><div class="tdim" style="font-size:11px;">TATAELXSI</div></td><td class="tdim">Digital cockpit, ADAS design, EV platform SW</td><td class="tgold">Direct — highest-margin auto SW in India</td><td class="mono tgold">45%+</td><td class="tgreen">BMW, JLR, Renault: Very High</td><td><span class="badge bg-gold">★★★★★</span></td></tr>
+        <tr><td class="mono tdim">3</td><td><strong>Schaeffler India</strong><div class="tdim" style="font-size:11px;">SCHAEFFLER</div></td><td class="tdim">Bearings + clutch + thermal; Schaeffler AG technology</td><td class="tgold">EV motor bearings + e-axle components</td><td class="mono tgold">25%</td><td class="tgreen">Global parent: Very High</td><td><span class="badge bg-gold">★★★★½</span></td></tr>
+        <tr><td class="mono tdim">4</td><td><strong>Ramkrishna Forgings</strong><div class="tdim" style="font-size:11px;">RKFORGE</div></td><td class="tdim">CV forgings + PV + EV structural components</td><td class="tamber">EV axle shafts, battery structural parts</td><td class="mono tamber">18%</td><td class="tgold">US/EU: Very High (~60%)</td><td><span class="badge bg-gold">★★★★</span></td></tr>
+        <tr><td class="mono tdim">5</td><td><strong>Uno Minda</strong><div class="tdim" style="font-size:11px;">UNOMINDA</div></td><td class="tdim">Switches, lighting, acoustic, ADAS sensors</td><td class="tgold">ADAS sensor content; LED ASP growth</td><td class="mono tamber">16%</td><td class="tamber">SE Asia + EU: Medium</td><td><span class="badge bg-gold">★★★★</span></td></tr>
+        <tr><td class="mono tdim">6</td><td><strong>SKF India</strong><div class="tdim" style="font-size:11px;">SKFINDIA</div></td><td class="tdim">Bearings + seals + condition monitoring</td><td class="tgold">EV motor + wheel hub bearings</td><td class="mono tgold">26%</td><td class="tgreen">Global SKF: Very High</td><td><span class="badge bg-gold">★★★★</span></td></tr>
+        <tr><td class="mono tdim">7</td><td><strong>Endurance Technologies</strong><div class="tdim" style="font-size:11px;">ENDURANCE</div></td><td class="tdim">Die castings + ABS + suspension — 2W focus</td><td class="tamber">ABS mandate + EV aluminium castings</td><td class="mono tamber">15%</td><td class="tgreen">Europe (2W): High</td><td><span class="badge bg-amber">★★★½</span></td></tr>
+        <tr><td class="mono tdim">8</td><td><strong>L&amp;T Technology Services</strong><div class="tdim" style="font-size:11px;">LTTS</div></td><td class="tdim">Engineering services; EV testing + ADAS validation</td><td class="tgold">EV testing and SDV integration</td><td class="mono tgold">28%</td><td class="tgreen">US/EU: Very High</td><td><span class="badge bg-gold">★★★★</span></td></tr>
+        <tr><td class="mono tdim">9</td><td><strong>Motherson Sumi Intl.</strong><div class="tdim" style="font-size:11px;">MOTHERSON</div></td><td class="tdim">Global Tier 1: harness, mirrors, modules</td><td class="tamber">EV harness content per vehicle growing</td><td class="mono tamber">12–14%</td><td class="tgold">200+ global plants: Very High</td><td><span class="badge bg-amber">★★★½</span></td></tr>
+        <tr><td class="mono tdim">10</td><td><strong>Bharat Forge</strong><div class="tdim" style="font-size:11px;">BHARATFORG</div></td><td class="tdim">Precision forgings + defense + e-mobility</td><td class="tamber">EV structural forgings + defense pivot</td><td class="mono tamber">17%</td><td class="tgold">US/EU: Very High</td><td><span class="badge bg-gold">★★★★</span></td></tr>
+        <tr><td class="mono tdim">11</td><td><strong>Tube Investments of India</strong><div class="tdim" style="font-size:11px;">TIINDIA</div></td><td class="tdim">Precision tubes + cycles + CG Power motors</td><td class="tgold">CG Power: India's best EV motor play</td><td class="mono tgold">22%</td><td class="tamber">CG Power: Growing</td><td><span class="badge bg-gold">★★★★</span></td></tr>
+        <tr><td class="mono tdim">12</td><td><strong>Apollo Tyres</strong><div class="tdim" style="font-size:11px;">APOLLOTYRE</div></td><td class="tdim">Premium tyre; EV-specific low-RR compounds</td><td class="tamber">EV-specific tyres (low rolling resistance)</td><td class="mono tamber">13%</td><td class="tgreen">Europe: High</td><td><span class="badge bg-amber">★★★</span></td></tr>
+        <tr><td class="mono tdim">13</td><td><strong>Minda Corporation</strong><div class="tdim" style="font-size:11px;">MINDACORP</div></td><td class="tdim">Smart access + TPMS + body controllers</td><td class="tgold">EV charging access authentication</td><td class="mono tamber">15%</td><td class="tamber">EU Marquardt JV: Medium</td><td><span class="badge bg-gold">★★★½</span></td></tr>
+        <tr><td class="mono tdim">14</td><td><strong>Craftsman Automation</strong><div class="tdim" style="font-size:11px;">CRAFTSMAN</div></td><td class="tdim">CNC machining + storage + aerospace</td><td class="tamber">EV motor housing + battery enclosures</td><td class="mono tamber">18%</td><td class="tamber">Export: Growing</td><td><span class="badge bg-gold">★★★½</span></td></tr>
+        <tr><td class="mono tdim">15</td><td><strong>Balkrishna Industries (BKT)</strong><div class="tdim" style="font-size:11px;">BALKRISIND</div></td><td class="tdim">Off-highway specialty tyres; global export champion</td><td class="tamber">Agricultural/construction EV vehicles</td><td class="mono tgold">22%</td><td class="tgold">Global: Very High (90%+ export)</td><td><span class="badge bg-gold">★★★★</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════ CHAPTER 11: DEEP DIVES ══════════════════ -->
+<section id="dd-kpit">
+  <div class="sec-tag">Chapter Eleven — Company Deep-Dive</div>
+  <div class="cc">
+    <div class="cc-head">
+      <div class="cc-name">KPIT Technologies <span style="font-size:14px;color:var(--text3);margin-left:8px;" class="india-badge"></span></div>
+      <div style="display:flex;gap:8px;"><span class="badge bg-gold">Pure-Play Auto Software</span><span class="badge bg-teal">AUTOSAR Global Leader</span></div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-grid">
+        <div class="cc-metric"><span class="ccm-v">100%</span><span class="ccm-l">Automotive Software Revenue</span></div>
+        <div class="cc-metric"><span class="ccm-v">3,000+</span><span class="ccm-l">AUTOSAR Engineers (Global)</span></div>
+        <div class="cc-metric"><span class="ccm-v">22%+</span><span class="ccm-l">EBITDA Margin (FY24)</span></div>
+        <div class="cc-metric"><span class="ccm-v">30%+</span><span class="ccm-l">ROCE</span></div>
+      </div>
+      <p class="cc-analysis"><strong>Why the Market Misses It:</strong> KPIT is labelled an "IT services company," which triggers mental comparison to Infosys or TCS — large-cap IT conglomerates trading at modest multiples for good reason. But KPIT is not a generic IT company; it is a specialised automotive software engineering firm with deeper AUTOSAR expertise than most European Tier 1 suppliers. AUTOSAR engineers are globally scarce; KPIT has arguably the world's largest single concentration of them outside Germany. Revenue per engineer is growing as EV software projects carry 30–40% pricing premiums over ICE work.</p>
+      <div class="cc-row">
+        <div class="cc-row-item"><div class="cc-row-label">Exact Bottleneck Solved</div><div class="cc-row-text">AUTOSAR Adaptive implementation for zone controllers + EV powertrain embedded software. Every OEM transitioning to SDV architecture needs this capability but cannot hire it internally fast enough.</div></div>
+        <div class="cc-row-item"><div class="cc-row-label">EV + AV Linkage</div><div class="cc-row-text">Direct: EV software is a growing share of KPIT revenue. ADAS stack integration, battery management software, and functional safety validation (ISO 26262) are all expanding capabilities.</div></div>
+        <div class="cc-row-item"><div class="cc-row-label">Bull Case (10Y)</div><div class="cc-row-text">As SDVs become standard, every global OEM outsources a growing fraction of software development to specialised firms. KPIT, with brand, quality track record, and talent depth, becomes one of 3–4 global automotive software platforms. Revenue 5× current level by 2034.</div></div>
+        <div class="cc-row-item"><div class="cc-row-label">Bear Case</div><div class="cc-row-text">OEMs in-source software development (Tesla model), commoditising the AUTOSAR engineering market. Indian IT wage inflation closes the cost gap. Customer concentration in European OEMs creates sensitivity to European EV adoption pace.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dd-elxsi">
+  <div class="sec-tag">Chapter Eleven — Company Deep-Dive</div>
+  <div class="cc">
+    <div class="cc-head">
+      <div class="cc-name">Tata Elxsi <span style="font-size:14px;color:var(--text3);margin-left:8px;" class="india-badge"></span></div>
+      <div style="display:flex;gap:8px;"><span class="badge bg-gold">Design + Embedded + ADAS</span><span class="badge bg-blue">Highest-Margin Auto SW India</span></div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-grid">
+        <div class="cc-metric"><span class="ccm-v">30%+</span><span class="ccm-l">EBITDA Margin (Sustained)</span></div>
+        <div class="cc-metric"><span class="ccm-v">45%+</span><span class="ccm-l">ROCE (FY24)</span></div>
+        <div class="cc-metric"><span class="ccm-v">~40%</span><span class="ccm-l">Transport &amp; Mobility Revenue</span></div>
+        <div class="cc-metric"><span class="ccm-v">BMW, JLR</span><span class="ccm-l">Flagship Auto Clients</span></div>
+      </div>
+      <p class="cc-analysis"><strong>Why the Market Misses It:</strong> "Tata group company" carries a conglomerate discount. But Tata Elxsi is independently exceptional — sustained 30%+ EBITDA margins and 45%+ ROCE over multiple years are metrics that even best-in-class global software firms rarely achieve. The key differentiator: Tata Elxsi doesn't just write code — it designs automotive software systems from architecture to production, including the user experience layer (digital cockpit design), the ADAS integration layer, and the embedded systems layer simultaneously. This combined capability commands premium pricing that pure coding firms cannot achieve.</p>
+      <div class="cc-row">
+        <div class="cc-row-item"><div class="cc-row-label">Exact Bottleneck Solved</div><div class="cc-row-text">Full-stack SDV product design: from vehicle software architecture through digital cockpit UX to production validation. Fewer than five firms globally can do this end-to-end; Tata Elxsi is one of them.</div></div>
+        <div class="cc-row-item"><div class="cc-row-label">EV + AV Linkage</div><div class="cc-row-text">Direct: digital cockpit, ADAS software integration, V2X protocol implementation, EV platform software design. Growing share of revenue from ADAS validation work as OEMs prepare for Level 3 certification.</div></div>
+        <div class="cc-row-item"><div class="cc-row-label">Bull Case (10Y)</div><div class="cc-row-text">Automotive software design becomes a globally traded service. Tata Elxsi builds a premium brand (comparable to Designit or IDEO in design consulting) for SDV design that commands 40%+ gross margins at 2× current revenue scale.</div></div>
+        <div class="cc-row-item"><div class="cc-row-label">Bear Case</div><div class="cc-row-text">Tata Motors vertical integration captures JLR work. European OEMs build in-house design centres as software becomes strategic. Talent attrition in premium Bangalore market compresses margins.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dd-sona">
+  <div class="sec-tag">Chapter Eleven — Company Deep-Dive</div>
+  <div class="cc">
+    <div class="cc-head">
+      <div class="cc-name">Sona BLW Precision (Sona Comstar) <span style="font-size:14px;color:var(--text3);margin-left:8px;" class="india-badge"></span></div>
+      <div style="display:flex;gap:8px;"><span class="badge bg-gold">EV Motors + Diff Gears</span><span class="badge bg-green">35%+ EV Revenue</span></div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-grid">
+        <div class="cc-metric"><span class="ccm-v">35%+</span><span class="ccm-l">EV Revenue Share FY24</span></div>
+        <div class="cc-metric"><span class="ccm-v">28%</span><span class="ccm-l">EBITDA Margin</span></div>
+        <div class="cc-metric"><span class="ccm-v">~40%</span><span class="ccm-l">Export Revenue</span></div>
+        <div class="cc-metric"><span class="ccm-v">22%+</span><span class="ccm-l">ROCE</span></div>
+      </div>
+      <p class="cc-analysis"><strong>Why the Market Misses It:</strong> The market narrative is "ICE gears → obsolete with EVs." The reality: Sona's differential gear assemblies are present in every EV drivetrain (EVs still have differentials), and its BLDC (brushless DC) motors are being specified by two-wheeler and light EV manufacturers globally. The company transitioned from a Bosch Motor Group joint venture into an independent entity with global OEM relationships — a transition that most competitors cannot replicate. Its precision manufacturing platform applies to EV motors as directly as to differential gears.</p>
+      <div class="cc-row">
+        <div class="cc-row-item"><div class="cc-row-label">Bull Case</div><div class="cc-row-text">Global EV volume growth at 25%+ CAGR means Sona's EV revenue compounds rapidly from a 35% base. BLDC motors win design-ins at global 2W OEMs, adding a third revenue leg to gears + BSG motors.</div></div>
+        <div class="cc-row-item"><div class="cc-row-label">Bear Case</div><div class="cc-row-text">OEMs bring differential gear manufacturing in-house as EV volume scales. Chinese motor suppliers undercut BLDC motor pricing. EV adoption slower than expected.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dd-bharat">
+  <div class="sec-tag">Chapter Eleven — Company Deep-Dive</div>
+  <div class="cc">
+    <div class="cc-head">
+      <div class="cc-name">Bharat Forge <span style="font-size:14px;color:var(--text3);margin-left:8px;" class="india-badge"></span></div>
+      <div style="display:flex;gap:8px;"><span class="badge bg-gold">Forgings + Defense + EV</span><span class="badge bg-amber">Beyond Automotive</span></div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-grid">
+        <div class="cc-metric"><span class="ccm-v">~₹16,000Cr</span><span class="ccm-l">Revenue FY24</span></div>
+        <div class="cc-metric"><span class="ccm-v">~50%</span><span class="ccm-l">Export Revenue</span></div>
+        <div class="cc-metric"><span class="ccm-v">25%+</span><span class="ccm-l">Defense Revenue (Growing)</span></div>
+        <div class="cc-metric"><span class="ccm-v">17%+</span><span class="ccm-l">ROCE</span></div>
+      </div>
+      <p class="cc-analysis"><strong>Why the Market Misses the Defense + EV Combination:</strong> Bharat Forge is often valued as an auto component cyclical when it is increasingly a precision manufacturing conglomerate. Defense is the fastest-growing segment (artillery shells, armored vehicle components, aerospace forgings) and carries defense-level pricing premiums. EV structural forgings (battery enclosure frames, motor housings, suspension geometry components for heavier BEVs) use the same large press infrastructure that Bharat Forge has built. The Kalyani family's capital allocation track record — building global footprint through targeted acquisitions — is one of Indian industry's most compelling compounding histories.</p>
+      <div class="cc-row">
+        <div class="cc-row-item"><div class="cc-row-label">EV Linkage</div><div class="cc-row-text">EV vehicles are heavier than ICE (battery mass); structural forged components (suspension knuckles, trailing arms, axle beams) are heavier-duty. Bharat Forge's large presses (up to 12,000T) make it the natural supplier for these structural forgings.</div></div>
+        <div class="cc-row-item"><div class="cc-row-label">Defense Optionality</div><div class="cc-row-text">India's defense indigenisation push (Atmanirbhar Bharat) creates a captive premium market for Bharat Forge's precision forging capabilities. Artillery shell casings, rocket motor components, and armored vehicle parts are being indigenised at pace.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dd-motherson">
+  <div class="sec-tag">Chapter Eleven — Company Deep-Dive</div>
+  <div class="cc">
+    <div class="cc-head">
+      <div class="cc-name">Samvardhana Motherson International <span style="font-size:14px;color:var(--text3);margin-left:8px;" class="india-badge"></span></div>
+      <div style="display:flex;gap:8px;"><span class="badge bg-gold">Global Tier 1</span><span class="badge bg-blue">Aptiv-Scale Ambition</span></div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-grid">
+        <div class="cc-metric"><span class="ccm-v">₹1,00,000Cr+</span><span class="ccm-l">Revenue (FY24)</span></div>
+        <div class="cc-metric"><span class="ccm-v">200+</span><span class="ccm-l">Manufacturing Plants Globally</span></div>
+        <div class="cc-metric"><span class="ccm-v">#2</span><span class="ccm-l">Global Wiring Harness (Yazaki #1)</span></div>
+        <div class="cc-metric"><span class="ccm-v">Vision</span><span class="ccm-l">$36B Revenue by 2025</span></div>
+      </div>
+      <p class="cc-analysis">Motherson Sumi is the most globally diversified auto component company in India and the most direct comparable to Aptiv PLC in its harness and electrical architecture business. The EV transition is structurally positive for Motherson: EV wiring harnesses are 25–40% heavier (copper mass) and more complex than ICE harnesses, and every design change requires a new qualification cycle — a barrier that keeps Motherson's relationships sticky. Its acquisition strategy (Reydel Automotive in Europe, PKC Group in Nordics) has built genuine global scale in modules and harnesses. The challenge is margin execution post-acquisition; the 2023–2025 period is a critical integration test.</p>
+      <div class="cc-barriers"><span class="badge bg-gold">Global OEM Relationships</span><span class="badge bg-blue">Harness Design IP</span><span class="badge bg-amber">Reydel Module Integration</span><span class="badge bg-muted">Margin Recovery Story</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="dd-schaeffler">
+  <div class="sec-tag">Chapter Eleven — Company Deep-Dive</div>
+  <div class="cc">
+    <div class="cc-head">
+      <div class="cc-name">Schaeffler India <span style="font-size:14px;color:var(--text3);margin-left:8px;" class="india-badge"></span></div>
+      <div style="display:flex;gap:8px;"><span class="badge bg-gold">German Technology · Indian Execution</span></div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-grid">
+        <div class="cc-metric"><span class="ccm-v">~₹8,000Cr</span><span class="ccm-l">Revenue FY24</span></div>
+        <div class="cc-metric"><span class="ccm-v">~18%</span><span class="ccm-l">EBITDA Margin</span></div>
+        <div class="cc-metric"><span class="ccm-v">~25%</span><span class="ccm-l">ROCE</span></div>
+        <div class="cc-metric"><span class="ccm-v">INA + FAG</span><span class="ccm-l">Schaeffler AG Technology</span></div>
+      </div>
+      <p class="cc-analysis">Schaeffler India's competitive advantage is deceptively simple: it is the Indian manufacturing and sales arm of Schaeffler AG, one of the world's largest and most technologically sophisticated bearing and transmission companies. Every EV-relevant product Schaeffler AG develops — insulated bearings for EV motors (preventing current-induced pitting), thermal management components, e-axle gear sets — flows into Schaeffler India's portfolio. The firm participates in the EV transformation without needing to independently develop the technology; its parent does that. The India business adds manufacturing cost efficiency and growing domestic market revenue. This is one of the cleanest global-technology-plus-India-execution investment structures in the market.</p>
+      <div class="cc-barriers"><span class="badge bg-gold">Schaeffler AG Technology Pipeline</span><span class="badge bg-blue">INA + FAG Brand Qual</span><span class="badge bg-amber">Industrial Balance</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="dd-rkforge">
+  <div class="sec-tag">Chapter Eleven — Company Deep-Dive</div>
+  <div class="cc">
+    <div class="cc-head">
+      <div class="cc-name">Ramkrishna Forgings <span style="font-size:14px;color:var(--text3);margin-left:8px;" class="india-badge"></span></div>
+      <div style="display:flex;gap:8px;"><span class="badge bg-gold">CV Export Champion</span><span class="badge bg-amber">US Market Bridge</span></div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-grid">
+        <div class="cc-metric"><span class="ccm-v">~₹3,500Cr</span><span class="ccm-l">Revenue FY24</span></div>
+        <div class="cc-metric"><span class="ccm-v">~58%</span><span class="ccm-l">Export Revenue (US Primary)</span></div>
+        <div class="cc-metric"><span class="ccm-v">~22%</span><span class="ccm-l">EBITDA Margin</span></div>
+        <div class="cc-metric"><span class="ccm-v">Meritor, Dana</span><span class="ccm-l">Key US Export Clients</span></div>
+      </div>
+      <p class="cc-analysis">Ramkrishna Forgings is the most export-oriented forging company in India, with ~58% of revenue from the US commercial vehicle market. Its customer list — Meritor, Dana, Accuride, Hendrickson, Daimler Trucks USA — represents the backbone of the North American heavy truck supply chain. The thesis is structural: American CV manufacturers are actively seeking to diversify away from Chinese forging suppliers; Ramkrishna has spent 15+ years building AEC-Q-equivalent quality documentation for the US market. The EV pivot is genuine: electric axle shafts, motor mounting brackets, and battery structural supports are entering the RFQ pipeline from existing customers.</p>
+      <div class="cc-barriers"><span class="badge bg-gold">US OEM Qualification History</span><span class="badge bg-blue">Meritor Relationship</span><span class="badge bg-green">China+1 Beneficiary</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="dd-subros">
+  <div class="sec-tag">Chapter Eleven — Company Deep-Dive</div>
+  <div class="cc">
+    <div class="cc-head">
+      <div class="cc-name">Subros Limited <span style="font-size:14px;color:var(--text3);margin-left:8px;" class="india-badge"></span></div>
+      <div style="display:flex;gap:8px;"><span class="badge bg-gold">Thermal Management · Denso JV</span></div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-grid">
+        <div class="cc-metric"><span class="ccm-v">~₹2,500Cr</span><span class="ccm-l">Revenue FY24</span></div>
+        <div class="cc-metric"><span class="ccm-v">~65%</span><span class="ccm-l">Maruti Suzuki Revenue</span></div>
+        <div class="cc-metric"><span class="ccm-v">Denso</span><span class="ccm-l">Technology Partner (Japan)</span></div>
+        <div class="cc-metric"><span class="ccm-v">3–4×</span><span class="ccm-l">EV Thermal Content Upside</span></div>
+      </div>
+      <p class="cc-analysis">Subros is the most direct India play on the thermal management opportunity identified in Part I as Tier 6 of the value chain. The Maruti concentration creates an optics problem for the market (single customer risk), but the strategic reality is: Maruti is the only Indian OEM with a confirmed technology roadmap through Toyota's Suzuki partnership, providing Subros with Denso's EV-specific thermal management technology pipeline. As Maruti's new EVX platform scales, Subros transitions from cabin HVAC supplier to integrated cabin-and-battery thermal management supplier — a 3–4× per-vehicle content increase on the same customer relationships.</p>
+      <div class="cc-barriers"><span class="badge bg-gold">Maruti Captive Supplier</span><span class="badge bg-blue">Denso EV Tech Access</span><span class="badge bg-amber">India Climate Expertise</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CHAPTER 12: CAPITAL CYCLE ══════════════════ -->
+<section id="ch12">
+  <div class="sec-tag">Chapter Twelve</div>
+  <h2 class="sec-title">Capital Cycle <em>Analysis</em></h2>
+  <p class="sec-lead">Capital floods in where returns appear high. Capital eventually destroys those returns through oversupply. The investor's job is to distinguish structural winners — where capital creates moats — from narrative traps, where capital destroys itself.</p>
+
+  <div class="quad">
+    <div class="quad-cell">
+      <div class="quad-label win">Structural Winners — Invest Through the Cycle</div>
+      <div class="quad-item"><strong>Automotive Software (India)</strong> — KPIT, Tata Elxsi: Growing regardless of EV/ICE mix; SDV is additive regardless of powertrain</div>
+      <div class="quad-item"><strong>SiC Power Electronics (Global)</strong> — Wolfspeed, Infineon: Physics-constrained supply; demand secular</div>
+      <div class="quad-item"><strong>ADAS AI SoC (Global)</strong> — NVIDIA, Mobileye: Platform lock-in compounds every year</div>
+      <div class="quad-item"><strong>Precision Forgings Export (India)</strong> — Bharat Forge, Ramkrishna: China+1 structural; qualification moat</div>
+      <div class="quad-item"><strong>EV Thermal Management</strong> — Subros, Hanon: 3–4× content per vehicle; complexity barrier</div>
+    </div>
+    <div class="quad-cell">
+      <div class="quad-label cyc">Cyclical Winners — Ride but Watch the Turn</div>
+      <div class="quad-item"><strong>Battery Cell Manufacturing</strong> — CATL, LG Energy: Overcapacity risk 2026–2028; watch for price erosion</div>
+      <div class="quad-item"><strong>EV Wiring Harness</strong> — Motherson, Aptiv: Content per EV growing but labour arbitrage at heart; margins can compress</div>
+      <div class="quad-item"><strong>LED Automotive Lighting</strong> — Lumax, Valeo: Regulatory tailwind real but technology commoditising to LED</div>
+      <div class="quad-item"><strong>Charging Infrastructure</strong> — Dependent on public subsidy; standards fragmentation creates risk</div>
+    </div>
+    <div class="quad-cell">
+      <div class="quad-label trap">Commodity Traps — Avoid or Short</div>
+      <div class="quad-item"><strong>ICE-Only Component Specialists</strong> — No EV transition plan; secular volume decline certain</div>
+      <div class="quad-item"><strong>Pure Battery Assembly (No Chemistry IP)</strong> — Chinese cell pricing will destroy margins absent IP moat</div>
+      <div class="quad-item"><strong>Generic EV Charging Equipment</strong> — Hardware commoditises; only software/network layer retains value</div>
+      <div class="quad-item"><strong>Non-Differentiated Machined Parts</strong> — No EV content growth; cost pressure from low-wage competition</div>
+    </div>
+    <div class="quad-cell">
+      <div class="quad-label narr">Narrative Traps — Scrutinise Before Investing</div>
+      <div class="quad-item"><strong>"We Are an EV Company" Announcements</strong> — Without genuine product transition or customer RFQs; check order books</div>
+      <div class="quad-item"><strong>Hydrogen Vehicle Companies (India)</strong> — 10–15 year infrastructure timeline; avoid until station density visible</div>
+      <div class="quad-item"><strong>Semiconductor Fab Announcements (India)</strong> — Advanced wafer fab is 15+ year endeavour; packaging/OSAT is real opportunity</div>
+      <div class="quad-item"><strong>LiDAR Pure-Plays</strong> — Binary outcome; most will not survive to the cost breakthrough; high speculative risk</div>
+    </div>
+  </div>
+
+  <div class="callout red">
+    <div class="cl-label">Capital Cycle Warning: Battery Cell Overcapacity</div>
+    <p>The most acute capital cycle risk in the 2025–2028 window is battery cell manufacturing overcapacity. CATL, LG Energy Solution, Panasonic, Samsung SDI, BYD, and an array of new entrants have announced cumulative capacity expansions that will result in more than 3 TWh of annual production capability by 2028 — against projected demand of approximately 2.0–2.2 TWh. This is a classic industrial oversupply cycle, and it will compress cell prices by 20–40% from 2024 levels. The damage is not uniform: commodity cell manufacturers will be severely hurt; chemistry IP holders (CATL's CTP architecture, BYD's Blade, QuantumScape's solid-state) retain relative value. <strong>India's battery assembly investments should be assessed against this supply backdrop.</strong></p>
+  </div>
+</section>
+
+<!-- ══════════════════ CHAPTER 13: GLOBAL COMPARABLES ══════════════════ -->
+<section id="ch13">
+  <div class="sec-tag">Chapter Thirteen</div>
+  <h2 class="sec-title">Global Comparable <em>Analysis</em></h2>
+  <p class="sec-lead">The highest-value exercise in identifying India's future automotive champions is finding which Indian firms most closely resemble global leaders in their business model, competitive dynamics, and trajectory — then asking what the gap is and how long it will take to close.</p>
+
+  <div class="tw">
+    <table>
+      <thead>
+        <tr><th>India Company</th><th>Global Comparable</th><th>Why Similar</th><th>India's Current Gap</th><th>Gap Closing Speed</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>KPIT Technologies</strong></td>
+          <td class="tgold">ETAS (Bosch subsidiary) + Vector Informatik</td>
+          <td class="tdim">AUTOSAR tooling and implementation, deeply embedded in OEM software architecture across global platforms</td>
+          <td class="tdim">ETAS has proprietary AUTOSAR toolchains; KPIT provides services, not tools (yet). Platform IP gap.</td>
+          <td><span class="badge bg-amber">Medium — 5–8 years</span></td>
+        </tr>
+        <tr>
+          <td><strong>Tata Elxsi</strong></td>
+          <td class="tgold">Harman Connected Services + AKKA Technologies</td>
+          <td class="tdim">Design + embedded + digital cockpit integration; premium pricing; luxury OEM client base</td>
+          <td class="tdim">Harman has Samsung ecosystem access and brand scale 10× Tata Elxsi; AKKA had deeper European OEM embed</td>
+          <td><span class="badge bg-green">Fast — 3–5 years</span></td>
+        </tr>
+        <tr>
+          <td><strong>Sona BLW Precision</strong></td>
+          <td class="tgold">Nidec Corporation (Japan, EV motors)</td>
+          <td class="tdim">EV motor + drivetrain precision components; global OEM supply; growing EV motor revenue share</td>
+          <td class="tdim">Nidec is 20× Sona's size with pure motor focus; Sona is still partly gears. Technology depth gap in motor design.</td>
+          <td><span class="badge bg-amber">Medium — 7–10 years</span></td>
+        </tr>
+        <tr>
+          <td><strong>Bharat Forge</strong></td>
+          <td class="tgold">Schuler AG (forgings) + Martinrea International</td>
+          <td class="tdim">Precision closed-die forgings for automotive + industrial; global footprint; EV transition + defense expansion</td>
+          <td class="tdim">Schuler has press equipment business; Bharat Forge is customer only. Martinrea has broader lightweighting capability.</td>
+          <td><span class="badge bg-green">Fast — 3–5 years (forgings parity)</span></td>
+        </tr>
+        <tr>
+          <td><strong>Motherson Sumi</strong></td>
+          <td class="tgold">Aptiv PLC</td>
+          <td class="tdim">Global wiring harness + electrical architecture + module systems; 200+ plant network; multi-billion revenue</td>
+          <td class="tdim">Aptiv has 60%+ of revenue from advanced safety/autonomous products; Motherson still primarily harness + assembly. Technology gap is wide.</td>
+          <td><span class="badge bg-red">Slow — 10–15 years for ADAS capability</span></td>
+        </tr>
+        <tr>
+          <td><strong>Subros</strong></td>
+          <td class="tgold">Hanon Systems (Korea)</td>
+          <td class="tdim">Thermal management systems; OEM JV structure; transitioning from ICE to EV thermal; heat pump development</td>
+          <td class="tdim">Hanon Systems has 15× Subros revenue; independent global footprint; pure-play thermal. Subros is Maruti-captive.</td>
+          <td><span class="badge bg-amber">Medium — Requires diversification beyond Maruti</span></td>
+        </tr>
+        <tr>
+          <td><strong>Schaeffler India</strong></td>
+          <td class="tgold">Schaeffler AG (parent)</td>
+          <td class="tdim">Direct technology mirror — same product portfolio, same quality systems, same EV transition roadmap</td>
+          <td class="tdim">Parent IS the comparable; India subsidiary adds manufacturing cost efficiency and domestic market access. No conceptual gap, just scale.</td>
+          <td><span class="badge bg-green">Immediate — structural equivalent</span></td>
+        </tr>
+        <tr>
+          <td><strong>Ramkrishna Forgings</strong></td>
+          <td class="tgold">Accuride Corporation + Dura-Bar (US forging peers)</td>
+          <td class="tdim">Heavy CV forged components; US market focus; Tier 2 supplier to major Tier 1 system integrators</td>
+          <td class="tdim">US domestic forgers have supply chain adjacency advantage; Ramkrishna competes on cost; needs aluminum capability to close gap</td>
+          <td><span class="badge bg-green">Fast — steel forgings at parity; aluminum is the expansion</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════ CHAPTER 14: INDIA'S NEXT CHAMPIONS ══════════════════ -->
+<section id="ch14">
+  <div class="sec-tag">Chapter Fourteen</div>
+  <h2 class="sec-title">India's <em>Next Auto Champions</em></h2>
+  <p class="sec-lead">Five categories of future automotive champion. The evidence for each is commercial, not aspirational — based on existing RFQ pipelines, customer relationships, technology access, and demonstrated execution.</p>
+
+  <div class="tw">
+    <table>
+      <thead>
+        <tr><th>Champion Category</th><th>Company</th><th>Evidence of Trajectory</th><th>Probability</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="3" style="background:var(--bg4);"><strong>Future Global<br>Export Champions</strong></td>
+          <td><strong>Bharat Forge</strong></td>
+          <td class="tdim">Already exports to 30+ countries; US defense contracts; EV structural forging RFQs from German OEMs confirmed</td>
+          <td><span class="prob prob-h">Very High</span></td>
+        </tr>
+        <tr>
+          <td><strong>Ramkrishna Forgings</strong></td>
+          <td class="tdim">58% US revenue already; Meritor/Dana contracted; expanding to EV axle components via existing relationships</td>
+          <td><span class="prob prob-h">High</span></td>
+        </tr>
+        <tr>
+          <td><strong>KPIT Technologies</strong></td>
+          <td class="tdim">Revenue growing 25%+ from European/US OEMs; AUTOSAR talent advantage is structural; no competing India export threat</td>
+          <td><span class="prob prob-h">Very High</span></td>
+        </tr>
+        <tr>
+          <td rowspan="3" style="background:var(--bg4);"><strong>Future Technology<br>Leaders</strong></td>
+          <td><strong>Tata Elxsi</strong></td>
+          <td class="tdim">Digital cockpit patents filed; BMW and JLR design-wins confirm technology leadership not just cost advantage</td>
+          <td><span class="prob prob-h">High</span></td>
+        </tr>
+        <tr>
+          <td><strong>Sona BLW Precision</strong></td>
+          <td class="tdim">BLDC motor IP being developed; EV differential assembly patents; co-engineering with European OEMs</td>
+          <td><span class="prob prob-m">Medium</span></td>
+        </tr>
+        <tr>
+          <td><strong>Tube Investments (CG Power)</strong></td>
+          <td class="tdim">CG Power motors have genuine manufacturing technology depth; EV traction motor capability building with parent Renesas JV</td>
+          <td><span class="prob prob-m">Medium</span></td>
+        </tr>
+        <tr>
+          <td rowspan="2" style="background:var(--bg4);"><strong>Future India<br>Toll Booths</strong></td>
+          <td><strong>KPIT + Tata Elxsi (combined)</strong></td>
+          <td class="tdim">Jointly control India's SDV software design and AUTOSAR implementation capability; OEM talent market is tight; switching to any alternative is costly</td>
+          <td><span class="prob prob-h">High</span></td>
+        </tr>
+        <tr>
+          <td><strong>Subros (EV Thermal, India)</strong></td>
+          <td class="tdim">Maruti captive + Denso tech = de facto standard for EV battery thermal in India's largest OEM; expanding to Tata, M&amp;M</td>
+          <td><span class="prob prob-m">Medium-High</span></td>
+        </tr>
+        <tr>
+          <td rowspan="2" style="background:var(--bg4);"><strong>Future 10–20 Year<br>Compounders</strong></td>
+          <td><strong>KPIT Technologies</strong></td>
+          <td class="tdim">Revenue CAGR 20–25% potential; margin expansion as EV/ADAS work replaces ICE work; compounding quality</td>
+          <td><span class="prob prob-h">Very High</span></td>
+        </tr>
+        <tr>
+          <td><strong>Schaeffler India</strong></td>
+          <td class="tdim">German parent technology pipeline continuously refreshes product portfolio; India manufacturing cost advantage compounds; ROCE 25%+ sustained</td>
+          <td><span class="prob prob-h">High</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════ CHAPTER 15: FINAL VERDICT ══════════════════ -->
+<section id="ch15">
+  <div class="sec-tag">Chapter Fifteen</div>
+  <h2 class="sec-title">Final Investment <em>Verdict</em></h2>
+  <p class="sec-lead">After fifteen chapters, eight tiers, fifty bottlenecks, twenty-five compounders, and eight company deep-dives, fifteen verdicts clarify the landscape into actionable capital allocation principles.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>The Question</th><th>The Verdict</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Where does the most value live in the automotive transformation?</strong></td><td class="tdim">In the software layer and automotive semiconductor platform companies — not in OEMs or battery cell manufacturers. NVIDIA DRIVE, Mobileye EyeQ, BlackBerry QNX, Wolfspeed SiC substrates, and Sony Semiconductor automotive CMOS collectively represent the most concentrated value creation pool in the next fifteen years.</td></tr>
+        <tr><td><strong>Which bottlenecks matter most?</strong></td><td class="tdim">SiC substrate growth rate (physics-constrained), ADAS AI SoC design capability (decade-long R&amp;D moat), and automotive OS qualification depth (15+ years of safety certification accumulation) are the three bottlenecks with the least probability of near-term resolution by new entrants.</td></tr>
+        <tr><td><strong>Which technologies are hardest to replicate?</strong></td><td class="tdim">SiC crystal growth process expertise; ISO 26262 ASIL-D certified software tool chains; MOBILEYE's crowdsourced HD mapping data flywheel; NVIDIA's CUDA software ecosystem; Sony's pixel-level CMOS process IP.</td></tr>
+        <tr><td><strong>Which segments have the highest margins?</strong></td><td class="tdim">Automotive software (65–85% gross margins at platform scale); ADAS AI SoC (55–70%); Power Electronics/SiC (40–55%). These three segments together represent the best margin profile in the entire value chain.</td></tr>
+        <tr><td><strong>Which Indian companies are best positioned?</strong></td><td class="tdim">For long-duration compounding: KPIT Technologies and Tata Elxsi (software, unmatched); Schaeffler India (global technology, India execution); Sona BLW Precision (EV transition play with genuine moat). For near-term re-rating: Subros (thermal upside), Ramkrishna Forgings (export tailwind), Happy Forgings (newly listed, undiscovered).</td></tr>
+        <tr><td><strong>Which small-caps are most underappreciated?</strong></td><td class="tdim">Subros (EV thermal sleeper), Pricol (dashboard-to-ADAS bridge), Hi-Tech Gears (EV reducer gear play), Alicon Castalloy (EV aluminum housing), Happy Forgings (new listing, high-ROCE, export story).</td></tr>
+        <tr><td><strong>Which Indian companies could become global suppliers?</strong></td><td class="tdim">Bharat Forge (already is; expanding), KPIT Technologies (already supplying major global OEMs), Tata Elxsi (BMW/JLR design wins), Ramkrishna Forgings (US CV market dominance building), Motherson Sumi (global Tier 1 today).</td></tr>
+        <tr><td><strong>Which firms are merely narrative plays?</strong></td><td class="tdim">Companies announcing "EV strategy" without customer RFQs or demonstrated technology differentiation; battery assembly plays without chemistry IP or long-term OEM supply agreements; hydrogen mobility companies in India without infrastructure visibility.</td></tr>
+        <tr><td><strong>Which firms have highest probability of being long-duration compounders?</strong></td><td class="tdim">KPIT Technologies, Tata Elxsi (software compounding); Schaeffler India (global tech + India platform); Sona BLW Precision (EV motor trajectory); Bharat Forge (forgings + defense diversification). These five firms score highest on all four dimensions: moat depth, ROIC trajectory, market size, and management quality.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════ SPECIAL SECTION: TOP 10 THEMES ══════════════════ -->
+<section id="themes">
+  <div class="sec-tag">Special Section</div>
+  <h2 class="sec-title">The Next Decade's <em>Top 10 Themes</em></h2>
+  <p class="sec-lead">Ranked by expected shareholder value creation potential from 2025 to 2035. Score represents composite of total addressable market size, margin potential, capital efficiency, and competitive barrier height.</p>
+
+  <div style="margin:32px 0;">
+    <div class="theme-row">
+      <div class="th-num">1</div>
+      <div class="th-name">Automotive AI &amp; Autonomous Driving Stack</div>
+      <div><div class="th-bar-wrap"><div class="th-bar" style="width:97%;background:var(--gold);"></div></div></div>
+      <div class="th-score">9.7 / 10</div>
+    </div>
+    <div style="font-size:13px;color:var(--text2);padding:8px 0 16px 40px;border-bottom:1px solid var(--border);">Platform economics; $800B+ addressable market; NVIDIA and Mobileye as compounding toll booths; winner-take-most dynamics. India angle: KPIT, Tata Elxsi as software partners to global AV developers.</div>
+
+    <div class="theme-row">
+      <div class="th-num">2</div>
+      <div class="th-name">Software-Defined Vehicles (SDV / OTA)</div>
+      <div><div class="th-bar-wrap"><div class="th-bar" style="width:94%;background:var(--gold);"></div></div></div>
+      <div class="th-score">9.4 / 10</div>
+    </div>
+    <div style="font-size:13px;color:var(--text2);padding:8px 0 16px 40px;border-bottom:1px solid var(--border);">Every vehicle becomes a software platform; OTA revenue $500B+ by 2030; OS layer is the highest-value real estate. India: KPIT, Tata Elxsi directly; embedded talent pool structurally indispensable.</div>
+
+    <div class="theme-row">
+      <div class="th-num">3</div>
+      <div class="th-name">SiC &amp; GaN Power Electronics</div>
+      <div><div class="th-bar-wrap"><div class="th-bar" style="width:90%;background:var(--gold);"></div></div></div>
+      <div class="th-score">9.0 / 10</div>
+    </div>
+    <div style="font-size:13px;color:var(--text2);padding:8px 0 16px 40px;border-bottom:1px solid var(--border);">Supply-constrained growth; physics limits new entrants; multi-year OEM supply agreements give visibility. India: Component machining for SiC modules is a manufacturing opportunity; power electronics assembly emerging.</div>
+
+    <div class="theme-row">
+      <div class="th-num">4</div>
+      <div class="th-name">Automotive Semiconductors (MCU, ADAS Chips)</div>
+      <div><div class="th-bar-wrap"><div class="th-bar" style="width:87%;background:var(--amber);"></div></div></div>
+      <div class="th-score">8.7 / 10</div>
+    </div>
+    <div style="font-size:13px;color:var(--text2);padding:8px 0 16px 40px;border-bottom:1px solid var(--border);">10–15× content per vehicle growth over 15 years; qualification moat; design-win annuities. India: Semiconductor OSAT (packaging/test) is the credible near-term Indian opportunity in this category.</div>
+
+    <div class="theme-row">
+      <div class="th-num">5</div>
+      <div class="th-name">Thermal Management (EV-Specific)</div>
+      <div><div class="th-bar-wrap"><div class="th-bar" style="width:82%;background:var(--amber);"></div></div></div>
+      <div class="th-score">8.2 / 10</div>
+    </div>
+    <div style="font-size:13px;color:var(--text2);padding:8px 0 16px 40px;border-bottom:1px solid var(--border);">3–4× market size growth; OEM co-development creates sticky relationships; India climate expertise is a genuine differentiator. India: Subros (direct), with adjacent opportunities for specialty polymer and heat exchanger suppliers.</div>
+
+    <div class="theme-row">
+      <div class="th-num">6</div>
+      <div class="th-name">Advanced Sensors (Camera, Radar, LiDAR)</div>
+      <div><div class="th-bar-wrap"><div class="th-bar" style="width:78%;background:var(--amber);"></div></div></div>
+      <div class="th-score">7.8 / 10</div>
+    </div>
+    <div style="font-size:13px;color:var(--text2);padding:8px 0 16px 40px;border-bottom:1px solid var(--border);">Sensor count per vehicle growing from 5–8 to 20–30; Sony dominant in camera CMOS; LiDAR binary outcome risk. India: Pricol building 2W ADAS sensor capability; integration/calibration services opportunity.</div>
+
+    <div class="theme-row">
+      <div class="th-num">7</div>
+      <div class="th-name">Vehicle Connectivity &amp; V2X</div>
+      <div><div class="th-bar-wrap"><div class="th-bar" style="width:72%;background:var(--blue);"></div></div></div>
+      <div class="th-score">7.2 / 10</div>
+    </div>
+    <div style="font-size:13px;color:var(--text2);padding:8px 0 16px 40px;border-bottom:1px solid var(--border);">Data monetisation through telematics and OTA; V2X infrastructure build-out; cybersecurity as mandatory compliance market. India: Fleet telematics, cybersecurity compliance services, OTA management platforms.</div>
+
+    <div class="theme-row">
+      <div class="th-num">8</div>
+      <div class="th-name">Industrial Robotics in Auto Manufacturing</div>
+      <div><div class="th-bar-wrap"><div class="th-bar" style="width:68%;background:var(--blue);"></div></div></div>
+      <div class="th-score">6.8 / 10</div>
+    </div>
+    <div style="font-size:13px;color:var(--text2);padding:8px 0 16px 40px;border-bottom:1px solid var(--border);">EV manufacturing is more automatable than ICE; Kuka, Fanuc, ABB primary beneficiaries globally. India: Gridbots, Precision Automation emerging; but deep value in integration services for EV plant setup.</div>
+
+    <div class="theme-row">
+      <div class="th-num">9</div>
+      <div class="th-name">Lightweight Materials &amp; Advanced Manufacturing</div>
+      <div><div class="th-bar-wrap"><div class="th-bar" style="width:65%;background:var(--blue);"></div></div></div>
+      <div class="th-score">6.5 / 10</div>
+    </div>
+    <div style="font-size:13px;color:var(--text2);padding:8px 0 16px 40px;border-bottom:1px solid var(--border);">Structural necessity for EV range economics; UHSS + aluminum + CFRP; gigacasting disrupting body panel manufacturing. India: Alicon Castalloy, aluminum forging at Bharat Forge; CFRP processing still nascent.</div>
+
+    <div class="theme-row">
+      <div class="th-num">10</div>
+      <div class="th-name">Energy Storage Integration (V2G, Second-Life)</div>
+      <div><div class="th-bar-wrap"><div class="th-bar" style="width:58%;background:var(--blue);"></div></div></div>
+      <div class="th-score">5.8 / 10</div>
+    </div>
+    <div style="font-size:13px;color:var(--text2);padding:8px 0 16px 40px;">Transformational long-term; but near-term limited by grid infrastructure and regulatory frameworks. India: Second-life battery storage for telecom towers and solar installations is the most credible near-term domestic application.</div>
+  </div>
+</section>
+
+<!-- ══════════════════ FINAL TABLE ══════════════════ -->
+<section id="final-table">
+  <div class="sec-tag">Final Required Table</div>
+  <h2 class="sec-title">The Comprehensive <em>Scoring Table</em></h2>
+  <p class="sec-lead">Every company evaluated on the same framework: bottleneck solved, ASML score, moat depth, export potential, EV exposure, autonomous driving exposure, software content, and 10-year compounder probability.</p>
+
+  <div class="ft-wrap">
+    <table class="ft-table">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Bottleneck Solved</th>
+          <th>ASML Score</th>
+          <th>Moat Score</th>
+          <th>Export Potential</th>
+          <th>EV Exposure</th>
+          <th>AV Exposure</th>
+          <th>Software Content</th>
+          <th>10-Year Compounder Prob.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="section-head"><td colspan="9">Global Companies</td></tr>
+        <tr>
+          <td><strong>NVIDIA</strong><div class="tdim" style="font-size:10px;">DRIVE Orin / Thor</div></td>
+          <td class="tdim">ADAS AI SoC + entire software ecosystem; no L3+ vehicle ships without NVIDIA or equivalent</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:95%;background:var(--gold);"></div></div><span class="snum">9.5</span></div></td>
+          <td class="mono tgold">9.5</td>
+          <td><span class="badge bg-gold">Global</span></td>
+          <td class="mono tamber">15%</td>
+          <td><span class="badge bg-gold">Direct</span></td>
+          <td><span class="badge bg-gold">Platform</span></td>
+          <td><span class="prob prob-h">9.5 / 10</span></td>
+        </tr>
+        <tr>
+          <td><strong>Mobileye</strong><div class="tdim" style="font-size:10px;">EyeQ + REM</div></td>
+          <td class="tdim">70% global ADAS design share; platform lock-in 18–36 month switching cycle; HD map flywheel</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:90%;background:var(--gold);"></div></div><span class="snum">9.0</span></div></td>
+          <td class="mono tgold">9.0</td>
+          <td><span class="badge bg-gold">Global</span></td>
+          <td class="mono tamber">20%</td>
+          <td><span class="badge bg-gold">Direct</span></td>
+          <td><span class="badge bg-gold">Platform</span></td>
+          <td><span class="prob prob-h">9.0 / 10</span></td>
+        </tr>
+        <tr>
+          <td><strong>Wolfspeed</strong><div class="tdim" style="font-size:10px;">SiC Substrate</div></td>
+          <td class="tdim">World's largest SiC crystal grower; physics-constrained supply; 18–24 month expansion minimum</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:88%;background:var(--gold);"></div></div><span class="snum">8.8</span></div></td>
+          <td class="mono tgold">8.0</td>
+          <td><span class="badge bg-gold">Global</span></td>
+          <td class="mono tgold">100%</td>
+          <td><span class="badge bg-muted">Indirect</span></td>
+          <td><span class="badge bg-muted">Low</span></td>
+          <td><span class="prob prob-h">8.0 / 10</span></td>
+        </tr>
+        <tr>
+          <td><strong>Sony Semiconductor</strong><div class="tdim" style="font-size:10px;">Auto CMOS Imaging</div></td>
+          <td class="tdim">60%+ automotive CMOS share; Pregius/IMX process 8–10 years ahead of competitors</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:85%;background:var(--gold);"></div></div><span class="snum">8.5</span></div></td>
+          <td class="mono tgold">8.5</td>
+          <td><span class="badge bg-gold">Global</span></td>
+          <td class="mono tamber">20%</td>
+          <td><span class="badge bg-gold">Direct</span></td>
+          <td><span class="badge bg-muted">Low</span></td>
+          <td><span class="prob prob-h">8.5 / 10</span></td>
+        </tr>
+        <tr>
+          <td><strong>Infineon Technologies</strong><div class="tdim" style="font-size:10px;">MCU + SiC + Radar</div></td>
+          <td class="tdim">Three simultaneous bottlenecks: AURIX MCU (35%), CoolSiC power, 77GHz radar chipsets</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:80%;background:var(--gold);"></div></div><span class="snum">8.0</span></div></td>
+          <td class="mono tgold">8.0</td>
+          <td><span class="badge bg-gold">Global</span></td>
+          <td class="mono tamber">45%</td>
+          <td><span class="badge bg-blue">Indirect</span></td>
+          <td><span class="badge bg-amber">Medium</span></td>
+          <td><span class="prob prob-h">8.5 / 10</span></td>
+        </tr>
+        <tr>
+          <td><strong>NXP Semiconductors</strong><div class="tdim" style="font-size:10px;">S32 + CAN/Ethernet</div></td>
+          <td class="tdim">SDV zone controller reference architecture; automotive networking silicon dominance (CAN-FD, SOME/IP)</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:80%;background:var(--gold);"></div></div><span class="snum">8.0</span></div></td>
+          <td class="mono tgold">7.5</td>
+          <td><span class="badge bg-gold">Global</span></td>
+          <td class="mono tamber">55%</td>
+          <td><span class="badge bg-blue">Indirect</span></td>
+          <td><span class="badge bg-gold">High</span></td>
+          <td><span class="prob prob-h">8.0 / 10</span></td>
+        </tr>
+        <tr>
+          <td><strong>BlackBerry QNX</strong><div class="tdim" style="font-size:10px;">Automotive RTOS</div></td>
+          <td class="tdim">255M+ vehicle OS installed base; ASIL-D RTOS with 15+ years certification history; safety track record irreplaceable near-term</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:85%;background:var(--gold);"></div></div><span class="snum">8.5</span></div></td>
+          <td class="mono tgold">8.5</td>
+          <td><span class="badge bg-gold">Global</span></td>
+          <td class="mono tamber">30%</td>
+          <td><span class="badge bg-gold">Direct</span></td>
+          <td><span class="badge bg-gold">Platform</span></td>
+          <td><span class="prob prob-h">8.0 / 10</span></td>
+        </tr>
+        <tr>
+          <td><strong>Bosch</strong><div class="tdim" style="font-size:10px;">Multi-System Tier 1</div></td>
+          <td class="tdim">ABS/ESP safety systems (near-universal); ADAS radar; powertrain; breadth creates intelligence moat</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:70%;background:var(--amber);"></div></div><span class="snum">7.0</span></div></td>
+          <td class="mono tamber">7.5</td>
+          <td><span class="badge bg-gold">Global</span></td>
+          <td class="mono tamber">25%</td>
+          <td><span class="badge bg-gold">Direct</span></td>
+          <td><span class="badge bg-gold">High</span></td>
+          <td><span class="prob prob-h">7.5 / 10</span></td>
+        </tr>
+        <tr>
+          <td><strong>CATL</strong><div class="tdim" style="font-size:10px;">Battery Cell + CTP</div></td>
+          <td class="tdim">37% global EV battery share; CTP architecture; Kirin battery; long-term OEM supply agreements</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:75%;background:var(--amber);"></div></div><span class="snum">7.5</span></div></td>
+          <td class="mono tamber">7.0</td>
+          <td><span class="badge bg-gold">Global</span></td>
+          <td class="mono tgold">100%</td>
+          <td><span class="badge bg-muted">None</span></td>
+          <td><span class="badge bg-amber">Medium</span></td>
+          <td><span class="prob prob-m">7.0 / 10</span></td>
+        </tr>
+        <tr>
+          <td><strong>TE Connectivity</strong><div class="tdim" style="font-size:10px;">HV Connectors</div></td>
+          <td class="tdim">Dominant in high-voltage automotive connectors; safety-critical qualification for 400V/800V architectures; new EV designs require entirely new connector specs</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:65%;background:var(--amber);"></div></div><span class="snum">6.5</span></div></td>
+          <td class="mono tamber">6.5</td>
+          <td><span class="badge bg-gold">Global</span></td>
+          <td class="mono tamber">30%</td>
+          <td><span class="badge bg-blue">Indirect</span></td>
+          <td><span class="badge bg-muted">Low</span></td>
+          <td><span class="prob prob-h">7.5 / 10</span></td>
+        </tr>
+
+        <tr class="section-head"><td colspan="9">India Companies — Emerging Compounders</td></tr>
+        <tr>
+          <td><strong>KPIT Technologies</strong> <span class="india-badge"></span><div class="tdim" style="font-size:10px;">NSE: KPITTECH</div></td>
+          <td class="tdim">AUTOSAR Adaptive + EV powertrain SW; 3,000+ AUTOSAR engineers; deeply embedded in OEM architectures</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:73%;background:var(--teal);"></div></div><span class="snum tblue">7.3</span></div></td>
+          <td class="mono tteal">7.0</td>
+          <td><span class="badge bg-gold">Very High</span></td>
+          <td class="mono tgold">100%</td>
+          <td><span class="badge bg-gold">Direct</span></td>
+          <td><span class="badge bg-gold">Platform</span></td>
+          <td><span class="prob prob-h">9.0 / 10</span></td>
+        </tr>
+        <tr>
+          <td><strong>Tata Elxsi</strong> <span class="india-badge"></span><div class="tdim" style="font-size:10px;">NSE: TATAELXSI</div></td>
+          <td class="tdim">Full-stack SDV design: cockpit UX + ADAS integration + embedded systems; one of &lt;5 global firms with this breadth</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:70%;background:var(--teal);"></div></div><span class="snum tblue">7.0</span></div></td>
+          <td class="mono tteal">7.0</td>
+          <td><span class="badge bg-gold">Very High</span></td>
+          <td class="mono tamber">40%</td>
+          <td><span class="badge bg-gold">Direct</span></td>
+          <td><span class="badge bg-gold">Very High</span></td>
+          <td><span class="prob prob-h">8.5 / 10</span></td>
+        </tr>
+        <tr>
+          <td><strong>Schaeffler India</strong> <span class="india-badge"></span><div class="tdim" style="font-size:10px;">NSE: SCHAEFFLER</div></td>
+          <td class="tdim">EV motor insulated bearings + e-axle components; German parent technology pipeline continuously refreshes portfolio</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:65%;background:var(--teal);"></div></div><span class="snum tblue">6.5</span></div></td>
+          <td class="mono tteal">6.5</td>
+          <td><span class="badge bg-gold">Very High</span></td>
+          <td class="mono tamber">25%</td>
+          <td><span class="badge bg-muted">None</span></td>
+          <td><span class="badge bg-muted">Low</span></td>
+          <td><span class="prob prob-h">8.0 / 10</span></td>
+        </tr>
+        <tr>
+          <td><strong>Sona BLW Precision</strong> <span class="india-badge"></span><div class="tdim" style="font-size:10px;">NSE: SONACOMS</div></td>
+          <td class="tdim">EV differential gear assemblies + BLDC motor systems; precision manufacturing moat + growing EV motor engineering</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:60%;background:var(--teal);"></div></div><span class="snum tblue">6.0</span></div></td>
+          <td class="mono tteal">6.0</td>
+          <td><span class="badge bg-gold">High</span></td>
+          <td class="mono tgold">35%+</td>
+          <td><span class="badge bg-muted">Indirect</span></td>
+          <td><span class="badge bg-muted">Low</span></td>
+          <td><span class="prob prob-h">8.0 / 10</span></td>
+        </tr>
+        <tr>
+          <td><strong>Bharat Forge</strong> <span class="india-badge"></span><div class="tdim" style="font-size:10px;">NSE: BHARATFORG</div></td>
+          <td class="tdim">Precision forgings (auto + defense + industrial); EV structural components; defense indigenisation beneficiary</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:50%;background:var(--teal);"></div></div><span class="snum tblue">5.0</span></div></td>
+          <td class="mono tamber">5.5</td>
+          <td><span class="badge bg-gold">Very High</span></td>
+          <td class="mono tamber">15%</td>
+          <td><span class="badge bg-muted">None</span></td>
+          <td><span class="badge bg-muted">Low</span></td>
+          <td><span class="prob prob-h">7.5 / 10</span></td>
+        </tr>
+        <tr>
+          <td><strong>Subros</strong> <span class="india-badge"></span><div class="tdim" style="font-size:10px;">NSE: SUBROS</div></td>
+          <td class="tdim">India's dominant OEM thermal supplier via Maruti + Denso JV; EV battery thermal management content increase pipeline</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:50%;background:var(--teal);"></div></div><span class="snum tblue">5.0</span></div></td>
+          <td class="mono tamber">5.5</td>
+          <td><span class="badge bg-amber">Medium</span></td>
+          <td class="mono tamber">20%</td>
+          <td><span class="badge bg-muted">None</span></td>
+          <td><span class="badge bg-muted">Low</span></td>
+          <td><span class="prob prob-h">7.5 / 10</span></td>
+        </tr>
+        <tr>
+          <td><strong>Ramkrishna Forgings</strong> <span class="india-badge"></span><div class="tdim" style="font-size:10px;">NSE: RKFORGE</div></td>
+          <td class="tdim">Critical CV forged components; US market OEM qualification history; China+1 structural beneficiary</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:45%;background:var(--teal);"></div></div><span class="snum tblue">4.5</span></div></td>
+          <td class="mono tamber">5.0</td>
+          <td><span class="badge bg-gold">Very High</span></td>
+          <td class="mono tamber">10%</td>
+          <td><span class="badge bg-muted">None</span></td>
+          <td><span class="badge bg-muted">Low</span></td>
+          <td><span class="prob prob-h">7.0 / 10</span></td>
+        </tr>
+        <tr>
+          <td><strong>Uno Minda</strong> <span class="india-badge"></span><div class="tdim" style="font-size:10px;">NSE: UNOMINDA</div></td>
+          <td class="tdim">Switches, LED lighting, acoustic systems, ADAS sensor modules; growing content per vehicle as ADAS mandates rise</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:45%;background:var(--teal);"></div></div><span class="snum tblue">4.5</span></div></td>
+          <td class="mono tamber">5.0</td>
+          <td><span class="badge bg-amber">Medium</span></td>
+          <td class="mono tamber">20%</td>
+          <td><span class="badge bg-blue">Indirect</span></td>
+          <td><span class="badge bg-amber">Medium</span></td>
+          <td><span class="prob prob-h">7.0 / 10</span></td>
+        </tr>
+        <tr>
+          <td><strong>Motherson Sumi Intl.</strong> <span class="india-badge"></span><div class="tdim" style="font-size:10px;">NSE: MOTHERSON</div></td>
+          <td class="tdim">Global Tier 1 wiring harness + modules; content per EV growing 25–40% vs. ICE harness</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:50%;background:var(--teal);"></div></div><span class="snum tblue">5.0</span></div></td>
+          <td class="mono tamber">5.5</td>
+          <td><span class="badge bg-gold">Very High</span></td>
+          <td class="mono tamber">20%</td>
+          <td><span class="badge bg-blue">Indirect</span></td>
+          <td><span class="badge bg-muted">Low</span></td>
+          <td><span class="prob prob-m">6.5 / 10</span></td>
+        </tr>
+        <tr>
+          <td><strong>Endurance Technologies</strong> <span class="india-badge"></span><div class="tdim" style="font-size:10px;">NSE: ENDURANCE</div></td>
+          <td class="tdim">Aluminum die castings + ABS + suspension for 2-wheelers; ABS mandate + EV castings</td>
+          <td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:45%;background:var(--teal);"></div></div><span class="snum tblue">4.5</span></div></td>
+          <td class="mono tamber">5.0</td>
+          <td><span class="badge bg-green">High</span></td>
+          <td class="mono tamber">15%</td>
+          <td><span class="badge bg-muted">None</span></td>
+          <td><span class="badge bg-muted">Low</span></td>
+          <td><span class="prob prob-m">6.5 / 10</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════ FINAL CONCLUSION: 2025–2045 ROADMAP ══════════════════ -->
+<section id="conclusion">
+  <div class="sec-tag">Final Conclusion</div>
+  <h2 class="sec-title">The Future of Mobility <em>2025–2045</em></h2>
+  <p class="sec-lead">A probabilistic roadmap for the automotive transformation, global semiconductor content growth, EV penetration, software monetisation, autonomous driving adoption, and India's rising position in the global supply chain.</p>
+
+  <p>The twenty-year transformation of the global automotive industry will unfold in five distinct phases, each with different winning strategies and dominant value creation themes. The companies that will compound most durably are those that identify which phase they are in, invest ahead of the phase that follows, and maintain the technology and qualification depth that makes them indispensable through each transition.</p>
+
+  <div class="timeline">
+    <div class="tl-line"></div>
+
+    <div class="tl-item">
+      <div class="tl-period">2025–2028<br>Phase I</div>
+      <div class="tl-dot"><div class="tl-dot-inner active"></div></div>
+      <div class="tl-content">
+        <div class="tl-phase">Phase I · Early Mass Market</div>
+        <div class="tl-head">The EV Acceleration &amp; SiC Supply Crunch</div>
+        <ul class="tl-events">
+          <li>Global EV penetration reaches 30–35% of new sales; China crosses 50%</li>
+          <li>SiC supply crunch peaks; Wolfspeed, Infineon, ON Semi capacity fully subscribed through 2027</li>
+          <li>Battery costs break $80/kWh; LFP becomes dominant chemistry for mass-market EVs</li>
+          <li>L2+ ADAS becomes standard in all vehicles above $20,000 in major markets</li>
+          <li>OTA revenue begins emerging: Tesla, Volkswagen, BMW in early monetisation</li>
+          <li>India: EV 2-wheeler penetration crosses 15%; PV EV reaches 5–7%</li>
+          <li><strong>Value winners:</strong> SiC power electronics, ADAS chips, EV thermal, automotive software</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-period">2028–2032<br>Phase II</div>
+      <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+      <div class="tl-content">
+        <div class="tl-phase">Phase II · SDV Transition</div>
+        <div class="tl-head">Software Becomes the Primary Differentiation</div>
+        <ul class="tl-events">
+          <li>Zonal vehicle architecture becomes standard; distributed ECUs replaced by central compute</li>
+          <li>NVIDIA Thor (2,000 TOPS) enables commercial L3 deployment at scale in select ODD</li>
+          <li>Automotive OTA subscription revenue exceeds $100B globally for first time</li>
+          <li>Battery costs reach $60–70/kWh; solid-state batteries in limited production at Toyota, QuantumScape</li>
+          <li>India: Auto component exports reach $35–40B; KPIT/Tata Elxsi at 2× current revenue</li>
+          <li>L4 robotaxi commercial deployment in 15–20 major global cities (Waymo, Baidu, WeRide)</li>
+          <li><strong>Value winners:</strong> SDV software platforms, ADAS AI SoCs, charging network operators</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-period">2032–2036<br>Phase III</div>
+      <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+      <div class="tl-content">
+        <div class="tl-phase">Phase III · Autonomy Emergence</div>
+        <div class="tl-head">The Platform Economy Arrives in Automotive</div>
+        <ul class="tl-events">
+          <li>Global EV penetration exceeds 50% of new sales; EU approaches ICE phase-out mandates (2035)</li>
+          <li>Solid-state batteries enter mass production; first 500+ mile range mass-market EVs</li>
+          <li>Software &gt; hardware as primary vehicle value determinant for premium brands</li>
+          <li>L4 autonomous commercial vehicles (logistics, last-mile delivery) achieve commercial scale</li>
+          <li>India: World's 3rd largest car market; 25%+ EV penetration PV; export target $60B achieved</li>
+          <li>Battery recycling industry reaches $50B+ as first-generation EV batteries retire</li>
+          <li><strong>Value winners:</strong> Autonomous software platforms, battery IP holders, recycling infrastructure</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-period">2036–2040<br>Phase IV</div>
+      <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+      <div class="tl-content">
+        <div class="tl-phase">Phase IV · Platform Consolidation</div>
+        <div class="tl-head">Winner-Takes-Most Dynamics Fully Manifest</div>
+        <ul class="tl-events">
+          <li>ICE sales effectively end in EU, China, Japan; mass-market EV becomes global default</li>
+          <li>3–5 dominant autonomous driving platform providers emerge; long tail fails</li>
+          <li>V2G mainstream in Europe; EV fleets providing significant grid balancing revenue</li>
+          <li>Hydrogen fuel cell trucks achieve 15–20% penetration in long-haul commercial vehicle</li>
+          <li>India: Top-5 global auto component exporter; ₹500B+ in listed auto component market cap</li>
+          <li>Vehicle-as-a-Service models drive 25–30% of total vehicle usage in major urban markets</li>
+          <li><strong>Value winners:</strong> Platform monopolists (2–3 global AV software providers), V2G infrastructure</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-period">2040–2045<br>Phase V</div>
+      <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+      <div class="tl-content">
+        <div class="tl-phase">Phase V · Full Transformation</div>
+        <div class="tl-head">The Post-Automobile Era Begins</div>
+        <ul class="tl-events">
+          <li>Global fleet majority electric; ICE a small legacy segment in developing markets only</li>
+          <li>L4 autonomous vehicles standard in urban environments globally; L5 still edge cases</li>
+          <li>Vehicle ownership declining in high-income cities; Mobility-as-a-Service majority</li>
+          <li>Energy grid and vehicle fleet deeply integrated; EVs as distributed grid storage at scale</li>
+          <li>India: Among world's 3 largest auto markets; indigenous EV technology export emerging</li>
+          <li>Semiconductor content per vehicle stabilises at $5,000–8,000; new value in software/data services</li>
+          <li><strong>Value winners:</strong> Data platform owners, MaaS operators, energy grid integrators, and the enduring software toll booths built in Phase I–II</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3>Where Will the Largest Pools of Shareholder Wealth Be Created?</h3>
+
+  <p>History's most durable investment framework for technology mega-cycles is deceptively simple: <strong>own the picks, shovels, and tollgates</strong> — the companies without which the transformation cannot proceed, whose value compounds with every unit of growth in the ecosystem above them.</p>
+
+  <p>In the automotive super-cycle, those positions are occupied by a small number of companies that have already been identified in this report: NVIDIA's DRIVE platform (the pick for autonomous compute), Mobileye's EyeQ ecosystem (the shovel for ADAS perception), Wolfspeed and Infineon for SiC substrates (the tollgate for EV power), Sony Semiconductor for imaging (the invisible infrastructure of every camera-based safety system), and BlackBerry QNX for automotive OS (the platform that runs below every ADAS stack). These global names will compound with the industry's growth regardless of which OEM wins or loses, regardless of which country leads in EV deployment.</p>
+
+  <p>In India specifically, the equivalent positions are being built by a generation of companies that the institutional equity market has not yet fully valued: KPIT Technologies and Tata Elxsi as the software engineering platform for India's SDV transition and global OEM outsourcing, Sona BLW Precision and Schaeffler India as the hardware execution layer for India's EV drivetrain and bearing requirements, Bharat Forge and Ramkrishna Forgings as the structural precision manufacturing backbone that global supply chains are increasingly routing through India, and the thermal management and precision connector specialists who will compound quietly for twenty years without ever appearing on a technology investor's radar.</p>
+
+  <div class="pq">"The automotive super-cycle will create its largest fortunes in the unglamorous companies that own the qualified, certified, irreplaceable components without which no vehicle can be built, no battery can be managed, and no autonomous system can function safely. Find those companies. Hold them. Let the super-cycle compound on your behalf."</div>
+
+  <div style="margin-top:60px;padding-top:36px;border-top:1px solid var(--border);text-align:center;">
+    <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--text3);margin-bottom:12px;">End of Report</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--text2);font-style:italic;margin-bottom:8px;">The Global Automotive Super-Cycle &amp; India's Auto Technology Ecosystem</div>
+    <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:.1em;">Part I: Architecture of Transformation &nbsp;·&nbsp; Part II: India, Compounders &amp; the 2045 Roadmap</div>
+    <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:.1em;margin-top:6px;">Institutional Research Series &nbsp;·&nbsp; Q2 2025 &nbsp;·&nbsp; Not Investment Advice</div>
+  </div>
+</section>
+
+</main>
+
+<script>
+// Active nav link
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.sb-link');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      const id = entry.target.getAttribute('id');
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if(link.getAttribute('href') === '#' + id) link.classList.add('active');
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+sections.forEach(s => observer.observe(s));
+
+// Animate score bars on scroll
+const barObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      const fills = entry.target.querySelectorAll('.sbar-fill, .th-bar');
+      fills.forEach(f => {
+        const target = f.style.width;
+        f.style.width = '0';
+        setTimeout(() => { f.style.transition = 'width 0.7s ease'; f.style.width = target; }, 100);
+      });
+      barObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.tw, .theme-row').forEach(el => barObs.observe(el));
+
+// Stagger card reveals
+const cards = document.querySelectorAll('.comp-card, .cc, .eco-card, .finding, .bstat, .quad-cell');
+const cardObs = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if(entry.isIntersecting){
+      const el = entry.target;
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(10px)';
+      el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'none'; }, i * 35);
+      cardObs.unobserve(el);
+    }
+  });
+}, { threshold: 0.05 });
+cards.forEach(el => cardObs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Water Research — Parts 5–15 | Global Water Super-Cycle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   CSS VARIABLES & RESET
+   ============================================ */
+:root {
+  --bg-0:#04081A;--bg-1:#070D22;--bg-2:#0C1530;--bg-3:#111E3E;
+  --bg-card:#0D1836;--bg-card-hover:#132048;
+  --border:#1C2D50;--border-light:#243460;
+  --gold:#C8943C;--gold-light:#E2AF62;--gold-dim:#7A5A20;
+  --teal:#00B8A3;--teal-light:#00D4BD;--teal-dim:#005B52;
+  --blue:#3A7BD5;--blue-light:#5B9BF5;
+  --red:#E05252;--red-dim:#6B2424;
+  --green:#3DBD7D;--amber:#E89535;
+  --text-0:#EDF0F7;--text-1:#B8C4D8;--text-2:#7A8CAA;--text-3:#4A5C7A;
+  --heading-font:'Cormorant Garamond',Georgia,serif;
+  --body-font:'Outfit',sans-serif;
+  --mono-font:'JetBrains Mono','Courier New',monospace;
+  --sidebar-w:260px;--header-h:56px;
+  --radius:6px;--radius-lg:12px;
+  --shadow:0 4px 24px rgba(0,0,0,0.6);
+  --shadow-lg:0 8px 48px rgba(0,0,0,0.8);
+  --glow-gold:0 0 20px rgba(200,148,60,0.25);
+  --glow-teal:0 0 20px rgba(0,184,163,0.25);
+  --transition:0.25s ease;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg-0);color:var(--text-0);font-family:var(--body-font);font-size:15px;line-height:1.75;overflow-x:hidden;}
+::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--bg-1);}
+::-webkit-scrollbar-thumb{background:var(--border-light);border-radius:3px;}
+::-webkit-scrollbar-thumb:hover{background:var(--gold-dim);}
+
+/* Typography */
+h1,h2,h3,h4,h5{font-family:var(--heading-font);font-weight:600;line-height:1.15;color:var(--text-0);letter-spacing:0.01em;}
+.section-title{font-family:var(--heading-font);font-size:clamp(2rem,3vw,3.2rem);font-weight:600;color:var(--text-0);}
+.section-subtitle{font-family:var(--heading-font);font-size:clamp(1.4rem,2vw,2rem);font-weight:400;color:var(--gold-light);font-style:italic;}
+p{margin-bottom:1.1rem;color:var(--text-1);}p:last-child{margin-bottom:0;}
+a{color:var(--teal-light);text-decoration:none;transition:var(--transition);}a:hover{color:var(--gold-light);}
+strong{color:var(--text-0);font-weight:600;}em{color:var(--gold-light);font-style:italic;}
+code{font-family:var(--mono-font);font-size:0.85em;color:var(--teal-light);background:rgba(0,184,163,0.08);padding:0.15em 0.4em;border-radius:3px;}
+
+/* Top Header */
+.top-header{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:rgba(4,8,26,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:1000;display:flex;align-items:center;padding:0 24px;gap:20px;}
+.header-logo{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.header-logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--teal),var(--blue));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.header-logo-text{font-family:var(--mono-font);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-2);}
+.header-divider{width:1px;height:28px;background:var(--border);flex-shrink:0;}
+.header-title{font-family:var(--heading-font);font-size:0.95rem;font-weight:500;color:var(--text-1);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.header-meta{display:flex;align-items:center;gap:16px;flex-shrink:0;}
+.header-badge{font-family:var(--mono-font);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:3px 8px;border-radius:3px;border:1px solid var(--gold-dim);color:var(--gold);}
+.header-date{font-family:var(--mono-font);font-size:0.7rem;color:var(--text-3);}
+.menu-toggle{display:none;background:none;border:1px solid var(--border);color:var(--text-2);padding:6px 10px;border-radius:var(--radius);cursor:pointer;font-size:14px;}
+
+/* Sidebar */
+.sidebar{position:fixed;top:var(--header-h);left:0;bottom:0;width:var(--sidebar-w);background:var(--bg-1);border-right:1px solid var(--border);overflow-y:auto;z-index:900;padding:20px 0;transition:transform 0.3s ease;}
+.sidebar::-webkit-scrollbar{width:3px;}
+.sidebar-section{padding:6px 0;border-bottom:1px solid var(--border);margin-bottom:4px;}
+.sidebar-section-label{font-family:var(--mono-font);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-3);padding:6px 20px;}
+.nav-item{display:flex;align-items:flex-start;gap:10px;padding:7px 20px;cursor:pointer;transition:var(--transition);text-decoration:none;border-left:2px solid transparent;}
+.nav-item:hover{background:rgba(255,255,255,0.03);border-left-color:var(--gold-dim);}
+.nav-item.active{background:rgba(200,148,60,0.07);border-left-color:var(--gold);}
+.nav-num{font-family:var(--mono-font);font-size:0.65rem;color:var(--teal);margin-top:2px;flex-shrink:0;min-width:28px;}
+.nav-text{font-size:0.78rem;color:var(--text-2);line-height:1.3;}
+.nav-item.active .nav-text,.nav-item:hover .nav-text{color:var(--text-1);}
+
+/* Main Content */
+.main-content{margin-left:var(--sidebar-w);margin-top:var(--header-h);min-height:100vh;}
+.content-section{padding:80px 60px;border-bottom:1px solid var(--border);position:relative;}
+.content-section:nth-child(even){background:rgba(12,21,48,0.4);}
+.section-header{margin-bottom:48px;}
+.section-header-top{display:flex;align-items:center;gap:16px;margin-bottom:16px;}
+.section-number{font-family:var(--mono-font);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--teal);padding:3px 8px;border:1px solid var(--teal-dim);border-radius:3px;background:rgba(0,184,163,0.05);}
+.section-tag-line{flex:1;height:1px;background:linear-gradient(90deg,var(--border-light),transparent);}
+.section-intro{font-size:1.05rem;color:var(--text-2);font-style:italic;font-family:var(--heading-font);margin-top:12px;max-width:780px;line-height:1.7;}
+
+/* Grids */
+.col-2{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.col-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;}
+.col-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.col-2-1{display:grid;grid-template-columns:2fr 1fr;gap:32px;}
+.col-1-2{display:grid;grid-template-columns:1fr 2fr;gap:32px;}
+
+/* Cards */
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;transition:var(--transition);position:relative;}
+.card:hover{background:var(--bg-card-hover);border-color:var(--border-light);box-shadow:var(--shadow);transform:translateY(-1px);}
+.card-gold{border-color:var(--gold-dim);background:linear-gradient(135deg,var(--bg-card) 0%,rgba(200,148,60,0.05) 100%);}
+.card-teal{border-color:var(--teal-dim);background:linear-gradient(135deg,var(--bg-card) 0%,rgba(0,184,163,0.05) 100%);}
+.card-blue{border-color:rgba(58,123,213,0.3);background:linear-gradient(135deg,var(--bg-card) 0%,rgba(58,123,213,0.05) 100%);}
+.card-title{font-family:var(--heading-font);font-size:1.3rem;font-weight:600;color:var(--text-0);margin-bottom:8px;}
+.card-subtitle{font-size:0.8rem;color:var(--teal);font-family:var(--mono-font);letter-spacing:0.1em;margin-bottom:16px;}
+.card-body{font-size:0.9rem;color:var(--text-1);line-height:1.7;}
+
+/* Pull Quote */
+.pull-quote{border-left:3px solid var(--gold);padding:20px 28px;background:rgba(200,148,60,0.04);border-radius:0 var(--radius) var(--radius) 0;margin:32px 0;position:relative;}
+.pull-quote::before{content:'"';font-family:var(--heading-font);font-size:5rem;color:var(--gold-dim);position:absolute;top:-10px;left:12px;line-height:1;opacity:0.4;}
+.pull-quote-text{font-family:var(--heading-font);font-size:1.3rem;font-style:italic;color:var(--text-1);line-height:1.5;margin-bottom:12px;}
+.pull-quote-source{font-family:var(--mono-font);font-size:0.7rem;color:var(--gold);letter-spacing:0.1em;}
+
+/* Callouts */
+.callout{border-radius:var(--radius);padding:20px 24px;margin:24px 0;border:1px solid;}
+.callout-gold{background:rgba(200,148,60,0.05);border-color:var(--gold-dim);}
+.callout-teal{background:rgba(0,184,163,0.05);border-color:var(--teal-dim);}
+.callout-red{background:rgba(224,82,82,0.05);border-color:var(--red-dim);}
+.callout-blue{background:rgba(58,123,213,0.05);border-color:rgba(58,123,213,0.3);}
+.callout-green{background:rgba(61,189,125,0.05);border-color:rgba(61,189,125,0.3);}
+.callout-label{font-family:var(--mono-font);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:8px;}
+.callout-gold .callout-label{color:var(--gold);}.callout-teal .callout-label{color:var(--teal);}
+.callout-red .callout-label{color:var(--red);}.callout-blue .callout-label{color:var(--blue-light);}
+.callout-green .callout-label{color:var(--green);}
+.callout-text{font-size:0.9rem;color:var(--text-1);line-height:1.65;}
+
+/* Stat Blocks */
+.stat-block{text-align:center;padding:20px 16px;}
+.stat-value{font-family:var(--heading-font);font-size:2.8rem;font-weight:600;line-height:1;margin-bottom:6px;}
+.stat-value.gold{color:var(--gold-light);}.stat-value.teal{color:var(--teal-light);}
+.stat-value.blue{color:var(--blue-light);}.stat-value.red{color:var(--red);}
+.stat-label{font-family:var(--mono-font);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-3);line-height:1.4;}
+.stat-desc{font-size:0.8rem;color:var(--text-2);margin-top:6px;}
+
+/* Tables */
+.table-wrap{overflow-x:auto;border-radius:var(--radius-lg);border:1px solid var(--border);margin:24px 0;}
+table{width:100%;border-collapse:collapse;font-size:0.85rem;}
+thead{background:var(--bg-3);border-bottom:1px solid var(--border-light);}
+thead th{padding:12px 16px;text-align:left;font-family:var(--mono-font);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-2);font-weight:500;white-space:nowrap;}
+tbody tr{border-bottom:1px solid var(--border);transition:var(--transition);}
+tbody tr:last-child{border-bottom:none;}tbody tr:hover{background:rgba(255,255,255,0.02);}
+tbody td{padding:12px 16px;color:var(--text-1);vertical-align:top;line-height:1.5;}
+tbody td:first-child{color:var(--text-0);font-weight:500;}
+.td-mono{font-family:var(--mono-font);font-size:0.8rem;}
+
+/* Badges */
+.badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:3px;font-family:var(--mono-font);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;}
+.badge-gold{background:rgba(200,148,60,0.15);color:var(--gold-light);}
+.badge-teal{background:rgba(0,184,163,0.15);color:var(--teal-light);}
+.badge-green{background:rgba(61,189,125,0.15);color:var(--green);}
+.badge-red{background:rgba(224,82,82,0.15);color:var(--red);}
+.badge-blue{background:rgba(58,123,213,0.15);color:var(--blue-light);}
+.badge-amber{background:rgba(232,149,53,0.15);color:var(--amber);}
+.badge-gray{background:rgba(255,255,255,0.05);color:var(--text-2);}
+
+/* Rating bars */
+.rating-bar{display:flex;align-items:center;gap:10px;}
+.rating-track{flex:1;height:4px;background:var(--bg-3);border-radius:2px;overflow:hidden;}
+.rating-fill{height:100%;border-radius:2px;}
+.rating-fill.gold{background:linear-gradient(90deg,var(--gold-dim),var(--gold-light));}
+.rating-fill.teal{background:linear-gradient(90deg,var(--teal-dim),var(--teal-light));}
+.rating-fill.blue{background:linear-gradient(90deg,var(--blue),var(--blue-light));}
+.rating-fill.red{background:linear-gradient(90deg,var(--red-dim),var(--red));}
+.rating-fill.green{background:linear-gradient(90deg,#1d6b45,var(--green));}
+.rating-value{font-family:var(--mono-font);font-size:0.7rem;color:var(--text-2);min-width:32px;text-align:right;}
+
+/* Ranking list */
+.ranking-list{display:flex;flex-direction:column;gap:2px;}
+.ranking-item{display:grid;grid-template-columns:40px 1fr auto;align-items:center;gap:16px;padding:14px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);transition:var(--transition);}
+.ranking-item:hover{background:var(--bg-card-hover);border-color:var(--border-light);}
+.ranking-num{font-family:var(--heading-font);font-size:1.8rem;font-weight:300;color:var(--text-3);text-align:center;}
+.ranking-item:nth-child(1) .ranking-num{color:var(--gold-light);}
+.ranking-item:nth-child(2) .ranking-num{color:var(--text-2);}
+.ranking-item:nth-child(3) .ranking-num{color:var(--amber);}
+.ranking-name{font-size:0.95rem;font-weight:600;color:var(--text-0);margin-bottom:3px;}
+.ranking-desc{font-size:0.78rem;color:var(--text-2);}
+.ranking-score{text-align:right;}
+.ranking-score-value{font-family:var(--mono-font);font-size:1.1rem;color:var(--teal-light);font-weight:500;}
+.ranking-score-label{font-family:var(--mono-font);font-size:0.6rem;color:var(--text-3);letter-spacing:0.1em;text-transform:uppercase;}
+
+/* Company Card */
+.company-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:var(--transition);}
+.company-card:hover{border-color:var(--border-light);box-shadow:var(--shadow);}
+.company-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:16px;}
+.company-name{font-family:var(--heading-font);font-size:1.4rem;font-weight:600;color:var(--text-0);margin-bottom:4px;}
+.company-ticker{font-family:var(--mono-font);font-size:0.7rem;color:var(--teal);letter-spacing:0.1em;}
+.company-rating-badge{padding:6px 14px;border-radius:20px;font-family:var(--mono-font);font-size:0.7rem;letter-spacing:0.1em;font-weight:500;flex-shrink:0;}
+.rating-star{background:rgba(200,148,60,0.15);color:var(--gold);border:1px solid var(--gold-dim);}
+.rating-strong{background:rgba(0,184,163,0.15);color:var(--teal);border:1px solid var(--teal-dim);}
+.rating-watch{background:rgba(232,149,53,0.15);color:var(--amber);border:1px solid rgba(232,149,53,0.3);}
+.company-body{padding:20px 24px;}
+.company-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin:16px 0;}
+.company-metric{background:var(--bg-2);padding:12px 14px;text-align:center;}
+.company-metric-value{font-family:var(--mono-font);font-size:1.1rem;color:var(--gold-light);font-weight:500;margin-bottom:3px;}
+.company-metric-label{font-family:var(--mono-font);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);}
+.company-ratings{margin-top:16px;display:flex;flex-direction:column;gap:10px;}
+.company-rating-row{display:grid;grid-template-columns:110px 1fr 36px;align-items:center;gap:10px;}
+.company-rating-label{font-family:var(--mono-font);font-size:0.65rem;color:var(--text-2);letter-spacing:0.08em;text-transform:uppercase;}
+.company-bull-bear{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;}
+.bull-bear-box{padding:12px;border-radius:var(--radius);font-size:0.82rem;line-height:1.55;}
+.bull-box{background:rgba(61,189,125,0.06);border:1px solid rgba(61,189,125,0.2);color:var(--text-1);}
+.bear-box{background:rgba(224,82,82,0.06);border:1px solid rgba(224,82,82,0.2);color:var(--text-1);}
+.bull-bear-label{font-family:var(--mono-font);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:6px;font-weight:600;}
+.bull-box .bull-bear-label{color:var(--green);}.bear-box .bull-bear-label{color:var(--red);}
+
+/* Severity dots */
+.severity-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:8px;}
+.sev-critical{background:var(--red);box-shadow:0 0 6px rgba(224,82,82,0.5);}
+.sev-high{background:var(--amber);box-shadow:0 0 6px rgba(232,149,53,0.4);}
+.sev-medium{background:var(--gold);box-shadow:0 0 6px rgba(200,148,60,0.3);}
+.sev-low{background:var(--green);}
+
+/* Timeline */
+.timeline{position:relative;padding-left:32px;margin:32px 0;}
+.timeline::before{content:'';position:absolute;left:12px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--teal),var(--gold),var(--red));opacity:0.5;}
+.timeline-item{position:relative;padding:0 0 36px 24px;}
+.timeline-item::before{content:'';position:absolute;left:-28px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--bg-0);border:2px solid var(--gold);box-shadow:0 0 8px rgba(200,148,60,0.4);}
+.timeline-period{font-family:var(--mono-font);font-size:0.7rem;letter-spacing:0.15em;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
+.timeline-title{font-family:var(--heading-font);font-size:1.3rem;font-weight:600;color:var(--text-0);margin-bottom:10px;}
+.timeline-body{font-size:0.88rem;color:var(--text-2);line-height:1.65;}
+.timeline-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+
+/* Compounder Card */
+.compounder-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:var(--transition);position:relative;}
+.compounder-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--gold));opacity:0;transition:var(--transition);}
+.compounder-card:hover::before{opacity:1;}
+.compounder-card:hover{border-color:var(--border-light);box-shadow:var(--shadow);transform:translateY(-2px);}
+.compounder-header{padding:18px 20px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;}
+.compounder-name{font-family:var(--heading-font);font-size:1.15rem;font-weight:600;color:var(--text-0);}
+.compounder-ticker{font-family:var(--mono-font);font-size:0.65rem;color:var(--teal);margin-top:2px;}
+.multibagger-score{font-family:var(--mono-font);font-size:0.7rem;padding:4px 10px;border-radius:20px;background:rgba(200,148,60,0.12);color:var(--gold);border:1px solid var(--gold-dim);}
+.compounder-body{padding:16px 20px;}
+.compounder-why{font-size:0.82rem;color:var(--text-1);line-height:1.6;margin-bottom:12px;}
+.compounder-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.compounder-tag{font-family:var(--mono-font);font-size:0.6rem;letter-spacing:0.08em;padding:3px 8px;border-radius:3px;background:rgba(255,255,255,0.04);color:var(--text-2);border:1px solid var(--border);text-transform:uppercase;}
+
+/* Toll Booth */
+.toll-booth{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;position:relative;overflow:hidden;transition:var(--transition);}
+.toll-booth::after{content:'⬡';position:absolute;bottom:-20px;right:-10px;font-size:8rem;color:rgba(255,255,255,0.015);line-height:1;}
+.toll-booth:hover{border-color:var(--gold-dim);box-shadow:var(--glow-gold);}
+.toll-rank{font-family:var(--mono-font);font-size:0.65rem;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:10px;}
+.toll-name{font-family:var(--heading-font);font-size:1.5rem;font-weight:600;color:var(--text-0);margin-bottom:6px;}
+.toll-archetype{font-size:0.78rem;color:var(--teal);margin-bottom:14px;}
+.toll-strength{height:8px;background:var(--bg-3);border-radius:4px;overflow:hidden;margin-bottom:8px;}
+.toll-fill{height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold));border-radius:4px;}
+.toll-description{font-size:0.85rem;color:var(--text-2);line-height:1.6;margin-top:12px;}
+
+/* Divider */
+.s-divider{height:1px;background:linear-gradient(90deg,transparent,var(--border-light),transparent);margin:40px 0;}
+.s-divider-gold{background:linear-gradient(90deg,transparent,var(--gold-dim),transparent);}
+
+/* Bottleneck items */
+.bottleneck-item{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:12px;display:grid;grid-template-columns:32px 1fr auto;gap:16px;align-items:start;transition:var(--transition);}
+.bottleneck-item:hover{background:var(--bg-card-hover);border-color:var(--border-light);}
+.bottleneck-num{font-family:var(--mono-font);font-size:0.85rem;color:var(--text-3);font-weight:500;padding-top:3px;}
+.bottleneck-title{font-size:0.95rem;font-weight:600;color:var(--text-0);margin-bottom:5px;}
+.bottleneck-detail{font-size:0.82rem;color:var(--text-2);line-height:1.55;margin-bottom:8px;}
+.bottleneck-equity{font-family:var(--mono-font);font-size:0.68rem;color:var(--teal);letter-spacing:0.05em;}
+.bottleneck-badges{display:flex;flex-direction:column;gap:6px;align-items:flex-end;flex-shrink:0;}
+
+/* Exec summary box */
+.exec-box{background:linear-gradient(135deg,var(--bg-2) 0%,rgba(200,148,60,0.03) 100%);border:1px solid var(--gold-dim);border-radius:var(--radius-lg);padding:36px 40px;margin-bottom:40px;position:relative;overflow:hidden;}
+.exec-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--teal),var(--gold));}
+.exec-box-title{font-family:var(--heading-font);font-size:1.6rem;font-weight:600;color:var(--text-0);margin-bottom:8px;}
+.exec-box-subtitle{font-family:var(--heading-font);font-size:1rem;font-style:italic;color:var(--gold-light);margin-bottom:24px;}
+.exec-thesis{font-size:1rem;color:var(--text-1);line-height:1.8;}
+
+/* Highlight text */
+.highlight-gold{color:var(--gold-light);}
+.highlight-teal{color:var(--teal-light);}
+.highlight-blue{color:var(--blue-light);}
+.highlight-red{color:var(--red);}
+
+/* Moat grid */
+.moat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px;}
+.moat-item{padding:14px 16px;border-radius:var(--radius);background:var(--bg-2);border:1px solid var(--border);}
+.moat-label{font-family:var(--mono-font);font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px;}
+.moat-bar{height:6px;background:var(--bg-3);border-radius:3px;overflow:hidden;margin-bottom:4px;}
+.moat-fill{height:100%;border-radius:3px;}
+.moat-score{font-family:var(--mono-font);font-size:0.72rem;color:var(--text-2);}
+
+/* India Section accent */
+.india-accent{border-left:3px solid var(--gold);}
+
+/* Probability meter */
+.prob-meter{display:flex;align-items:center;gap:10px;margin:8px 0;}
+.prob-label{font-family:var(--mono-font);font-size:0.65rem;color:var(--text-2);min-width:120px;letter-spacing:0.08em;text-transform:uppercase;}
+.prob-track{flex:1;height:6px;background:var(--bg-3);border-radius:3px;overflow:hidden;}
+.prob-fill{height:100%;border-radius:3px;transition:width 1s ease;}
+.prob-fill-gold{background:linear-gradient(90deg,var(--gold-dim),var(--gold));}
+.prob-fill-teal{background:linear-gradient(90deg,var(--teal-dim),var(--teal));}
+.prob-fill-red{background:linear-gradient(90deg,var(--red-dim),var(--red));}
+.prob-pct{font-family:var(--mono-font);font-size:0.72rem;color:var(--text-2);min-width:36px;text-align:right;}
+
+/* Report footer */
+.report-footer{background:var(--bg-1);border-top:1px solid var(--border);padding:40px 60px;}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;margin-bottom:32px;}
+.footer-block-title{font-family:var(--mono-font);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-3);margin-bottom:10px;}
+.footer-block-text{font-size:0.8rem;color:var(--text-3);line-height:1.6;}
+.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;align-items:center;justify-content:space-between;}
+.footer-disclaimer{font-family:var(--mono-font);font-size:0.62rem;color:var(--text-3);max-width:600px;line-height:1.5;}
+.footer-logo-text{font-family:var(--heading-font);font-size:1.2rem;font-weight:600;color:var(--gold);font-style:italic;}
+
+/* Responsive */
+@media(max-width:1024px){:root{--sidebar-w:220px;}.col-4{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:768px){:root{--sidebar-w:0px;}.sidebar{transform:translateX(-100%);width:260px;}.sidebar.open{transform:translateX(0);box-shadow:var(--shadow-lg);}.main-content{margin-left:0;}.menu-toggle{display:flex;}.content-section{padding:48px 24px;}.col-2,.col-3,.col-2-1,.col-1-2{grid-template-columns:1fr;}.col-4{grid-template-columns:1fr 1fr;}.footer-grid{grid-template-columns:1fr;}.header-title{display:none;}.company-metrics{grid-template-columns:1fr 1fr;}.company-bull-bear{grid-template-columns:1fr;}.bottleneck-item{grid-template-columns:32px 1fr;}.bottleneck-badges{display:none;}}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="top-header">
+  <div class="header-logo">
+    <div class="header-logo-icon">💧</div>
+    <span class="header-logo-text">Hydra Research</span>
+  </div>
+  <div class="header-divider"></div>
+  <span class="header-title">Global Water Super-Cycle — Parts 5–15: India, Compounders, Toll Booths & Final Verdict</span>
+  <div class="header-meta">
+    <span class="header-badge">Part II of II</span>
+    <span class="header-date">June 2025</span>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </div>
+</header>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">← Part I Recap</div>
+    <a href="#recap" class="nav-item">
+      <span class="nav-num">—</span>
+      <span class="nav-text">Parts 1–4 Summary</span>
+    </a>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Value & Winners</div>
+    <a href="#part5" class="nav-item active">
+      <span class="nav-num">05</span>
+      <span class="nav-text">Value Capture Rankings</span>
+    </a>
+    <a href="#part6" class="nav-item">
+      <span class="nav-num">06</span>
+      <span class="nav-text">Global Winners Analysis</span>
+    </a>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">India Deep-Dive</div>
+    <a href="#part7" class="nav-item">
+      <span class="nav-num">07</span>
+      <span class="nav-text">India Water Super-Cycle</span>
+    </a>
+    <a href="#part8" class="nav-item">
+      <span class="nav-num">08</span>
+      <span class="nav-text">India Value Chain</span>
+    </a>
+    <a href="#part9" class="nav-item">
+      <span class="nav-num">09</span>
+      <span class="nav-text">India's 25 Bottlenecks</span>
+    </a>
+    <a href="#part10" class="nav-item">
+      <span class="nav-num">10</span>
+      <span class="nav-text">India Listed Equity Mapping</span>
+    </a>
+    <a href="#part11" class="nav-item">
+      <span class="nav-num">11</span>
+      <span class="nav-text">Hidden Compounder Hunt</span>
+    </a>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Advanced Analysis</div>
+    <a href="#part12" class="nav-item">
+      <span class="nav-num">12</span>
+      <span class="nav-text">Water Toll Booths</span>
+    </a>
+    <a href="#part13" class="nav-item">
+      <span class="nav-num">13</span>
+      <span class="nav-text">AI, Data Centers & Semis</span>
+    </a>
+    <a href="#part14" class="nav-item">
+      <span class="nav-num">14</span>
+      <span class="nav-text">Capital Cycle Analysis</span>
+    </a>
+    <a href="#part15" class="nav-item">
+      <span class="nav-num">15</span>
+      <span class="nav-text">Final Verdict & 2040 Roadmap</span>
+    </a>
+  </div>
+</nav>
+
+<main class="main-content">
+
+<!-- PART I RECAP -->
+<section id="recap" class="content-section">
+  <div class="section-header">
+    <div class="section-header-top">
+      <span class="section-number">Part I Recap</span>
+      <div class="section-tag-line"></div>
+    </div>
+    <h2 class="section-title">Foundations from Part I</h2>
+    <p class="section-intro">A condensed summary of the four foundational sections before we enter the deep-dives on value ranking, India, compounders, and the final investment verdict.</p>
+  </div>
+  <div class="col-4">
+    <div class="card card-teal" style="padding:20px;">
+      <div style="font-family:var(--mono-font);font-size:0.65rem;color:var(--teal);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;">Part 01</div>
+      <div style="font-family:var(--heading-font);font-size:1.1rem;font-weight:600;margin-bottom:8px;">Global Super-Cycle</div>
+      <div class="card-body" style="font-size:0.82rem;">Five structural drivers — population, climate, industry, digital demand, and groundwater depletion — are compounding simultaneously, creating a 30-year infrastructure investment cycle with no historical precedent.</div>
+    </div>
+    <div class="card card-gold" style="padding:20px;">
+      <div style="font-family:var(--mono-font);font-size:0.65rem;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;">Part 02</div>
+      <div style="font-family:var(--heading-font);font-size:1.1rem;font-weight:600;margin-bottom:8px;">Value Chain (5 Tiers)</div>
+      <div class="card-body" style="font-size:0.82rem;">Tier 1 (sources) carries 5–20% gross margins; Tier 5 (intelligence software) carries 55–75%. The entire investor opportunity lies in moving up the technology stack, not building bigger pipes.</div>
+    </div>
+    <div class="card card-blue" style="padding:20px;">
+      <div style="font-family:var(--mono-font);font-size:0.65rem;color:var(--blue-light);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;">Part 03</div>
+      <div style="font-family:var(--heading-font);font-size:1.1rem;font-weight:600;margin-bottom:8px;">Bottleneck Analysis</div>
+      <div class="card-body" style="font-size:0.82rem;">NRW losses ($39B/yr), wastewater deficit (56% untreated), and groundwater depletion are the three critical-severity global bottlenecks. Each has identified private-sector beneficiaries with proven technology solutions.</div>
+    </div>
+    <div class="card" style="padding:20px;border-color:rgba(224,82,82,0.3);">
+      <div style="font-family:var(--mono-font);font-size:0.65rem;color:var(--red);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;">Part 04</div>
+      <div style="font-family:var(--heading-font);font-size:1.1rem;font-weight:600;margin-bottom:8px;">Water Economics</div>
+      <div class="card-body" style="font-size:0.82rem;">The margin dispersion between water software (60–75% GM) and municipal EPC (8–16% GM) is greater than between most sectors. Investors treating water as homogeneous leave the most return on the table.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PART 5: VALUE CAPTURE RANKINGS -->
+<section id="part5" class="content-section">
+  <div class="section-header">
+    <div class="section-header-top">
+      <span class="section-number">Part 05</span>
+      <div class="section-tag-line"></div>
+    </div>
+    <h2 class="section-title">Who Captures the Most Value?</h2>
+    <p class="section-intro">A composite ranking of every water segment across eight dimensions of investment attractiveness, from Most Attractive to Least Attractive. This is the definitive capital allocation map.</p>
+  </div>
+
+  <div class="col-2" style="margin-bottom:40px;">
+    <div>
+      <h3 style="font-family:var(--heading-font);font-size:1.6rem;margin-bottom:20px;">Segment Rankings: Most → Least Attractive</h3>
+      <div class="ranking-list">
+        <div class="ranking-item" style="border-color:var(--gold-dim);">
+          <div class="ranking-num">1</div>
+          <div>
+            <div class="ranking-name">Water Intelligence & Analytics SaaS</div>
+            <div class="ranking-desc">Digital twins, leak detection AI, smart metering platforms</div>
+            <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="badge badge-gold">IP: 10/10</span>
+              <span class="badge badge-teal">Scale: 10/10</span>
+              <span class="badge badge-green">Moat: 9/10</span>
+            </div>
+          </div>
+          <div class="ranking-score"><div class="ranking-score-value">9.6</div><div class="ranking-score-label">Composite</div></div>
+        </div>
+        <div class="ranking-item" style="border-color:rgba(200,148,60,0.2);">
+          <div class="ranking-num">2</div>
+          <div>
+            <div class="ranking-name">Membrane Technology IP (RO/UF/NF)</div>
+            <div class="ranking-desc">DuPont-type membrane chemistry and proprietary manufacturing</div>
+            <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="badge badge-gold">IP: 9/10</span><span class="badge badge-amber">Export: 8/10</span>
+            </div>
+          </div>
+          <div class="ranking-score"><div class="ranking-score-value">9.1</div><div class="ranking-score-label">Composite</div></div>
+        </div>
+        <div class="ranking-item">
+          <div class="ranking-num">3</div>
+          <div>
+            <div class="ranking-name">Ultrapure Water Systems (Semiconductor)</div>
+            <div class="ranking-desc">UPW system integration for fabs — no substitute, infinite switching cost</div>
+            <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="badge badge-green">Mission Critical</span><span class="badge badge-gold">Pricing: 9/10</span>
+            </div>
+          </div>
+          <div class="ranking-score"><div class="ranking-score-value">8.9</div><div class="ranking-score-label">Composite</div></div>
+        </div>
+        <div class="ranking-item">
+          <div class="ranking-num" style="color:var(--amber);">4</div>
+          <div>
+            <div class="ranking-name">Specialty Water Treatment Chemicals</div>
+            <div class="ranking-desc">Proprietary formulations — monthly consumption, high switching cost</div>
+          </div>
+          <div class="ranking-score"><div class="ranking-score-value">8.4</div><div class="ranking-score-label">Composite</div></div>
+        </div>
+        <div class="ranking-item">
+          <div class="ranking-num" style="color:var(--amber);">5</div>
+          <div>
+            <div class="ranking-name">Precision Flow Control & Instrumentation</div>
+            <div class="ranking-desc">High-spec valves, actuators, flow meters with embedded electronics</div>
+          </div>
+          <div class="ranking-score"><div class="ranking-score-value">7.9</div><div class="ranking-score-label">Composite</div></div>
+        </div>
+        <div class="ranking-item">
+          <div class="ranking-num" style="color:var(--text-2);">6</div>
+          <div>
+            <div class="ranking-name">Energy-Efficient Pump OEM + Service</div>
+            <div class="ranking-desc">IE4/IE5 efficiency class pumps with spares and service aftermarket</div>
+          </div>
+          <div class="ranking-score"><div class="ranking-score-value">7.2</div><div class="ranking-score-label">Composite</div></div>
+        </div>
+        <div class="ranking-item">
+          <div class="ranking-num" style="color:var(--text-2);">7</div>
+          <div>
+            <div class="ranking-name">Water Analytics & Testing (Lab + Inline)</div>
+            <div class="ranking-desc">Real-time quality monitoring with regulatory compliance mandate</div>
+          </div>
+          <div class="ranking-score"><div class="ranking-score-value">7.0</div><div class="ranking-score-label">Composite</div></div>
+        </div>
+        <div class="ranking-item">
+          <div class="ranking-num" style="color:var(--text-3);">8</div>
+          <div>
+            <div class="ranking-name">Integrated Water Services (O&M + BOT)</div>
+            <div class="ranking-desc">Veolia-type operators with long contract durations</div>
+          </div>
+          <div class="ranking-score"><div class="ranking-score-value">6.1</div><div class="ranking-score-label">Composite</div></div>
+        </div>
+        <div class="ranking-item">
+          <div class="ranking-num" style="color:var(--text-3);">9</div>
+          <div>
+            <div class="ranking-name">Industrial Water EPC (w/ O&M tail)</div>
+            <div class="ranking-desc">EPC plus long-term O&M provides partial recurring income</div>
+          </div>
+          <div class="ranking-score"><div class="ranking-score-value" style="color:var(--amber);">4.8</div><div class="ranking-score-label">Composite</div></div>
+        </div>
+        <div class="ranking-item">
+          <div class="ranking-num" style="color:var(--text-3);">10</div>
+          <div>
+            <div class="ranking-name">Pure Municipal EPC / Civil Contractors</div>
+            <div class="ranking-desc">Structural commodity trap — avoid as compounders</div>
+          </div>
+          <div class="ranking-score"><div class="ranking-score-value" style="color:var(--red);">2.9</div><div class="ranking-score-label">Composite</div></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-family:var(--heading-font);font-size:1.6rem;margin-bottom:20px;">Dimension-by-Dimension Scoring</h3>
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-title" style="font-size:1.1rem;margin-bottom:16px;">Water Intelligence SaaS</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div class="company-rating-row"><span class="company-rating-label">IP Content</span><div class="rating-track"><div class="rating-fill gold" style="width:96%"></div></div><span class="rating-value">9.6</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Scalability</span><div class="rating-track"><div class="rating-fill gold" style="width:100%"></div></div><span class="rating-value">10</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Margins</span><div class="rating-track"><div class="rating-fill gold" style="width:95%"></div></div><span class="rating-value">9.5</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Pricing Power</span><div class="rating-track"><div class="rating-fill gold" style="width:92%"></div></div><span class="rating-value">9.2</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Switching Cost</span><div class="rating-track"><div class="rating-fill gold" style="width:90%"></div></div><span class="rating-value">9.0</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Recurring Rev</span><div class="rating-track"><div class="rating-fill teal" style="width:90%"></div></div><span class="rating-value">9.0</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Export Potential</span><div class="rating-track"><div class="rating-fill teal" style="width:95%"></div></div><span class="rating-value">9.5</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Growth Runway</span><div class="rating-track"><div class="rating-fill teal" style="width:100%"></div></div><span class="rating-value">10</span></div>
+        </div>
+      </div>
+      <div class="callout callout-gold">
+        <div class="callout-label">📌 The Key Insight on Segment Ranking</div>
+        <div class="callout-text">The top 4 segments by composite score all share one characteristic: <strong>their revenue is denominated by technology performance, not square metres of infrastructure built.</strong> This is the single most useful heuristic for separating compounders from commodities in water.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PART 6: GLOBAL WINNERS -->
+<section id="part6" class="content-section">
+  <div class="section-header">
+    <div class="section-header-top">
+      <span class="section-number">Part 06</span>
+      <div class="section-tag-line"></div>
+    </div>
+    <h2 class="section-title">Global Winners Analysis</h2>
+    <p class="section-intro">Deep analysis of the companies that have constructed the most defensible franchises in global water — why they win, where moats are genuinely durable, and what the capital allocation record reveals about management quality.</p>
+  </div>
+
+  <div class="col-2" style="gap:24px;">
+
+    <div class="company-card">
+      <div class="company-header">
+        <div><div class="company-name">Xylem</div><div class="company-ticker">NYSE: XYL · USA · $20B+ Mkt Cap</div></div>
+        <span class="company-rating-badge rating-star">★ Highest Conviction</span>
+      </div>
+      <div class="company-body">
+        <p style="font-size:0.85rem;color:var(--text-2);">Post-Evoqua acquisition, Xylem is the most complete water technology platform globally — combining transport, treatment, analytics, and digital infrastructure across 150 countries.</p>
+        <div class="company-metrics">
+          <div class="company-metric"><div class="company-metric-value">~35%</div><div class="company-metric-label">Gross Margin</div></div>
+          <div class="company-metric"><div class="company-metric-value">~17%</div><div class="company-metric-label">EBITDA Margin</div></div>
+          <div class="company-metric"><div class="company-metric-value">~45%</div><div class="company-metric-label">Recurring Rev</div></div>
+        </div>
+        <div class="company-ratings">
+          <div class="company-rating-row"><span class="company-rating-label">Moat Strength</span><div class="rating-track"><div class="rating-fill gold" style="width:88%"></div></div><span class="rating-value">8.8</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Capital Alloc</span><div class="rating-track"><div class="rating-fill teal" style="width:80%"></div></div><span class="rating-value">8.0</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Scalability</span><div class="rating-track"><div class="rating-fill gold" style="width:85%"></div></div><span class="rating-value">8.5</span></div>
+        </div>
+        <div class="company-bull-bear">
+          <div class="bull-box"><div class="bull-bear-label">⬆ Bull Case</div>Vue digital platform becomes the OS of global water utilities. Evoqua synergies unlock 300bps+ EBITDA margin expansion. AI-driven water analytics becomes $500M+ segment by 2028.</div>
+          <div class="bear-box"><div class="bull-bear-label">⬇ Bear Case</div>Integration of Evoqua slower than expected. Revenue cyclicality tied to utility capex cuts. Competition from Siemens and Honeywell in smart water software.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div><div class="company-name">Ecolab</div><div class="company-ticker">NYSE: ECL · USA · $55B+ Mkt Cap</div></div>
+        <span class="company-rating-badge rating-star">★ Water Toll Booth</span>
+      </div>
+      <div class="company-body">
+        <p style="font-size:0.85rem;color:var(--text-2);">Ecolab's water treatment chemicals business is the closest thing in water to Visa's network — a recurring toll collected on every industrial and commercial water system on earth, with near-zero substitution risk.</p>
+        <div class="company-metrics">
+          <div class="company-metric"><div class="company-metric-value">~44%</div><div class="company-metric-label">Gross Margin</div></div>
+          <div class="company-metric"><div class="company-metric-value">~18%</div><div class="company-metric-label">EBITDA Margin</div></div>
+          <div class="company-metric"><div class="company-metric-value">~90%</div><div class="company-metric-label">Recurring Rev</div></div>
+        </div>
+        <div class="company-ratings">
+          <div class="company-rating-row"><span class="company-rating-label">Moat Strength</span><div class="rating-track"><div class="rating-fill gold" style="width:95%"></div></div><span class="rating-value">9.5</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Pricing Power</span><div class="rating-track"><div class="rating-fill gold" style="width:90%"></div></div><span class="rating-value">9.0</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">ROIC Quality</span><div class="rating-track"><div class="rating-fill teal" style="width:85%"></div></div><span class="rating-value">8.5</span></div>
+        </div>
+        <div class="company-bull-bear">
+          <div class="bull-box"><div class="bull-bear-label">⬆ Bull Case</div>Industrial water recycling mandates globally double serviceable market. Ecolab's 3D TRASAR monitoring technology becomes standard in heavy industry. India and SE Asia penetration still <5% of potential.</div>
+          <div class="bear-box"><div class="bull-bear-label">⬇ Bear Case</div>Input cost inflation squeezes specialty chemical margins. Generic substitutes in developing markets erode pricing premium. Valuation premium requires near-perfect execution.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div><div class="company-name">Kurita Water Industries</div><div class="company-ticker">TYO: 6370 · Japan · $5B Mkt Cap</div></div>
+        <span class="company-rating-badge rating-strong">✓ Asia Compounder</span>
+      </div>
+      <div class="company-body">
+        <p style="font-size:0.85rem;color:var(--text-2);">Japan's premier water treatment chemical and UPW system company. Dominant in semiconductor UPW in Asia. As fabs proliferate across India, Vietnam, and Korea, Kurita's installed base compounds with virtually no marketing cost.</p>
+        <div class="company-metrics">
+          <div class="company-metric"><div class="company-metric-value">~38%</div><div class="company-metric-label">Gross Margin</div></div>
+          <div class="company-metric"><div class="company-metric-value">~13%</div><div class="company-metric-label">EBITDA Margin</div></div>
+          <div class="company-metric"><div class="company-metric-value">~65%</div><div class="company-metric-label">Recurring Rev</div></div>
+        </div>
+        <div class="company-ratings">
+          <div class="company-rating-row"><span class="company-rating-label">UPW Dominance</span><div class="rating-track"><div class="rating-fill gold" style="width:92%"></div></div><span class="rating-value">9.2</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Asia Exposure</span><div class="rating-track"><div class="rating-fill teal" style="width:88%"></div></div><span class="rating-value">8.8</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">R&D Intensity</span><div class="rating-track"><div class="rating-fill blue" style="width:78%"></div></div><span class="rating-value">7.8</span></div>
+        </div>
+        <div class="company-bull-bear">
+          <div class="bull-box"><div class="bull-bear-label">⬆ Bull Case</div>India semiconductor fab buildout (3 fabs announced, 12+ in pipeline) creates $200M+ TAM for Kurita. Direct competitor to local players; no Indian company has comparable UPW chemistry expertise yet.</div>
+          <div class="bear-box"><div class="bull-bear-label">⬇ Bear Case</div>Japan-HQ operational conservatism slows India entry. Currency risk on yen-denominated cost base. Potential local Indian challengers in basic water chemicals.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div><div class="company-name">Pentair</div><div class="company-ticker">NYSE: PNR · USA · $15B Mkt Cap</div></div>
+        <span class="company-rating-badge rating-strong">✓ Flow Control Leader</span>
+      </div>
+      <div class="company-body">
+        <p style="font-size:0.85rem;color:var(--text-2);">Post-nVent spin-off, Pentair is a focused water treatment and flow management platform. Residential filtration (X-Flow membranes), commercial water treatment (Everpure), and pool systems provide three parallel recurring revenue streams.</p>
+        <div class="company-metrics">
+          <div class="company-metric"><div class="company-metric-value">~40%</div><div class="company-metric-label">Gross Margin</div></div>
+          <div class="company-metric"><div class="company-metric-value">~20%</div><div class="company-metric-label">EBITDA Margin</div></div>
+          <div class="company-metric"><div class="company-metric-value">~55%</div><div class="company-metric-label">Recurring Rev</div></div>
+        </div>
+        <div class="company-ratings">
+          <div class="company-rating-row"><span class="company-rating-label">Membrane IP</span><div class="rating-track"><div class="rating-fill gold" style="width:82%"></div></div><span class="rating-value">8.2</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Residential Moat</span><div class="rating-track"><div class="rating-fill teal" style="width:80%"></div></div><span class="rating-value">8.0</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Channel Leverage</span><div class="rating-track"><div class="rating-fill blue" style="width:75%"></div></div><span class="rating-value">7.5</span></div>
+        </div>
+        <div class="company-bull-bear">
+          <div class="bull-box"><div class="bull-bear-label">⬆ Bull Case</div>Point-of-use water filtration in India is a $2B+ opportunity growing at 18% CAGR. Pentair's X-Flow hollow fibre membrane is best-in-class. Channel partnerships with Indian distributors could create a fast-growth emerging markets segment.</div>
+          <div class="bear-box"><div class="bull-bear-label">⬇ Bear Case</div>Pool business is discretionary and interest rate sensitive. Strong Chinese competition in residential filtration. Dependent on Western utility spending cycles.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="s-divider" style="margin:40px 0;"></div>
+  <div class="col-2">
+    <div class="company-card">
+      <div class="company-header">
+        <div><div class="company-name">Veolia Environment</div><div class="company-ticker">EPA: VIE · France · €20B Mkt Cap</div></div>
+        <span class="company-rating-badge rating-watch">→ Scale, Not Moat</span>
+      </div>
+      <div class="company-body">
+        <p style="font-size:0.85rem;color:var(--text-2);">Post-Suez acquisition, Veolia is the world's largest integrated water and environmental services company. The moat is scale, not technology — which limits long-run ROIC. However, management quality is improving and the Suez integration unlocks significant cost synergies.</p>
+        <div class="company-metrics">
+          <div class="company-metric"><div class="company-metric-value">~21%</div><div class="company-metric-label">Gross Margin</div></div>
+          <div class="company-metric"><div class="company-metric-value">~14%</div><div class="company-metric-label">EBITDA Margin</div></div>
+          <div class="company-metric"><div class="company-metric-value">~80%</div><div class="company-metric-label">Recurring Rev</div></div>
+        </div>
+        <div class="company-bull-bear">
+          <div class="bull-box"><div class="bull-bear-label">⬆ Bull Case</div>Largest global water operator — captures every major concession and public contract. Digital layer (Hubgrade) becoming 10%+ of revenues. Suez synergies drive 200bps margin expansion through 2026.</div>
+          <div class="bear-box"><div class="bull-bear-label">⬇ Bear Case</div>Asset-heavy utility model structurally limits ROIC to 7–9%. Political risk on water concessions globally. Leverage elevated post-Suez acquisition. Low-quality earnings relative to technology peers.</div>
+        </div>
+      </div>
+    </div>
+    <div class="company-card">
+      <div class="company-header">
+        <div><div class="company-name">Danaher (Water Platform)</div><div class="company-ticker">NYSE: DHR · USA · $180B Mkt Cap</div></div>
+        <span class="company-rating-badge rating-star">★ DBS Compounding Engine</span>
+      </div>
+      <div class="company-body">
+        <p style="font-size:0.85rem;color:var(--text-2);">Danaher's water quality platform (Hach, ChemTreat, Trojan Technologies) is the most consistently compounding franchise in water analytics. Hach's installed base of ~300,000 water quality analysers generates an irreplaceable recurring reagent and calibration revenue stream.</p>
+        <div class="company-metrics">
+          <div class="company-metric"><div class="company-metric-value">~55%</div><div class="company-metric-label">Gross Margin</div></div>
+          <div class="company-metric"><div class="company-metric-value">~26%</div><div class="company-metric-label">EBITDA Margin</div></div>
+          <div class="company-metric"><div class="company-metric-value">~70%</div><div class="company-metric-label">Recurring Rev</div></div>
+        </div>
+        <div class="company-bull-bear">
+          <div class="bull-box"><div class="bull-bear-label">⬆ Bull Case</div>Hach's 300K installed analysers create a permanent recurring reagent revenue base. DBS (Danaher Business System) operationally the best in class. India water quality monitoring market at 1% of US penetration — 50x headroom.</div>
+          <div class="bear-box"><div class="bull-bear-label">⬇ Bear Case</div>Water quality represents ~20% of Danaher revenues — not a pure play. Spin-off possibility could unlock or destroy value. Premium valuation (30x+) pricing in near-perfection.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PART 7: INDIA SUPER-CYCLE -->
+<section id="part7" class="content-section india-accent">
+  <div class="section-header">
+    <div class="section-header-top">
+      <span class="section-number">Part 07</span>
+      <div class="section-tag-line"></div>
+    </div>
+    <h2 class="section-title">India Water Security Super-Cycle</h2>
+    <p class="section-intro">India is not merely a large water market — it is the world's most concentrated intersection of water scarcity severity, infrastructure deficit depth, rapid industrial demand growth, and government reform momentum. The convergence is historically rare.</p>
+  </div>
+
+  <div class="exec-box">
+    <div class="exec-box-title">The India Water Thesis in Three Sentences</div>
+    <div class="exec-box-subtitle">Why India is the single most important water investment theme of the next 15 years</div>
+    <p class="exec-thesis">India has 18% of the world's population but only 4% of its freshwater. Over the next 15 years, India will build more water infrastructure than it has in the previous 75 combined — driven by the Jal Jeevan Mission, semiconductor fab construction, data centre buildout, industrial corridors, and acute groundwater stress forcing the shift to recycled and desalinated water. The companies that supply the <em>technology</em> — not the civil contractors — will compound for a generation.</p>
+  </div>
+
+  <div class="col-4" style="margin-bottom:40px;">
+    <div class="stat-block">
+      <div class="stat-value gold">21</div>
+      <div class="stat-label">Indian cities facing Day Zero by 2030</div>
+      <div class="stat-desc">Chennai, Bengaluru, Delhi among them</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-value teal">₹2.87L Cr</div>
+      <div class="stat-label">Jal Jeevan Mission total outlay</div>
+      <div class="stat-desc">Largest drinking water mission in human history</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-value blue">72%</div>
+      <div class="stat-label">Urban wastewater goes untreated</div>
+      <div class="stat-desc">India treats only 28% of urban sewage</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-value red">40%</div>
+      <div class="stat-label">NRW loss in Indian urban systems</div>
+      <div class="stat-desc">vs. Singapore's 5% best-practice benchmark</div>
+    </div>
+  </div>
+
+  <div class="col-2">
+    <div>
+      <h3 style="font-family:var(--heading-font);font-size:1.6rem;margin-bottom:16px;">The Eight Demand Pillars</h3>
+      <div class="callout callout-gold" style="margin-bottom:12px;">
+        <div class="callout-label">Pillar 1 — Jal Jeevan Mission</div>
+        <div class="callout-text">₹2.87 lakh crore to deliver piped water to all 192 million rural households by 2024 (extended to 2026). Creates demand for pipes, pumps, small treatment plants, and quality monitoring sensors across 600,000+ villages. Phase II will extend to quality upgrades and SCADA monitoring — a ₹50,000 Cr+ technology opportunity.</div>
+      </div>
+      <div class="callout callout-teal" style="margin-bottom:12px;">
+        <div class="callout-label">Pillar 2 — Semiconductor Fabs</div>
+        <div class="callout-text">India's ₹76,000 Cr Production Linked Incentive for semiconductors has attracted Tata Electronics (Dholera), Micron (Sanand), and CG Power (Sanand). Each 300mm fab requires 10,000–20,000 L/min of ultrapure water. This creates India's first genuine UPW technology market — and local players do not yet have the capability to serve it.</div>
+      </div>
+      <div class="callout callout-blue" style="margin-bottom:12px;">
+        <div class="callout-label">Pillar 3 — Data Centres</div>
+        <div class="callout-text">India is projected to add 1,500+ MW of data centre capacity by 2027. Each MW of compute requires ~5 million litres/year of water for cooling. Mumbai, Hyderabad, Chennai, and Noida data centre clusters are creating concentrated industrial water demand nodes — and driving wastewater recycling mandates from local water bodies under stress.</div>
+      </div>
+      <div class="callout callout-gold" style="margin-bottom:12px;">
+        <div class="callout-label">Pillar 4 — Industrial Corridors</div>
+        <div class="callout-text">DMIC, AMRUT 2.0, and the 11 industrial corridor projects create dedicated industrial zones requiring water supply, effluent treatment, and zero-liquid-discharge (ZLD) compliance. ZLD is now mandatory for textile, tannery, distillery, sugar, and pharmaceutical industries in India — creating a compulsory private capex cycle for industrial water treatment.</div>
+      </div>
+    </div>
+    <div>
+      <div class="callout callout-teal" style="margin-bottom:12px;">
+        <div class="callout-label">Pillar 5 — Smart Cities Mission</div>
+        <div class="callout-text">₹2.05 lakh crore Smart Cities Mission specifically includes smart water management, SCADA systems, 24×7 water supply, and NRW reduction mandates for 100 cities. This is India's first large-scale deployment of digital water infrastructure — creating a demonstration market for smart water technology that will diffuse to all Tier 1–3 cities in the following decade.</div>
+      </div>
+      <div class="callout callout-blue" style="margin-bottom:12px;">
+        <div class="callout-label">Pillar 6 — Groundwater Crisis Response</div>
+        <div class="callout-text">NITI Aayog's Composite Water Management Index shows 40% of India's groundwater blocks are "over-exploited" or "critical." As groundwater becomes unusable in key agricultural and urban zones, the policy response will mandate desalination (Tamil Nadu already has 3 plants, 7 more planned) and large-scale wastewater recycling — both capital-intensive, technology-intensive markets.</div>
+      </div>
+      <div class="callout callout-gold" style="margin-bottom:12px;">
+        <div class="callout-label">Pillar 7 — River Interlinking Programme</div>
+        <div class="callout-text">India's National River Linking Project (NRLP) aims to connect 30 rivers and transfer 174 BCM of water across basins. Phase 1 (Ken-Betwa Link) is underway at ₹44,000 crore. This multi-decade programme creates sustained demand for large-diameter pipelines, pumping stations, and flow control systems across 10+ years per project.</div>
+      </div>
+      <div class="callout callout-red">
+        <div class="callout-label">Pillar 8 — Industrial ZLD Mandates</div>
+        <div class="callout-text">India's National Green Tribunal and MoEFCC have progressively mandated Zero Liquid Discharge across 14 polluting industries. Compliance capex is non-discretionary, government-enforced, and audit-driven. This creates the most reliable demand signal in Indian water: mandatory regulatory spending with criminal penalties for non-compliance.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PART 8: INDIA VALUE CHAIN -->
+<section id="part8" class="content-section">
+  <div class="section-header">
+    <div class="section-header-top">
+      <span class="section-number">Part 08</span>
+      <div class="section-tag-line"></div>
+    </div>
+    <h2 class="section-title">India Water Value Chain</h2>
+    <p class="section-intro">Mapping the complete Indian water ecosystem — where economic value concentrates, where moats are forming, and which segments are structurally superior for long-run capital compounding.</p>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Segment</th>
+          <th>Market Size (2024E)</th>
+          <th>2030E Size</th>
+          <th>CAGR</th>
+          <th>GM Range</th>
+          <th>Moat Quality</th>
+          <th>Value Location</th>
+          <th>Key Players</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Industrial Water Treatment (ETP/ZLD)</strong></td>
+          <td class="td-mono">₹8,500 Cr</td>
+          <td class="td-mono">₹22,000 Cr</td>
+          <td class="td-mono" style="color:var(--green);">17%</td>
+          <td class="td-mono">18–30%</td>
+          <td><span class="badge badge-amber">Medium</span></td>
+          <td>Technology IP, O&M contracts</td>
+          <td>VA Tech Wabag, Ion Exchange, Thermax</td>
+        </tr>
+        <tr>
+          <td><strong>Ultrapure Water (Semiconductor/Pharma)</strong></td>
+          <td class="td-mono">₹500 Cr</td>
+          <td class="td-mono">₹4,200 Cr</td>
+          <td class="td-mono" style="color:var(--green);">42%</td>
+          <td class="td-mono">35–55%</td>
+          <td><span class="badge badge-gold">High</span></td>
+          <td>System integration, specialty resins</td>
+          <td>Ion Exchange (specialty), Kurita (foreign)</td>
+        </tr>
+        <tr>
+          <td><strong>Municipal WTP/STP (EPC + O&M)</strong></td>
+          <td class="td-mono">₹18,000 Cr</td>
+          <td class="td-mono">₹38,000 Cr</td>
+          <td class="td-mono" style="color:var(--amber);">13%</td>
+          <td class="td-mono">8–18%</td>
+          <td><span class="badge badge-red">Low</span></td>
+          <td>Long-term O&M, not EPC</td>
+          <td>VA Tech Wabag, Enviro Infra, EMS</td>
+        </tr>
+        <tr>
+          <td><strong>Water Pumps (Industrial + Municipal)</strong></td>
+          <td class="td-mono">₹12,000 Cr</td>
+          <td class="td-mono">₹22,000 Cr</td>
+          <td class="td-mono" style="color:var(--amber);">11%</td>
+          <td class="td-mono">25–38%</td>
+          <td><span class="badge badge-amber">Medium</span></td>
+          <td>Energy efficiency technology, service</td>
+          <td>Kirloskar Brothers, WPIL, Shakti Pumps</td>
+        </tr>
+        <tr>
+          <td><strong>Desalination (Tamil Nadu / Gujarat)</strong></td>
+          <td class="td-mono">₹2,500 Cr</td>
+          <td class="td-mono">₹9,000 Cr</td>
+          <td class="td-mono" style="color:var(--green);">23%</td>
+          <td class="td-mono">15–25%</td>
+          <td><span class="badge badge-amber">Medium</span></td>
+          <td>Technology supply chain, O&M</td>
+          <td>VA Tech Wabag, Ion Exchange membranes</td>
+        </tr>
+        <tr>
+          <td><strong>Smart Water / Metering / SCADA</strong></td>
+          <td class="td-mono">₹1,200 Cr</td>
+          <td class="td-mono">₹8,500 Cr</td>
+          <td class="td-mono" style="color:var(--green);">38%</td>
+          <td class="td-mono">40–60%</td>
+          <td><span class="badge badge-gold">Emerging High</span></td>
+          <td>Software platforms, data analytics</td>
+          <td>Kritsnam Technologies, L&T SuFin (unlisted)</td>
+        </tr>
+        <tr>
+          <td><strong>Flow Control (Valves, Actuators)</strong></td>
+          <td class="td-mono">₹4,500 Cr</td>
+          <td class="td-mono">₹9,000 Cr</td>
+          <td class="td-mono" style="color:var(--amber);">12%</td>
+          <td class="td-mono">28–40%</td>
+          <td><span class="badge badge-teal">Medium-High</span></td>
+          <td>Precision manufacturing, certifications</td>
+          <td>Jash Engineering, BEW Engineering</td>
+        </tr>
+        <tr>
+          <td><strong>Specialty Water Chemicals</strong></td>
+          <td class="td-mono">₹3,200 Cr</td>
+          <td class="td-mono">₹7,500 Cr</td>
+          <td class="td-mono" style="color:var(--green);">15%</td>
+          <td class="td-mono">38–52%</td>
+          <td><span class="badge badge-gold">High</span></td>
+          <td>Formulation IP, recurring supply contracts</td>
+          <td>Ion Exchange, Chemtex (unlisted), Arxada</td>
+        </tr>
+        <tr>
+          <td><strong>Water Analytics / Testing</strong></td>
+          <td class="td-mono">₹800 Cr</td>
+          <td class="td-mono">₹4,500 Cr</td>
+          <td class="td-mono" style="color:var(--green);">33%</td>
+          <td class="td-mono">45–65%</td>
+          <td><span class="badge badge-gold">High (early)</span></td>
+          <td>Sensor IP, recurring reagents, SaaS</td>
+          <td>Primarily imported; domestic gap = opportunity</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pull-quote">
+    <div class="pull-quote-text">The highest-value segment in India's water chain — smart water technology and analytics — has a ₹1,200 Cr current market that will reach ₹8,500 Cr by 2030. It is currently served almost entirely by imported equipment. This is not just an investment opportunity; it is an industrial policy imperative.</div>
+    <div class="pull-quote-source">— Hydra Research India Water Team</div>
+  </div>
+</section>
+
+<!-- PART 9: INDIA HIDDEN BOTTLENECKS -->
+<section id="part9" class="content-section">
+  <div class="section-header">
+    <div class="section-header-top">
+      <span class="section-number">Part 09</span>
+      <div class="section-tag-line"></div>
+    </div>
+    <h2 class="section-title">India's 25 Hidden Bottlenecks</h2>
+    <p class="section-intro">A comprehensive map of India's most acute water infrastructure gaps — each a problem with identifiable listed equity exposure and an addressable private-sector solution.</p>
+  </div>
+
+  <!-- Bottleneck items -->
+  <div class="bottleneck-item" style="border-left:3px solid var(--red);">
+    <div class="bottleneck-num">01</div>
+    <div>
+      <div class="bottleneck-title">Urban NRW (Non-Revenue Water) Crisis</div>
+      <div class="bottleneck-detail">Indian cities lose 30–50% of treated water through ageing pipes, illegal connections, and metering failures. At ₹40–60/m³ treatment cost, this represents ₹25,000+ Cr annual waste. Smart metering mandates under AMRUT 2.0 create a multi-year demand cycle for AMI systems.</div>
+      <div class="bottleneck-equity">Listed exposure → Smart metering integrators, Jash Engineering (actuated valves), pipe rehab specialists</div>
+    </div>
+    <div class="bottleneck-badges"><span class="badge badge-red">Critical</span><span class="badge badge-gold">₹15,000Cr TAM</span></div>
+  </div>
+
+  <div class="bottleneck-item" style="border-left:3px solid var(--red);">
+    <div class="bottleneck-num">02</div>
+    <div>
+      <div class="bottleneck-title">Sewage Treatment Plant (STP) Deficit</div>
+      <div class="bottleneck-detail">India generates 72,368 MLD of sewage daily but has capacity to treat only 28,189 MLD (39%). The ₹1.41 lakh crore NMCG (Namami Gange and AMRUT combined) is addressing this, but technology procurement — not civil work — is the value node. Membrane Bioreactors (MBR) are the growth technology.</div>
+      <div class="bottleneck-equity">Listed exposure → VA Tech Wabag, Enviro Infra Engineers, EMS Limited</div>
+    </div>
+    <div class="bottleneck-badges"><span class="badge badge-red">Critical</span><span class="badge badge-gold">₹50,000Cr TAM</span></div>
+  </div>
+
+  <div class="bottleneck-item" style="border-left:3px solid var(--red);">
+    <div class="bottleneck-num">03</div>
+    <div>
+      <div class="bottleneck-title">Groundwater Arsenic & Fluoride Contamination</div>
+      <div class="bottleneck-detail">Over 66 million Indians drink arsenic-contaminated water; 66 million more drink fluoride-contaminated water. These are chemical contaminants that standard chlorination does not address — requiring ion exchange or nanofiltration systems. The regulatory mandate to solve this is immovable and non-discretionary.</div>
+      <div class="bottleneck-equity">Listed exposure → Ion Exchange (India) — ion exchange resin and system leader</div>
+    </div>
+    <div class="bottleneck-badges"><span class="badge badge-red">Critical</span><span class="badge badge-teal">Ion Exchange</span></div>
+  </div>
+
+  <div class="bottleneck-item" style="border-left:3px solid var(--amber);">
+    <div class="bottleneck-num">04</div>
+    <div>
+      <div class="bottleneck-title">Industrial ZLD Non-Compliance</div>
+      <div class="bottleneck-detail">Despite Supreme Court and NGT mandates, an estimated 40–60% of industries subject to ZLD norms are non-compliant. As enforcement intensifies (CPCB real-time monitoring mandate), non-compliant industries face plant closures — making ZLD systems a compliance-or-die purchase. This is India's most forced industrial water capex cycle.</div>
+      <div class="bottleneck-equity">Listed exposure → Thermax, Ion Exchange, VA Tech Wabag's ZLD division</div>
+    </div>
+    <div class="bottleneck-badges"><span class="badge badge-amber">High</span><span class="badge badge-gold">₹18,000Cr TAM</span></div>
+  </div>
+
+  <div class="bottleneck-item" style="border-left:3px solid var(--amber);">
+    <div class="bottleneck-num">05</div>
+    <div>
+      <div class="bottleneck-title">Semiconductor & Pharma UPW Gap</div>
+      <div class="bottleneck-detail">India currently has zero domestic UPW system manufacturers capable of supplying semiconductor-grade systems (18.2 MΩ·cm, TOC <1 ppb). With 3 fabs confirmed and 12+ in pipeline, this represents a strategic import substitution opportunity worth ₹3,000–4,000 Cr over 10 years. Currently served entirely by Kurita, Veolia, and US-based integrators.</div>
+      <div class="bottleneck-equity">Listed exposure → Ion Exchange (closest listed proxy), potential new entrants</div>
+    </div>
+    <div class="bottleneck-badges"><span class="badge badge-amber">High</span><span class="badge badge-blue">Strategic</span></div>
+  </div>
+
+  <div class="bottleneck-item" style="border-left:3px solid var(--amber);">
+    <div class="bottleneck-num">06</div>
+    <div>
+      <div class="bottleneck-title">Rural Water Quality Monitoring Gap</div>
+      <div class="bottleneck-detail">Jal Jeevan Mission mandates water quality testing for all 192 million rural household connections — but India has only ~2,000 certified water quality labs for 600,000 villages. Sensor-based inline monitoring (WHO-approved parameters) is the scalable solution. A massive demand wave for low-cost, accurate water quality sensors is approaching.</div>
+      <div class="bottleneck-equity">Listed exposure → Primarily import-dependent; domestic sensor opportunity for unlisted startups</div>
+    </div>
+    <div class="bottleneck-badges"><span class="badge badge-amber">High</span><span class="badge badge-gold">₹8,000Cr TAM</span></div>
+  </div>
+
+  <div class="bottleneck-item" style="border-left:3px solid var(--gold);">
+    <div class="bottleneck-num">07</div>
+    <div>
+      <div class="bottleneck-title">Data Centre Cooling Water Recycling</div>
+      <div class="bottleneck-detail">Mumbai, Hyderabad, and Pune data centre clusters are consuming municipal water allocations at rates that are creating political friction. Maharashtra and Telangana water authorities have begun issuing water-use notices. This will force DC operators to invest in closed-loop cooling and wastewater recycling — a ₹3,000+ Cr capex cycle by 2027.</div>
+      <div class="bottleneck-equity">Listed exposure → VA Tech Wabag, Ion Exchange (recycled water systems for DCs)</div>
+    </div>
+    <div class="bottleneck-badges"><span class="badge badge-medium">Medium</span><span class="badge badge-teal">Fast Growing</span></div>
+  </div>
+
+  <div class="bottleneck-item" style="border-left:3px solid var(--gold);">
+    <div class="bottleneck-num">08</div>
+    <div>
+      <div class="bottleneck-title">Coastal Desalination Deficit (Tamil Nadu, Gujarat)</div>
+      <div class="bottleneck-detail">Tamil Nadu has approved 10 new desalination plants (total 1,600 MLD capacity) following Chennai's 2019 Day Zero event. Gujarat's industrial coastal zones require desalination for PCPIR. RO desalination technology procurement (membranes, ERDs, SCADA) is almost entirely imported — creating a ₹6,000+ Cr domestic technology opportunity.</div>
+      <div class="bottleneck-equity">Listed exposure → VA Tech Wabag (largest domestic desal operator), Ion Exchange membranes</div>
+    </div>
+    <div class="bottleneck-badges"><span class="badge badge-medium">Medium</span><span class="badge badge-gold">₹12,000Cr TAM</span></div>
+  </div>
+
+  <!-- Compressed remaining bottlenecks 9-25 in table form -->
+  <div class="s-divider"></div>
+  <h3 style="font-family:var(--heading-font);font-size:1.5rem;margin:32px 0 16px;">Bottlenecks 9–25: Rapid-Fire Summary</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Bottleneck</th><th>Severity</th><th>Listed Equity Exposure</th><th>TAM Estimate</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-mono">09</td><td><strong>Agri Irrigation Inefficiency</strong> — 80% flood irrigation, only 20% drip/sprinkler; massive pumping efficiency waste</td><td><span class="badge badge-amber">High</span></td><td>Shakti Pumps (solar ag pumps), Kirloskar</td><td class="td-mono">₹25,000 Cr</td></tr>
+        <tr><td class="td-mono">10</td><td><strong>Pump Energy Efficiency Gap</strong> — 60% of India's pumps are IE1 class; IE3/IE4 upgrade is mandatory under BEE norms</td><td><span class="badge badge-amber">High</span></td><td>Shakti Pumps, Kirloskar Brothers, WPIL</td><td class="td-mono">₹15,000 Cr</td></tr>
+        <tr><td class="td-mono">11</td><td><strong>Sludge Management Crisis</strong> — STPs generate 8,000+ MT/day of sludge; <15% is treated or disposed safely</td><td><span class="badge badge-amber">High</span></td><td>VA Tech Wabag, Suez India (unlisted)</td><td class="td-mono">₹5,000 Cr</td></tr>
+        <tr><td class="td-mono">12</td><td><strong>Effluent Trading & Water Markets</strong> — No water trading framework; treated water recycling has no price signal</td><td><span class="badge badge-amber">High</span></td><td>Future opportunity for water analytics platforms</td><td class="td-mono">Policy dependent</td></tr>
+        <tr><td class="td-mono">13</td><td><strong>Textiles Industry Water Pollution</strong> — 11 textile clusters mandated ZLD; massive treatment upgrade requirement</td><td><span class="badge badge-amber">High</span></td><td>Ion Exchange, Enviro Infra Engineers</td><td class="td-mono">₹8,000 Cr</td></tr>
+        <tr><td class="td-mono">14</td><td><strong>Pharmaceutical Water for Injection (WFI)</strong> — WHO-GMP requires WFI systems; India pharma cluster upgrade mandated</td><td><span class="badge badge-gold">Medium</span></td><td>Ion Exchange specialty, imported systems</td><td class="td-mono">₹3,500 Cr</td></tr>
+        <tr><td class="td-mono">15</td><td><strong>Smart Irrigation Controllers</strong> — 0.2% penetration vs. 25% in Israel; massive precision ag opportunity</td><td><span class="badge badge-gold">Medium</span></td><td>Netafim India (unlisted), domestic startups</td><td class="td-mono">₹10,000 Cr</td></tr>
+        <tr><td class="td-mono">16</td><td><strong>Lake & Waterbody Restoration</strong> — 5,000+ urban lakes severely degraded; bioremediation + aeration opportunity</td><td><span class="badge badge-gold">Medium</span></td><td>EMS Limited (bioremediation), niche players</td><td class="td-mono">₹4,000 Cr</td></tr>
+        <tr><td class="td-mono">17</td><td><strong>Borewell Water Quality Monitoring</strong> — 30M+ borewells in India; almost zero real-time quality monitoring</td><td><span class="badge badge-gold">Medium</span></td><td>Domestic sensor opportunity; no listed pure-play yet</td><td class="td-mono">₹2,000 Cr</td></tr>
+        <tr><td class="td-mono">18</td><td><strong>Hospital Water Infection Control</strong> — NABH/JCI standards require legionella control; hospital water safety is under-regulated</td><td><span class="badge badge-gold">Medium</span></td><td>Ion Exchange hospital division, Ecolab India</td><td class="td-mono">₹1,500 Cr</td></tr>
+        <tr><td class="td-mono">19</td><td><strong>Solar-Powered Rural Pumping</strong> — PM-KUSUM scheme targets 3M solar pumps; supply chain and installation opportunity</td><td><span class="badge badge-gold">Medium</span></td><td>Shakti Pumps (largest solar pump beneficiary)</td><td class="td-mono">₹20,000 Cr</td></tr>
+        <tr><td class="td-mono">20</td><td><strong>Ship & Port Water Treatment</strong> — IMO ballast water treatment mandates; Indian ports upgrading</td><td><span class="badge badge-gray">Low-Med</span></td><td>VA Tech Wabag maritime division, global players</td><td class="td-mono">₹1,000 Cr</td></tr>
+        <tr><td class="td-mono">21</td><td><strong>Municipal Water Utility Commercialisation</strong> — 95% of urban utilities are loss-making; PPP model transition creates O&M opportunity</td><td><span class="badge badge-gold">Medium</span></td><td>VA Tech Wabag (HAM/BOT models), Veolia India</td><td class="td-mono">₹30,000 Cr</td></tr>
+        <tr><td class="td-mono">22</td><td><strong>Rainwater Harvesting Systems (Commercial)</strong> — Mandatory in 8+ states; institutional implementation is nascent</td><td><span class="badge badge-gray">Low-Med</span></td><td>Niche installers; no listed player with scale</td><td class="td-mono">₹2,500 Cr</td></tr>
+        <tr><td class="td-mono">23</td><td><strong>Produced Water Treatment (Oil & Gas)</strong> — ONGC offshore facilities produce high volumes of contaminated water requiring treatment</td><td><span class="badge badge-gold">Medium</span></td><td>Ion Exchange, VA Tech Wabag O&G division</td><td class="td-mono">₹3,000 Cr</td></tr>
+        <tr><td class="td-mono">24</td><td><strong>Cooling Water Systems (Power Plants)</strong> — India's thermal fleet requires cooling water treatment at 500+ stations</td><td><span class="badge badge-gold">Medium</span></td><td>Ion Exchange, Thermax, CEPCO (unlisted)</td><td class="td-mono">₹5,000 Cr</td></tr>
+        <tr><td class="td-mono">25</td><td><strong>PFAS & Emerging Contaminant Detection</strong> — Regulation imminent; no domestic testing or treatment capability exists currently</td><td><span class="badge badge-amber">High (emerging)</span></td><td>First-mover opportunity; no listed player yet</td><td class="td-mono">₹4,000 Cr (2028+)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- PART 10: INDIA LISTED EQUITY MAPPING -->
+<section id="part10" class="content-section">
+  <div class="section-header">
+    <div class="section-header-top">
+      <span class="section-number">Part 10</span>
+      <div class="section-tag-line"></div>
+    </div>
+    <h2 class="section-title">India Listed Equity Mapping</h2>
+    <p class="section-intro">Exhaustive analysis of every significant listed water technology and infrastructure company in India — business models, moat assessments, margin profiles, and investment cases.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+
+    <div class="company-card" style="border-color:var(--gold-dim);">
+      <div class="company-header">
+        <div><div class="company-name">VA Tech Wabag</div><div class="company-ticker">NSE: WABAG · ₹4,500 Cr Mkt Cap (approx)</div></div>
+        <span class="company-rating-badge rating-star">★ India's Xylem</span>
+      </div>
+      <div class="company-body">
+        <p style="font-size:0.85rem;color:var(--text-2);">India's most complete water technology company — the only listed Indian firm with genuine global presence (operations in 20+ countries), proprietary technology in MBR, MBBR, ZLD and desalination, and a growing HAM/BOT O&M base providing recurring income.</p>
+        <div class="company-metrics">
+          <div class="company-metric"><div class="company-metric-value">~11%</div><div class="company-metric-label">EBITDA Margin</div></div>
+          <div class="company-metric"><div class="company-metric-value">~35%</div><div class="company-metric-label">Int'l Revenue</div></div>
+          <div class="company-metric"><div class="company-metric-value">₹5,500Cr+</div><div class="company-metric-label">Order Book</div></div>
+        </div>
+        <div class="company-ratings">
+          <div class="company-rating-row"><span class="company-rating-label">Technology Moat</span><div class="rating-track"><div class="rating-fill gold" style="width:78%"></div></div><span class="rating-value">7.8</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Export Potential</span><div class="rating-track"><div class="rating-fill teal" style="width:82%"></div></div><span class="rating-value">8.2</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Recurring Rev</span><div class="rating-track"><div class="rating-fill blue" style="width:42%"></div></div><span class="rating-value">4.2</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Capital Alloc</span><div class="rating-track"><div class="rating-fill gold" style="width:70%"></div></div><span class="rating-value">7.0</span></div>
+        </div>
+        <div class="company-bull-bear">
+          <div class="bull-box"><div class="bull-bear-label">⬆ Bull Case</div>HAM/BOT model transition increases recurring revenue from 15% → 40%+ of revenues by FY28. MENA desal order pipeline (Saudi NEOM water systems). UPW entry for India's semiconductor fabs. If management executes the O&M transition, this re-rates 3–4x on multiple expansion alone.</div>
+          <div class="bear-box"><div class="bull-bear-label">⬇ Bear Case</div>Working capital intensive EPC model with government payment delays. International revenue concentrated in high-risk MENA region. Competition from China's CITIC, Hyflux in Southeast Asian bids. Historically poor return on equity despite technology positioning.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="company-card" style="border-color:var(--teal-dim);">
+      <div class="company-header">
+        <div><div class="company-name">Ion Exchange (India)</div><div class="company-ticker">NSE: IONEXCHANG · ₹6,500 Cr Mkt Cap (approx)</div></div>
+        <span class="company-rating-badge rating-star">★ India's Ecolab</span>
+      </div>
+      <div class="company-body">
+        <p style="font-size:0.85rem;color:var(--text-2);">India's most underrated water technology franchise. Ion Exchange operates across chemicals, resins, systems, and engineering — a fully integrated water treatment platform with 50+ years of IP in ion exchange chemistry, the recurring consumable business that most closely resembles Ecolab's toll-booth model in India.</p>
+        <div class="company-metrics">
+          <div class="company-metric"><div class="company-metric-value">~14%</div><div class="company-metric-label">EBITDA Margin</div></div>
+          <div class="company-metric"><div class="company-metric-value">~60%</div><div class="company-metric-label">Recurring Rev</div></div>
+          <div class="company-metric"><div class="company-metric-value">High</div><div class="company-metric-label">IP Intensity</div></div>
+        </div>
+        <div class="company-ratings">
+          <div class="company-rating-row"><span class="company-rating-label">Chemistry IP</span><div class="rating-track"><div class="rating-fill gold" style="width:88%"></div></div><span class="rating-value">8.8</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Recurring Revenue</span><div class="rating-track"><div class="rating-fill gold" style="width:85%"></div></div><span class="rating-value">8.5</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">UPW Positioning</span><div class="rating-track"><div class="rating-fill teal" style="width:72%"></div></div><span class="rating-value">7.2</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Export Growth</span><div class="rating-track"><div class="rating-fill blue" style="width:65%"></div></div><span class="rating-value">6.5</span></div>
+        </div>
+        <div class="company-bull-bear">
+          <div class="bull-box"><div class="bull-bear-label">⬆ Bull Case</div>Ion exchange resins are non-substitutable in UPW systems for semiconductor fabs — and Ion Exchange India is the only domestic resin manufacturer. As India's fab count grows to 10–15 by 2035, Ion Exchange becomes a captive supplier to India's most strategic manufacturing sector. Zero-liquid-discharge chemical business growing 25%+ annually as ZLD mandates expand.</div>
+          <div class="bear-box"><div class="bull-bear-label">⬇ Bear Case</div>Conglomerate structure obscures the high-quality chemicals business within a lower-quality EPC division. Management historically conservative on capital allocation and growth investment. Foreign resin manufacturers (Lanxess, Purolite) have superior chemistry for high-end applications.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div><div class="company-name">Kirloskar Brothers</div><div class="company-ticker">NSE: KIRLOSBROS · ₹5,500 Cr Mkt Cap (approx)</div></div>
+        <span class="company-rating-badge rating-strong">✓ Infrastructure Backbone</span>
+      </div>
+      <div class="company-body">
+        <p style="font-size:0.85rem;color:var(--text-2);">India's largest pump manufacturer — the backbone of every large water infrastructure project in the country. KBL's 125-year installed base creates an almost unassailable brand and service network advantage in the Indian market.</p>
+        <div class="company-metrics">
+          <div class="company-metric"><div class="company-metric-value">~30%</div><div class="company-metric-label">Gross Margin</div></div>
+          <div class="company-metric"><div class="company-metric-value">~12%</div><div class="company-metric-label">EBITDA Margin</div></div>
+          <div class="company-metric"><div class="company-metric-value">~28%</div><div class="company-metric-label">Service Rev</div></div>
+        </div>
+        <div class="company-ratings">
+          <div class="company-rating-row"><span class="company-rating-label">Brand Moat</span><div class="rating-track"><div class="rating-fill gold" style="width:90%"></div></div><span class="rating-value">9.0</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Technology IP</span><div class="rating-track"><div class="rating-fill amber" style="width:55%"></div></div><span class="rating-value">5.5</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Export Traction</span><div class="rating-track"><div class="rating-fill teal" style="width:60%"></div></div><span class="rating-value">6.0</span></div>
+        </div>
+        <div class="company-bull-bear">
+          <div class="bull-box"><div class="bull-bear-label">⬆ Bull Case</div>Jal Jeevan Mission Phase I + II creates 5-year pump procurement supercycle. IE3/IE4 efficiency upgrade mandate creates premium replacement cycle. Largest beneficiary of River Linking Project pumping station contracts. Aftermarket service growing at 18% — approaching 30% of revenues.</div>
+          <div class="bear-box"><div class="bull-bear-label">⬇ Bear Case</div>Brand advantage does not translate to pricing power against Chinese and Korean competition on large government bids. Technology differentiation is limited — not a technology moat. Capital allocation historically weak with dividend payout eating R&D investment.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div><div class="company-name">Shakti Pumps</div><div class="company-ticker">NSE: SHAKTIPUMPS · ₹3,500 Cr Mkt Cap (approx)</div></div>
+        <span class="company-rating-badge rating-strong">✓ Solar Pump Play</span>
+      </div>
+      <div class="company-body">
+        <p style="font-size:0.85rem;color:var(--text-2);">Shakti has transformed from a generic stainless steel pump manufacturer to the leading solar pump company in India — a position of enormous strategic value as PM-KUSUM targets 3 million solar agricultural pumps by 2026.</p>
+        <div class="company-metrics">
+          <div class="company-metric"><div class="company-metric-value">~32%</div><div class="company-metric-label">Gross Margin</div></div>
+          <div class="company-metric"><div class="company-metric-value">~14%</div><div class="company-metric-label">EBITDA Margin</div></div>
+          <div class="company-metric"><div class="company-metric-value">Top 3</div><div class="company-metric-label">Solar Pump Rank</div></div>
+        </div>
+        <div class="company-ratings">
+          <div class="company-rating-row"><span class="company-rating-label">Solar Positioning</span><div class="rating-track"><div class="rating-fill gold" style="width:85%"></div></div><span class="rating-value">8.5</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Manufacturing Scale</span><div class="rating-track"><div class="rating-fill teal" style="width:78%"></div></div><span class="rating-value">7.8</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Export Potential</span><div class="rating-track"><div class="rating-fill blue" style="width:65%"></div></div><span class="rating-value">6.5</span></div>
+        </div>
+        <div class="company-bull-bear">
+          <div class="bull-box"><div class="bull-bear-label">⬆ Bull Case</div>PM-KUSUM Component B targets 2M individual farmer solar pumps by FY27 — Shakti is the largest empanelled manufacturer. Export opportunity to Africa and SE Asia where solar pumping economics are compelling. Integration of electronics into "smart pump" with remote monitoring creates software-like recurring revenue potential.</div>
+          <div class="bear-box"><div class="bull-bear-label">⬇ Bear Case</div>PM-KUSUM budget execution risk — government schemes historically underspend vs. announcements. Competition from Grundfos, Wilo in high-end solar pumps. No proprietary technology in solar panels — a component integrator rather than IP owner.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div><div class="company-name">Jash Engineering</div><div class="company-ticker">NSE: JASH · ₹1,200 Cr Mkt Cap (approx)</div></div>
+        <span class="company-rating-badge rating-star">★ Hidden Toll Booth</span>
+      </div>
+      <div class="company-body">
+        <p style="font-size:0.85rem;color:var(--text-2);">Jash Engineering is one of India's most misunderstood water companies. It manufactures sluice gates, penstock valves, screens, and flow control systems — the unglamorous but mission-critical components that every water treatment and wastewater plant requires. These are precision-engineered, certified components with no low-cost substitutes for municipal applications.</p>
+        <div class="company-metrics">
+          <div class="company-metric"><div class="company-metric-value">~38%</div><div class="company-metric-label">Gross Margin</div></div>
+          <div class="company-metric"><div class="company-metric-value">~18%</div><div class="company-metric-label">EBITDA Margin</div></div>
+          <div class="company-metric"><div class="company-metric-value">USA+</div><div class="company-metric-label">Export Markets</div></div>
+        </div>
+        <div class="company-ratings">
+          <div class="company-rating-row"><span class="company-rating-label">Niche Moat</span><div class="rating-track"><div class="rating-fill gold" style="width:88%"></div></div><span class="rating-value">8.8</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Export Quality</span><div class="rating-track"><div class="rating-fill teal" style="width:80%"></div></div><span class="rating-value">8.0</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Scalability</span><div class="rating-track"><div class="rating-fill blue" style="width:70%"></div></div><span class="rating-value">7.0</span></div>
+        </div>
+        <div class="company-bull-bear">
+          <div class="bull-box"><div class="bull-bear-label">⬆ Bull Case</div>Every STP and WTP in India requires Jash's products — the STP deficit alone implies ₹1,000+ Cr of Jash-addressable flow control procurement over 5 years. US Municipal market penetration (already certified) is a 10x revenue expansion opportunity. Market misclassifies as a small engineering firm; it is actually an IP-intensive precision manufacturer with 40%+ gross margins.</div>
+          <div class="bear-box"><div class="bull-bear-label">⬇ Bear Case</div>Small size (₹1,200 Cr mcap) creates liquidity risk. Customer concentration risk in government WTP/STP projects. US market penetration slower than expected due to long public procurement cycles.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div><div class="company-name">Enviro Infra Engineers</div><div class="company-ticker">NSE: ENVIROINFRA · ₹1,800 Cr Mkt Cap (approx)</div></div>
+        <span class="company-rating-badge rating-watch">→ EPC Cyclical</span>
+      </div>
+      <div class="company-body">
+        <p style="font-size:0.85rem;color:var(--text-2);">A focused EPC company for sewage treatment plants with strong positioning in Uttar Pradesh and NMCG projects. The company has benefited enormously from the Ganga rejuvenation programme but remains fundamentally an EPC contractor — capital intensive, low recurring income, exposed to government payment cycles.</p>
+        <div class="company-metrics">
+          <div class="company-metric"><div class="company-metric-value">~16%</div><div class="company-metric-label">EBITDA Margin</div></div>
+          <div class="company-metric"><div class="company-metric-value">~₹3,000Cr</div><div class="company-metric-label">Order Book</div></div>
+          <div class="company-metric"><div class="company-metric-value">Low</div><div class="company-metric-label">Recurring Rev</div></div>
+        </div>
+        <div class="company-ratings">
+          <div class="company-rating-row"><span class="company-rating-label">Order Pipeline</span><div class="rating-track"><div class="rating-fill teal" style="width:78%"></div></div><span class="rating-value">7.8</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Technology IP</span><div class="rating-track"><div class="rating-fill red" style="width:28%"></div></div><span class="rating-value">2.8</span></div>
+          <div class="company-rating-row"><span class="company-rating-label">Moat Quality</span><div class="rating-track"><div class="rating-fill red" style="width:32%"></div></div><span class="rating-value">3.2</span></div>
+        </div>
+        <div class="company-bull-bear">
+          <div class="bull-box"><div class="bull-bear-label">⬆ Bull Case</div>NMCG Phase 2 and AMRUT 2.0 create multi-year STP order visibility. Low-cost execution model wins on price in government tenders. Company adding O&M contracts (HAM model) which could improve recurring revenue to 20–25% by FY27.</div>
+          <div class="bear-box"><div class="bull-bear-label">⬇ Bear Case</div>No technology differentiation — any competitor can replicate. Government payment delays create working capital risk. Returns on capital structurally low (8–11% ROIC). Not a compounder — a cyclical government construction play.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- EMS and WPIL compact -->
+  <div class="s-divider" style="margin:32px 0;"></div>
+  <div class="col-3">
+    <div class="card card-teal">
+      <div class="card-title">EMS Limited</div>
+      <div class="card-subtitle">NSE: EMSLIMITED · Bioremediation Niche</div>
+      <div class="card-body">
+        <p>Specialist in lake and waterbody restoration using bioremediation and phytoremediation — a niche but growing segment as urban local bodies face NGT orders to restore degraded water bodies. Low capital intensity, proprietary microbial formulations, and no meaningful competition in the listed space.</p>
+        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+          <span class="badge badge-teal">Niche Moat</span>
+          <span class="badge badge-green">High GM</span>
+          <span class="badge badge-amber">Small Cap Risk</span>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">WPIL Limited</div>
+      <div class="card-subtitle">NSE: WPIL · Large Pump Specialist</div>
+      <div class="card-body">
+        <p>Specialist in large vertical turbine, submersible, and centrifugal pumps for municipal and irrigation infrastructure. Strong in government projects for river lifting and irrigation systems. Weaker technology moat than Kirloskar but better capital allocation discipline. River linking programme creates significant multi-year order visibility.</p>
+        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+          <span class="badge badge-blue">Infrastructure Play</span>
+          <span class="badge badge-amber">Moderate Moat</span>
+        </div>
+      </div>
+    </div>
+    <div class="card card-gold">
+      <div class="card-title">Thermax (Water Division)</div>
+      <div class="card-subtitle">NSE: THERMAX · Industrial Water Leader</div>
+      <div class="card-body">
+        <p>Thermax's water and waste treatment division (~20% of revenues) is one of India's strongest industrial water technology franchises — with proprietary ZLD systems, evaporators, and crystallisers for high-TDS industrial effluent. The ZLD-driven industrial water capex cycle is Thermax's single largest growth driver for the next decade. Premium valuation justified by quality.</p>
+        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+          <span class="badge badge-gold">ZLD Leader</span>
+          <span class="badge badge-teal">IP Intensity</span>
+          <span class="badge badge-green">Strong ROIC</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PART 11: HIDDEN COMPOUNDER HUNT -->
+<section id="part11" class="content-section">
+  <div class="section-header">
+    <div class="section-header-top">
+      <span class="section-number">Part 11</span>
+      <div class="section-tag-line"></div>
+    </div>
+    <h2 class="section-title">Hidden Compounder Hunt</h2>
+    <p class="section-intro">The highest-conviction, most underresearched investment opportunities in India's water ecosystem — small and mid-cap businesses where the market is structurally mispricing a durable technology or niche moat.</p>
+  </div>
+
+  <div class="callout callout-gold" style="margin-bottom:32px;">
+    <div class="callout-label">⚠ Disclosure on Naming Compounders</div>
+    <div class="callout-text">Several of the most compelling water compounders in India are unlisted (Netafim India, Grundfos India, Hach India, A.O. Smith India). For the listed universe, we identify companies where the water opportunity is either entirely absent from consensus analysis or materially underestimated in current valuations. This list prioritises <em>structural moat quality over near-term earnings momentum</em>.</div>
+  </div>
+
+  <h3 style="font-family:var(--heading-font);font-size:1.8rem;margin-bottom:24px;">Top Small-Cap Hidden Compounders</h3>
+  <div class="col-3" style="margin-bottom:32px;">
+
+    <div class="compounder-card">
+      <div class="compounder-header">
+        <div><div class="compounder-name">Jash Engineering</div><div class="compounder-ticker">NSE: JASH · ~₹1,200 Cr Mcap</div></div>
+        <span class="multibagger-score">10x probability: HIGH</span>
+      </div>
+      <div class="compounder-body">
+        <div class="compounder-why"><strong>Why the market is missing it:</strong> Classified as a small engineering firm. The market does not understand that sluice gates, screens, and penstock valves are precision-certified components with 38–42% gross margins — not commodity fabrication. US export credentials are unrecognised. Every new STP/WTP in India requires Jash products.<br><br><strong>Bottleneck solved:</strong> India's STP deficit requires 20,000+ MLD of new capacity — all needing Jash's products. US municipal infrastructure renewal adds a second compounding leg.</div>
+        <div class="compounder-tags">
+          <span class="compounder-tag">40%+ Gross Margin</span>
+          <span class="compounder-tag">US Export Certified</span>
+          <span class="compounder-tag">STP Supercycle</span>
+          <span class="compounder-tag">Precision Manufacturing</span>
+          <span class="compounder-tag">No Listed Competitor</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="compounder-card">
+      <div class="compounder-header">
+        <div><div class="compounder-name">EMS Limited</div><div class="compounder-ticker">NSE: EMSLIMITED · ~₹800 Cr Mcap</div></div>
+        <span class="multibagger-score">10x probability: MEDIUM-HIGH</span>
+      </div>
+      <div class="compounder-body">
+        <div class="compounder-why"><strong>Why the market is missing it:</strong> Classified as a small environmental services company. The bioremediation model — using proprietary microbial formulations to restore lakes — is asset-light, high-margin, and has no meaningful listed competition. As NGT orders multiply, demand is regulatory-mandated.<br><br><strong>Bottleneck solved:</strong> 5,000+ degraded urban lakes under NGT restoration orders; bioremediation at ₹20–40 Cr per waterbody vs. ₹200+ Cr for conventional civil dredging.</div>
+        <div class="compounder-tags">
+          <span class="compounder-tag">Asset Light</span>
+          <span class="compounder-tag">Microbial IP</span>
+          <span class="compounder-tag">NGT-Mandated Demand</span>
+          <span class="compounder-tag">Unique Niche</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="compounder-card">
+      <div class="compounder-header">
+        <div><div class="compounder-name">Shakti Pumps (India)</div><div class="compounder-ticker">NSE: SHAKTIPUMPS · ~₹3,500 Cr Mcap</div></div>
+        <span class="multibagger-score">10x probability: MEDIUM</span>
+      </div>
+      <div class="compounder-body">
+        <div class="compounder-why"><strong>Why the market is missing it:</strong> Perceived as a commodity pump maker. The solar pump positioning is radically undervalued — PM-KUSUM Component B creates a visible 5-year revenue floor. Export opportunity (Africa, MENA, SE Asia) has ₹2,000+ Cr annual potential but is not in consensus models.<br><br><strong>Bottleneck solved:</strong> India's 30M+ agri borewells running on diesel/grid; solar replacement saves ₹60,000/farmer/year in energy costs — payback <3 years at current subsidy levels.</div>
+        <div class="compounder-tags">
+          <span class="compounder-tag">PM-KUSUM Beneficiary</span>
+          <span class="compounder-tag">Export Platform</span>
+          <span class="compounder-tag">Solar + Water Convergence</span>
+          <span class="compounder-tag">SS Pump IP</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="compounder-card">
+      <div class="compounder-header">
+        <div><div class="compounder-name">Ion Exchange (India)</div><div class="compounder-ticker">NSE: IONEXCHANG · ~₹6,500 Cr Mcap</div></div>
+        <span class="multibagger-score">10x probability: MEDIUM-HIGH</span>
+      </div>
+      <div class="compounder-body">
+        <div class="compounder-why"><strong>Why the market is missing it:</strong> Market values Ion Exchange as an EPC + chemicals conglomerate at blended multiples. It should be valued as a specialty chemicals company with embedded EPC. The resin chemistry business — 60%+ recurring, 45%+ gross margins — is India's best undiscovered water toll booth.<br><br><strong>Bottleneck solved:</strong> India's only domestic manufacturer of ion exchange resins for UPW systems — the most critical input for semiconductor fabs. Monopoly-like position for the next 10 years of fab construction.</div>
+        <div class="compounder-tags">
+          <span class="compounder-tag">Resin IP Monopoly</span>
+          <span class="compounder-tag">Semiconductor UPW</span>
+          <span class="compounder-tag">60%+ Recurring</span>
+          <span class="compounder-tag">Mispriced by Market</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="compounder-card">
+      <div class="compounder-header">
+        <div><div class="compounder-name">WPIL Limited</div><div class="compounder-ticker">NSE: WPIL · ~₹2,800 Cr Mcap</div></div>
+        <span class="multibagger-score">10x probability: MEDIUM</span>
+      </div>
+      <div class="compounder-body">
+        <div class="compounder-why"><strong>Why the market is missing it:</strong> Overlooked in favour of Kirloskar Brothers as the pump sector narrative stock. WPIL's large vertical turbine pump niche — specifically for river lifting, irrigation, and large municipal supply — is protected by certification requirements and design expertise. River linking project is a decade-long order catalyst.<br><br><strong>Bottleneck solved:</strong> National River Linking Project requires 300+ large pumping stations — WPIL is among 3 qualified domestic manufacturers.</div>
+        <div class="compounder-tags">
+          <span class="compounder-tag">River Linking Beneficiary</span>
+          <span class="compounder-tag">VTP Niche</span>
+          <span class="compounder-tag">Better Cap Alloc than KBL</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="compounder-card">
+      <div class="compounder-header">
+        <div><div class="compounder-name">Thermax (Water Division)</div><div class="compounder-ticker">NSE: THERMAX · Conglomerate Wrapper</div></div>
+        <span class="multibagger-score">Segment 10x within whole: HIGH</span>
+      </div>
+      <div class="compounder-body">
+        <div class="compounder-why"><strong>Why the market is missing it:</strong> Thermax is valued as an energy + environment conglomerate. Its ZLD evaporator and crystalliser technology — arguably the best in India for high-TDS industrial effluent — is not separately valued and is mispriced within the parent. ZLD market is growing 35%+ and Thermax is the technology leader.<br><br><strong>Bottleneck solved:</strong> India's textile, distillery, and pharma ZLD compliance wave — ₹18,000 Cr market growing at 35% CAGR.</div>
+        <div class="compounder-tags">
+          <span class="compounder-tag">ZLD Technology Leader</span>
+          <span class="compounder-tag">Evaporator IP</span>
+          <span class="compounder-tag">Hidden Within Parent</span>
+          <span class="compounder-tag">Regulatory Tailwind</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PART 12: WATER TOLL BOOTHS -->
+<section id="part12" class="content-section">
+  <div class="section-header">
+    <div class="section-header-top">
+      <span class="section-number">Part 12</span>
+      <div class="section-tag-line"></div>
+    </div>
+    <h2 class="section-title">Water Toll Booths</h2>
+    <p class="section-intro">The most valuable businesses in water are not those that build the largest plants — they are the invisible toll collectors: companies that sit at critical chokepoints, collect recurring revenue from every litre treated, and are structurally impossible to displace once embedded.</p>
+  </div>
+
+  <div class="pull-quote">
+    <div class="pull-quote-text">A true water toll booth has three characteristics: it is embedded inside infrastructure that cannot be shut down, its removal costs more than the revenue it extracts, and its product or service has no credible substitute at the point of use. Ecolab's boiler treatment chemicals are a perfect example. Ion Exchange's resins inside a semiconductor UPW system are another.</div>
+    <div class="pull-quote-source">— Hydra Research Capital Cycle Framework</div>
+  </div>
+
+  <div class="col-3" style="margin-bottom:32px;">
+
+    <div class="toll-booth">
+      <div class="toll-rank">Toll Booth #1 — Global</div>
+      <div class="toll-name">Specialty Water Treatment Chemicals</div>
+      <div class="toll-archetype">The Visa of water — collects a small, recurring toll on every industrial water system on earth</div>
+      <div class="toll-strength"><div class="toll-fill" style="width:96%"></div></div>
+      <div style="font-family:var(--mono-font);font-size:0.68rem;color:var(--gold);">Moat Strength: 9.6/10</div>
+      <div class="toll-description">Boiler treatment chemicals, cooling water biocides, membrane antiscalants, and coagulants are consumed monthly by every industrial water system. Switching chemicals mid-contract risks system failure, voiding warranties, and regulatory non-compliance. Ecolab alone serves 3 million customer locations globally. In India, Ion Exchange is the toll booth equivalent — installed in 5,000+ industrial systems with near-zero annual churn.</div>
+    </div>
+
+    <div class="toll-booth">
+      <div class="toll-rank">Toll Booth #2 — Tech</div>
+      <div class="toll-name">UPW System O&M for Semiconductor Fabs</div>
+      <div class="toll-archetype">The ASML of water — a true monopoly tollgate in mission-critical manufacturing</div>
+      <div class="toll-strength"><div class="toll-fill" style="width:93%"></div></div>
+      <div style="font-family:var(--mono-font);font-size:0.68rem;color:var(--gold);">Moat Strength: 9.3/10</div>
+      <div class="toll-description">UPW system O&M contracts for semiconductor fabs are the most indefensible positions in all of water. A fab running at $10M/day revenue cannot risk water quality excursions that shut down production. The O&M provider for a fab's UPW system has near-infinite switching cost leverage. Multi-year contracts at $5–15M annually per fab. Kurita dominates globally; in India the opportunity is wide open for the right domestic partner.</div>
+    </div>
+
+    <div class="toll-booth">
+      <div class="toll-rank">Toll Booth #3 — Software</div>
+      <div class="toll-name">Water Utility SCADA & Analytics Platforms</div>
+      <div class="toll-archetype">The Oracle of water — once installed, never removed</div>
+      <div class="toll-strength"><div class="toll-fill" style="width:90%"></div></div>
+      <div style="font-family:var(--mono-font);font-size:0.68rem;color:var(--gold);">Moat Strength: 9.0/10</div>
+      <div class="toll-description">Water utility SCADA and digital management platforms have ~infinite switching costs once embedded — operator retraining, data migration, integration rebuild, and regulatory recertification make switching economically irrational. A utility using Xylem Vue, Itron's smart water platform, or Siemens WaterExpert effectively becomes a captive customer for 10–15 years. India has <1% penetration of smart water utilities — the first movers will own the market for a generation.</div>
+    </div>
+
+    <div class="toll-booth">
+      <div class="toll-rank">Toll Booth #4 — Infrastructure</div>
+      <div class="toll-name">Flow Control at Water Treatment Headworks</div>
+      <div class="toll-archetype">The sluice gate that controls all downstream water — unavoidable chokepoint</div>
+      <div class="toll-strength"><div class="toll-fill" style="width:82%"></div></div>
+      <div style="font-family:var(--mono-font);font-size:0.68rem;color:var(--gold);">Moat Strength: 8.2/10</div>
+      <div class="toll-description">Sluice gates, screens, and penstock valves are procured once, installed for 30–40 years, and replaced only with the same manufacturer's products (due to civil structure integration). Jash Engineering's certification in US municipal standards makes it essentially impossible for a competitor to displace it in existing installed base locations. This is a 30-year toll booth with zero variable costs.</div>
+    </div>
+
+    <div class="toll-booth">
+      <div class="toll-rank">Toll Booth #5 — India</div>
+      <div class="toll-name">Ion Exchange Resins in Industrial Water Systems</div>
+      <div class="toll-archetype">India's closest equivalent to Ecolab — the domestic water chemical tollgate</div>
+      <div class="toll-strength"><div class="toll-fill" style="width:80%"></div></div>
+      <div style="font-family:var(--mono-font);font-size:0.68rem;color:var(--gold);">Moat Strength: 8.0/10</div>
+      <div class="toll-description">Ion Exchange (India) has built a resin replacement and water chemical service business across 5,000+ industrial sites. Resins in ion exchange systems need replacement every 3–5 years; chemicals are consumed monthly. The service engineer relationship — and the risk of system failure from switching to an unknown resin chemistry — creates a de facto monopoly at each installed site. Only the beginning of its penetration in pharmaceutical, semiconductor, and power plant applications.</div>
+    </div>
+
+    <div class="toll-booth">
+      <div class="toll-rank">Toll Booth #6 — Emerging</div>
+      <div class="toll-name">Smart Meter Data Networks (AMI)</div>
+      <div class="toll-archetype">The network toll — whoever owns the data infrastructure owns the billing and analytics layer</div>
+      <div class="toll-strength"><div class="toll-fill" style="width:74%"></div></div>
+      <div style="font-family:var(--mono-font);font-size:0.68rem;color:var(--gold);">Moat Strength: 7.4/10</div>
+      <div class="toll-description">Advanced Metering Infrastructure (AMI) networks for water utilities create a data monopoly: the utility depends on the network operator for billing data, leak detection, and regulatory reporting. Once an AMI network is deployed for a city, the incumbent has near-zero churn risk. India's 500+ urban local bodies mandating smart metering under AMRUT 2.0 create a once-in-a-generation installation wave for AMI providers who will then own 20+ years of recurring data and maintenance revenue.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PART 13: AI, DATA CENTERS & SEMICONDUCTORS -->
+<section id="part13" class="content-section">
+  <div class="section-header">
+    <div class="section-header-top">
+      <span class="section-number">Part 13</span>
+      <div class="section-tag-line"></div>
+    </div>
+    <h2 class="section-title">AI, Data Centres & Semiconductors</h2>
+    <p class="section-intro">The AI revolution is simultaneously the world's most water-intensive industrial expansion in history. Understanding the water implications of the AI compute buildout — and identifying the Indian beneficiaries — is one of the most important and least discussed investment themes in Indian water today.</p>
+  </div>
+
+  <div class="col-2" style="margin-bottom:40px;">
+    <div>
+      <h3 style="font-family:var(--heading-font);font-size:1.6rem;margin-bottom:16px;">How AI Creates a Water Demand Spike</h3>
+      <p>Training a single large language model consumes approximately 700,000 litres of fresh water — primarily for cooling. Running inference (generating responses) consumes roughly 1 litre per 10–50 queries depending on model size and cooling efficiency. At the scale of global AI deployments (trillions of queries annually), this represents a measurable shift in industrial water demand that is only beginning to be understood.</p>
+      <div class="callout callout-teal" style="margin-top:16px;">
+        <div class="callout-label">The Water Intensity Numbers</div>
+        <div class="callout-text">
+          <strong>GPT-4 training run:</strong> ~700,000 litres<br>
+          <strong>Average ChatGPT query:</strong> 0.5–1.5 litres (evaporative cooling)<br>
+          <strong>1 MW of hyperscale compute:</strong> 5–9 ML/year (water cooled)<br>
+          <strong>India's planned DC capacity (2027):</strong> 1,500+ MW = 8–14 billion litres/year<br>
+          <strong>Comparison:</strong> This equals the annual drinking water supply for 4–6 million people
+        </div>
+      </div>
+      <div class="callout callout-red" style="margin-top:12px;">
+        <div class="callout-label">The Municipal Conflict</div>
+        <div class="callout-text">Mumbai's data centre cluster in Navi Mumbai is already drawing water from the same municipal supply serving 4 million residents. Maharashtra has issued show-cause notices to 3 large DC operators for exceeding water allocation limits. This is not a future problem — it is forcing DC operators to invest in wastewater recycling NOW, creating urgent demand for advanced treatment systems.</div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-family:var(--heading-font);font-size:1.6rem;margin-bottom:16px;">The Semiconductor Water Requirement</h3>
+      <p>A modern 300mm semiconductor fabrication plant is among the most water-intensive industrial facilities ever built. The water purity requirements are so extreme that special facilities must be built purely to generate it:</p>
+      <div class="card card-gold" style="margin-bottom:16px;">
+        <div class="card-title" style="font-size:1.1rem;">UPW Specification for Leading-Edge Logic</div>
+        <div class="card-body" style="font-size:0.82rem;">
+          <strong>Resistivity:</strong> 18.2 MΩ·cm (theoretical maximum for water)<br>
+          <strong>TOC:</strong> &lt;1 ppb (parts per billion)<br>
+          <strong>Particles (≥50nm):</strong> &lt;5 per mL<br>
+          <strong>Bacteria:</strong> &lt;1 CFU per 100mL<br>
+          <strong>Silica:</strong> &lt;1 ppb<br>
+          <strong>Flow rate:</strong> 8,000–20,000 L/min per fab<br><br>
+          <em>No city in India currently has water this pure. Every fab must build its own UPW treatment system from scratch — and maintain it continuously for 20+ years.</em>
+        </div>
+      </div>
+      <div class="callout callout-gold">
+        <div class="callout-label">India Fab Water TAM (2025–2035)</div>
+        <div class="callout-text">
+          <strong>Tata Electronics Dholera (28nm fab):</strong> ₹600–800 Cr UPW capex<br>
+          <strong>Micron Sanand (DRAM):</strong> ₹400–600 Cr UPW capex<br>
+          <strong>CG Power Sanand (OSAT):</strong> ₹200–300 Cr UPW capex<br>
+          <strong>Pipeline (12+ fabs):</strong> ₹3,000–5,000 Cr UPW capex<br>
+          <strong>Annual O&M (per fab):</strong> ₹30–80 Cr recurring<br>
+          <em>Total 10-year TAM: ₹5,000–8,000 Cr (capex + O&M)</em>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-family:var(--heading-font);font-size:1.6rem;margin-bottom:20px;">Indian Beneficiaries: AI & Semiconductor Water Demand</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Demand Driver</th>
+          <th>Indian Beneficiary (Listed)</th>
+          <th>Revenue Impact</th>
+          <th>Timeline</th>
+          <th>Confidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>UPW System Supply</strong></td>
+          <td>Semiconductor fab construction (Tata, Micron, CG Power)</td>
+          <td>Ion Exchange (resins, systems), VA Tech Wabag (integration)</td>
+          <td class="td-mono">₹200–400 Cr/yr by FY28</td>
+          <td class="td-mono">2025–2030</td>
+          <td><span class="badge badge-gold">High</span></td>
+        </tr>
+        <tr>
+          <td><strong>DC Wastewater Recycling</strong></td>
+          <td>Water allocation caps forcing DC operators to recycle</td>
+          <td>VA Tech Wabag (DC water recycling EPC), Ion Exchange</td>
+          <td class="td-mono">₹100–200 Cr/yr by FY27</td>
+          <td class="td-mono">2024–2027</td>
+          <td><span class="badge badge-gold">High</span></td>
+        </tr>
+        <tr>
+          <td><strong>Cooling Tower Water Treatment</strong></td>
+          <td>DC and fab cooling tower chemical treatment (monthly)</td>
+          <td>Ion Exchange chemicals, Thermax cooling water</td>
+          <td class="td-mono">₹50–120 Cr/yr recurring</td>
+          <td class="td-mono">2025–2030</td>
+          <td><span class="badge badge-teal">Medium-High</span></td>
+        </tr>
+        <tr>
+          <td><strong>Closed-Loop Cooling Systems</strong></td>
+          <td>Next-gen immersion & direct liquid cooling for AI accelerators</td>
+          <td>No listed Indian player yet; import opportunity</td>
+          <td class="td-mono">Emerging market</td>
+          <td class="td-mono">2026–2030</td>
+          <td><span class="badge badge-amber">Medium</span></td>
+        </tr>
+        <tr>
+          <td><strong>Water Quality Monitoring (Fabs)</strong></td>
+          <td>Continuous inline UPW quality monitoring (TOC, resistivity, particles)</td>
+          <td>No domestic listed player — import dependent (Hach, Mettler-Toledo)</td>
+          <td class="td-mono">₹80–150 Cr/yr imported</td>
+          <td class="td-mono">2025–2035</td>
+          <td><span class="badge badge-gold">High (import gap)</span></td>
+        </tr>
+        <tr>
+          <td><strong>Fab Pumping Systems</strong></td>
+          <td>Precision stainless steel pumps for UPW distribution in cleanrooms</td>
+          <td>Kirloskar Brothers (cleanroom pumps), Grundfos India (unlisted)</td>
+          <td class="td-mono">₹40–100 Cr/yr</td>
+          <td class="td-mono">2025–2030</td>
+          <td><span class="badge badge-teal">Medium</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- PART 14: CAPITAL CYCLE ANALYSIS -->
+<section id="part14" class="content-section">
+  <div class="section-header">
+    <div class="section-header-top">
+      <span class="section-number">Part 14</span>
+      <div class="section-tag-line"></div>
+    </div>
+    <h2 class="section-title">Capital Cycle Analysis</h2>
+    <p class="section-intro">Understanding where capital is entering the water sector, where it creates oversupply risks, and where it remains structurally undersupplied — the critical input for anticipating future margin trajectories.</p>
+  </div>
+
+  <div class="col-3" style="margin-bottom:36px;">
+    <div class="card card-green" style="border-color:rgba(61,189,125,0.3);">
+      <div style="font-family:var(--mono-font);font-size:0.65rem;color:var(--green);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:10px;">Future Compounders</div>
+      <div style="font-family:var(--heading-font);font-size:1.2rem;font-weight:600;margin-bottom:12px;color:var(--text-0);">Structurally Undersupplied Segments</div>
+      <div style="font-size:0.85rem;color:var(--text-1);line-height:1.65;">
+        Capital is flowing away from these due to perceived complexity or specialisation — creating durable above-normal returns for existing incumbents:<br><br>
+        <span style="color:var(--green);">✓</span> <strong>Water intelligence software</strong> — Deep domain knowledge barrier prevents generic software players from entering<br>
+        <span style="color:var(--green);">✓</span> <strong>UPW systems for fabs</strong> — 3–5 year technology learning curve; no new entrants in 15 years<br>
+        <span style="color:var(--green);">✓</span> <strong>Specialty water chemicals (India)</strong> — Scale and chemistry IP barrier; Ion Exchange has 50-year head start<br>
+        <span style="color:var(--green);">✓</span> <strong>Precision flow control (sluice gates)</strong> — Certification requirements create 2–3 year barrier; Jash has no credible domestic competitor
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(232,149,53,0.3);">
+      <div style="font-family:var(--mono-font);font-size:0.65rem;color:var(--amber);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:10px;">Cyclicals — Tread Carefully</div>
+      <div style="font-family:var(--heading-font);font-size:1.2rem;font-weight:600;margin-bottom:12px;color:var(--text-0);">Capital Following the Capex Cycle</div>
+      <div style="font-size:0.85rem;color:var(--text-1);line-height:1.65;">
+        These segments are attractive in the infrastructure upswing but will face margin compression as competition builds:
+        <br><br>
+        <span style="color:var(--amber);">→</span> <strong>Municipal STP/WTP EPC</strong> — 40+ contractors competing for government tenders; pricing driven to marginal cost<br>
+        <span style="color:var(--amber);">→</span> <strong>Standard centrifugal pumps</strong> — Chinese competition intensifying; 15–20% price deflation in commodity segments<br>
+        <span style="color:var(--amber);">→</span> <strong>HDPE pipes</strong> — Massive domestic capacity addition; structural oversupply from 2026<br>
+        <span style="color:var(--amber);">→</span> <strong>Desalination EPC</strong> — 10+ domestic players entering; project margins compressing from 12% → 8%
+      </div>
+    </div>
+    <div class="card" style="border-color:var(--red-dim);">
+      <div style="font-family:var(--mono-font);font-size:0.65rem;color:var(--red);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:10px;">Commodity Traps — Avoid</div>
+      <div style="font-family:var(--heading-font);font-size:1.2rem;font-weight:600;margin-bottom:12px;color:var(--text-0);">Oversupply Risk + Margin Destruction</div>
+      <div style="font-size:0.85rem;color:var(--text-1);line-height:1.65;">
+        Capital is flooding in, competition is intensifying, and margins will compress to the point of destroying returns on invested capital:
+        <br><br>
+        <span style="color:var(--red);">✗</span> <strong>HDPE/DI pipe manufacturing</strong> — Over 60 manufacturers; raw material pass-through only<br>
+        <span style="color:var(--red);">✗</span> <strong>Standard submersible pumps (agriculture)</strong> — Chinese imports at 40–50% cost discount<br>
+        <span style="color:var(--red);">✗</span> <strong>Generic water tanker/logistics</strong> — No IP, no scale advantage, no pricing power<br>
+        <span style="color:var(--red);">✗</span> <strong>Pure civil water infrastructure EPC</strong> — Lowest common denominator tender market
+      </div>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    <div class="pull-quote-text">The capital cycle in water is bifurcating. Commodity infrastructure segments are seeing 40+ competitors rush in, driven by government spend visibility. Technology segments — software, specialty chemicals, precision components — are seeing almost no new entrants because the barriers are technical, not financial. This is exactly the environment where patient investors in moated technology firms generate superior long-run returns.</div>
+    <div class="pull-quote-source">— Hydra Research Capital Cycle Framework, 2025</div>
+  </div>
+
+  <h3 style="font-family:var(--heading-font);font-size:1.6rem;margin:32px 0 20px;">Consolidation Dynamics: Where Scale Will Matter</h3>
+  <div class="col-2">
+    <div>
+      <p>India's water treatment equipment and technology market is highly fragmented — over 800 registered companies, most with revenue below ₹100 Cr. Consolidation is inevitable and will follow the pattern of every other infrastructure technology sector: the companies with <em>technology IP, certified product portfolios, and established customer relationships</em> will be the acquirers; the pure fabricators will be acquired or exit.</p>
+      <p>VA Tech Wabag and Ion Exchange are the most likely consolidators. Both have balance sheet capacity, established brand equity, and a strategic need to fill technology gaps. Potential acquisition targets include companies in smart metering, water quality sensing, and ZLD crystalliser technology.</p>
+    </div>
+    <div>
+      <div class="callout callout-gold">
+        <div class="callout-label">Consolidation Watch List</div>
+        <div class="callout-text">
+          <strong>Likely acquirers:</strong> VA Tech Wabag, Ion Exchange, Thermax, Kirloskar Brothers<br><br>
+          <strong>Likely targets:</strong> Smart metering companies, water quality sensor startups, regional EPC players with O&M portfolios, specialty filter media manufacturers<br><br>
+          <strong>Foreign strategic interest:</strong> Xylem, Veolia, Kurita, Pentair actively looking at Indian acquisition targets to establish market presence<br><br>
+          <strong>Timeline:</strong> Major consolidation wave expected 2026–2030 as market matures and access to institutional capital increases
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PART 15: FINAL VERDICT & 2040 ROADMAP -->
+<section id="part15" class="content-section" style="background:linear-gradient(135deg,var(--bg-0) 0%,rgba(200,148,60,0.03) 100%);">
+  <div class="section-header">
+    <div class="section-header-top">
+      <span class="section-number">Part 15 — Final</span>
+      <div class="section-tag-line"></div>
+    </div>
+    <h2 class="section-title">Final Investment Verdict</h2>
+    <p class="section-intro">The definitive synthesis — where value lives, which companies are best positioned, and a probabilistic roadmap for India's water security transformation through 2040.</p>
+  </div>
+
+  <div class="exec-box" style="margin-bottom:40px;">
+    <div class="exec-box-title">The Master Verdict: Five Sentences</div>
+    <div class="exec-box-subtitle">Everything this report has built toward</div>
+    <p class="exec-thesis">
+      <strong>1. Water is not a sector — it is a spectrum.</strong> The spectrum runs from 8% gross margin civil contracts to 75% gross margin software platforms. Only the top 40% of that spectrum deserves premium valuation treatment.<br><br>
+      <strong>2. The technology layer owns the value.</strong> Specialty chemicals, membrane IP, UPW systems, and water analytics software collectively represent less than 20% of water industry revenue but 60%+ of sector profits. Capital should concentrate here.<br><br>
+      <strong>3. India is the single most important water investment opportunity of the next 15 years.</strong> The combination of severity of need, scale of government spending, and immaturity of domestic technology supply creates asymmetric return potential for companies that build or acquire the relevant technology capabilities now.<br><br>
+      <strong>4. The best Indian water compounders are Ion Exchange, Jash Engineering, and Shakti Pumps — in that order of moat quality.</strong> VA Tech Wabag is a high-optionality play on O&M transition. Thermax's ZLD division deserves a pure-play premium it does not currently receive.<br><br>
+      <strong>5. The hidden winners of India's water super-cycle will not be the companies building the plants — they will be the companies providing the intelligence, the chemistry, and the precision components that make those plants function.</strong>
+    </p>
+  </div>
+
+  <h3 style="font-family:var(--heading-font);font-size:2rem;margin-bottom:32px;text-align:center;">The Next Decade: India's Water Security Transformation<br><em style="font-size:1.4rem;color:var(--gold-light);">A Probabilistic Roadmap 2025–2040</em></h3>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-period">Phase I: 2025–2027 — The Infrastructure Surge</div>
+      <div class="timeline-title">Jal Jeevan Mission + AMRUT 2.0 Completion Wave</div>
+      <div class="timeline-body">
+        The primary driver is government capex completion. JJM household connection targets (192M rural households) drive pump, pipe, and small WTP procurement. AMRUT 2.0's smart water metering mandate begins large-scale AMI procurement across 500 cities. First semiconductor fab UPW systems commissioned (Tata Dholera, Micron Sanand). Data centre water recycling becomes mandatory in Maharashtra and Telangana.
+        <br><br>
+        <strong>Who wins:</strong> Kirloskar Brothers, WPIL, Shakti Pumps (JJM pumps); Ion Exchange, VA Tech Wabag (smart water, UPW); Jash Engineering (STP flow control). EPC players win orders but compress on margins.
+      </div>
+      <div class="timeline-tags">
+        <span class="badge badge-gold">JJM Completion</span>
+        <span class="badge badge-teal">First Fabs</span>
+        <span class="badge badge-blue">AMRUT 2.0</span>
+        <span class="badge badge-amber">DC Water Mandates</span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-period">Phase II: 2027–2030 — The Technology Inflection</div>
+      <div class="timeline-title">Smart Water + Industrial ZLD + Semiconductor Scale</div>
+      <div class="timeline-body">
+        The market transitions from civil infrastructure to technology upgrade. SCADA and smart metering penetration reaches 15–20% of urban utilities (up from <1%). ZLD enforcement becomes consistent — 80%+ compliance in covered industries creates sustained demand for Thermax, Ion Exchange, and Enviro players. India's fab count reaches 5–8 operational facilities, creating a ₹500+ Cr annual UPW consumables market. River Linking Phase 1 (Ken-Betwa) completion drives large pump orders.
+        <br><br>
+        <strong>Who wins:</strong> Ion Exchange (resin supercycle), Thermax ZLD (mandatory compliance), Jash Engineering (US + India dual engine), smart metering technology providers.
+        <br><strong>Who struggles:</strong> EPC-only players facing margin compression as 40+ competitors bid on reduced government pipelines.
+      </div>
+      <div class="timeline-tags">
+        <span class="badge badge-teal">Smart Water Inflection</span>
+        <span class="badge badge-gold">ZLD Enforcement</span>
+        <span class="badge badge-blue">8+ Fabs Active</span>
+        <span class="badge badge-green">River Linking</span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-period">Phase III: 2030–2035 — The Platform Era</div>
+      <div class="timeline-title">Digital Water + Desalination Scale + Industrial Water Recycling</div>
+      <div class="timeline-body">
+        India's water sector achieves technology maturity. Digital water platforms (AI-driven distribution management, predictive leak detection, real-time quality monitoring) become standard in all Tier-1 and Tier-2 cities. Desalination capacity triples to 6,000+ MLD as coastal states face Day Zero scenarios. Industrial water recycling hits 40%+ in covered sectors (vs. 15% today). India's semiconductor ecosystem expands to 15–20 operational fabs — UPW becomes a ₹2,000 Cr+ annual market.
+        <br><br>
+        <strong>Who wins:</strong> Digital water platforms (currently unlisted startups or foreign), Ion Exchange (UPW at scale), VA Tech Wabag (desal O&M), whoever builds India's water analytics platform first. <strong>The ASML-equivalent of India's water sector will emerge in this phase.</strong>
+      </div>
+      <div class="timeline-tags">
+        <span class="badge badge-gold">Digital Water OS</span>
+        <span class="badge badge-teal">Desal Scale</span>
+        <span class="badge badge-blue">15+ Fabs</span>
+        <span class="badge badge-amber">Water Recycling 40%</span>
+      </div>
+    </div>
+
+    <div class="timeline-item" style="padding-bottom:0;">
+      <div class="timeline-period">Phase IV: 2035–2040 — The Mature Market</div>
+      <div class="timeline-title">Water as a Managed Asset Class — India's Water Security Achieved</div>
+      <div class="timeline-body">
+        India achieves structural water security through a combination of recycling (target: 70% industrial water reuse), desalination (10,000+ MLD capacity), smart distribution (NRW below 20% in Tier-1 cities), and precision agriculture (drip/sprinkler penetration above 50%). The water technology sector compounds for 15 years and emerges with 3–5 globally competitive Indian water technology companies. Total sector value creation: ₹15–25 lakh crore in market capitalisation from current base.
+        <br><br>
+        <strong>Long-run wealth creation:</strong> The compounders that enter Phase I at fair valuations and execute technology moat strategies will deliver 15–25x returns over 15 years. The commodity EPC players will deliver 2–3x at best.
+      </div>
+      <div class="timeline-tags">
+        <span class="badge badge-green">Water Security</span>
+        <span class="badge badge-gold">Global IP Players</span>
+        <span class="badge badge-teal">70% Recycling</span>
+        <span class="badge badge-blue">15–25x Compounders</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="s-divider s-divider-gold" style="margin:48px 0;"></div>
+
+  <h3 style="font-family:var(--heading-font);font-size:1.8rem;margin-bottom:28px;">Probability Assessment: Key Scenarios</h3>
+  <div class="col-2">
+    <div>
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-title" style="font-size:1.1rem;margin-bottom:16px;">Bull Scenarios (India Water)</div>
+        <div class="prob-meter">
+          <span class="prob-label">JJM Phase II SCADA</span>
+          <div class="prob-track"><div class="prob-fill prob-fill-teal" style="width:82%"></div></div>
+          <span class="prob-pct">82%</span>
+        </div>
+        <div class="prob-meter">
+          <span class="prob-label">10+ Fabs by 2035</span>
+          <div class="prob-track"><div class="prob-fill prob-fill-gold" style="width:74%"></div></div>
+          <span class="prob-pct">74%</span>
+        </div>
+        <div class="prob-meter">
+          <span class="prob-label">ZLD full enforcement</span>
+          <div class="prob-track"><div class="prob-fill prob-fill-teal" style="width:68%"></div></div>
+          <span class="prob-pct">68%</span>
+        </div>
+        <div class="prob-meter">
+          <span class="prob-label">Desal 6,000 MLD by 2035</span>
+          <div class="prob-track"><div class="prob-fill prob-fill-gold" style="width:60%"></div></div>
+          <span class="prob-pct">60%</span>
+        </div>
+        <div class="prob-meter">
+          <span class="prob-label">India water tech exports</span>
+          <div class="prob-track"><div class="prob-fill prob-fill-teal" style="width:55%"></div></div>
+          <span class="prob-pct">55%</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-title" style="font-size:1.1rem;margin-bottom:16px;">Risk Scenarios (India Water)</div>
+        <div class="prob-meter">
+          <span class="prob-label">Execution delay (JJM)</span>
+          <div class="prob-track"><div class="prob-fill prob-fill-red" style="width:65%"></div></div>
+          <span class="prob-pct">65%</span>
+        </div>
+        <div class="prob-meter">
+          <span class="prob-label">Fab timeline slippage</span>
+          <div class="prob-track"><div class="prob-fill prob-fill-red" style="width:55%"></div></div>
+          <span class="prob-pct">55%</span>
+        </div>
+        <div class="prob-meter">
+          <span class="prob-label">Working capital crisis (EPC)</span>
+          <div class="prob-track"><div class="prob-fill prob-fill-red" style="width:50%"></div></div>
+          <span class="prob-pct">50%</span>
+        </div>
+        <div class="prob-meter">
+          <span class="prob-label">Chinese competition (pumps)</span>
+          <div class="prob-track"><div class="prob-fill prob-fill-red" style="width:70%"></div></div>
+          <span class="prob-pct">70%</span>
+        </div>
+        <div class="prob-meter">
+          <span class="prob-label">Water utility reform stalls</span>
+          <div class="prob-track"><div class="prob-fill prob-fill-red" style="width:60%"></div></div>
+          <span class="prob-pct">60%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Final Summary -->
+  <div class="s-divider s-divider-gold" style="margin:40px 0;"></div>
+  <div class="col-4" style="margin-bottom:40px;">
+    <div class="card card-gold" style="text-align:center;padding:28px 20px;">
+      <div style="font-size:2rem;margin-bottom:8px;">🏆</div>
+      <div style="font-family:var(--heading-font);font-size:1.1rem;font-weight:600;margin-bottom:8px;">India's ASML of Water</div>
+      <div style="font-family:var(--mono-font);font-size:0.7rem;color:var(--teal);margin-bottom:10px;">MOST LIKELY CANDIDATE</div>
+      <div style="font-size:0.82rem;color:var(--text-2);">Ion Exchange (India) — if management unlocks the specialty chemicals and UPW resin business from the EPC wrapper, it will be recognised as India's most indispensable water technology company by 2030.</div>
+    </div>
+    <div class="card card-teal" style="text-align:center;padding:28px 20px;">
+      <div style="font-size:2rem;margin-bottom:8px;">🔬</div>
+      <div style="font-family:var(--heading-font);font-size:1.1rem;font-weight:600;margin-bottom:8px;">India's Nvidia of Water</div>
+      <div style="font-family:var(--mono-font);font-size:0.7rem;color:var(--teal);margin-bottom:10px;">EMERGING / UNLISTED TODAY</div>
+      <div style="font-size:0.82rem;color:var(--text-2);">The water intelligence software platform that captures India's 500-city smart water management market — likely currently a startup, potentially listed by 2027–2028. Watch this space.</div>
+    </div>
+    <div class="card card-blue" style="text-align:center;padding:28px 20px;">
+      <div style="font-size:2rem;margin-bottom:8px;">🏭</div>
+      <div style="font-family:var(--heading-font);font-size:1.1rem;font-weight:600;margin-bottom:8px;">India's TSMC of Water</div>
+      <div style="font-family:var(--mono-font);font-size:0.7rem;color:var(--blue-light);margin-bottom:10px;">BEST CURRENT CANDIDATE</div>
+      <div style="font-size:0.82rem;color:var(--text-2);">VA Tech Wabag — if HAM/BOT model transition succeeds, Wabag becomes India's irreplaceable water infrastructure O&M operator with 20+ year contracts across 100+ cities and industries.</div>
+    </div>
+    <div class="card" style="text-align:center;padding:28px 20px;border-color:var(--gold-dim);">
+      <div style="font-size:2rem;margin-bottom:8px;">💳</div>
+      <div style="font-family:var(--heading-font);font-size:1.1rem;font-weight:600;margin-bottom:8px;">India's Visa of Water</div>
+      <div style="font-family:var(--mono-font);font-size:0.7rem;color:var(--gold);margin-bottom:10px;">ALREADY EXISTS — UNDERVALUED</div>
+      <div style="font-size:0.82rem;color:var(--text-2);">Ion Exchange's specialty chemicals and resin business — collecting a small, recurring toll on 5,000+ industrial water systems with near-zero churn. The toll booth already exists. The market hasn't priced it correctly yet.</div>
+    </div>
+  </div>
+</section>
+
+<!-- REPORT FOOTER -->
+<footer class="report-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-block-title">Research Consortium</div>
+      <div class="footer-block-text">Hydra Research is a multidisciplinary water-sector investment research framework synthesising expertise from water engineering, industrial systems, capital markets, and emerging-market infrastructure strategy.</div>
+    </div>
+    <div>
+      <div class="footer-block-title">Coverage Universe</div>
+      <div class="footer-block-text">Global: Xylem, Ecolab, Veolia, Pentair, Kurita, Danaher, Georg Fischer. India: VA Tech Wabag, Ion Exchange, Kirloskar Brothers, Shakti Pumps, Jash Engineering, WPIL, EMS Limited, Enviro Infra, Thermax (water division), and 15+ unlisted players.</div>
+    </div>
+    <div>
+      <div class="footer-block-title">Report Structure</div>
+      <div class="footer-block-text">This is Part II of II. Part I covers the Global Super-Cycle, Value Chain, Bottleneck Analysis, and Water Economics (Parts 1–4). Part II covers Value Rankings through the 2040 Roadmap (Parts 5–15).</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-disclaimer">DISCLAIMER: This document is for informational and educational purposes only. It does not constitute investment advice, a solicitation, or a recommendation to buy or sell any security. Past performance does not guarantee future results. All financial estimates are research projections. Consult a qualified financial adviser before making investment decisions.</div>
+    <div class="footer-logo-text">Hydra Research · 2025</div>
+  </div>
+</footer>
+
+</main>
+
+<script>
+function toggleMenu(){document.getElementById('sidebar').classList.toggle('open');}
+const sections=document.querySelectorAll('section[id]');
+const navItems=document.querySelectorAll('.nav-item');
+function updateActiveNav(){
+  let current='';
+  sections.forEach(s=>{if(s.getBoundingClientRect().top<=80)current=s.getAttribute('id');});
+  navItems.forEach(item=>{item.classList.remove('active');if(item.getAttribute('href')==='#'+current)item.classList.add('active');});
+}
+window.addEventListener('scroll',updateActiveNav,{passive:true});
+document.addEventListener('click',(e)=>{
+  const sidebar=document.getElementById('sidebar');
+  const toggle=document.querySelector('.menu-toggle');
+  if(sidebar.classList.contains('open')&&!sidebar.contains(e.target)&&e.target!==toggle)sidebar.classList.remove('open');
+});
+</script>
+</body>
+</html>

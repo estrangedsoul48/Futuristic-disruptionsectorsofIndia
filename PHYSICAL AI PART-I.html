@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Physical AI &amp; Robotics Super-Cycle — Part I | Institutional Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#06080F;
+  --surface:#0C0F1C;
+  --surface-2:#111526;
+  --surface-3:#181D32;
+  --border:rgba(200,169,110,0.13);
+  --border-light:rgba(255,255,255,0.055);
+  --gold:#C8A96E;
+  --gold-dim:#8A7248;
+  --gold-bright:#E8C888;
+  --blue:#4A9EFF;
+  --green:#3DD68C;
+  --red:#FF5050;
+  --amber:#FFB547;
+  --text-1:#EAE6DE;
+  --text-2:#9AA0B8;
+  --text-3:#525870;
+  --font-display:'Fraunces',Georgia,serif;
+  --font-body:'Spectral',Georgia,serif;
+  --font-ui:'Syne',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+  --sidebar-w:265px;
+  --r:4px;
+  --r-lg:8px;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--text-1);font-family:var(--font-body);line-height:1.75;display:flex;min-height:100vh;overflow-x:hidden}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:var(--surface)}
+::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px}
+
+/* ── SIDEBAR ─────────────────────────────────────────────── */
+.sidebar{width:var(--sidebar-w);min-height:100vh;background:var(--surface);border-right:1px solid var(--border);position:fixed;top:0;left:0;display:flex;flex-direction:column;z-index:100;overflow-y:auto}
+.sb-head{padding:24px 18px 18px;border-bottom:1px solid var(--border)}
+.sb-kicker{font-family:var(--font-mono);font-size:8.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+.sb-title{font-family:var(--font-display);font-size:12.5px;font-weight:600;color:var(--text-1);line-height:1.45;margin-bottom:10px}
+.sb-badge{display:inline-block;font-family:var(--font-mono);font-size:8px;font-weight:500;background:rgba(200,169,110,.1);color:var(--gold);padding:2px 8px;border-radius:2px;border:1px solid rgba(200,169,110,.2)}
+.part-sw{display:flex;gap:4px;padding:13px 18px;border-bottom:1px solid var(--border)}
+.p-btn{flex:1;padding:6px 4px;font-family:var(--font-mono);font-size:8.5px;font-weight:500;letter-spacing:.1em;border:1px solid var(--border-light);border-radius:var(--r);cursor:pointer;text-align:center;transition:all .2s;background:transparent;color:var(--text-3)}
+.p-btn.active{background:rgba(200,169,110,.1);color:var(--gold);border-color:var(--gold-dim)}
+.nav-sec{padding:14px 0;border-bottom:1px solid var(--border-light)}
+.nav-label{font-family:var(--font-mono);font-size:8px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--text-3);padding:0 18px 7px}
+.nav-item{display:flex;align-items:center;gap:9px;padding:7px 18px;font-family:var(--font-ui);font-size:11.5px;font-weight:500;color:var(--text-2);text-decoration:none;transition:all .15s;border-left:2px solid transparent;cursor:pointer}
+.nav-item:hover{color:var(--text-1);background:rgba(255,255,255,.025);border-left-color:var(--gold-dim)}
+.nav-item.active{color:var(--gold);background:rgba(200,169,110,.055);border-left-color:var(--gold)}
+.nav-dot{width:4px;height:4px;border-radius:50%;background:currentColor;flex-shrink:0;opacity:.5}
+.nav-item.active .nav-dot{opacity:1}
+.sb-foot{margin-top:auto;padding:14px 18px;border-top:1px solid var(--border-light);font-family:var(--font-mono);font-size:8px;color:var(--text-3);line-height:2}
+
+/* ── MAIN ─────────────────────────────────────────────────── */
+.main{margin-left:var(--sidebar-w);flex:1;min-height:100vh}
+
+/* ── COVER ────────────────────────────────────────────────── */
+.cover{min-height:100vh;background:var(--bg);position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:0 80px 72px;overflow:hidden}
+.cov-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,169,110,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(200,169,110,.035) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse 90% 80% at 50% 50%,black 10%,transparent 100%)}
+.cov-glow{position:absolute;top:15%;right:8%;width:550px;height:550px;background:radial-gradient(ellipse,rgba(74,158,255,.055) 0%,transparent 70%);pointer-events:none}
+.cov-glow2{position:absolute;bottom:5%;left:0%;width:450px;height:450px;background:radial-gradient(ellipse,rgba(200,169,110,.045) 0%,transparent 70%);pointer-events:none}
+.cov-accent-line{position:absolute;top:0;right:160px;width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(200,169,110,.2),transparent)}
+.cov-part{position:absolute;top:36px;right:80px;font-family:var(--font-ui);font-size:11px;font-weight:600;color:var(--text-3);border:1px solid var(--border);padding:7px 16px;border-radius:var(--r);letter-spacing:.1em}
+.cov-meta{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;position:relative}
+.cov-h1{font-family:var(--font-display);font-size:clamp(34px,4.8vw,68px);font-weight:300;line-height:1.06;color:var(--text-1);margin-bottom:14px;max-width:820px;position:relative}
+.cov-h1 strong{font-weight:700;color:var(--gold)}
+.cov-sub{font-family:var(--font-display);font-size:clamp(15px,1.7vw,22px);font-weight:300;font-style:italic;color:var(--text-2);margin-bottom:44px;max-width:680px;position:relative}
+.cov-rule{width:72px;height:1px;background:var(--gold);margin-bottom:36px;position:relative}
+.cov-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);max-width:680px;border:1px solid var(--border);position:relative}
+.cov-stat{background:var(--bg);padding:18px 22px}
+.cov-sv{font-family:var(--font-display);font-size:26px;font-weight:600;color:var(--gold);line-height:1;margin-bottom:4px}
+.cov-sl{font-family:var(--font-mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3)}
+.cov-scroll{position:absolute;bottom:28px;right:80px;font-family:var(--font-mono);font-size:8.5px;color:var(--text-3);letter-spacing:.15em;display:flex;align-items:center;gap:7px}
+@keyframes bd{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+.sarr{animation:bd 2s ease-in-out infinite}
+
+/* ── CHAPTER DIVIDER ─────────────────────────────────────── */
+.ch-div{background:var(--surface);padding:44px 80px;border-bottom:1px solid var(--border-light);display:flex;align-items:center;gap:28px}
+.ch-num{font-family:var(--font-display);font-size:88px;font-weight:700;color:var(--surface-3);line-height:1;user-select:none;flex-shrink:0}
+.ch-kicker{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.ch-title{font-family:var(--font-display);font-size:clamp(24px,2.8vw,38px);font-weight:300;color:var(--text-1);line-height:1.2}
+.ch-title strong{font-weight:700}
+
+/* ── SECTIONS ─────────────────────────────────────────────── */
+.section{max-width:1080px;margin:0 auto;padding:72px 80px;border-bottom:1px solid var(--border-light)}
+.sec-num{font-family:var(--font-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.sec-title{font-family:var(--font-display);font-size:clamp(26px,3vw,44px);font-weight:300;color:var(--text-1);line-height:1.15;margin-bottom:8px}
+.sec-title strong{font-weight:700}
+.sec-rule{width:56px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin:18px 0 28px}
+.sec-lead{font-family:var(--font-body);font-size:17.5px;font-weight:300;color:var(--text-2);line-height:1.72;margin-bottom:36px;max-width:740px;font-style:italic}
+.prose{font-size:14.5px;color:var(--text-1);line-height:1.87;max-width:740px}
+.prose p{margin-bottom:18px}
+.prose strong{color:var(--gold);font-weight:600}
+
+/* ── CALLOUT ──────────────────────────────────────────────── */
+.callout{border-left:3px solid var(--gold);background:rgba(200,169,110,.055);padding:18px 22px;margin:28px 0;border-radius:0 var(--r) var(--r) 0}
+.callout-label{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+.callout-text{font-family:var(--font-display);font-size:16px;font-weight:400;font-style:italic;color:var(--text-1);line-height:1.65}
+
+/* ── METRICS ROW ──────────────────────────────────────────── */
+.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border-light);border:1px solid var(--border-light);border-radius:var(--r-lg);overflow:hidden;margin:28px 0}
+.met-box{background:var(--surface);padding:22px 18px}
+.met-label{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);margin-bottom:7px}
+.met-value{font-family:var(--font-display);font-size:30px;font-weight:600;color:var(--gold);line-height:1;margin-bottom:4px}
+.met-sub{font-family:var(--font-body);font-size:11.5px;color:var(--text-3)}
+
+/* ── ERA TIMELINE ─────────────────────────────────────────── */
+.era-grid{margin:40px 0;display:grid;grid-template-columns:repeat(6,1fr);gap:2px;background:var(--border-light)}
+.era-card{background:var(--surface);padding:22px 16px;transition:all .28s;cursor:default;border-top:2px solid transparent}
+.era-card:hover{background:var(--surface-2);transform:translateY(-2px);border-top-color:var(--gold-dim)}
+.era-card.now{background:linear-gradient(135deg,var(--surface-2),var(--surface-3));border-top-color:var(--gold)}
+.era-n{font-family:var(--font-mono);font-size:9px;color:var(--text-3);margin-bottom:10px}
+.era-name{font-family:var(--font-ui);font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text-3);margin-bottom:7px}
+.era-tech{font-family:var(--font-display);font-size:14px;font-weight:600;color:var(--text-1);margin-bottom:10px;line-height:1.3}
+.era-card.now .era-tech{color:var(--gold)}
+.era-period{font-family:var(--font-mono);font-size:8.5px;color:var(--text-3);margin-bottom:7px}
+.era-leaders{font-family:var(--font-ui);font-size:9.5px;color:var(--text-3);line-height:1.7}
+.era-mkt{margin-top:11px;font-family:var(--font-mono);font-size:11px;font-weight:500;color:var(--gold)}
+.era-card.now .era-mkt{color:var(--gold-bright)}
+
+/* ── TAILWIND CARDS ───────────────────────────────────────── */
+.tw-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0}
+.tw-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--r-lg);padding:26px;position:relative;overflow:hidden;transition:all .25s}
+.tw-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+.tw-card:hover{border-color:rgba(200,169,110,.22);transform:translateY(-1px)}
+.tw-icon{font-size:22px;margin-bottom:11px}
+.tw-label{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+.tw-title{font-family:var(--font-display);font-size:19px;font-weight:600;color:var(--text-1);margin-bottom:11px}
+.tw-body{font-family:var(--font-body);font-size:13.5px;color:var(--text-2);line-height:1.77}
+.tw-stat{margin-top:14px;padding-top:14px;border-top:1px solid var(--border-light);font-family:var(--font-mono);font-size:10.5px;color:var(--gold)}
+
+/* ── TIER CARDS ───────────────────────────────────────────── */
+.tier-wrap{margin:36px 0}
+.tier-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--r);margin-bottom:10px;overflow:hidden;transition:border-color .25s}
+.tier-card:hover{border-color:rgba(200,169,110,.22)}
+.tier-head{display:grid;grid-template-columns:72px 1fr auto;align-items:center;gap:18px;padding:18px 22px}
+.tier-num{font-family:var(--font-display);font-size:44px;font-weight:700;color:var(--surface-3);line-height:1;transition:color .25s}
+.tier-card:hover .tier-num{color:var(--gold-dim)}
+.tier-name{font-family:var(--font-ui);font-size:15px;font-weight:700;color:var(--text-1);margin-bottom:3px}
+.tier-desc{font-family:var(--font-body);font-size:12.5px;color:var(--text-2)}
+.tier-meta{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.tier-stars{color:var(--gold);font-size:11px;letter-spacing:2px}
+.tier-gm{font-family:var(--font-mono);font-size:9.5px;color:var(--text-3)}
+.tier-body{padding:0 22px 22px;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:20px;border-top:1px solid var(--border-light);padding-top:18px;margin:0 22px}
+.tier-col-lbl{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px}
+.tier-col-content{font-family:var(--font-body);font-size:12.5px;color:var(--text-2);line-height:1.72}
+.tier-list{list-style:none}
+.tier-list li{font-family:var(--font-ui);font-size:11.5px;font-weight:500;color:var(--text-1);padding:2.5px 0;display:flex;align-items:center;gap:6px}
+.tier-list li::before{content:'';width:3px;height:3px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.mbar{display:flex;align-items:center;gap:7px;margin:4px 0}
+.mbar-lbl{font-family:var(--font-mono);font-size:9px;color:var(--text-3);width:86px;flex-shrink:0}
+.mbar-tr{flex:1;height:3px;background:var(--surface-3);border-radius:2px;overflow:hidden}
+.mbar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--gold-dim),var(--gold))}
+.mbar-val{font-family:var(--font-mono);font-size:9px;color:var(--gold);width:26px;text-align:right}
+
+/* ── COMPANY CARDS ────────────────────────────────────────── */
+.co-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0}
+.co-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--r-lg);overflow:hidden;transition:all .28s}
+.co-card:hover{border-color:rgba(200,169,110,.2);transform:translateY(-2px);box-shadow:0 14px 44px rgba(0,0,0,.3)}
+.co-head{padding:18px 22px 14px;background:var(--surface-2);border-bottom:1px solid var(--border-light);display:flex;justify-content:space-between;align-items:flex-start}
+.co-name{font-family:var(--font-display);font-size:21px;font-weight:700;color:var(--text-1)}
+.co-ticker{font-family:var(--font-mono);font-size:8.5px;color:var(--gold);background:rgba(200,169,110,.08);border:1px solid rgba(200,169,110,.2);padding:2px 7px;border-radius:2px;display:inline-block;margin-top:4px}
+.co-cat{font-family:var(--font-ui);font-size:10.5px;font-weight:500;color:var(--text-3);margin-top:3px}
+.co-score-wrap{text-align:right}
+.co-score{font-family:var(--font-display);font-size:36px;font-weight:700;color:var(--gold);line-height:1}
+.co-score-lbl{font-family:var(--font-mono);font-size:7.5px;color:var(--text-3);letter-spacing:.1em;text-transform:uppercase}
+.co-body{padding:18px 22px}
+.co-section-lbl{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px}
+.co-moat{font-family:var(--font-body);font-size:13px;color:var(--text-2);line-height:1.72;margin-bottom:14px}
+.co-metrics{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-light);border:1px solid var(--border-light);border-radius:var(--r);overflow:hidden;margin-top:10px}
+.co-met{background:var(--surface);padding:9px 11px}
+.co-met-lbl{font-family:var(--font-mono);font-size:8px;color:var(--text-3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.co-met-val{font-family:var(--font-ui);font-size:12.5px;font-weight:600;color:var(--text-1)}
+.dot-g{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:4px}
+.dot-a{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gold);margin-right:4px}
+.dot-o{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--amber);margin-right:4px}
+
+/* ── TABLE ────────────────────────────────────────────────── */
+.table-wrap{overflow-x:auto;margin:28px 0;border:1px solid var(--border-light);border-radius:var(--r-lg)}
+.data-tbl{width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:11.5px}
+.data-tbl th{background:var(--surface-2);color:var(--text-3);font-size:8px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:11px 14px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap}
+.data-tbl td{padding:10px 14px;border-bottom:1px solid var(--border-light);color:var(--text-2);vertical-align:top}
+.data-tbl tr:last-child td{border-bottom:none}
+.data-tbl tbody tr:hover td{background:rgba(255,255,255,.018);color:var(--text-1)}
+.data-tbl td:first-child,.data-tbl td:nth-child(2){color:var(--text-1);font-weight:500}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:2px 7px;border-radius:2px;font-size:9.5px;font-weight:500;white-space:nowrap}
+.b-crit{background:rgba(255,80,80,.1);color:var(--red);border:1px solid rgba(255,80,80,.18)}
+.b-high{background:rgba(255,181,71,.1);color:var(--amber);border:1px solid rgba(255,181,71,.18)}
+.b-med{background:rgba(74,158,255,.1);color:var(--blue);border:1px solid rgba(74,158,255,.18)}
+.b-low{background:rgba(61,214,140,.1);color:var(--green);border:1px solid rgba(61,214,140,.18)}
+.chips{display:flex;flex-wrap:wrap;gap:3px}
+.chip{font-size:8.5px;padding:1px 5px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:2px;color:var(--text-2)}
+
+/* ── THESIS BOX ───────────────────────────────────────────── */
+.thesis{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-lg);padding:32px 36px;margin:32px 0;position:relative;overflow:hidden}
+.thesis::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--gold),var(--gold-dim))}
+.thesis-label{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.thesis-text{font-family:var(--font-display);font-size:18px;font-weight:300;font-style:italic;color:var(--text-1);line-height:1.68}
+.thesis-text strong{font-style:normal;font-weight:700;color:var(--gold)}
+
+/* ── FOOTER ───────────────────────────────────────────────── */
+.report-footer{background:var(--surface);border-top:1px solid var(--border);padding:40px 80px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px}
+.rf-col-lbl{font-family:var(--font-mono);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px}
+.rf-col-body{font-family:var(--font-body);font-size:12px;color:var(--text-2);line-height:1.8}
+.rf-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 80px;border-top:1px solid var(--border-light);font-family:var(--font-mono);font-size:9px;color:var(--text-3)}
+.rf-nav a{color:var(--gold);text-decoration:none;font-weight:500}
+
+/* ── ANIMATIONS ───────────────────────────────────────────── */
+@keyframes fiu{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.section,.ch-div{animation:fiu .5s ease both}
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media(max-width:1100px){.sidebar{display:none}.main{margin-left:0}.section{padding:56px 40px}.cover{padding:36px 40px 60px}.era-grid{grid-template-columns:repeat(3,1fr)}.cov-stats{grid-template-columns:repeat(2,1fr)}.ch-div{padding:36px 40px}}
+@media(max-width:768px){.section{padding:44px 22px}.cover{padding:22px 22px 44px}.era-grid{grid-template-columns:1fr 1fr}.tw-grid{grid-template-columns:1fr}.co-grid{grid-template-columns:1fr}.metrics-row{grid-template-columns:1fr 1fr}.tier-body{grid-template-columns:1fr}.report-footer{grid-template-columns:1fr;padding:32px 22px}.rf-nav{padding:16px 22px}}
+</style>
+</head>
+<body>
+
+<!-- ═══════ SIDEBAR ═══════ -->
+<nav class="sidebar" aria-label="Report Navigation">
+  <div class="sb-head">
+    <div class="sb-kicker">Physical AI Research Consortium</div>
+    <div class="sb-title">Global Physical AI &amp; Robotics Super-Cycle</div>
+    <span class="sb-badge">PART I OF II</span>
+  </div>
+  <div class="part-sw">
+    <button class="p-btn active">Part I</button>
+    <button class="p-btn" onclick="alert('Part II covers Chapters 5–13: Value Analysis, ASML Framework, Hidden Compounders, India Equity Mapping, Final Verdict.')">Part II</button>
+  </div>
+  <div class="nav-sec">
+    <div class="nav-label">Introduction</div>
+    <a href="#cover" class="nav-item active"><span class="nav-dot"></span>Cover</a>
+    <a href="#executive" class="nav-item"><span class="nav-dot"></span>Executive Overview</a>
+  </div>
+  <div class="nav-sec">
+    <div class="nav-label">Chapter 1 — The Revolution</div>
+    <a href="#ch1" class="nav-item"><span class="nav-dot"></span>The Physical AI Era</a>
+    <a href="#eras" class="nav-item"><span class="nav-dot"></span>Six Computing Eras</a>
+    <a href="#tailwinds" class="nav-item"><span class="nav-dot"></span>Macro Tailwinds</a>
+  </div>
+  <div class="nav-sec">
+    <div class="nav-label">Chapter 2 — Value Chain</div>
+    <a href="#ch2" class="nav-item"><span class="nav-dot"></span>Global Ecosystem</a>
+    <a href="#tier1" class="nav-item"><span class="nav-dot"></span>Tier 1 · AI Compute</a>
+    <a href="#tier2" class="nav-item"><span class="nav-dot"></span>Tier 2 · Semiconductors</a>
+    <a href="#tier3" class="nav-item"><span class="nav-dot"></span>Tier 3 · Sensors</a>
+    <a href="#tier4" class="nav-item"><span class="nav-dot"></span>Tier 4 · Machine Vision</a>
+    <a href="#tier5" class="nav-item"><span class="nav-dot"></span>Tier 5 · Motion Control</a>
+    <a href="#tier6" class="nav-item"><span class="nav-dot"></span>Tier 6 · Actuators</a>
+    <a href="#tier7" class="nav-item"><span class="nav-dot"></span>Tier 7 · Software Stack</a>
+    <a href="#tier8" class="nav-item"><span class="nav-dot"></span>Tier 8 · Integration</a>
+  </div>
+  <div class="nav-sec">
+    <div class="nav-label">Chapter 3 — Case Studies</div>
+    <a href="#ch3" class="nav-item"><span class="nav-dot"></span>The Indispensable Eight</a>
+  </div>
+  <div class="nav-sec">
+    <div class="nav-label">Chapter 4 — Bottlenecks</div>
+    <a href="#ch4" class="nav-item"><span class="nav-dot"></span>Top 50 Ranked Bottlenecks</a>
+  </div>
+  <div class="sb-foot">
+    <div>© 2026 Physical AI Research Consortium</div>
+    <div>Classification: Institutional · Confidential</div>
+    <div>Version 1.0 — Part I of II</div>
+    <div>Chapters 1–4 of 13</div>
+  </div>
+</nav>
+
+<!-- ═══════ MAIN ═══════ -->
+<main class="main">
+
+<!-- ── COVER ────────────────────────────────────────────────── -->
+<section id="cover" class="cover">
+  <div class="cov-grid"></div>
+  <div class="cov-glow"></div>
+  <div class="cov-glow2"></div>
+  <div class="cov-accent-line"></div>
+  <div class="cov-part">PART I OF II</div>
+
+  <div class="cov-meta">Physical AI Research Consortium &nbsp;·&nbsp; Institutional Research &nbsp;·&nbsp; June 2026</div>
+  <h1 class="cov-h1">Global <strong>Physical AI</strong><br>&amp; Robotics Super-Cycle</h1>
+  <p class="cov-sub">Identifying the ASMLs, Nvidias, Toll Booths &amp; Hidden Compounders<br>of the Physical Intelligence Revolution</p>
+  <div class="cov-rule"></div>
+  <div class="cov-stats">
+    <div class="cov-stat"><div class="cov-sv">$15T+</div><div class="cov-sl">TAM Estimate 2040</div></div>
+    <div class="cov-stat"><div class="cov-sv">50+</div><div class="cov-sl">Bottlenecks Analyzed</div></div>
+    <div class="cov-stat"><div class="cov-sv">13</div><div class="cov-sl">Research Chapters</div></div>
+    <div class="cov-stat"><div class="cov-sv">100+</div><div class="cov-sl">Companies Profiled</div></div>
+  </div>
+  <div class="cov-scroll">SCROLL TO BEGIN <span class="sarr">↓</span></div>
+</section>
+
+<!-- ── EXECUTIVE OVERVIEW ────────────────────────────────────── -->
+<section id="executive" class="section">
+  <div class="sec-num">Executive Overview</div>
+  <h2 class="sec-title">The <strong>Sixth Paradigm Shift</strong><br>in Computing History</h2>
+  <div class="sec-rule"></div>
+  <p class="sec-lead">Physical AI — the fusion of machine intelligence with mechanical embodiment — represents a computing paradigm shift unlike any that preceded it. This report is not about which robot manufacturer wins. It is about who owns the indispensable infrastructure that every robot on earth must rely upon.</p>
+
+  <div class="metrics-row">
+    <div class="met-box"><div class="met-label">Robot Installations 2024</div><div class="met-value">4.3M</div><div class="met-sub">Industrial units globally</div></div>
+    <div class="met-box"><div class="met-label">Projected Units 2035</div><div class="met-value">28M+</div><div class="met-sub">Including humanoids</div></div>
+    <div class="met-box"><div class="met-label">Labor Deficit by 2030</div><div class="met-value">85M</div><div class="met-sub">G20 economies combined</div></div>
+    <div class="met-box"><div class="met-label">Productivity Unlock</div><div class="met-value">$13T</div><div class="met-sub">Annual GDP by 2030 (McKinsey)</div></div>
+  </div>
+
+  <div class="prose">
+    <p>Every major computing era has created enormous wealth — but the wealth has rarely accrued to the most visible participants. IBM's hardware dominance in the mainframe era was ultimately superseded by Microsoft's operating system grip. Dell assembled PCs for thin margins while Intel and ARM designed the chips that captured 60-70% gross margins. Android phone assemblers competed fiercely while TSMC's lithography monopoly quietly compounded at 55% gross margins for two decades.</p>
+    <p>The Physical AI era will follow the same logic. Today's humanoid robot companies — Figure AI, 1X, Boston Dynamics, Agility Robotics — are receiving enormous venture capital attention and media coverage. But the companies that will create the most durable, compounding shareholder wealth will be the <strong>precision actuator makers, sensor specialists, motion control engineers, and industrial software platforms</strong> that every robot assembler must purchase from, regardless of which robot design ultimately wins.</p>
+    <p>This report maps every layer of that ecosystem, identifies the structural bottlenecks, applies the ASML Framework to rank indispensability, and surfaces the hidden compounders — many with sub-$500M market capitalizations today — that the institutional world has not yet discovered.</p>
+  </div>
+
+  <div class="thesis">
+    <div class="thesis-label">Core Investment Thesis</div>
+    <div class="thesis-text">"The greatest wealth in the Physical AI era will accrue not to the builders of robots but to the <strong>owners of precision components, specialized semiconductors, and mission-critical software</strong> that every robot must buy — suppliers so deeply qualified into their customers' processes that replacement is measured in years, not months."</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Part I Scope (Chapters 1–4)</div>
+    <div class="callout-text">This document covers the Physical AI Revolution thesis, the complete eight-tier global value chain, case studies of the eight existing indispensable bottleneck companies, and a ranked table of the top 50 robotics bottlenecks by severity and replication difficulty. Part II covers value attribution, the ASML Framework scoring, global and Indian hidden compounders, capital cycle analysis, and the 2025–2045 investment roadmap.</div>
+  </div>
+</section>
+
+<!-- ═══════ CHAPTER 1 DIVIDER ═══════ -->
+<div id="ch1" class="ch-div">
+  <div class="ch-num">01</div>
+  <div>
+    <div class="ch-kicker">Chapter One</div>
+    <div class="ch-title">The <strong>Physical AI Revolution</strong><br>— A New Computing Era Begins</div>
+  </div>
+</div>
+
+<!-- ── COMPUTING ERAS ─────────────────────────────────────────── -->
+<section id="eras" class="section">
+  <div class="sec-num">1.1 — The Six Computing Eras</div>
+  <h2 class="sec-title">Every Era Creates a <strong>New Class</strong><br>of Indispensable Infrastructure</h2>
+  <div class="sec-rule"></div>
+  <p class="sec-lead">History's five completed computing paradigm shifts created over $50 trillion in cumulative equity value. In each case, the largest wealth accrued not to the most visible players — but to the suppliers of indispensable components, platforms, and ecosystems that every participant was forced to rely on.</p>
+
+  <div class="era-grid">
+    <div class="era-card">
+      <div class="era-n">ERA 01</div>
+      <div class="era-name">Mainframe</div>
+      <div class="era-tech">Centralized<br>Batch Computing</div>
+      <div class="era-period">1950s – 1975</div>
+      <div class="era-leaders">IBM, CDC, Burroughs, Honeywell</div>
+      <div class="era-mkt">~$150B peak (real)</div>
+    </div>
+    <div class="era-card">
+      <div class="era-n">ERA 02</div>
+      <div class="era-name">Personal Computer</div>
+      <div class="era-tech">Distributed Desktop<br>Intelligence</div>
+      <div class="era-period">1975 – 1995</div>
+      <div class="era-leaders">Intel, Microsoft, HP, Compaq</div>
+      <div class="era-mkt">~$300B peak</div>
+    </div>
+    <div class="era-card">
+      <div class="era-n">ERA 03</div>
+      <div class="era-name">Internet</div>
+      <div class="era-tech">Connected<br>Networks &amp; Software</div>
+      <div class="era-period">1995 – 2007</div>
+      <div class="era-leaders">Cisco, Oracle, SAP, Qualcomm</div>
+      <div class="era-mkt">~$600B peak</div>
+    </div>
+    <div class="era-card">
+      <div class="era-n">ERA 04</div>
+      <div class="era-name">Mobile</div>
+      <div class="era-tech">Sensor-Rich<br>Pocket Computers</div>
+      <div class="era-period">2007 – 2017</div>
+      <div class="era-leaders">Apple, ARM, TSMC, Qualcomm</div>
+      <div class="era-mkt">~$1.4T peak</div>
+    </div>
+    <div class="era-card">
+      <div class="era-n">ERA 05</div>
+      <div class="era-name">Generative AI</div>
+      <div class="era-tech">Digital<br>Intelligence at Scale</div>
+      <div class="era-period">2017 – 2025</div>
+      <div class="era-leaders">NVIDIA, TSMC, ASML, SK Hynix</div>
+      <div class="era-mkt">~$3T peak (ongoing)</div>
+    </div>
+    <div class="era-card now">
+      <div class="era-n">ERA 06 ▸ NOW</div>
+      <div class="era-name">Physical AI</div>
+      <div class="era-tech">Embodied<br>Intelligence</div>
+      <div class="era-period">2025 – 2045+</div>
+      <div class="era-leaders">TBD — forming now</div>
+      <div class="era-mkt">$10–15T+ projected</div>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p>The investor lesson across every era is identical: the silicon layer and the software layer systematically captured more value than the end-product assembler. PC assemblers like Compaq earned 3-5% net margins while Microsoft earned 30%+ and Intel earned 25%+. Smartphone assemblers outside Apple earned razor margins while ARM Holdings earned royalties on every chip and TSMC earned 55%+ gross margins on every wafer.</p>
+    <p>Physical AI will repeat this dynamic. The robot assemblers — Figure, 1X, Boston Dynamics, FANUC, ABB — will face intense competition and margin pressure. The <strong>harmonic drive makers, precision encoder manufacturers, force-torque sensor specialists, and robotics silicon designers</strong> will face far less competition and far higher switching costs, because their components require years of qualification in robotics applications before they can be trusted with safety-critical motion.</p>
+    <p>Why might Physical AI exceed every prior era in value creation? Because it is the first computing paradigm where intelligence interacts with the physical world across every industry simultaneously — manufacturing, logistics, healthcare, construction, agriculture, defense. The serviceable addressable market is not "computing" or "phones" — it is <strong>all human labor</strong>, which represents approximately $60 trillion in annual global GDP.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">The ASML Lesson — Repeated</div>
+    <div class="callout-text">ASML was identifiable as an extraordinary investment for two decades before the AI era. Its EUV machines were indispensable to every chip manufacturer on earth, yet it remained under-owned by generalist investors who couldn't easily classify it. The Physical AI era will produce multiple ASML-equivalent opportunities in motion control, sensors, and actuators. The window for early identification is open now.</div>
+  </div>
+</section>
+
+<!-- ── MACRO TAILWINDS ─────────────────────────────────────────── -->
+<section id="tailwinds" class="section">
+  <div class="sec-num">1.2 — Structural Tailwinds</div>
+  <h2 class="sec-title">Four Forces <strong>No Policy Can Reverse</strong></h2>
+  <div class="sec-rule"></div>
+  <p class="sec-lead">Unlike cyclical technology investment themes, the Physical AI super-cycle is being driven by four structural forces that are irreversible on any investment horizon: demographic decline, productivity crisis, manufacturing reshoring, and supply-chain sovereignty.</p>
+
+  <div class="tw-grid">
+    <div class="tw-card">
+      <div class="tw-icon">📉</div>
+      <div class="tw-label">Tailwind One</div>
+      <div class="tw-title">The Labor Shortage Crisis</div>
+      <div class="tw-body">G7 economies face a structural labor deficit of 40–85M workers by 2030. Japan's population is declining by 600,000 people annually; Germany has 1.8M unfilled manufacturing positions; the US has 650,000+ unfilled factory jobs despite record wages. China's working-age population peaked in 2015 and has been declining ever since, while manufacturing labor costs have risen 300% since 2005 — eliminating the cost arbitrage that drove global supply chains for 30 years.</div>
+      <div class="tw-stat">≈$8T annual GDP impact from labor shortage by 2030</div>
+    </div>
+    <div class="tw-card">
+      <div class="tw-icon">🏭</div>
+      <div class="tw-label">Tailwind Two</div>
+      <div class="tw-title">Manufacturing Reshoring Imperative</div>
+      <div class="tw-body">The COVID pandemic exposed catastrophic vulnerabilities in global just-in-time supply chains. The political and corporate response has been the largest reshoring stimulus in modern history: $52B from the US CHIPS Act, €43B from the EU Chips Act, $26B from India's PLI schemes, and $369B from the US Inflation Reduction Act. Reshoring to high-cost geographies is only economically viable with high levels of automation — creating a self-reinforcing demand cycle for physical AI systems.</div>
+      <div class="tw-stat">$490B+ in committed government manufacturing incentives globally</div>
+    </div>
+    <div class="tw-card">
+      <div class="tw-icon">👴</div>
+      <div class="tw-label">Tailwind Three</div>
+      <div class="tw-title">Aging Population Demographics</div>
+      <div class="tw-body">By 2030, one in six people globally will be over 65 — the first time in human history that older people will outnumber children under five. Japan will have 38% of its population over 60 by 2040; South Korea and Germany are on similar trajectories. This creates two robotics demand vectors simultaneously: replacing aging workers who leave the workforce, and providing robotic care and assistance to an elderly population that strains healthcare systems.</div>
+      <div class="tw-stat">1.4B people over 65 globally by 2030; up from 703M in 2019</div>
+    </div>
+    <div class="tw-card">
+      <div class="tw-icon">⚡</div>
+      <div class="tw-label">Tailwind Four</div>
+      <div class="tw-title">The Global Productivity Crisis</div>
+      <div class="tw-body">Global productivity growth has collapsed from 2.1% annually (1995–2005) to below 0.8% (2015–2025). Without a step-change in output per worker, aging G7 economies face stagnation or decline. Physical AI — robots that can work three shifts without fatigue, operate in hazardous environments, maintain precision at superhuman levels, and learn from every iteration — represents the only credible pathway to reversing this trend at the scale and speed required.</div>
+      <div class="tw-stat">McKinsey: automation unlocks $13–15T in global GDP annually by 2030</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CHAPTER 2 DIVIDER ═══════ -->
+<div id="ch2" class="ch-div">
+  <div class="ch-num">02</div>
+  <div>
+    <div class="ch-kicker">Chapter Two</div>
+    <div class="ch-title">The Global Robotics <strong>Value Chain</strong><br>— Eight Tiers, One Ecosystem</div>
+  </div>
+</div>
+
+<!-- ── VALUE CHAIN TIERS ──────────────────────────────────────── -->
+<section class="section">
+  <div class="sec-num">2.0 — Ecosystem Architecture</div>
+  <h2 class="sec-title">Mapping Every <strong>Layer of Value</strong><br>from Silicon to System</h2>
+  <div class="sec-rule"></div>
+  <p class="sec-lead">The global robotics ecosystem comprises eight distinct value-creation layers, each with its own margin profile, competitive dynamics, and moat characteristics. Understanding which layers offer durable pricing power — and which will commoditize — is the central task of Physical AI investing.</p>
+
+  <div class="tier-wrap" id="tier1">
+    <!-- TIER 1 -->
+    <div class="tier-card">
+      <div class="tier-head">
+        <div class="tier-num">01</div>
+        <div><div class="tier-name">AI Compute Layer</div><div class="tier-desc">Training &amp; inference infrastructure — the intelligence engine of every robot system</div></div>
+        <div class="tier-meta"><div class="tier-stars">★★★★★</div><div class="tier-gm">GM: 60–78%</div></div>
+      </div>
+      <div class="tier-body">
+        <div>
+          <div class="tier-col-lbl">Analysis</div>
+          <div class="tier-col-content">The compute layer is the highest-margin, most strategically critical tier in the robotics stack. NVIDIA's CUDA ecosystem — representing 15+ years of developer investment — creates switching costs that approach the structural moat of an operating system. Robotics AI model training requires thousands of H100/H200/GB200 GPUs; inference at the edge requires specialized chips like NVIDIA's Jetson platform. This tier will bifurcate: training infrastructure (highly concentrated, NVIDIA-dominant) and edge inference (more competitive, with Qualcomm, AMD, and custom silicon emerging).</div>
+        </div>
+        <div>
+          <div class="tier-col-lbl">Key Players</div>
+          <ul class="tier-list">
+            <li>NVIDIA (training + edge)</li>
+            <li>Qualcomm (edge inference)</li>
+            <li>AMD (training alternative)</li>
+            <li>Google (TPUs, cloud)</li>
+            <li>Intel (Gaudi, Mobileye)</li>
+            <li>Custom silicon startups</li>
+          </ul>
+        </div>
+        <div>
+          <div class="tier-col-lbl">Moat Ratings</div>
+          <div class="mbar"><div class="mbar-lbl">Tech Barrier</div><div class="mbar-tr"><div class="mbar-fill" style="width:95%"></div></div><div class="mbar-val">9.5</div></div>
+          <div class="mbar"><div class="mbar-lbl">Pricing Power</div><div class="mbar-tr"><div class="mbar-fill" style="width:95%"></div></div><div class="mbar-val">9.5</div></div>
+          <div class="mbar"><div class="mbar-lbl">Ecosystem Lock-in</div><div class="mbar-tr"><div class="mbar-fill" style="width:90%"></div></div><div class="mbar-val">9.0</div></div>
+          <div class="mbar"><div class="mbar-lbl">Replication Diff.</div><div class="mbar-tr"><div class="mbar-fill" style="width:90%"></div></div><div class="mbar-val">9.0</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 2 -->
+    <div class="tier-card" id="tier2">
+      <div class="tier-head">
+        <div class="tier-num">02</div>
+        <div><div class="tier-name">Robotics Semiconductors</div><div class="tier-desc">GPUs, NPUs, MCUs, FPGAs, power chips — silicon enabling real-time robot control</div></div>
+        <div class="tier-meta"><div class="tier-stars">★★★★½</div><div class="tier-gm">GM: 50–62%</div></div>
+      </div>
+      <div class="tier-body">
+        <div>
+          <div class="tier-col-lbl">Analysis</div>
+          <div class="tier-col-content">Beyond AI compute, robots require a dense silicon stack: microcontrollers for real-time motor control (Texas Instruments, STMicro), FPGAs for deterministic sensor processing (Xilinx/AMD, Lattice), power semiconductors for motor drives (Infineon, ON Semi, Wolfspeed SiC), and application-specific neural processing units. The key moat here is the IEC 61508/ISO 13849 functional safety certification, which takes 18-36 months and massive engineering investment — creating extraordinary barriers to entry and customer lock-in once achieved.</div>
+        </div>
+        <div>
+          <div class="tier-col-lbl">Key Players</div>
+          <ul class="tier-list">
+            <li>Texas Instruments (MCUs)</li>
+            <li>STMicroelectronics</li>
+            <li>NXP Semiconductors</li>
+            <li>Infineon Technologies</li>
+            <li>AMD/Xilinx (FPGAs)</li>
+            <li>Wolfspeed / ON Semi (SiC)</li>
+          </ul>
+        </div>
+        <div>
+          <div class="tier-col-lbl">Moat Ratings</div>
+          <div class="mbar"><div class="mbar-lbl">Tech Barrier</div><div class="mbar-tr"><div class="mbar-fill" style="width:80%"></div></div><div class="mbar-val">8.0</div></div>
+          <div class="mbar"><div class="mbar-lbl">Pricing Power</div><div class="mbar-tr"><div class="mbar-fill" style="width:75%"></div></div><div class="mbar-val">7.5</div></div>
+          <div class="mbar"><div class="mbar-lbl">Cert. Barrier</div><div class="mbar-tr"><div class="mbar-fill" style="width:90%"></div></div><div class="mbar-val">9.0</div></div>
+          <div class="mbar"><div class="mbar-lbl">Replication Diff.</div><div class="mbar-tr"><div class="mbar-fill" style="width:78%"></div></div><div class="mbar-val">7.8</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 3 -->
+    <div class="tier-card" id="tier3">
+      <div class="tier-head">
+        <div class="tier-num">03</div>
+        <div><div class="tier-name">Sensors</div><div class="tier-desc">Cameras, LiDAR, force/torque sensors, encoders, IMUs — the perceptual layer of embodied intelligence</div></div>
+        <div class="tier-meta"><div class="tier-stars">★★★★★</div><div class="tier-gm">GM: 55–78%</div></div>
+      </div>
+      <div class="tier-body">
+        <div>
+          <div class="tier-col-lbl">Analysis</div>
+          <div class="tier-col-content">Sensors are among the most attractive Physical AI investment categories. Force-torque sensors are mission-critical for safe human-robot collaboration; precision encoders are required for every servo motor; IMUs (inertial measurement units) enable balance and navigation in humanoids. Keyence's extraordinary 50%+ operating margins demonstrate the pricing power available to best-in-class sensor companies. The miniaturization challenge for humanoid-scale sensors — fitting force/torque sensing into a robot hand joint that must withstand 10,000+ manipulation cycles — creates deep technological moats that are extremely difficult to replicate.</div>
+        </div>
+        <div>
+          <div class="tier-col-lbl">Key Players</div>
+          <ul class="tier-list">
+            <li>Keyence (vision + sensors)</li>
+            <li>Sick AG (safety sensors)</li>
+            <li>Analog Devices (IMUs)</li>
+            <li>ATI Industrial (F/T sensors)</li>
+            <li>HEIDENHAIN (encoders)</li>
+            <li>Velodyne / Ouster (LiDAR)</li>
+          </ul>
+        </div>
+        <div>
+          <div class="tier-col-lbl">Moat Ratings</div>
+          <div class="mbar"><div class="mbar-lbl">Tech Barrier</div><div class="mbar-tr"><div class="mbar-fill" style="width:85%"></div></div><div class="mbar-val">8.5</div></div>
+          <div class="mbar"><div class="mbar-lbl">Pricing Power</div><div class="mbar-tr"><div class="mbar-fill" style="width:88%"></div></div><div class="mbar-val">8.8</div></div>
+          <div class="mbar"><div class="mbar-lbl">Mfg. Complexity</div><div class="mbar-tr"><div class="mbar-fill" style="width:85%"></div></div><div class="mbar-val">8.5</div></div>
+          <div class="mbar"><div class="mbar-lbl">Customer Lock-in</div><div class="mbar-tr"><div class="mbar-fill" style="width:80%"></div></div><div class="mbar-val">8.0</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 4 -->
+    <div class="tier-card" id="tier4">
+      <div class="tier-head">
+        <div class="tier-num">04</div>
+        <div><div class="tier-name">Machine Vision</div><div class="tier-desc">Vision systems, image processing, 3D perception, spatial intelligence — how robots interpret visual reality</div></div>
+        <div class="tier-meta"><div class="tier-stars">★★★★★</div><div class="tier-gm">GM: 60–73%</div></div>
+      </div>
+      <div class="tier-body">
+        <div>
+          <div class="tier-col-lbl">Analysis</div>
+          <div class="tier-col-content">Machine vision is a convergence of hardware (cameras, illumination, optics) and software (deep learning models, 3D reconstruction, real-time inference) that creates powerful hybrid moats. Cognex — the global leader — has spent 40 years building application libraries for specific inspection tasks across automotive, semiconductor, and logistics industries. These libraries represent an extraordinary institutional knowledge moat: a competitor offering cheaper hardware faces the reality that switching means rebuilding application expertise accumulated over decades of real-world deployment.</div>
+        </div>
+        <div>
+          <div class="tier-col-lbl">Key Players</div>
+          <ul class="tier-list">
+            <li>Cognex (leader)</li>
+            <li>Keyence (Japan)</li>
+            <li>Teledyne FLIR</li>
+            <li>Basler AG (cameras)</li>
+            <li>Zebra Technologies</li>
+            <li>ISRA VISION (ZEISS)</li>
+          </ul>
+        </div>
+        <div>
+          <div class="tier-col-lbl">Moat Ratings</div>
+          <div class="mbar"><div class="mbar-lbl">Software Moat</div><div class="mbar-tr"><div class="mbar-fill" style="width:90%"></div></div><div class="mbar-val">9.0</div></div>
+          <div class="mbar"><div class="mbar-lbl">Pricing Power</div><div class="mbar-tr"><div class="mbar-fill" style="width:85%"></div></div><div class="mbar-val">8.5</div></div>
+          <div class="mbar"><div class="mbar-lbl">Application Library</div><div class="mbar-tr"><div class="mbar-fill" style="width:92%"></div></div><div class="mbar-val">9.2</div></div>
+          <div class="mbar"><div class="mbar-lbl">Customer Lock-in</div><div class="mbar-tr"><div class="mbar-fill" style="width:85%"></div></div><div class="mbar-val">8.5</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 5 -->
+    <div class="tier-card" id="tier5">
+      <div class="tier-head">
+        <div class="tier-num">05</div>
+        <div><div class="tier-name">Motion Control</div><div class="tier-desc">Servo drives, controllers, positioning systems — the mechanical brain translating commands to precise movement</div></div>
+        <div class="tier-meta"><div class="tier-stars">★★★★½</div><div class="tier-gm">GM: 44–58%</div></div>
+      </div>
+      <div class="tier-body">
+        <div>
+          <div class="tier-col-lbl">Analysis</div>
+          <div class="tier-col-content">Motion control may prove to be the most underappreciated bottleneck in the Physical AI stack. Achieving sub-micron positioning accuracy across 6+ degrees of freedom — while simultaneously managing force feedback, collision avoidance, and safety monitoring in real time — requires decades of control algorithm development and application tuning. Japanese firms (Yaskawa, Fanuc) and European specialists (Siemens, Bosch Rexroth, B&amp;R) own this market. Their control algorithm libraries for specific machine tools represent qualification barriers of 2-4 years, making displacement by newcomers extraordinarily difficult.</div>
+        </div>
+        <div>
+          <div class="tier-col-lbl">Key Players</div>
+          <ul class="tier-list">
+            <li>Yaskawa Electric</li>
+            <li>FANUC Corporation</li>
+            <li>Siemens (SINUMERIK)</li>
+            <li>Bosch Rexroth</li>
+            <li>B&amp;R Industrial (ABB)</li>
+            <li>Rockwell Automation</li>
+          </ul>
+        </div>
+        <div>
+          <div class="tier-col-lbl">Moat Ratings</div>
+          <div class="mbar"><div class="mbar-lbl">Algorithm Depth</div><div class="mbar-tr"><div class="mbar-fill" style="width:88%"></div></div><div class="mbar-val">8.8</div></div>
+          <div class="mbar"><div class="mbar-lbl">Qualification Time</div><div class="mbar-tr"><div class="mbar-fill" style="width:85%"></div></div><div class="mbar-val">8.5</div></div>
+          <div class="mbar"><div class="mbar-lbl">Pricing Power</div><div class="mbar-tr"><div class="mbar-fill" style="width:75%"></div></div><div class="mbar-val">7.5</div></div>
+          <div class="mbar"><div class="mbar-lbl">Customer Lock-in</div><div class="mbar-tr"><div class="mbar-fill" style="width:85%"></div></div><div class="mbar-val">8.5</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 6 -->
+    <div class="tier-card" id="tier6">
+      <div class="tier-head">
+        <div class="tier-num">06</div>
+        <div><div class="tier-name">Actuators</div><div class="tier-desc">Harmonic drives, linear actuators, planetary gearboxes — the muscles of every robot ever built</div></div>
+        <div class="tier-meta"><div class="tier-stars">★★★★★</div><div class="tier-gm">GM: 42–65%</div></div>
+      </div>
+      <div class="tier-body">
+        <div>
+          <div class="tier-col-lbl">Analysis</div>
+          <div class="tier-col-content">Actuators — specifically harmonic drives — represent one of the most compelling Physical AI investment categories globally. Harmonic Drive Systems (Japan) has delivered 60%+ gross margins for two decades on the back of a simple but impossibly hard-to-replicate wave-generator and flex-spline mechanism that achieves zero-backlash precision in robotic joints. Every industrial robot arm requires harmonic drives at 4-6 joints; humanoid robots require 20-30. The global harmonic drive market is controlled by just three Japanese firms (Harmonic Drive Systems, Nabtesco, Sumitomo). When humanoid robot production scales to millions of units annually, these three firms become structural choke points for the entire industry.</div>
+        </div>
+        <div>
+          <div class="tier-col-lbl">Key Players</div>
+          <ul class="tier-list">
+            <li>Harmonic Drive Systems</li>
+            <li>Nabtesco Corporation</li>
+            <li>Sumitomo Heavy Ind.</li>
+            <li>Nidec (motors)</li>
+            <li>Maxon Group</li>
+            <li>Moog Inc. (aerospace)</li>
+          </ul>
+        </div>
+        <div>
+          <div class="tier-col-lbl">Moat Ratings</div>
+          <div class="mbar"><div class="mbar-lbl">Mfg. Precision</div><div class="mbar-tr"><div class="mbar-fill" style="width:95%"></div></div><div class="mbar-val">9.5</div></div>
+          <div class="mbar"><div class="mbar-lbl">Replication Diff.</div><div class="mbar-tr"><div class="mbar-fill" style="width:92%"></div></div><div class="mbar-val">9.2</div></div>
+          <div class="mbar"><div class="mbar-lbl">Pricing Power</div><div class="mbar-tr"><div class="mbar-fill" style="width:82%"></div></div><div class="mbar-val">8.2</div></div>
+          <div class="mbar"><div class="mbar-lbl">Market Concentration</div><div class="mbar-tr"><div class="mbar-fill" style="width:95%"></div></div><div class="mbar-val">9.5</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 7 -->
+    <div class="tier-card" id="tier7">
+      <div class="tier-head">
+        <div class="tier-num">07</div>
+        <div><div class="tier-name">Robotics Software Stack</div><div class="tier-desc">Robot OS, fleet management, simulation, digital twins, safety systems — the operating environment</div></div>
+        <div class="tier-meta"><div class="tier-stars">★★★★★</div><div class="tier-gm">GM: 68–85%</div></div>
+      </div>
+      <div class="tier-body">
+        <div>
+          <div class="tier-col-lbl">Analysis</div>
+          <div class="tier-col-content">The robotics software stack is the highest-margin tier in the entire ecosystem but currently the least consolidated. NVIDIA's Isaac platform (simulation + training + deployment), ROS2 (open-source foundation that NVIDIA, AWS, and Microsoft are all building on top of), and digital twin platforms (Siemens Tecnomatix, Dassault DELMIA) are fighting for platform dominance. The prize — once won — is extraordinary: software platforms in industrial automation earn 70-85% gross margins and generate switching costs measured in years of workflow re-engineering. The company that becomes the "Windows of Robotics" will create one of the greatest moats in technology history.</div>
+        </div>
+        <div>
+          <div class="tier-col-lbl">Key Players</div>
+          <ul class="tier-list">
+            <li>NVIDIA (Isaac)</li>
+            <li>Siemens (Tecnomatix)</li>
+            <li>Dassault Systèmes</li>
+            <li>PTC (Vuforia)</li>
+            <li>Open Robotics (ROS2)</li>
+            <li>AWS RoboMaker</li>
+          </ul>
+        </div>
+        <div>
+          <div class="tier-col-lbl">Moat Ratings</div>
+          <div class="mbar"><div class="mbar-lbl">Platform Potential</div><div class="mbar-tr"><div class="mbar-fill" style="width:95%"></div></div><div class="mbar-val">9.5</div></div>
+          <div class="mbar"><div class="mbar-lbl">Current Moat</div><div class="mbar-tr"><div class="mbar-fill" style="width:60%"></div></div><div class="mbar-val">6.0</div></div>
+          <div class="mbar"><div class="mbar-lbl">Margin Potential</div><div class="mbar-tr"><div class="mbar-fill" style="width:85%"></div></div><div class="mbar-val">8.5</div></div>
+          <div class="mbar"><div class="mbar-lbl">Switching Costs</div><div class="mbar-tr"><div class="mbar-fill" style="width:88%"></div></div><div class="mbar-val">8.8</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 8 -->
+    <div class="tier-card" id="tier8">
+      <div class="tier-head">
+        <div class="tier-num">08</div>
+        <div><div class="tier-name">System Integration</div><div class="tier-desc">Factory automation, warehouse systems, turnkey robotics deployments — where all layers converge</div></div>
+        <div class="tier-meta"><div class="tier-stars">★★★</div><div class="tier-gm">GM: 18–32%</div></div>
+      </div>
+      <div class="tier-body">
+        <div>
+          <div class="tier-col-lbl">Analysis</div>
+          <div class="tier-col-content">System integrators are the least attractive tier in the Physical AI stack from a pure financial perspective. They earn the lowest gross margins (18-32%), face intense competition from both OEM manufacturers offering turnkey solutions and low-cost integrators, and do not typically own proprietary technology. However, the best system integrators build extraordinary domain expertise — deep knowledge of specific manufacturing processes that cannot easily be replicated — which can translate into recurring service revenue and multi-year customer relationships. ABB and Rockwell Automation occupy the highest-value positions by combining integration capability with proprietary hardware and software layers.</div>
+        </div>
+        <div>
+          <div class="tier-col-lbl">Key Players</div>
+          <ul class="tier-list">
+            <li>ABB Robotics</li>
+            <li>Rockwell Automation</li>
+            <li>Honeywell Intelligrated</li>
+            <li>Dematic (KION Group)</li>
+            <li>Symbotic</li>
+            <li>Bastian Solutions</li>
+          </ul>
+        </div>
+        <div>
+          <div class="tier-col-lbl">Moat Ratings</div>
+          <div class="mbar"><div class="mbar-lbl">Tech Barrier</div><div class="mbar-tr"><div class="mbar-fill" style="width:42%"></div></div><div class="mbar-val">4.2</div></div>
+          <div class="mbar"><div class="mbar-lbl">Pricing Power</div><div class="mbar-tr"><div class="mbar-fill" style="width:40%"></div></div><div class="mbar-val">4.0</div></div>
+          <div class="mbar"><div class="mbar-lbl">Domain Expertise</div><div class="mbar-tr"><div class="mbar-fill" style="width:72%"></div></div><div class="mbar-val">7.2</div></div>
+          <div class="mbar"><div class="mbar-lbl">Customer Relations</div><div class="mbar-tr"><div class="mbar-fill" style="width:70%"></div></div><div class="mbar-val">7.0</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tier-wrap -->
+</section>
+
+<!-- ═══════ CHAPTER 3 DIVIDER ═══════ -->
+<div id="ch3" class="ch-div">
+  <div class="ch-num">03</div>
+  <div>
+    <div class="ch-kicker">Chapter Three</div>
+    <div class="ch-title">The <strong>Indispensable Eight</strong><br>— Bottleneck Case Studies</div>
+  </div>
+</div>
+
+<!-- ── BOTTLENECK CASE STUDIES ────────────────────────────────── -->
+<section class="section">
+  <div class="sec-num">3.0 — The ASML Framework Preview</div>
+  <h2 class="sec-title">What Makes a Company <strong>Truly Irreplaceable?</strong></h2>
+  <div class="sec-rule"></div>
+  <p class="sec-lead">Eight companies — across semiconductors, automation, robotics, and sensing — have already achieved ASML-like status in their respective niches. Studying how they built their moats reveals the blueprint for identifying the next generation of Physical AI bottlenecks. ASML Scores (full methodology in Part II) represent 0–10 indispensability ratings.</p>
+
+  <div class="co-grid">
+    <!-- NVIDIA -->
+    <div class="co-card" id="nvidia">
+      <div class="co-head">
+        <div><div class="co-name">NVIDIA</div><div class="co-ticker">NVDA</div><div class="co-cat">AI Compute / Semiconductors</div></div>
+        <div class="co-score-wrap"><div class="co-score">9.5</div><div class="co-score-lbl">ASML Score</div></div>
+      </div>
+      <div class="co-body">
+        <div class="co-section-lbl">Source of Moat</div>
+        <div class="co-moat">NVIDIA's moat is not its hardware — it is CUDA, the parallel computing platform released in 2006 that has accumulated 15+ years of developer libraries, optimized kernels, and institutional muscle memory. Every major robotics AI framework (PyTorch, TensorFlow, Isaac) is CUDA-native. Switching away from NVIDIA requires re-engineering the entire software stack — a multi-year, multi-hundred-million dollar undertaking. Additionally, NVIDIA's Isaac Sim and Omniverse platforms are becoming the simulation environment for training robot AI, potentially extending the moat into the robotics software layer.</div>
+        <div class="co-metrics">
+          <div class="co-met"><div class="co-met-lbl">Gross Margin</div><div class="co-met-val">~74%</div></div>
+          <div class="co-met"><div class="co-met-lbl">Pricing Power</div><div class="co-met-val"><span class="dot-g"></span>Extreme</div></div>
+          <div class="co-met"><div class="co-met-lbl">Tech Barrier</div><div class="co-met-val"><span class="dot-g"></span>9.5/10</div></div>
+          <div class="co-met"><div class="co-met-lbl">Customer Lock-in</div><div class="co-met-val"><span class="dot-g"></span>9.0/10</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ASML -->
+    <div class="co-card" id="asml">
+      <div class="co-head">
+        <div><div class="co-name">ASML</div><div class="co-ticker">ASML</div><div class="co-cat">Semiconductor Equipment</div></div>
+        <div class="co-score-wrap"><div class="co-score">10</div><div class="co-score-lbl">ASML Score</div></div>
+      </div>
+      <div class="co-body">
+        <div class="co-section-lbl">Source of Moat</div>
+        <div class="co-moat">ASML is the literal namesake of the indispensability framework — and it earned that distinction by being the sole manufacturer of EUV (Extreme Ultraviolet) lithography machines required to produce advanced chips below 7nm. Its EUV machines contain 100,000+ precision components, took 25+ years to develop, and require a global supply chain of 5,000 suppliers that cannot be replicated. No competitor has come close. Every advanced chip in every AI server, every smartphone, and every robot processor was made possible by ASML. The company provides the indispensable choke point for all of modern electronics manufacturing.</div>
+        <div class="co-metrics">
+          <div class="co-met"><div class="co-met-lbl">Gross Margin</div><div class="co-met-val">~51%</div></div>
+          <div class="co-met"><div class="co-met-lbl">Pricing Power</div><div class="co-met-val"><span class="dot-g"></span>Absolute</div></div>
+          <div class="co-met"><div class="co-met-lbl">Tech Barrier</div><div class="co-met-val"><span class="dot-g"></span>10/10</div></div>
+          <div class="co-met"><div class="co-met-lbl">Competitors</div><div class="co-met-val">Zero (EUV)</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TSMC -->
+    <div class="co-card" id="tsmc">
+      <div class="co-head">
+        <div><div class="co-name">TSMC</div><div class="co-ticker">TSM</div><div class="co-cat">Semiconductor Foundry</div></div>
+        <div class="co-score-wrap"><div class="co-score">9.8</div><div class="co-score-lbl">ASML Score</div></div>
+      </div>
+      <div class="co-body">
+        <div class="co-section-lbl">Source of Moat</div>
+        <div class="co-moat">TSMC's moat is its decades of accumulated process recipe knowledge — the exact sequences of 1,000+ manufacturing steps that produce consistently high chip yields at leading-edge nodes. This knowledge is institutional and irreplaceable; Samsung and Intel have spent billions trying to replicate it with mixed results. For robotics, TSMC manufactures every advanced AI chip (NVIDIA GPUs, Qualcomm SoCs, Apple silicon used in robotics), custom ASICs for robotics startups, and the power management chips inside every robot. If TSMC ceased operations, global robot production would halt within 12-18 months.</div>
+        <div class="co-metrics">
+          <div class="co-met"><div class="co-met-lbl">Gross Margin</div><div class="co-met-val">~56%</div></div>
+          <div class="co-met"><div class="co-met-lbl">Pricing Power</div><div class="co-met-val"><span class="dot-g"></span>9.5/10</div></div>
+          <div class="co-met"><div class="co-met-lbl">Tech Barrier</div><div class="co-met-val"><span class="dot-g"></span>10/10</div></div>
+          <div class="co-met"><div class="co-met-lbl">Process Lead</div><div class="co-met-val">2–4 years</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROCKWELL -->
+    <div class="co-card" id="rockwell">
+      <div class="co-head">
+        <div><div class="co-name">Rockwell Automation</div><div class="co-ticker">ROK</div><div class="co-cat">Industrial Automation / Software</div></div>
+        <div class="co-score-wrap"><div class="co-score">7.5</div><div class="co-score-lbl">ASML Score</div></div>
+      </div>
+      <div class="co-body">
+        <div class="co-section-lbl">Source of Moat</div>
+        <div class="co-moat">Rockwell's moat is its integrated hardware-software ecosystem: Allen-Bradley PLCs are the standard in US manufacturing; FactoryTalk software provides the SCADA, MES, and analytics layer that sits above it. Factory floors that run on Rockwell PLCs have machine code, operator training, and maintenance processes built around Allen-Bradley standards that have accumulated over 30-40 years. Re-engineering a production line to a different automation platform typically costs $2-5M and 12-24 months of production disruption — creating extraordinary switching costs that protect Rockwell's installed base.</div>
+        <div class="co-metrics">
+          <div class="co-met"><div class="co-met-lbl">Gross Margin</div><div class="co-met-val">~44%</div></div>
+          <div class="co-met"><div class="co-met-lbl">Pricing Power</div><div class="co-met-val"><span class="dot-a"></span>7.0/10</div></div>
+          <div class="co-met"><div class="co-met-lbl">Software Revenue</div><div class="co-met-val">~38% of total</div></div>
+          <div class="co-met"><div class="co-met-lbl">Customer Lock-in</div><div class="co-met-val"><span class="dot-g"></span>8.5/10</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABB -->
+    <div class="co-card" id="abb">
+      <div class="co-head">
+        <div><div class="co-name">ABB</div><div class="co-ticker">ABBN</div><div class="co-cat">Robotics / Electrification / Automation</div></div>
+        <div class="co-score-wrap"><div class="co-score">7.0</div><div class="co-score-lbl">ASML Score</div></div>
+      </div>
+      <div class="co-body">
+        <div class="co-section-lbl">Source of Moat</div>
+        <div class="co-moat">ABB's moat is its breadth rather than depth in any single niche. The combination of robotics (IRB series, GoFa cobots), drives (ACS880), motors, power electronics, and industrial software (ABB Ability) creates a full-stack automation proposition where switching costs accumulate at every layer. ABB's robotics division is the global leader in industrial robot arms by installed base, and its controller ecosystem (IRC5) is deeply embedded in automotive and electronics manufacturing globally. The integration of B&amp;R Industrial Automation (acquired 2017) added the fastest-growing machine automation platform in Europe.</div>
+        <div class="co-metrics">
+          <div class="co-met"><div class="co-met-lbl">Robotics Margin</div><div class="co-met-val">~14% EBITA</div></div>
+          <div class="co-met"><div class="co-met-lbl">Pricing Power</div><div class="co-met-val"><span class="dot-a"></span>6.5/10</div></div>
+          <div class="co-met"><div class="co-met-lbl">Installed Base</div><div class="co-met-val">500K+ robots</div></div>
+          <div class="co-met"><div class="co-met-lbl">Customer Lock-in</div><div class="co-met-val"><span class="dot-a"></span>7.5/10</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FANUC -->
+    <div class="co-card" id="fanuc">
+      <div class="co-head">
+        <div><div class="co-name">FANUC</div><div class="co-ticker">6954.T</div><div class="co-cat">CNC / Industrial Robotics</div></div>
+        <div class="co-score-wrap"><div class="co-score">8.5</div><div class="co-score-lbl">ASML Score</div></div>
+      </div>
+      <div class="co-body">
+        <div class="co-section-lbl">Source of Moat</div>
+        <div class="co-moat">FANUC is perhaps the most structurally underappreciated moat in global manufacturing. Its CNC (Computer Numerical Control) systems run the majority of machine tools globally; its yellow robots operate in virtually every major automotive and electronics factory. FANUC's vertical integration — making its own servo motors, drives, encoders, and controllers — means its systems cannot be partially substituted. Switching a production line from FANUC CNC to any competitor requires replacing not just the controller but the entire servo drive architecture and rewriting all part programs. FANUC's 50%+ operating margin is maintained effortlessly because of this installed base fortress.</div>
+        <div class="co-metrics">
+          <div class="co-met"><div class="co-met-lbl">Operating Margin</div><div class="co-met-val">~25%</div></div>
+          <div class="co-met"><div class="co-met-lbl">Pricing Power</div><div class="co-met-val"><span class="dot-g"></span>8.0/10</div></div>
+          <div class="co-met"><div class="co-met-lbl">Cash Position</div><div class="co-met-val">~¥700B</div></div>
+          <div class="co-met"><div class="co-met-lbl">Customer Lock-in</div><div class="co-met-val"><span class="dot-g"></span>9.0/10</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- YASKAWA -->
+    <div class="co-card" id="yaskawa">
+      <div class="co-head">
+        <div><div class="co-name">Yaskawa Electric</div><div class="co-ticker">6506.T</div><div class="co-cat">Motion Control / Industrial Robots</div></div>
+        <div class="co-score-wrap"><div class="co-score">7.8</div><div class="co-score-lbl">ASML Score</div></div>
+      </div>
+      <div class="co-body">
+        <div class="co-section-lbl">Source of Moat</div>
+        <div class="co-moat">Yaskawa is uniquely positioned at the intersection of motion control (Σ-7 servo drives, ΣV series) and robotics (Motoman series) — two of the most strategically critical tiers in the Physical AI stack. Its servo drives hold the leading global market share in high-performance AC servo drives for industrial machinery. The combination means that when a machine tool OEM designs around Yaskawa servo drives and then seeks a robot to collaborate with the machine, Yaskawa is the natural selection — creating a compounding installed base effect that is extremely difficult for any single-product company to compete with.</div>
+        <div class="co-metrics">
+          <div class="co-met"><div class="co-met-lbl">Operating Margin</div><div class="co-met-val">~11%</div></div>
+          <div class="co-met"><div class="co-met-lbl">Pricing Power</div><div class="co-met-val"><span class="dot-a"></span>7.0/10</div></div>
+          <div class="co-met"><div class="co-met-lbl">Servo Mkt Share</div><div class="co-met-val">#1 Globally</div></div>
+          <div class="co-met"><div class="co-met-lbl">Customer Lock-in</div><div class="co-met-val"><span class="dot-g"></span>8.0/10</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KEYENCE -->
+    <div class="co-card" id="keyence">
+      <div class="co-head">
+        <div><div class="co-name">Keyence</div><div class="co-ticker">6861.T</div><div class="co-cat">Sensors / Machine Vision / Measurement</div></div>
+        <div class="co-score-wrap"><div class="co-score">8.8</div><div class="co-score-lbl">ASML Score</div></div>
+      </div>
+      <div class="co-body">
+        <div class="co-section-lbl">Source of Moat</div>
+        <div class="co-moat">Keyence is the greatest example of a sensor/vision company with ASML-like characteristics. Its direct sales model — no distributors, engineers selling to engineers — creates application expertise and customer intimacy that cannot be replicated by a distributor-dependent competitor at any price. Keyence's engineers embed with customer production lines, solve specific inspection challenges, and build proprietary solutions that become integral to the customer's quality system. The result: 50%+ operating margins sustained for 20+ years. As Physical AI scales, Keyence's sensors, vision systems, and measurement tools will be deployed on millions of robot cells, providing structural volume tailwinds to already extraordinary margins.</div>
+        <div class="co-metrics">
+          <div class="co-met"><div class="co-met-lbl">Operating Margin</div><div class="co-met-val">~55%</div></div>
+          <div class="co-met"><div class="co-met-lbl">Pricing Power</div><div class="co-met-val"><span class="dot-g"></span>9.0/10</div></div>
+          <div class="co-met"><div class="co-met-lbl">Sales Model</div><div class="co-met-val">Direct only</div></div>
+          <div class="co-met"><div class="co-met-lbl">Customer Lock-in</div><div class="co-met-val"><span class="dot-g"></span>8.5/10</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /co-grid -->
+</section>
+
+<!-- ═══════ CHAPTER 4 DIVIDER ═══════ -->
+<div id="ch4" class="ch-div">
+  <div class="ch-num">04</div>
+  <div>
+    <div class="ch-kicker">Chapter Four</div>
+    <div class="ch-title">The <strong>Top 50 Robotics Bottlenecks</strong><br>— Ranked by Severity &amp; Replication Difficulty</div>
+  </div>
+</div>
+
+<!-- ── BOTTLENECK TABLE ────────────────────────────────────────── -->
+<section class="section">
+  <div class="sec-num">4.0 — Bottleneck Ranking Methodology</div>
+  <h2 class="sec-title">The <strong>Choke Points</strong> of the<br>Physical AI Revolution</h2>
+  <div class="sec-rule"></div>
+  <p class="sec-lead">A bottleneck is defined as a component, material, process, or technology where global supply is concentrated in a small number of providers, where substitution would require years of re-qualification, and where shortage would cause material disruption to robot production. Severity (1–10) reflects current and near-term supply concentration risk. Replication difficulty reflects the engineering, capital, and time investment required to build an alternative.</p>
+
+  <div class="callout">
+    <div class="callout-label">Investor Note</div>
+    <div class="callout-text">The highest-severity, hardest-to-replicate bottlenecks represent the most durable long-term investment opportunities. Where the beneficiary is a publicly listed company, the combination of structural scarcity and Physical AI volume growth creates a compelling multi-year compound growth thesis — regardless of which robot design ultimately prevails.</div>
+  </div>
+
+  <div class="table-wrap">
+    <table class="data-tbl">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Bottleneck</th>
+          <th>Category</th>
+          <th>Severity</th>
+          <th>Replication Difficulty</th>
+          <th>Time to Solve</th>
+          <th>Key Beneficiaries</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>01</td><td>EUV Lithography Machines</td><td>Semiconductor Mfg.</td><td><span class="badge b-crit">● Critical 10</span></td><td>Near-Impossible</td><td>20+ years</td><td><div class="chips"><span class="chip">ASML</span></div></td></tr>
+        <tr><td>02</td><td>Advanced CoWoS / SoIC Packaging</td><td>Semiconductor</td><td><span class="badge b-crit">● Critical 9.5</span></td><td>Very Hard</td><td>8–12 years</td><td><div class="chips"><span class="chip">TSMC</span><span class="chip">ASE Group</span></div></td></tr>
+        <tr><td>03</td><td>High-Bandwidth Memory (HBM3/HBM4)</td><td>Memory</td><td><span class="badge b-crit">● Critical 9.5</span></td><td>Very Hard</td><td>6–10 years</td><td><div class="chips"><span class="chip">SK Hynix</span><span class="chip">Samsung</span><span class="chip">Micron</span></div></td></tr>
+        <tr><td>04</td><td>Harmonic Drive Systems</td><td>Actuators</td><td><span class="badge b-crit">● Critical 9.2</span></td><td>Very Hard</td><td>10–15 years</td><td><div class="chips"><span class="chip">Harmonic Drive</span><span class="chip">Nabtesco</span></div></td></tr>
+        <tr><td>05</td><td>NVIDIA CUDA Ecosystem</td><td>AI Software / Compute</td><td><span class="badge b-crit">● Critical 9.0</span></td><td>Extremely Hard</td><td>10–20 years</td><td><div class="chips"><span class="chip">NVIDIA</span></div></td></tr>
+        <tr><td>06</td><td>TSMC 3nm / 2nm Process</td><td>Semiconductor Foundry</td><td><span class="badge b-crit">● Critical 9.0</span></td><td>Near-Impossible</td><td>8–15 years</td><td><div class="chips"><span class="chip">TSMC</span></div></td></tr>
+        <tr><td>07</td><td>Precision Encoders (optical/magnetic)</td><td>Sensors / Motion</td><td><span class="badge b-high">● High 8.8</span></td><td>Very Hard</td><td>8–12 years</td><td><div class="chips"><span class="chip">HEIDENHAIN</span><span class="chip">Renishaw</span><span class="chip">Nikon</span></div></td></tr>
+        <tr><td>08</td><td>6-Axis Force / Torque Sensors</td><td>Sensors</td><td><span class="badge b-high">● High 8.8</span></td><td>Very Hard</td><td>7–10 years</td><td><div class="chips"><span class="chip">ATI Industrial</span><span class="chip">Kistler</span><span class="chip">Robotiq</span></div></td></tr>
+        <tr><td>09</td><td>Photomask Technology</td><td>Semiconductor Mfg.</td><td><span class="badge b-high">● High 8.5</span></td><td>Very Hard</td><td>10–15 years</td><td><div class="chips"><span class="chip">Hoya</span><span class="chip">Shin-Etsu</span><span class="chip">Toppan</span></div></td></tr>
+        <tr><td>10</td><td>Silicon Carbide (SiC) Power Devices</td><td>Power Electronics</td><td><span class="badge b-high">● High 8.5</span></td><td>Hard</td><td>6–10 years</td><td><div class="chips"><span class="chip">Wolfspeed</span><span class="chip">STMicro</span><span class="chip">Onsemi</span></div></td></tr>
+        <tr><td>11</td><td>MEMS Inertial Measurement Units</td><td>Sensors</td><td><span class="badge b-high">● High 8.3</span></td><td>Hard</td><td>5–8 years</td><td><div class="chips"><span class="chip">Analog Devices</span><span class="chip">TDK InvenSense</span><span class="chip">Bosch</span></div></td></tr>
+        <tr><td>12</td><td>Planetary Cycloidal Gearboxes</td><td>Actuators</td><td><span class="badge b-high">● High 8.2</span></td><td>Very Hard</td><td>8–12 years</td><td><div class="chips"><span class="chip">Nabtesco</span><span class="chip">Sumitomo H.I.</span><span class="chip">Nidec</span></div></td></tr>
+        <tr><td>13</td><td>High-Precision Ball Screws</td><td>Linear Motion</td><td><span class="badge b-high">● High 8.0</span></td><td>Hard</td><td>5–8 years</td><td><div class="chips"><span class="chip">THK</span><span class="chip">NSK</span><span class="chip">Hiwin</span></div></td></tr>
+        <tr><td>14</td><td>IEC 61508 Safety-Certified MCUs</td><td>Semiconductors</td><td><span class="badge b-high">● High 8.0</span></td><td>Hard</td><td>5–8 years</td><td><div class="chips"><span class="chip">Texas Instruments</span><span class="chip">Infineon</span><span class="chip">NXP</span></div></td></tr>
+        <tr><td>15</td><td>Robotics Simulation Software</td><td>Software</td><td><span class="badge b-high">● High 8.0</span></td><td>Hard (ecosystem)</td><td>8–12 years</td><td><div class="chips"><span class="chip">NVIDIA Isaac</span><span class="chip">Siemens</span><span class="chip">Dassault</span></div></td></tr>
+        <tr><td>16</td><td>Machine Vision Software Libraries</td><td>Software / Vision</td><td><span class="badge b-high">● High 8.0</span></td><td>Hard (data moat)</td><td>10–15 years</td><td><div class="chips"><span class="chip">Cognex</span><span class="chip">Keyence</span><span class="chip">MVTec</span></div></td></tr>
+        <tr><td>17</td><td>EtherCAT Industrial Ethernet</td><td>Connectivity</td><td><span class="badge b-high">● High 7.8</span></td><td>Medium-Hard</td><td>5–8 years</td><td><div class="chips"><span class="chip">Beckhoff</span><span class="chip">EtherCAT TG</span></div></td></tr>
+        <tr><td>18</td><td>Specialty Optical Fiber (LiDAR)</td><td>Photonics</td><td><span class="badge b-high">● High 7.8</span></td><td>Hard</td><td>5–10 years</td><td><div class="chips"><span class="chip">II-VI / Coherent</span><span class="chip">Lumentum</span></div></td></tr>
+        <tr><td>19</td><td>Advanced Servo Drives</td><td>Motion Control</td><td><span class="badge b-high">● High 7.8</span></td><td>Hard</td><td>5–8 years</td><td><div class="chips"><span class="chip">Yaskawa</span><span class="chip">FANUC</span><span class="chip">Siemens</span></div></td></tr>
+        <tr><td>20</td><td>High-Torque Density Electric Motors</td><td>Actuators</td><td><span class="badge b-high">● High 7.7</span></td><td>Medium-Hard</td><td>4–7 years</td><td><div class="chips"><span class="chip">Maxon</span><span class="chip">Allied Motion</span><span class="chip">Nidec</span></div></td></tr>
+        <tr><td>21</td><td>Safety Laser Scanners</td><td>Safety / Sensing</td><td><span class="badge b-high">● High 7.7</span></td><td>Hard</td><td>5–8 years</td><td><div class="chips"><span class="chip">Sick AG</span><span class="chip">Pilz</span><span class="chip">Keyence</span></div></td></tr>
+        <tr><td>22</td><td>High-Density LPDDR / HBM DRAM</td><td>Memory</td><td><span class="badge b-high">● High 7.5</span></td><td>Hard</td><td>5–8 years</td><td><div class="chips"><span class="chip">Samsung</span><span class="chip">SK Hynix</span><span class="chip">Micron</span></div></td></tr>
+        <tr><td>23</td><td>Robotics-Grade Linear Guides</td><td>Linear Motion</td><td><span class="badge b-high">● High 7.5</span></td><td>Medium</td><td>4–6 years</td><td><div class="chips"><span class="chip">THK</span><span class="chip">Bosch Rexroth</span><span class="chip">INA</span></div></td></tr>
+        <tr><td>24</td><td>Solid-State LiDAR</td><td>Perception</td><td><span class="badge b-high">● High 7.5</span></td><td>Hard</td><td>5–8 years</td><td><div class="chips"><span class="chip">Innoviz</span><span class="chip">Luminar</span><span class="chip">Ouster</span></div></td></tr>
+        <tr><td>25</td><td>GaN Power Transistors</td><td>Power Electronics</td><td><span class="badge b-high">● High 7.5</span></td><td>Hard</td><td>5–8 years</td><td><div class="chips"><span class="chip">GaN Systems</span><span class="chip">EPC</span><span class="chip">Infineon</span></div></td></tr>
+        <tr><td>26</td><td>Tactile / Skin Sensors</td><td>Sensors</td><td><span class="badge b-high">● High 7.3</span></td><td>Very Hard</td><td>8–12 years</td><td><div class="chips"><span class="chip">SynTouch</span><span class="chip">BioTac</span><span class="chip">SEER</span></div></td></tr>
+        <tr><td>27</td><td>Collaborative Robot Arms</td><td>Hardware</td><td><span class="badge b-high">● High 7.3</span></td><td>Medium</td><td>4–6 years</td><td><div class="chips"><span class="chip">Universal Robots</span><span class="chip">FANUC</span><span class="chip">Doosan</span></div></td></tr>
+        <tr><td>28</td><td>PLC Industrial Controllers</td><td>Industrial Software</td><td><span class="badge b-high">● High 7.2</span></td><td>Hard (ecosystem)</td><td>10–20 years</td><td><div class="chips"><span class="chip">Rockwell</span><span class="chip">Siemens</span><span class="chip">Mitsubishi</span></div></td></tr>
+        <tr><td>29</td><td>Semiconductor-Grade Silicon Wafers</td><td>Materials</td><td><span class="badge b-high">● High 7.2</span></td><td>Hard</td><td>6–10 years</td><td><div class="chips"><span class="chip">Shin-Etsu</span><span class="chip">SUMCO</span><span class="chip">Siltronic</span></div></td></tr>
+        <tr><td>30</td><td>Rare Earth Permanent Magnets</td><td>Materials</td><td><span class="badge b-high">● High 7.2</span></td><td>Geopolitical</td><td>10–20 years</td><td><div class="chips"><span class="chip">MP Materials</span><span class="chip">Lynas</span><span class="chip">China RE</span></div></td></tr>
+        <tr><td>31</td><td>High-Performance Robot Controllers</td><td>Software / Hardware</td><td><span class="badge b-high">● High 7.0</span></td><td>Medium-Hard</td><td>5–8 years</td><td><div class="chips"><span class="chip">FANUC</span><span class="chip">ABB IRC5</span><span class="chip">Yaskawa</span></div></td></tr>
+        <tr><td>32</td><td>Robot Teach Pendant Software</td><td>Software / UX</td><td><span class="badge b-med">● Medium 6.8</span></td><td>Medium</td><td>3–5 years</td><td><div class="chips"><span class="chip">FANUC</span><span class="chip">ABB</span><span class="chip">KUKA</span></div></td></tr>
+        <tr><td>33</td><td>Advanced Precision Bearings</td><td>Mechanical</td><td><span class="badge b-med">● Medium 6.8</span></td><td>Hard</td><td>5–8 years</td><td><div class="chips"><span class="chip">NSK</span><span class="chip">SKF</span><span class="chip">Schaeffler</span></div></td></tr>
+        <tr><td>34</td><td>Robot Vision Systems (3D)</td><td>Machine Vision</td><td><span class="badge b-med">● Medium 6.8</span></td><td>Medium-Hard</td><td>4–7 years</td><td><div class="chips"><span class="chip">Cognex</span><span class="chip">SICK</span><span class="chip">Zivid</span></div></td></tr>
+        <tr><td>35</td><td>Robot Grippers / End Effectors</td><td>Hardware</td><td><span class="badge b-med">● Medium 6.5</span></td><td>Medium</td><td>3–5 years</td><td><div class="chips"><span class="chip">Robotiq</span><span class="chip">Zimmer</span><span class="chip">Destaco</span></div></td></tr>
+        <tr><td>36</td><td>High-Resolution Industrial Cameras</td><td>Machine Vision</td><td><span class="badge b-med">● Medium 6.5</span></td><td>Medium</td><td>3–6 years</td><td><div class="chips"><span class="chip">Basler</span><span class="chip">Allied Vision</span><span class="chip">Teledyne</span></div></td></tr>
+        <tr><td>37</td><td>Fleet Management / RMF Software</td><td>Software</td><td><span class="badge b-med">● Medium 6.5</span></td><td>Medium (network eff.)</td><td>4–7 years</td><td><div class="chips"><span class="chip">InOrbit</span><span class="chip">Formant</span><span class="chip">OSRF</span></div></td></tr>
+        <tr><td>38</td><td>Functional Safety Software (SIL)</td><td>Software</td><td><span class="badge b-med">● Medium 6.3</span></td><td>Hard (cert. burden)</td><td>5–8 years</td><td><div class="chips"><span class="chip">Pilz</span><span class="chip">Siemens</span><span class="chip">TTTech</span></div></td></tr>
+        <tr><td>39</td><td>Robot Wiring Harnesses</td><td>Electrical / Mechanical</td><td><span class="badge b-med">● Medium 6.2</span></td><td>Medium</td><td>3–5 years</td><td><div class="chips"><span class="chip">Igus</span><span class="chip">Lapp Group</span><span class="chip">Leoni</span></div></td></tr>
+        <tr><td>40</td><td>Simulation &amp; Digital Twin Platforms</td><td>Software</td><td><span class="badge b-med">● Medium 6.2</span></td><td>Hard (data/models)</td><td>6–10 years</td><td><div class="chips"><span class="chip">NVIDIA Omniverse</span><span class="chip">Siemens</span></div></td></tr>
+        <tr><td>41</td><td>Vacuum Components (Fab Tools)</td><td>Materials / Equipment</td><td><span class="badge b-med">● Medium 6.0</span></td><td>Medium</td><td>4–6 years</td><td><div class="chips"><span class="chip">VAT Group</span><span class="chip">MKS Instruments</span></div></td></tr>
+        <tr><td>42</td><td>Specialty Lubricants (Precision Mech.)</td><td>Materials</td><td><span class="badge b-med">● Medium 6.0</span></td><td>Medium</td><td>3–5 years</td><td><div class="chips"><span class="chip">Klüber</span><span class="chip">Fuchs</span><span class="chip">Dow Corning</span></div></td></tr>
+        <tr><td>43</td><td>Robot Operating System (ROS2)</td><td>Software (Open)</td><td><span class="badge b-med">● Medium 5.8</span></td><td>Low (open source)</td><td>5–10 years</td><td><div class="chips"><span class="chip">Open Robotics</span><span class="chip">NVIDIA</span><span class="chip">AWS</span></div></td></tr>
+        <tr><td>44</td><td>Thermal Management Materials</td><td>Materials</td><td><span class="badge b-med">● Medium 5.5</span></td><td>Medium</td><td>3–5 years</td><td><div class="chips"><span class="chip">Henkel</span><span class="chip">Parker LORD</span><span class="chip">3M</span></div></td></tr>
+        <tr><td>45</td><td>Industrial Communication Protocols</td><td>Connectivity</td><td><span class="badge b-med">● Medium 5.5</span></td><td>Low-Medium</td><td>3–5 years</td><td><div class="chips"><span class="chip">EtherCAT TG</span><span class="chip">HMS Networks</span></div></td></tr>
+        <tr><td>46</td><td>High-Strength Structural Composites</td><td>Materials</td><td><span class="badge b-med">● Medium 5.2</span></td><td>Medium</td><td>3–5 years</td><td><div class="chips"><span class="chip">Hexcel</span><span class="chip">Toray</span><span class="chip">SGL Carbon</span></div></td></tr>
+        <tr><td>47</td><td>Battery Technology (Mobile Robots)</td><td>Power</td><td><span class="badge b-med">● Medium 5.2</span></td><td>Hard (chemistry)</td><td>5–10 years</td><td><div class="chips"><span class="chip">CATL</span><span class="chip">BYD</span><span class="chip">Panasonic</span></div></td></tr>
+        <tr><td>48</td><td>Vision-Language Models (VLMs)</td><td>AI Software</td><td><span class="badge b-med">● Medium 5.0</span></td><td>Hard (data + compute)</td><td>3–6 years</td><td><div class="chips"><span class="chip">Google DeepMind</span><span class="chip">NVIDIA</span><span class="chip">OpenAI</span></div></td></tr>
+        <tr><td>49</td><td>Robot Teaching &amp; Programming Tools</td><td>Software</td><td><span class="badge b-med">● Medium 4.8</span></td><td>Medium</td><td>3–5 years</td><td><div class="chips"><span class="chip">Wandelbots</span><span class="chip">RoboDK</span><span class="chip">FANUC</span></div></td></tr>
+        <tr><td>50</td><td>Structural Steel / Aluminum Extrusions</td><td>Materials</td><td><span class="badge b-low">● Moderate 4.0</span></td><td>Low</td><td>1–2 years</td><td><div class="chips"><span class="chip">Item</span><span class="chip">80/20</span><span class="chip">Bosch Rexroth</span></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose" style="margin-top:32px">
+    <p>The distribution of this ranking reveals a critical structural insight: <strong>the top 15 bottlenecks are overwhelmingly controlled by Japanese and European companies that are almost entirely absent from Western institutional portfolios</strong>. Harmonic Drive Systems (#4), HEIDENHAIN (#7), Nabtesco (#12), and Renishaw (#7) are not household names outside specialist industrial circles — yet they supply components without which the Physical AI revolution cannot proceed.</p>
+    <p>The geopolitical dimension of bottleneck #30 — rare earth permanent magnets — deserves special attention. China controls approximately 85% of global rare earth processing capacity. The permanent magnets in every robot motor, every servo drive, and every electric vehicle traction system are dependent on Chinese rare earth supply chains. This is perhaps the single most politically consequential bottleneck in the entire Physical AI ecosystem, and one that Western governments are spending billions to address with limited success to date.</p>
+    <p>Part II of this report applies the full ASML Framework scoring methodology, ranks every bottleneck by long-term investment attractiveness, identifies 25 global small-cap hidden compounders, maps the Indian listed equity opportunity, and delivers the complete 2025–2045 Physical AI investment roadmap.</p>
+  </div>
+</section>
+
+<!-- ── REPORT FOOTER ───────────────────────────────────────────── -->
+<footer class="report-footer">
+  <div>
+    <div class="rf-col-lbl">About This Report</div>
+    <div class="rf-col-body">This document is Part I of a two-part institutional research series on the Global Physical AI &amp; Robotics Super-Cycle. It is produced by the Physical AI Research Consortium and is intended for professional investors, fund managers, and institutional research professionals.</div>
+  </div>
+  <div>
+    <div class="rf-col-lbl">Scope of Part I</div>
+    <div class="rf-col-body">Chapters 1–4: The Physical AI Revolution thesis, the six computing eras, four macro tailwinds, the complete eight-tier global value chain, eight indispensable bottleneck case studies, and the top 50 ranked robotics bottlenecks.</div>
+  </div>
+  <div>
+    <div class="rf-col-lbl">Part II Preview</div>
+    <div class="rf-col-body">Chapters 5–13: Value attribution by layer, ASML Framework full scoring, 25 global hidden compounders, 15 mid-cap compounders, India equity mapping, India small-cap screen, future toll booth analysis, capital cycle classification, and the 2025–2045 investment roadmap.</div>
+  </div>
+</footer>
+<div class="rf-nav">
+  <span>© 2026 Physical AI Research Consortium &nbsp;·&nbsp; Institutional Research &nbsp;·&nbsp; Confidential</span>
+  <span>Part I of II &nbsp;·&nbsp; <strong>Part II →</strong></span>
+</div>
+
+</main>
+
+<script>
+// ── Active nav item on scroll ──
+const navItems = document.querySelectorAll('.nav-item');
+const sections = [];
+navItems.forEach(item => {
+  const href = item.getAttribute('href');
+  if (href && href.startsWith('#')) {
+    const el = document.getElementById(href.slice(1));
+    if (el) sections.push({ el, item });
+  }
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navItems.forEach(i => i.classList.remove('active'));
+      const match = sections.find(s => s.el === entry.target);
+      if (match) match.item.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+sections.forEach(s => observer.observe(s.el));
+
+// ── Sidebar smooth scroll ──
+navItems.forEach(item => {
+  item.addEventListener('click', (e) => {
+    const href = item.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      e.preventDefault();
+      const target = document.getElementById(href.slice(1));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>

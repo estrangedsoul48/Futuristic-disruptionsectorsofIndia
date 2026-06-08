@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Physical AI &amp; Robotics Super-Cycle — Part II | Institutional Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#06080F;
+  --surface:#0C0F1C;
+  --surface-2:#111526;
+  --surface-3:#181D32;
+  --border:rgba(200,169,110,0.13);
+  --border-light:rgba(255,255,255,0.055);
+  --gold:#C8A96E;
+  --gold-dim:#8A7248;
+  --gold-bright:#E8C888;
+  --blue:#4A9EFF;
+  --green:#3DD68C;
+  --red:#FF5050;
+  --amber:#FFB547;
+  --saffron:#E87D2B;
+  --saffron-dim:rgba(232,125,43,0.12);
+  --text-1:#EAE6DE;
+  --text-2:#9AA0B8;
+  --text-3:#525870;
+  --font-display:'Fraunces',Georgia,serif;
+  --font-body:'Spectral',Georgia,serif;
+  --font-ui:'Syne',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+  --sidebar-w:265px;
+  --r:4px;
+  --r-lg:8px;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--text-1);font-family:var(--font-body);line-height:1.75;display:flex;min-height:100vh;overflow-x:hidden}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:var(--surface)}
+::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px}
+
+/* ── SIDEBAR ─────────────────────────────────────────────── */
+.sidebar{width:var(--sidebar-w);min-height:100vh;background:var(--surface);border-right:1px solid var(--border);position:fixed;top:0;left:0;display:flex;flex-direction:column;z-index:100;overflow-y:auto}
+.sb-head{padding:24px 18px 18px;border-bottom:1px solid var(--border)}
+.sb-kicker{font-family:var(--font-mono);font-size:8.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+.sb-title{font-family:var(--font-display);font-size:12.5px;font-weight:600;color:var(--text-1);line-height:1.45;margin-bottom:10px}
+.sb-badge{display:inline-block;font-family:var(--font-mono);font-size:8px;font-weight:500;background:rgba(200,169,110,.1);color:var(--gold);padding:2px 8px;border-radius:2px;border:1px solid rgba(200,169,110,.2)}
+.part-sw{display:flex;gap:4px;padding:13px 18px;border-bottom:1px solid var(--border)}
+.p-btn{flex:1;padding:6px 4px;font-family:var(--font-mono);font-size:8.5px;font-weight:500;letter-spacing:.1em;border:1px solid var(--border-light);border-radius:var(--r);cursor:pointer;text-align:center;transition:all .2s;background:transparent;color:var(--text-3)}
+.p-btn.active{background:rgba(200,169,110,.1);color:var(--gold);border-color:var(--gold-dim)}
+.nav-sec{padding:12px 0;border-bottom:1px solid var(--border-light)}
+.nav-label{font-family:var(--font-mono);font-size:8px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--text-3);padding:0 18px 6px}
+.nav-item{display:flex;align-items:center;gap:9px;padding:6px 18px;font-family:var(--font-ui);font-size:11px;font-weight:500;color:var(--text-2);text-decoration:none;transition:all .15s;border-left:2px solid transparent;cursor:pointer}
+.nav-item:hover{color:var(--text-1);background:rgba(255,255,255,.025);border-left-color:var(--gold-dim)}
+.nav-item.active{color:var(--gold);background:rgba(200,169,110,.055);border-left-color:var(--gold)}
+.nav-item.india{color:var(--text-2)}
+.nav-item.india:hover,.nav-item.india.active{color:var(--saffron);background:rgba(232,125,43,.055);border-left-color:var(--saffron)}
+.nav-dot{width:4px;height:4px;border-radius:50%;background:currentColor;flex-shrink:0;opacity:.5}
+.nav-item.active .nav-dot{opacity:1}
+.sb-foot{margin-top:auto;padding:14px 18px;border-top:1px solid var(--border-light);font-family:var(--font-mono);font-size:8px;color:var(--text-3);line-height:2}
+
+/* ── MAIN ─────────────────────────────────────────────────── */
+.main{margin-left:var(--sidebar-w);flex:1;min-height:100vh}
+
+/* ── COVER ────────────────────────────────────────────────── */
+.cover{min-height:100vh;background:var(--bg);position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:0 80px 72px;overflow:hidden}
+.cov-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,169,110,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(200,169,110,.03) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse 90% 80% at 50% 50%,black 10%,transparent 100%)}
+.cov-glow{position:absolute;top:15%;right:8%;width:550px;height:550px;background:radial-gradient(ellipse,rgba(232,125,43,.04) 0%,transparent 70%);pointer-events:none}
+.cov-glow2{position:absolute;bottom:5%;left:0;width:450px;height:450px;background:radial-gradient(ellipse,rgba(200,169,110,.04) 0%,transparent 70%);pointer-events:none}
+.cov-accent-line{position:absolute;top:0;right:160px;width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(200,169,110,.18),transparent)}
+.cov-part{position:absolute;top:36px;right:80px;font-family:var(--font-ui);font-size:11px;font-weight:600;color:var(--text-3);border:1px solid var(--border);padding:7px 16px;border-radius:var(--r);letter-spacing:.1em}
+.cov-meta{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;position:relative}
+.cov-h1{font-family:var(--font-display);font-size:clamp(34px,4.8vw,68px);font-weight:300;line-height:1.06;color:var(--text-1);margin-bottom:14px;max-width:820px;position:relative}
+.cov-h1 strong{font-weight:700;color:var(--gold)}
+.cov-sub{font-family:var(--font-display);font-size:clamp(15px,1.7vw,22px);font-weight:300;font-style:italic;color:var(--text-2);margin-bottom:44px;max-width:680px;position:relative}
+.cov-rule{width:72px;height:1px;background:var(--gold);margin-bottom:36px;position:relative}
+.cov-ch-list{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);max-width:720px;border:1px solid var(--border);position:relative}
+.cov-ch{background:var(--bg);padding:16px 20px}
+.cov-ch-n{font-family:var(--font-mono);font-size:8.5px;color:var(--text-3);margin-bottom:5px;letter-spacing:.1em}
+.cov-ch-t{font-family:var(--font-ui);font-size:12px;font-weight:600;color:var(--text-2)}
+.cov-scroll{position:absolute;bottom:28px;right:80px;font-family:var(--font-mono);font-size:8.5px;color:var(--text-3);letter-spacing:.15em;display:flex;align-items:center;gap:7px}
+@keyframes bd{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+.sarr{animation:bd 2s ease-in-out infinite}
+
+/* ── CHAPTER DIVIDER ─────────────────────────────────────── */
+.ch-div{background:var(--surface);padding:44px 80px;border-bottom:1px solid var(--border-light);display:flex;align-items:center;gap:28px}
+.ch-div.india-ch{background:linear-gradient(135deg,var(--surface),rgba(232,125,43,.06))}
+.ch-num{font-family:var(--font-display);font-size:88px;font-weight:700;color:var(--surface-3);line-height:1;user-select:none;flex-shrink:0}
+.ch-div.india-ch .ch-num{color:rgba(232,125,43,.15)}
+.ch-kicker{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.ch-div.india-ch .ch-kicker{color:var(--saffron)}
+.ch-title{font-family:var(--font-display);font-size:clamp(24px,2.8vw,38px);font-weight:300;color:var(--text-1);line-height:1.2}
+.ch-title strong{font-weight:700}
+
+/* ── SECTIONS ─────────────────────────────────────────────── */
+.section{max-width:1080px;margin:0 auto;padding:72px 80px;border-bottom:1px solid var(--border-light)}
+.section.india-section{border-left:3px solid rgba(232,125,43,.25)}
+.sec-num{font-family:var(--font-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.india-section .sec-num{color:var(--saffron)}
+.sec-title{font-family:var(--font-display);font-size:clamp(26px,3vw,44px);font-weight:300;color:var(--text-1);line-height:1.15;margin-bottom:8px}
+.sec-title strong{font-weight:700}
+.sec-rule{width:56px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin:18px 0 28px}
+.india-section .sec-rule{background:linear-gradient(90deg,var(--saffron),transparent)}
+.sec-lead{font-family:var(--font-body);font-size:17.5px;font-weight:300;color:var(--text-2);line-height:1.72;margin-bottom:36px;max-width:740px;font-style:italic}
+.prose{font-size:14.5px;color:var(--text-1);line-height:1.87;max-width:740px}
+.prose p{margin-bottom:18px}
+.prose strong{color:var(--gold);font-weight:600}
+
+/* ── CALLOUT ──────────────────────────────────────────────── */
+.callout{border-left:3px solid var(--gold);background:rgba(200,169,110,.055);padding:18px 22px;margin:28px 0;border-radius:0 var(--r) var(--r) 0}
+.callout.india{border-left-color:var(--saffron);background:var(--saffron-dim)}
+.callout-label{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+.callout.india .callout-label{color:var(--saffron)}
+.callout-text{font-family:var(--font-display);font-size:16px;font-weight:400;font-style:italic;color:var(--text-1);line-height:1.65}
+
+/* ── THESIS BOX ───────────────────────────────────────────── */
+.thesis{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-lg);padding:32px 36px;margin:32px 0;position:relative;overflow:hidden}
+.thesis::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--gold),var(--gold-dim))}
+.thesis-label{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.thesis-text{font-family:var(--font-display);font-size:18px;font-weight:300;font-style:italic;color:var(--text-1);line-height:1.68}
+.thesis-text strong{font-style:normal;font-weight:700;color:var(--gold)}
+
+/* ── SEGMENT RANKING ──────────────────────────────────────── */
+.seg-list{margin:36px 0;display:flex;flex-direction:column;gap:8px}
+.seg-item{display:grid;grid-template-columns:40px 1fr 120px 140px 100px;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--border-light);border-radius:var(--r);padding:14px 20px;transition:all .2s}
+.seg-item:hover{border-color:rgba(200,169,110,.2);transform:translateX(3px)}
+.seg-item:nth-child(1),.seg-item:nth-child(2),.seg-item:nth-child(3){border-left:2px solid var(--gold)}
+.seg-rank-n{font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--surface-3);text-align:center}
+.seg-item:nth-child(1) .seg-rank-n,.seg-item:nth-child(2) .seg-rank-n,.seg-item:nth-child(3) .seg-rank-n{color:var(--gold-dim)}
+.seg-name{font-family:var(--font-ui);font-size:14px;font-weight:700;color:var(--text-1);margin-bottom:2px}
+.seg-sub{font-family:var(--font-body);font-size:11.5px;color:var(--text-3)}
+.seg-gm{font-family:var(--font-mono);font-size:11.5px;color:var(--gold);font-weight:500}
+.seg-gm-sub{font-family:var(--font-mono);font-size:9px;color:var(--text-3)}
+.seg-stars{color:var(--gold);font-size:13px;letter-spacing:1px}
+.seg-moat-bar{width:100%;height:4px;background:var(--surface-3);border-radius:2px;overflow:hidden;margin-top:4px}
+.seg-moat-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--gold-dim),var(--gold))}
+
+/* ── ASML SCORE CARDS ─────────────────────────────────────── */
+.asml-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:32px 0}
+.asml-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--r-lg);padding:18px 16px;transition:all .25s;position:relative;overflow:hidden}
+.asml-card:hover{border-color:rgba(200,169,110,.22);transform:translateY(-2px)}
+.asml-card::after{content:attr(data-score);position:absolute;top:-10px;right:-5px;font-family:var(--font-display);font-size:80px;font-weight:700;color:rgba(255,255,255,.025);line-height:1;pointer-events:none}
+.asml-co{font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--text-1);margin-bottom:2px}
+.asml-ticker{font-family:var(--font-mono);font-size:8.5px;color:var(--gold);background:rgba(200,169,110,.08);border:1px solid rgba(200,169,110,.15);padding:1px 6px;border-radius:2px;display:inline-block;margin-bottom:8px}
+.asml-score-val{font-family:var(--font-display);font-size:40px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:2px}
+.asml-score-lbl{font-family:var(--font-mono);font-size:8px;color:var(--text-3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.asml-dims{display:flex;flex-direction:column;gap:5px}
+.asml-dim{display:flex;align-items:center;gap:6px}
+.asml-dim-name{font-family:var(--font-mono);font-size:8.5px;color:var(--text-3);width:88px;flex-shrink:0}
+.asml-dim-track{flex:1;height:3px;background:var(--surface-3);border-radius:2px;overflow:hidden}
+.asml-dim-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--gold-dim),var(--gold))}
+.asml-dim-val{font-family:var(--font-mono);font-size:8.5px;color:var(--gold);width:18px;text-align:right}
+
+/* ── COMPOUNDER DISCOVERY CARDS ───────────────────────────── */
+.comp-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:28px 0}
+.comp-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--r-lg);padding:0;overflow:hidden;transition:all .28s}
+.comp-card:hover{border-color:rgba(200,169,110,.22);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.35)}
+.comp-head{padding:16px 18px 12px;background:var(--surface-2);border-bottom:1px solid var(--border-light)}
+.comp-name{font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--text-1);margin-bottom:2px}
+.comp-ticker{font-family:var(--font-mono);font-size:8px;color:var(--gold);background:rgba(200,169,110,.08);border:1px solid rgba(200,169,110,.15);padding:1px 6px;border-radius:2px;display:inline-block}
+.comp-country{font-family:var(--font-ui);font-size:10px;font-weight:500;color:var(--text-3);margin-top:3px}
+.comp-body{padding:14px 18px}
+.comp-thesis{font-family:var(--font-body);font-size:12.5px;color:var(--text-2);line-height:1.72;margin-bottom:12px}
+.comp-metrics{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-light);border:1px solid var(--border-light);border-radius:var(--r);overflow:hidden}
+.comp-met{background:var(--surface);padding:8px 10px}
+.comp-met-l{font-family:var(--font-mono);font-size:8px;color:var(--text-3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.comp-met-v{font-family:var(--font-ui);font-size:12px;font-weight:600;color:var(--text-1)}
+.comp-star{font-family:var(--font-mono);font-size:8.5px;color:var(--gold);margin-top:8px}
+
+/* ── INDIA COMPANY CARDS ──────────────────────────────────── */
+.india-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0}
+.india-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--r-lg);overflow:hidden;transition:all .25s}
+.india-card:hover{border-color:rgba(232,125,43,.25);transform:translateY(-2px);box-shadow:0 12px 36px rgba(0,0,0,.28)}
+.india-head{padding:16px 20px 12px;background:var(--surface-2);border-bottom:1px solid var(--border-light);display:flex;justify-content:space-between;align-items:flex-start}
+.india-name{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text-1)}
+.india-ticker{font-family:var(--font-mono);font-size:8px;color:var(--saffron);background:rgba(232,125,43,.08);border:1px solid rgba(232,125,43,.2);padding:1px 6px;border-radius:2px;display:inline-block;margin-top:3px}
+.india-cat{font-family:var(--font-ui);font-size:10px;font-weight:500;color:var(--text-3);margin-top:2px}
+.india-asml{text-align:right}
+.india-asml-val{font-family:var(--font-display);font-size:30px;font-weight:700;color:var(--saffron);line-height:1}
+.india-asml-lbl{font-family:var(--font-mono);font-size:7.5px;color:var(--text-3);letter-spacing:.1em;text-transform:uppercase}
+.india-body{padding:16px 20px}
+.india-section-l{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px}
+.india-analysis{font-family:var(--font-body);font-size:12.5px;color:var(--text-2);line-height:1.72;margin-bottom:12px}
+.india-metrics{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-light);border:1px solid var(--border-light);border-radius:var(--r);overflow:hidden}
+.india-met{background:var(--surface);padding:8px 10px}
+.india-met-l{font-family:var(--font-mono);font-size:8px;color:var(--text-3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.india-met-v{font-family:var(--font-ui);font-size:12px;font-weight:600;color:var(--text-1)}
+
+/* ── STRENGTH/WEAKNESS GRID ───────────────────────────────── */
+.sw-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0}
+.sw-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--r-lg);padding:22px}
+.sw-card.strength{border-top:2px solid var(--green)}
+.sw-card.weakness{border-top:2px solid var(--red)}
+.sw-label{font-family:var(--font-mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:14px}
+.sw-card.strength .sw-label{color:var(--green)}
+.sw-card.weakness .sw-label{color:var(--red)}
+.sw-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border-light)}
+.sw-item:last-child{border-bottom:none}
+.sw-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:7px}
+.sw-card.strength .sw-dot{background:var(--green)}
+.sw-card.weakness .sw-dot{background:var(--red)}
+.sw-text{font-family:var(--font-body);font-size:13px;color:var(--text-2);line-height:1.65}
+
+/* ── CAPITAL CYCLE CARDS ──────────────────────────────────── */
+.cycle-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:32px 0}
+.cycle-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--r-lg);padding:24px;position:relative;overflow:hidden}
+.cycle-card.winner{border-top:2px solid var(--green)}
+.cycle-card.cyclical{border-top:2px solid var(--gold)}
+.cycle-card.trap{border-top:2px solid var(--amber)}
+.cycle-card.speculative{border-top:2px solid var(--red)}
+.cycle-label{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px}
+.cycle-card.winner .cycle-label{color:var(--green)}
+.cycle-card.cyclical .cycle-label{color:var(--gold)}
+.cycle-card.trap .cycle-label{color:var(--amber)}
+.cycle-card.speculative .cycle-label{color:var(--red)}
+.cycle-title{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--text-1);margin-bottom:12px}
+.cycle-body{font-family:var(--font-body);font-size:13.5px;color:var(--text-2);line-height:1.75}
+.cycle-examples{margin-top:14px;padding-top:14px;border-top:1px solid var(--border-light);font-family:var(--font-mono);font-size:10px;color:var(--text-3)}
+.cycle-examples span{display:inline-block;padding:2px 6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:2px;margin:2px 2px 0 0}
+
+/* ── 2045 TIMELINE ────────────────────────────────────────── */
+.timeline{margin:40px 0;position:relative;padding-left:40px}
+.timeline::before{content:'';position:absolute;left:16px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--gold),var(--gold-dim),transparent)}
+.tl-item{position:relative;margin-bottom:32px}
+.tl-dot{position:absolute;left:-31px;top:6px;width:14px;height:14px;border-radius:50%;border:2px solid var(--gold);background:var(--bg);display:flex;align-items:center;justify-content:center}
+.tl-dot-inner{width:4px;height:4px;border-radius:50%;background:var(--gold)}
+.tl-phase{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.tl-period{font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:8px}
+.tl-title{font-family:var(--font-ui);font-size:15px;font-weight:700;color:var(--gold-bright);margin-bottom:10px}
+.tl-body{font-family:var(--font-body);font-size:13.5px;color:var(--text-2);line-height:1.78;max-width:680px}
+.tl-body strong{color:var(--text-1);font-weight:600}
+.tl-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
+.tl-tag{font-family:var(--font-mono);font-size:9px;padding:2px 8px;background:rgba(200,169,110,.08);border:1px solid rgba(200,169,110,.15);border-radius:2px;color:var(--gold)}
+
+/* ── FINAL TABLE ──────────────────────────────────────────── */
+.table-wrap{overflow-x:auto;margin:28px 0;border:1px solid var(--border-light);border-radius:var(--r-lg)}
+.data-tbl{width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:11px}
+.data-tbl th{background:var(--surface-2);color:var(--text-3);font-size:8px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:10px 12px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap}
+.data-tbl td{padding:9px 12px;border-bottom:1px solid var(--border-light);color:var(--text-2);vertical-align:middle}
+.data-tbl tr:last-child td{border-bottom:none}
+.data-tbl tbody tr:hover td{background:rgba(255,255,255,.018);color:var(--text-1)}
+.data-tbl td:nth-child(1){color:var(--text-1);font-weight:600;font-size:12px;font-family:var(--font-display)}
+.data-tbl td:nth-child(2){color:var(--text-1);font-weight:500}
+.tr-india td:nth-child(1){color:var(--saffron)}
+.score-pill{display:inline-block;font-family:var(--font-mono);font-size:10.5px;font-weight:600;padding:2px 8px;border-radius:2px}
+.sp-elite{background:rgba(61,214,140,.1);color:var(--green);border:1px solid rgba(61,214,140,.2)}
+.sp-high{background:rgba(200,169,110,.1);color:var(--gold);border:1px solid rgba(200,169,110,.2)}
+.sp-med{background:rgba(74,158,255,.1);color:var(--blue);border:1px solid rgba(74,158,255,.2)}
+.sp-low{background:rgba(255,181,71,.1);color:var(--amber);border:1px solid rgba(255,181,71,.2)}
+.prob-bar{display:flex;align-items:center;gap:6px}
+.prob-track{width:60px;height:4px;background:var(--surface-3);border-radius:2px;overflow:hidden;flex-shrink:0}
+.prob-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--gold-dim),var(--gold))}
+.prob-text{font-family:var(--font-mono);font-size:10.5px;color:var(--gold)}
+.tbl-section-row td{background:var(--surface-2);font-family:var(--font-mono);font-size:8px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--text-3);padding:7px 12px;border-bottom:1px solid var(--border-light)}
+.tbl-section-row.india-row td{color:var(--saffron)}
+.exposure-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}
+.exp-high{background:var(--green)}
+.exp-med{background:var(--gold)}
+.exp-low{background:var(--amber)}
+.exp-min{background:var(--red);opacity:.6}
+
+/* ── VERDICT CARDS ────────────────────────────────────────── */
+.verdict-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0}
+.verdict-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--r-lg);padding:22px;transition:all .25s}
+.verdict-card:hover{border-color:rgba(200,169,110,.2)}
+.verdict-q{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.verdict-a{font-family:var(--font-body);font-size:14px;color:var(--text-2);line-height:1.75}
+.verdict-a strong{color:var(--gold);font-weight:600}
+
+/* ── FOOTER ───────────────────────────────────────────────── */
+.report-footer{background:var(--surface);border-top:1px solid var(--border);padding:40px 80px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px}
+.rf-col-lbl{font-family:var(--font-mono);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px}
+.rf-col-body{font-family:var(--font-body);font-size:12px;color:var(--text-2);line-height:1.8}
+.rf-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 80px;border-top:1px solid var(--border-light);font-family:var(--font-mono);font-size:9px;color:var(--text-3)}
+.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border-light);border:1px solid var(--border-light);border-radius:var(--r-lg);overflow:hidden;margin:28px 0}
+.met-box{background:var(--surface);padding:22px 18px}
+.met-label{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);margin-bottom:7px}
+.met-value{font-family:var(--font-display);font-size:30px;font-weight:600;color:var(--gold);line-height:1;margin-bottom:4px}
+.met-sub{font-family:var(--font-body);font-size:11.5px;color:var(--text-3)}
+@keyframes fiu{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.section,.ch-div{animation:fiu .5s ease both}
+@media(max-width:1100px){.sidebar{display:none}.main{margin-left:0}.section{padding:56px 40px}.cover{padding:36px 40px 60px}.asml-grid{grid-template-columns:1fr 1fr}.ch-div{padding:36px 40px}}
+@media(max-width:768px){.section{padding:44px 22px}.cover{padding:22px 22px 44px}.comp-grid{grid-template-columns:1fr}.india-grid{grid-template-columns:1fr}.verdict-grid{grid-template-columns:1fr}.cycle-grid{grid-template-columns:1fr}.sw-grid{grid-template-columns:1fr}.asml-grid{grid-template-columns:1fr 1fr}.metrics-row{grid-template-columns:1fr 1fr}.report-footer{grid-template-columns:1fr;padding:32px 22px}.rf-nav{padding:16px 22px}}
+</style>
+</head>
+<body>
+
+<!-- ═══════ SIDEBAR ═══════ -->
+<nav class="sidebar">
+  <div class="sb-head">
+    <div class="sb-kicker">Physical AI Research Consortium</div>
+    <div class="sb-title">Global Physical AI &amp; Robotics Super-Cycle</div>
+    <span class="sb-badge">PART II OF II</span>
+  </div>
+  <div class="part-sw">
+    <button class="p-btn" onclick="alert('Part I covers Chapters 1–4: The Revolution, Value Chain, Bottleneck Case Studies, Top 50 Bottlenecks.')">Part I</button>
+    <button class="p-btn active">Part II</button>
+  </div>
+  <div class="nav-sec">
+    <div class="nav-label">Ch 5 — Value Attribution</div>
+    <a href="#ch5" class="nav-item active"><span class="nav-dot"></span>Where Value Lives</a>
+    <a href="#seg-ranking" class="nav-item"><span class="nav-dot"></span>Segment Rankings</a>
+  </div>
+  <div class="nav-sec">
+    <div class="nav-label">Ch 6 — ASML Framework</div>
+    <a href="#ch6" class="nav-item"><span class="nav-dot"></span>Scoring Methodology</a>
+    <a href="#asml-scores" class="nav-item"><span class="nav-dot"></span>Full Score Cards</a>
+  </div>
+  <div class="nav-sec">
+    <div class="nav-label">Ch 7 — Hidden Compounders</div>
+    <a href="#ch7" class="nav-item"><span class="nav-dot"></span>Global Small-Caps</a>
+    <a href="#midcap" class="nav-item"><span class="nav-dot"></span>Mid-Cap Compounders</a>
+  </div>
+  <div class="nav-sec">
+    <div class="nav-label">Ch 8–10 — India</div>
+    <a href="#ch8" class="nav-item india"><span class="nav-dot"></span>India's Opportunity</a>
+    <a href="#ch9" class="nav-item india"><span class="nav-dot"></span>India Listed Equities</a>
+    <a href="#ch10" class="nav-item india"><span class="nav-dot"></span>India Hidden Compounders</a>
+  </div>
+  <div class="nav-sec">
+    <div class="nav-label">Ch 11 — Future Toll Booths</div>
+    <a href="#ch11" class="nav-item"><span class="nav-dot"></span>The Next ASMLs</a>
+  </div>
+  <div class="nav-sec">
+    <div class="nav-label">Ch 12 — Capital Cycle</div>
+    <a href="#ch12" class="nav-item"><span class="nav-dot"></span>Winners vs. Traps</a>
+  </div>
+  <div class="nav-sec">
+    <div class="nav-label">Ch 13 — Final Verdict</div>
+    <a href="#ch13" class="nav-item"><span class="nav-dot"></span>Investment Verdict</a>
+    <a href="#final-table" class="nav-item"><span class="nav-dot"></span>Master Score Table</a>
+    <a href="#roadmap" class="nav-item"><span class="nav-dot"></span>2025–2045 Roadmap</a>
+  </div>
+  <div class="sb-foot">
+    <div>© 2026 Physical AI Research Consortium</div>
+    <div>Classification: Institutional · Confidential</div>
+    <div>Version 1.0 — Part II of II</div>
+    <div>Chapters 5–13 of 13</div>
+  </div>
+</nav>
+
+<!-- ═══════ MAIN ═══════ -->
+<main class="main">
+
+<!-- ── COVER ────────────────────────────────────────────────── -->
+<section id="cover" class="cover">
+  <div class="cov-grid"></div>
+  <div class="cov-glow"></div>
+  <div class="cov-glow2"></div>
+  <div class="cov-accent-line"></div>
+  <div class="cov-part">PART II OF II</div>
+  <div class="cov-meta">Physical AI Research Consortium &nbsp;·&nbsp; Institutional Research &nbsp;·&nbsp; June 2026</div>
+  <h1 class="cov-h1">Physical AI Super-Cycle<br><strong>Value, Moats &amp; Hidden Winners</strong></h1>
+  <p class="cov-sub">The ASML Framework · Global Hidden Compounders · India Equity Mapping<br>Capital Cycle Analysis · The 2025–2045 Investment Roadmap</p>
+  <div class="cov-rule"></div>
+  <div class="cov-ch-list">
+    <div class="cov-ch"><div class="cov-ch-n">CH 05 — 06</div><div class="cov-ch-t">Value Attribution &amp; ASML Framework</div></div>
+    <div class="cov-ch"><div class="cov-ch-n">CH 07 — 10</div><div class="cov-ch-t">Hidden Compounders · Global &amp; India</div></div>
+    <div class="cov-ch"><div class="cov-ch-n">CH 11 — 13</div><div class="cov-ch-t">Toll Booths · Capital Cycles · Final Verdict</div></div>
+  </div>
+  <div class="cov-scroll">SCROLL TO BEGIN <span class="sarr">↓</span></div>
+</section>
+
+<!-- ═══════ CHAPTER 5 DIVIDER ═══════ -->
+<div id="ch5" class="ch-div">
+  <div class="ch-num">05</div>
+  <div>
+    <div class="ch-kicker">Chapter Five</div>
+    <div class="ch-title">Where Does <strong>Value Live?</strong><br>— Ranking Every Layer of the Stack</div>
+  </div>
+</div>
+
+<!-- ── SEGMENT RANKING ────────────────────────────────────────── -->
+<section id="seg-ranking" class="section">
+  <div class="sec-num">5.0 — Segment Attractiveness Ranking</div>
+  <h2 class="sec-title">The <strong>Hierarchy of Value</strong><br>Across Eight Ecosystem Layers</h2>
+  <div class="sec-rule"></div>
+  <p class="sec-lead">Not all Physical AI exposure is equal. The margin profiles, pricing power, switching costs, and scalability characteristics of each value chain layer differ radically — and will determine which investors generate asymmetric long-term returns versus market-rate returns.</p>
+
+  <div class="seg-list">
+    <div class="seg-item">
+      <div class="seg-rank-n">1</div>
+      <div><div class="seg-name">Precision Actuators (Harmonic &amp; Cycloidal Drives)</div><div class="seg-sub">The physical bottleneck every humanoid and industrial robot requires</div><div class="seg-moat-bar"><div class="seg-moat-fill" style="width:95%"></div></div></div>
+      <div><div class="seg-gm">60–66% GM</div><div class="seg-gm-sub">EBITDA: 28–35%</div></div>
+      <div class="seg-stars">★★★★★</div>
+      <div style="font-family:var(--font-mono);font-size:9.5px;color:var(--green)">Structural Scarcity</div>
+    </div>
+    <div class="seg-item">
+      <div class="seg-rank-n">2</div>
+      <div><div class="seg-name">AI Compute Infrastructure (GPUs / Edge Silicon)</div><div class="seg-sub">CUDA ecosystem and training compute — indispensable for robot AI development</div><div class="seg-moat-bar"><div class="seg-moat-fill" style="width:95%"></div></div></div>
+      <div><div class="seg-gm">68–76% GM</div><div class="seg-gm-sub">EBITDA: 50–60%</div></div>
+      <div class="seg-stars">★★★★★</div>
+      <div style="font-family:var(--font-mono);font-size:9.5px;color:var(--green)">Platform Monopoly</div>
+    </div>
+    <div class="seg-item">
+      <div class="seg-rank-n">3</div>
+      <div><div class="seg-name">Precision Sensors (Encoders, Force/Torque, IMUs)</div><div class="seg-sub">Mission-critical perceptual layer; impossible to substitute without re-engineering</div><div class="seg-moat-bar"><div class="seg-moat-fill" style="width:90%"></div></div></div>
+      <div><div class="seg-gm">55–78% GM</div><div class="seg-gm-sub">EBITDA: 40–55%</div></div>
+      <div class="seg-stars">★★★★★</div>
+      <div style="font-family:var(--font-mono);font-size:9.5px;color:var(--green)">Qualification Moat</div>
+    </div>
+    <div class="seg-item">
+      <div class="seg-rank-n">4</div>
+      <div><div class="seg-name">Machine Vision Systems (Hardware + Software)</div><div class="seg-sub">Application library moats plus recurring software upgrade revenue</div><div class="seg-moat-bar"><div class="seg-moat-fill" style="width:87%"></div></div></div>
+      <div><div class="seg-gm">60–73% GM</div><div class="seg-gm-sub">EBITDA: 35–50%</div></div>
+      <div class="seg-stars">★★★★★</div>
+      <div style="font-family:var(--font-mono);font-size:9.5px;color:var(--green)">Data Library Moat</div>
+    </div>
+    <div class="seg-item">
+      <div class="seg-rank-n">5</div>
+      <div><div class="seg-name">Robotics Software Platform (OS, Simulation, Fleet)</div><div class="seg-sub">Platform moat not yet determined — extraordinary upside for the eventual winner</div><div class="seg-moat-bar"><div class="seg-moat-fill" style="width:82%"></div></div></div>
+      <div><div class="seg-gm">68–85% GM</div><div class="seg-gm-sub">EBITDA: 30–60%</div></div>
+      <div class="seg-stars">★★★★½</div>
+      <div style="font-family:var(--font-mono);font-size:9.5px;color:var(--amber)">Forming Now</div>
+    </div>
+    <div class="seg-item">
+      <div class="seg-rank-n">6</div>
+      <div><div class="seg-name">Semiconductor Equipment (Litho, Etch, Deposition)</div><div class="seg-sub">Indispensable for the silicon that enables all robot intelligence and control</div><div class="seg-moat-bar"><div class="seg-moat-fill" style="width:82%"></div></div></div>
+      <div><div class="seg-gm">46–55% GM</div><div class="seg-gm-sub">EBITDA: 28–40%</div></div>
+      <div class="seg-stars">★★★★½</div>
+      <div style="font-family:var(--font-mono);font-size:9.5px;color:var(--green)">Tech Monopoly</div>
+    </div>
+    <div class="seg-item">
+      <div class="seg-rank-n">7</div>
+      <div><div class="seg-name">Motion Control Systems (Drives, Controllers, Servo)</div><div class="seg-sub">Algorithm depth and installed base create qualification barriers of 2–4 years</div><div class="seg-moat-bar"><div class="seg-moat-fill" style="width:75%"></div></div></div>
+      <div><div class="seg-gm">44–58% GM</div><div class="seg-gm-sub">EBITDA: 22–32%</div></div>
+      <div class="seg-stars">★★★★</div>
+      <div style="font-family:var(--font-mono);font-size:9.5px;color:var(--gold)">Deep Installed Base</div>
+    </div>
+    <div class="seg-item">
+      <div class="seg-rank-n">8</div>
+      <div><div class="seg-name">System Integration (Factory / Warehouse Automation)</div><div class="seg-sub">Domain expertise offsets low margins; limited scalability without proprietary IP</div><div class="seg-moat-bar"><div class="seg-moat-fill" style="width:38%"></div></div></div>
+      <div><div class="seg-gm">18–32% GM</div><div class="seg-gm-sub">EBITDA: 8–14%</div></div>
+      <div class="seg-stars">★★★</div>
+      <div style="font-family:var(--font-mono);font-size:9.5px;color:var(--amber)">Service-Heavy</div>
+    </div>
+  </div>
+
+  <div class="thesis">
+    <div class="thesis-label">The Central Value Insight</div>
+    <div class="thesis-text">"The three tiers commanding the highest margins — precision actuators, AI silicon, and sensors — all share the same characteristic: their products require <strong>years of qualification inside a customer's production or robotics system</strong> before trust is established. Once qualified, the cost of switching exceeds the cost of paying premium pricing indefinitely. This is the precise mechanism by which ASML, Keyence, and Harmonic Drive have sustained extraordinary returns on capital across multiple decades."</div>
+  </div>
+</section>
+
+<!-- ═══════ CHAPTER 6 DIVIDER ═══════ -->
+<div id="ch6" class="ch-div">
+  <div class="ch-num">06</div>
+  <div>
+    <div class="ch-kicker">Chapter Six</div>
+    <div class="ch-title">The <strong>ASML Framework</strong><br>— Scoring Company Indispensability</div>
+  </div>
+</div>
+
+<!-- ── ASML FRAMEWORK ─────────────────────────────────────────── -->
+<section id="asml-scores" class="section">
+  <div class="sec-num">6.0 — Methodology &amp; Scores</div>
+  <h2 class="sec-title">If This Company <strong>Disappeared Tomorrow</strong><br>— Would the Industry Halt?</h2>
+  <div class="sec-rule"></div>
+  <p class="sec-lead">The ASML Framework evaluates company indispensability across five equally weighted dimensions, each scored 0–2 for a maximum score of 10. A score of 9+ indicates ASML-equivalent status: a company whose removal would cause material, multi-year disruption to global Physical AI production.</p>
+
+  <div class="callout">
+    <div class="callout-label">The Five Dimensions (0–2 each)</div>
+    <div class="callout-text"><strong>Criticality</strong> — Would production halt without this company? &nbsp;|&nbsp; <strong>Replication Difficulty</strong> — Years and capital required to build an alternative &nbsp;|&nbsp; <strong>Technology Depth</strong> — Accumulated IP, process recipes, and algorithmic know-how &nbsp;|&nbsp; <strong>Customer Dependence</strong> — Depth of workflow integration and switching cost &nbsp;|&nbsp; <strong>Market Concentration</strong> — Share of global supply controlled by this single firm</div>
+  </div>
+
+  <div class="asml-grid" style="grid-template-columns:repeat(3,1fr)">
+    <!-- ASML -->
+    <div class="asml-card" data-score="10">
+      <div class="asml-co">ASML</div>
+      <div class="asml-ticker">ASML · Netherlands</div>
+      <div class="asml-score-val">10.0</div>
+      <div class="asml-score-lbl">ASML Score — The Benchmark</div>
+      <div class="asml-dims">
+        <div class="asml-dim"><div class="asml-dim-name">Criticality</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:100%"></div></div><div class="asml-dim-val">2.0</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Replication</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:100%"></div></div><div class="asml-dim-val">2.0</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Tech Depth</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:100%"></div></div><div class="asml-dim-val">2.0</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Customer Dep.</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:100%"></div></div><div class="asml-dim-val">2.0</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Mkt. Conc.</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:100%"></div></div><div class="asml-dim-val">2.0</div></div>
+      </div>
+    </div>
+    <!-- TSMC -->
+    <div class="asml-card" data-score="9.8">
+      <div class="asml-co">TSMC</div>
+      <div class="asml-ticker">TSM · Taiwan</div>
+      <div class="asml-score-val">9.8</div>
+      <div class="asml-score-lbl">ASML Score</div>
+      <div class="asml-dims">
+        <div class="asml-dim"><div class="asml-dim-name">Criticality</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:100%"></div></div><div class="asml-dim-val">2.0</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Replication</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:100%"></div></div><div class="asml-dim-val">2.0</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Tech Depth</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:100%"></div></div><div class="asml-dim-val">2.0</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Customer Dep.</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:90%"></div></div><div class="asml-dim-val">1.8</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Mkt. Conc.</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:100%"></div></div><div class="asml-dim-val">2.0</div></div>
+      </div>
+    </div>
+    <!-- NVIDIA -->
+    <div class="asml-card" data-score="9.5">
+      <div class="asml-co">NVIDIA</div>
+      <div class="asml-ticker">NVDA · USA</div>
+      <div class="asml-score-val">9.5</div>
+      <div class="asml-score-lbl">ASML Score</div>
+      <div class="asml-dims">
+        <div class="asml-dim"><div class="asml-dim-name">Criticality</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:100%"></div></div><div class="asml-dim-val">2.0</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Replication</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:90%"></div></div><div class="asml-dim-val">1.8</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Tech Depth</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:100%"></div></div><div class="asml-dim-val">2.0</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Customer Dep.</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:85%"></div></div><div class="asml-dim-val">1.7</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Mkt. Conc.</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:100%"></div></div><div class="asml-dim-val">2.0</div></div>
+      </div>
+    </div>
+    <!-- Harmonic Drive -->
+    <div class="asml-card" data-score="9.2">
+      <div class="asml-co">Harmonic Drive Sys.</div>
+      <div class="asml-ticker">6324.T · Japan</div>
+      <div class="asml-score-val">9.2</div>
+      <div class="asml-score-lbl">ASML Score</div>
+      <div class="asml-dims">
+        <div class="asml-dim"><div class="asml-dim-name">Criticality</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:100%"></div></div><div class="asml-dim-val">2.0</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Replication</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:90%"></div></div><div class="asml-dim-val">1.8</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Tech Depth</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:90%"></div></div><div class="asml-dim-val">1.8</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Customer Dep.</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:90%"></div></div><div class="asml-dim-val">1.8</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Mkt. Conc.</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:90%"></div></div><div class="asml-dim-val">1.8</div></div>
+      </div>
+    </div>
+    <!-- Keyence -->
+    <div class="asml-card" data-score="8.8">
+      <div class="asml-co">Keyence</div>
+      <div class="asml-ticker">6861.T · Japan</div>
+      <div class="asml-score-val">8.8</div>
+      <div class="asml-score-lbl">ASML Score</div>
+      <div class="asml-dims">
+        <div class="asml-dim"><div class="asml-dim-name">Criticality</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:85%"></div></div><div class="asml-dim-val">1.7</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Replication</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:90%"></div></div><div class="asml-dim-val">1.8</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Tech Depth</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:85%"></div></div><div class="asml-dim-val">1.7</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Customer Dep.</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:90%"></div></div><div class="asml-dim-val">1.8</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Mkt. Conc.</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:90%"></div></div><div class="asml-dim-val">1.8</div></div>
+      </div>
+    </div>
+    <!-- FANUC -->
+    <div class="asml-card" data-score="8.5">
+      <div class="asml-co">FANUC</div>
+      <div class="asml-ticker">6954.T · Japan</div>
+      <div class="asml-score-val">8.5</div>
+      <div class="asml-score-lbl">ASML Score</div>
+      <div class="asml-dims">
+        <div class="asml-dim"><div class="asml-dim-name">Criticality</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:85%"></div></div><div class="asml-dim-val">1.7</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Replication</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:85%"></div></div><div class="asml-dim-val">1.7</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Tech Depth</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:80%"></div></div><div class="asml-dim-val">1.6</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Customer Dep.</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:90%"></div></div><div class="asml-dim-val">1.8</div></div>
+        <div class="asml-dim"><div class="asml-dim-name">Mkt. Conc.</div><div class="asml-dim-track"><div class="asml-dim-fill" style="width:85%"></div></div><div class="asml-dim-val">1.7</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CHAPTER 7 DIVIDER ═══════ -->
+<div id="ch7" class="ch-div">
+  <div class="ch-num">07</div>
+  <div>
+    <div class="ch-kicker">Chapter Seven</div>
+    <div class="ch-title">The <strong>Hidden Compounder Hunt</strong><br>— Suppliers Behind the Suppliers</div>
+  </div>
+</div>
+
+<!-- ── GLOBAL HIDDEN COMPOUNDERS ──────────────────────────────── -->
+<section class="section">
+  <div class="sec-num">7.1 — Top 15 Global Small-Cap Hidden Compounders</div>
+  <h2 class="sec-title"><strong>Unknown to Generalists,</strong><br>Indispensable to Every Robot</h2>
+  <div class="sec-rule"></div>
+  <p class="sec-lead">The most compelling Physical AI investments are not the humanoid robot assemblers or the AI model companies commanding front-page coverage. They are the precision component specialists, motion system suppliers, and measurement technology firms that every robot manufacturer must source from — quietly compounding behind the scenes.</p>
+
+  <div class="comp-grid">
+    <div class="comp-card">
+      <div class="comp-head">
+        <div class="comp-name">Harmonic Drive Systems</div>
+        <div class="comp-ticker">6324.T</div>
+        <div class="comp-country">🇯🇵 Japan · ~¥350B market cap</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-thesis">The single most important Physical AI investment outside of NVIDIA and ASML. Every robot joint in every industrial and humanoid robot requires a harmonic drive for zero-backlash precision. Three Japanese firms control the global market; Harmonic Drive Systems controls the technology patents. As humanoid volumes scale from thousands to millions of units, this firm becomes the bottleneck of the entire Physical AI supply chain.</div>
+        <div class="comp-metrics">
+          <div class="comp-met"><div class="comp-met-l">ASML Score</div><div class="comp-met-v">9.2 / 10</div></div>
+          <div class="comp-met"><div class="comp-met-l">Gross Margin</div><div class="comp-met-v">~62%</div></div>
+          <div class="comp-met"><div class="comp-met-l">Robot Exposure</div><div class="comp-met-v">100%</div></div>
+          <div class="comp-met"><div class="comp-met-l">10Y Compounder</div><div class="comp-met-v">92%</div></div>
+        </div>
+        <div class="comp-star">★★★★★ Highest conviction global small-cap</div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-head">
+        <div class="comp-name">Nabtesco Corporation</div>
+        <div class="comp-ticker">6268.T</div>
+        <div class="comp-country">🇯🇵 Japan · ~¥400B market cap</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-thesis">Nabtesco's precision cycloidal gearboxes (RV drives) are the dominant actuator in the shoulder and elbow joints of industrial robots globally — estimated 60%+ global market share. Unlike Harmonic Drive which focuses on wave gear precision, Nabtesco's RV drives excel in high-torque, high-load applications. A combination of both technologies is typically required per robot, making Nabtesco and Harmonic Drive simultaneously indispensable.</div>
+        <div class="comp-metrics">
+          <div class="comp-met"><div class="comp-met-l">ASML Score</div><div class="comp-met-v">8.2 / 10</div></div>
+          <div class="comp-met"><div class="comp-met-l">RV Drive Mkt Sh.</div><div class="comp-met-v">~60% global</div></div>
+          <div class="comp-met"><div class="comp-met-l">Robot Exposure</div><div class="comp-met-v">~45% revenue</div></div>
+          <div class="comp-met"><div class="comp-met-l">10Y Compounder</div><div class="comp-met-v">85%</div></div>
+        </div>
+        <div class="comp-star">★★★★★ Paired with Harmonic Drive as essential holding</div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-head">
+        <div class="comp-name">Renishaw plc</div>
+        <div class="comp-ticker">RSW · LSE</div>
+        <div class="comp-country">🇬🇧 UK · ~£2.2B market cap</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-thesis">Renishaw is one of Britain's greatest hidden engineering champions — a precision measurement and encoder company whose products are embedded in the production of every advanced robot, semiconductor, and aerospace component on earth. Its optical and magnetic encoders provide sub-nanometer positional feedback in machine tools and robot arms. Its metrology systems are the gold standard for quality verification in precision manufacturing, creating two simultaneous Physical AI demand vectors.</div>
+        <div class="comp-metrics">
+          <div class="comp-met"><div class="comp-met-l">ASML Score</div><div class="comp-met-v">7.8 / 10</div></div>
+          <div class="comp-met"><div class="comp-met-l">Operating Margin</div><div class="comp-met-v">~20%</div></div>
+          <div class="comp-met"><div class="comp-met-l">R&amp;D / Revenue</div><div class="comp-met-v">~14%</div></div>
+          <div class="comp-met"><div class="comp-met-l">10Y Compounder</div><div class="comp-met-v">78%</div></div>
+        </div>
+        <div class="comp-star">★★★★½ Significantly under-owned outside the UK</div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-head">
+        <div class="comp-name">THK Co., Ltd.</div>
+        <div class="comp-ticker">6481.T</div>
+        <div class="comp-country">🇯🇵 Japan · ~¥500B market cap</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-thesis">THK invented the linear motion guide in 1972 and has dominated the global market for precision linear motion components for over 50 years. Linear guides and ball screws are fundamental to every robot, CNC machine, and semiconductor manufacturing tool. THK's products enable the precise, frictionless linear motion that robots require for pick-and-place, assembly, and inspection. An underappreciated Physical AI beneficiary with a dominant market position and an extensive global service network.</div>
+        <div class="comp-metrics">
+          <div class="comp-met"><div class="comp-met-l">ASML Score</div><div class="comp-met-v">7.5 / 10</div></div>
+          <div class="comp-met"><div class="comp-met-l">Gross Margin</div><div class="comp-met-v">~40%</div></div>
+          <div class="comp-met"><div class="comp-met-l">Linear Mkt. Share</div><div class="comp-met-v">Global #1</div></div>
+          <div class="comp-met"><div class="comp-met-l">10Y Compounder</div><div class="comp-met-v">72%</div></div>
+        </div>
+        <div class="comp-star">★★★★ Linear motion bottleneck; widely ignored by tech investors</div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-head">
+        <div class="comp-name">Novanta Inc.</div>
+        <div class="comp-ticker">NOVT · Nasdaq</div>
+        <div class="comp-country">🇺🇸 USA · ~$3B market cap</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-thesis">Novanta is a precision motion technology company whose subsystems power surgical robots, semiconductor tools, and factory automation equipment. Its three divisions — Precision Medicine, Advanced Industrial, and Robotics &amp; Automation — span laser scanning, precision motion stages, and motor systems. Novanta operates through a buy-and-build strategy, acquiring niche precision technology businesses and selling into blue-chip end markets that demand 99.99% reliability. Its surgical robot exposure (via MedTech OEMs) adds a healthcare robotics vector to the thesis.</div>
+        <div class="comp-metrics">
+          <div class="comp-met"><div class="comp-met-l">ASML Score</div><div class="comp-met-v">7.0 / 10</div></div>
+          <div class="comp-met"><div class="comp-met-l">Gross Margin</div><div class="comp-met-v">~45%</div></div>
+          <div class="comp-met"><div class="comp-met-l">Organic Growth</div><div class="comp-met-v">8–12% CAGR</div></div>
+          <div class="comp-met"><div class="comp-met-l">10Y Compounder</div><div class="comp-met-v">72%</div></div>
+        </div>
+        <div class="comp-star">★★★★ The best US-listed precision motion compounder</div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-head">
+        <div class="comp-name">Photronics Inc.</div>
+        <div class="comp-ticker">PLAB · Nasdaq</div>
+        <div class="comp-country">🇺🇸 USA · ~$1.2B market cap</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-thesis">Photronics is the world's largest manufacturer of photomasks — the precision glass templates used to print circuit patterns onto semiconductor wafers. Every chip ever made, from the GPU inside a robot brain to the MCU controlling its servo motor, required Photronics' photomasks. Photomask complexity scales geometrically with advanced nodes: an EUV photomask today costs 20–50x more than previous-generation masks, providing significant revenue per unit uplift as the chip industry advances. A structurally overlooked semiconductor supply chain beneficiary.</div>
+        <div class="comp-metrics">
+          <div class="comp-met"><div class="comp-met-l">ASML Score</div><div class="comp-met-v">7.2 / 10</div></div>
+          <div class="comp-met"><div class="comp-met-l">Gross Margin</div><div class="comp-met-v">~38%</div></div>
+          <div class="comp-met"><div class="comp-met-l">Revenue Growth</div><div class="comp-met-v">10–15% CAGR</div></div>
+          <div class="comp-met"><div class="comp-met-l">10Y Compounder</div><div class="comp-met-v">68%</div></div>
+        </div>
+        <div class="comp-star">★★★★ Hidden semiconductor infrastructure play</div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-head">
+        <div class="comp-name">Hiwin Technologies</div>
+        <div class="comp-ticker">2049.TW</div>
+        <div class="comp-country">🇹🇼 Taiwan · ~TWD60B cap</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-thesis">Hiwin is the largest Taiwanese manufacturer of precision linear motion components — ball screws, linear guides, and robots — supplying directly into the machine tool, semiconductor, and robotics industries across Asia. As the Asian supply-chain alternative to THK for linear motion, Hiwin benefits from reshoring-driven capex in Taiwan, South Korea, and India. Its own collaborative robot arm business provides direct humanoid-adjacent exposure, making it a double-beneficiary of the Physical AI theme.</div>
+        <div class="comp-metrics">
+          <div class="comp-met"><div class="comp-met-l">ASML Score</div><div class="comp-met-v">6.8 / 10</div></div>
+          <div class="comp-met"><div class="comp-met-l">Taiwan Mkt Share</div><div class="comp-met-v">#1</div></div>
+          <div class="comp-met"><div class="comp-met-l">Robot Revenue</div><div class="comp-met-v">~20% of total</div></div>
+          <div class="comp-met"><div class="comp-met-l">10Y Compounder</div><div class="comp-met-v">70%</div></div>
+        </div>
+        <div class="comp-star">★★★★ Under-owned by Western institutional investors</div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-head">
+        <div class="comp-name">Allied Motion Technologies</div>
+        <div class="comp-ticker">AMOT · Nasdaq</div>
+        <div class="comp-country">🇺🇸 USA · ~$550M market cap</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-thesis">Allied Motion designs and manufactures precision electric motors, drives, and motion systems for demanding industrial, medical, and robotics applications. Its products appear in surgical robots, autonomous guided vehicles, industrial automation, and defense systems — markets with multi-year qualification cycles and high switching costs. At less than $600M market cap, Allied Motion is one of the most overlooked pure-play precision motion companies in the US market, trading at a significant discount to peers despite comparable revenue quality.</div>
+        <div class="comp-metrics">
+          <div class="comp-met"><div class="comp-met-l">ASML Score</div><div class="comp-met-v">6.5 / 10</div></div>
+          <div class="comp-met"><div class="comp-met-l">Gross Margin</div><div class="comp-met-v">~30%</div></div>
+          <div class="comp-met"><div class="comp-met-l">Medical Exposure</div><div class="comp-met-v">~35%</div></div>
+          <div class="comp-met"><div class="comp-met-l">10Y Compounder</div><div class="comp-met-v">65%</div></div>
+        </div>
+        <div class="comp-star">★★★½ Deep value in precision motion; sub-$600M cap</div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-head">
+        <div class="comp-name">Hurco Companies</div>
+        <div class="comp-ticker">HURC · Nasdaq</div>
+        <div class="comp-country">🇺🇸 USA · ~$200M market cap</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-thesis">Hurco is perhaps the most overlooked beneficiary of manufacturing reshoring in the US market — a maker of CNC machine tools with its own proprietary conversational control software (Winmax), selling into job shops and small manufacturers that are the backbone of reshored production. As US and European manufacturers reshore, they need machine tools; Hurco's software-driven differentiation commands premium prices in its niche. At ~$200M market cap with a net cash balance sheet, this represents extraordinary optionality on reshoring at an almost free price.</div>
+        <div class="comp-metrics">
+          <div class="comp-met"><div class="comp-met-l">ASML Score</div><div class="comp-met-v">5.5 / 10</div></div>
+          <div class="comp-met"><div class="comp-met-l">Net Cash</div><div class="comp-met-v">Positive</div></div>
+          <div class="comp-met"><div class="comp-met-l">Software Diff.</div><div class="comp-met-v">Winmax CNC</div></div>
+          <div class="comp-met"><div class="comp-met-l">10Y Compounder</div><div class="comp-met-v">60%</div></div>
+        </div>
+        <div class="comp-star">★★★½ Deep-value reshoring play; sub-$200M cap</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="midcap" style="margin-top:48px">
+    <div class="sec-num">7.2 — Top Global Mid-Cap Compounders ($3B–$30B)</div>
+    <h3 style="font-family:var(--font-display);font-size:28px;font-weight:300;color:var(--text-1);margin-bottom:8px">Established <strong>Platform Leaders</strong> with Structural Tailwinds</h3>
+    <div class="sec-rule"></div>
+    <div class="table-wrap" style="margin-top:24px">
+      <table class="data-tbl">
+        <thead>
+          <tr>
+            <th>Company</th><th>Ticker / Market</th><th>Category</th><th>ASML Score</th><th>Gross Margin</th><th>10Y Thesis</th><th>Compounder Prob.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Cognex Corporation</td><td>CGNX · Nasdaq</td><td>Machine Vision</td><td><span class="score-pill sp-high">8.0</span></td><td>~75%</td><td>Vision OS for robots; 40yr application library moat</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:78%"></div></div><div class="prob-text">78%</div></div></td></tr>
+          <tr><td>VAT Group AG</td><td>VACN · SIX</td><td>Vacuum Components</td><td><span class="score-pill sp-high">8.0</span></td><td>~45%</td><td>Sole provider of critical vacuum valves in all advanced chip fabs</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:75%"></div></div><div class="prob-text">75%</div></div></td></tr>
+          <tr><td>Moog Inc.</td><td>MOG.A · NYSE</td><td>Precision Motion</td><td><span class="score-pill sp-high">7.5</span></td><td>~35%</td><td>Precision motion for aerospace, defense, surgical robots</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:68%"></div></div><div class="prob-text">68%</div></div></td></tr>
+          <tr><td>MKS Instruments</td><td>MKSI · Nasdaq</td><td>Process Control</td><td><span class="score-pill sp-high">7.2</span></td><td>~47%</td><td>Critical process control instruments across all semiconductor fabs</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:65%"></div></div><div class="prob-text">65%</div></div></td></tr>
+          <tr><td>Belden Inc.</td><td>BDC · NYSE</td><td>Industrial Connectivity</td><td><span class="score-pill sp-med">6.5</span></td><td>~36%</td><td>Industrial Ethernet and connectivity infrastructure for robot networks</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:60%"></div></div><div class="prob-text">60%</div></div></td></tr>
+          <tr><td>Fabrinet</td><td>FN · NYSE</td><td>Optical Manufacturing</td><td><span class="score-pill sp-med">6.2</span></td><td>~10%</td><td>Precision optical/photonic contract manufacturing for LiDAR and sensors</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:62%"></div></div><div class="prob-text">62%</div></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CHAPTER 8 DIVIDER (INDIA) ═══════ -->
+<div id="ch8" class="ch-div india-ch">
+  <div class="ch-num">08</div>
+  <div>
+    <div class="ch-kicker">Chapter Eight — India</div>
+    <div class="ch-title">India's <strong>Robotics &amp; Physical AI</strong><br>Opportunity — An Honest Assessment</div>
+  </div>
+</div>
+
+<!-- ── INDIA OPPORTUNITY ──────────────────────────────────────── -->
+<section class="section india-section">
+  <div class="sec-num">8.0 — India's Position in the Physical AI Ecosystem</div>
+  <h2 class="sec-title">Real Advantages, <strong>Real Constraints</strong><br>— A Balanced Framework</h2>
+  <div class="sec-rule"></div>
+  <p class="sec-lead">India occupies a strategically significant but currently under-realized position in the global Physical AI supply chain. The country's advantages in engineering services and precision manufacturing coexist with serious structural gaps in semiconductors, advanced motion control, and deep-tech sensors. Understanding both sides determines where Indian investment opportunities are genuine versus narratively inflated.</p>
+
+  <div class="metrics-row">
+    <div class="met-box"><div class="met-label">Engineering Graduates/Yr</div><div class="met-value">1.5M</div><div class="met-sub">STEM graduates annually</div></div>
+    <div class="met-box"><div class="met-label">Defense Exports FY26</div><div class="met-value">₹23K Cr</div><div class="met-sub">All-time record; 30%+ CAGR</div></div>
+    <div class="met-box"><div class="met-label">PLI Approved Sectors</div><div class="met-value">13+</div><div class="met-sub">Including electronics, defense</div></div>
+    <div class="met-box"><div class="met-label">Industrial Robot Density</div><div class="met-value">4</div><div class="met-sub">Robots/10K workers (vs Japan 397)</div></div>
+  </div>
+
+  <div class="sw-grid">
+    <div class="sw-card strength">
+      <div class="sw-label">India's Structural Strengths</div>
+      <div class="sw-item"><div class="sw-dot"></div><div class="sw-text"><strong>Software &amp; Embedded Engineering:</strong> India has the world's largest pool of embedded systems engineers and is already a dominant provider of robotics software development, ADAS software, and industrial IoT platforms to global OEMs.</div></div>
+      <div class="sw-item"><div class="sw-dot"></div><div class="sw-text"><strong>Aerospace &amp; Defense Precision Manufacturing:</strong> Companies like MTAR Technologies produce nuclear fuel assemblies, rocket engine components, and defense sub-systems to global aerospace standards — proof that Indian precision manufacturing can meet the highest international quality bars.</div></div>
+      <div class="sw-item"><div class="sw-dot"></div><div class="sw-text"><strong>Cost-Competitive Engineering Services:</strong> India's IT majors (TCS, Infosys, Wipro) and engineering specialists (L&amp;T Technology Services, KPIT, Tata Elxsi) provide robotics simulation, digital twin development, and industrial software at 40–60% of Western cost equivalents.</div></div>
+      <div class="sw-item"><div class="sw-dot"></div><div class="sw-text"><strong>Government Support Architecture:</strong> The PLI scheme for IT hardware, electronics manufacturing, and defense production has created genuine industrial capacity and export momentum that was absent even five years ago.</div></div>
+      <div class="sw-item"><div class="sw-dot"></div><div class="sw-text"><strong>Domestic Demand Acceleration:</strong> India's own automation adoption is accelerating from a low base — robot density will likely 5–10x over the next decade, creating domestic demand for integration, software, and precision components.</div></div>
+    </div>
+    <div class="sw-card weakness">
+      <div class="sw-label">India's Structural Constraints</div>
+      <div class="sw-item"><div class="sw-dot"></div><div class="sw-text"><strong>No Semiconductor Ecosystem:</strong> India currently has no meaningful domestic semiconductor manufacturing capability. Every chip in every Indian robot must be imported. The Tata-PSMC and Micron assembly projects are a start — but advanced chip design and fabrication remain decades away.</div></div>
+      <div class="sw-item"><div class="sw-dot"></div><div class="sw-text"><strong>Absent Motion Control Heritage:</strong> India has no domestic equivalent to FANUC, Yaskawa, or Siemens in motion control. Servo drives, PLCs, and precision motor drives are almost entirely imported from Japan, Germany, and the USA — representing a critical supply chain vulnerability.</div></div>
+      <div class="sw-item"><div class="sw-dot"></div><div class="sw-text"><strong>Limited Precision Actuator Manufacturing:</strong> Harmonic drives, cycloidal gearboxes, and high-precision bearings — the physical bottlenecks of robotics — are not produced at scale in India. The engineering metrology and tooling ecosystem required to produce these components does not yet exist domestically.</div></div>
+      <div class="sw-item"><div class="sw-dot"></div><div class="sw-text"><strong>R&amp;D Intensity Gap:</strong> Indian industrial companies spend 1–3% of revenue on R&amp;D versus 8–15% for global counterparts like Renishaw, Keyence, and SICK. Without closing this gap, India will remain a product integrator rather than an IP originator.</div></div>
+      <div class="sw-item"><div class="sw-dot"></div><div class="sw-text"><strong>Capital Market Constraints:</strong> Deep-tech robotics companies require patient, long-duration capital that India's equity market culture does not reliably provide. Short investment cycles and valuation pressures discourage the multi-decade R&amp;D commitment required to build ASML-equivalent businesses.</div></div>
+    </div>
+  </div>
+
+  <div class="callout india">
+    <div class="callout-label">India's Best Opportunity</div>
+    <div class="callout-text">India's highest-probability path to Physical AI leadership is as the global robotics software export hub — leveraging its embedded engineering talent base to dominate robot simulation, fleet management software, AI model training pipelines, and industrial IoT platforms for global OEMs. This is a realistic 10-year opportunity. Hardware leadership in precision actuators and sensors requires 20–30 years of sustained investment and institutional commitment.</div>
+  </div>
+</section>
+
+<!-- ═══════ CHAPTER 9 DIVIDER (INDIA) ═══════ -->
+<div id="ch9" class="ch-div india-ch">
+  <div class="ch-num">09</div>
+  <div>
+    <div class="ch-kicker">Chapter Nine — India Listed Equities</div>
+    <div class="ch-title">Mapping <strong>India's Robotics Ecosystem</strong><br>— NSE &amp; BSE Listed Companies</div>
+  </div>
+</div>
+
+<!-- ── INDIA EQUITY MAPPING ────────────────────────────────────── -->
+<section class="section india-section">
+  <div class="sec-num">9.0 — Indian Listed Equity Analysis</div>
+  <h2 class="sec-title">Eight Companies <strong>Worth Understanding</strong><br>Across the Physical AI Spectrum</h2>
+  <div class="sec-rule"></div>
+  <p class="sec-lead">Indian listed companies fall into three clusters of Physical AI relevance: pure-play precision engineering (highest quality moats), electronics manufacturing services (volume-driven beneficiaries), and engineering software services (scalable, export-oriented). Each cluster demands a different valuation and risk framework.</p>
+
+  <div class="india-grid">
+    <div class="india-card">
+      <div class="india-head">
+        <div><div class="india-name">MTAR Technologies</div><div class="india-ticker">MTAR · NSE</div><div class="india-cat">Precision Engineering · Aerospace / Nuclear / Defence</div></div>
+        <div class="india-asml"><div class="india-asml-val">7.5</div><div class="india-asml-lbl">ASML Score</div></div>
+      </div>
+      <div class="india-body">
+        <div class="india-section-l">Investment Thesis</div>
+        <div class="india-analysis">MTAR is India's most compelling precision engineering compounder and the closest domestic equivalent to a global precision component specialist. It manufactures fuel assemblies for the Indian nuclear program, critical components for ISRO's launch vehicles, and precision sub-assemblies for defense systems — all to specifications that match international aerospace standards. MTAR's qualification with global clients including Bloom Energy (clean energy) and ISRO provides export diversification that most Indian defense companies lack. The combination of domestic nuclear/space demand and export optionality creates a multi-vector growth profile.</div>
+        <div class="india-metrics">
+          <div class="india-met"><div class="india-met-l">Gross Margin</div><div class="india-met-v">~44%</div></div>
+          <div class="india-met"><div class="india-met-l">Export Revenue</div><div class="india-met-v">~25%</div></div>
+          <div class="india-met"><div class="india-met-l">Nuclear Exposure</div><div class="india-met-v">~35%</div></div>
+          <div class="india-met"><div class="india-met-l">10Y Compounder</div><div class="india-met-v">78%</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="india-card">
+      <div class="india-head">
+        <div><div class="india-name">Kaynes Technology</div><div class="india-ticker">KAYNES · NSE</div><div class="india-cat">Electronics Manufacturing Services · Industrial / Defence</div></div>
+        <div class="india-asml"><div class="india-asml-val">5.5</div><div class="india-asml-lbl">ASML Score</div></div>
+      </div>
+      <div class="india-body">
+        <div class="india-section-l">Investment Thesis</div>
+        <div class="india-analysis">Kaynes is India's most sophisticated electronics manufacturing services company, specializing in IoT-enabled electronics for industrial automation, aerospace, defense, and medical sectors. Unlike generic EMS players competing purely on labor cost, Kaynes has invested in design-for-manufacturing capabilities that allow it to add engineering value rather than just assembly value. Its industrial automation electronics segment — supplying PCBs and sub-assemblies to automation OEMs — is a direct Physical AI beneficiary as Indian factories automate. The company's strategic expansion into OSAT (semiconductor packaging) through a new facility adds semiconductor exposure.</div>
+        <div class="india-metrics">
+          <div class="india-met"><div class="india-met-l">Revenue Growth</div><div class="india-met-v">40%+ CAGR</div></div>
+          <div class="india-met"><div class="india-met-l">Industrial Exp.</div><div class="india-met-v">~30%</div></div>
+          <div class="india-met"><div class="india-met-l">Defence Exp.</div><div class="india-met-v">~25%</div></div>
+          <div class="india-met"><div class="india-met-l">10Y Compounder</div><div class="india-met-v">72%</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="india-card">
+      <div class="india-head">
+        <div><div class="india-name">Tata Elxsi</div><div class="india-ticker">TATAELXSI · NSE</div><div class="india-cat">Engineering Design Services · Robotics Software / AI</div></div>
+        <div class="india-asml"><div class="india-asml-val">5.0</div><div class="india-asml-lbl">ASML Score</div></div>
+      </div>
+      <div class="india-body">
+        <div class="india-section-l">Investment Thesis</div>
+        <div class="india-analysis">Tata Elxsi is India's premier engineering design services company with growing exposure to embedded AI, robotics simulation, and autonomous systems software. Its Industrial Design and Embedded Products divisions serve global automotive, healthcare, and industrial OEMs seeking cost-efficient engineering design partners. As robot OEMs outsource software development and simulation work, Tata Elxsi is positioned to capture robotics engineering services mandates. The company's ROIC profile (35-40%) and consistent organic growth make it a quality business even outside the robotics theme.</div>
+        <div class="india-metrics">
+          <div class="india-met"><div class="india-met-l">EBIT Margin</div><div class="india-met-v">~28%</div></div>
+          <div class="india-met"><div class="india-met-l">ROIC</div><div class="india-met-v">~38%</div></div>
+          <div class="india-met"><div class="india-met-l">Export Revenue</div><div class="india-met-v">~60%</div></div>
+          <div class="india-met"><div class="india-met-l">10Y Compounder</div><div class="india-met-v">68%</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="india-card">
+      <div class="india-head">
+        <div><div class="india-name">Data Patterns India</div><div class="india-ticker">DATAPATT · NSE</div><div class="india-cat">Defence Electronics · Radar / Embedded Systems</div></div>
+        <div class="india-asml"><div class="india-asml-val">6.5</div><div class="india-asml-lbl">ASML Score</div></div>
+      </div>
+      <div class="india-body">
+        <div class="india-section-l">Investment Thesis</div>
+        <div class="india-analysis">Data Patterns is India's most technically sophisticated defence electronics company — designing and manufacturing radar systems, electronic warfare sub-systems, avionics, and embedded hardware for the Indian defence forces. Unlike integrators that assemble imported components, Data Patterns designs its own silicon, algorithms, and hardware systems to customer requirements — placing it in the same category as Astra Microwave rather than generic defence EMS players. Defence robotics and autonomous systems will require precisely this category of embedded system design expertise. Its high ASML score reflects the multi-year defence qualification process that renders it irreplaceable within its programmes.</div>
+        <div class="india-metrics">
+          <div class="india-met"><div class="india-met-l">EBIT Margin</div><div class="india-met-v">~28%</div></div>
+          <div class="india-met"><div class="india-met-l">Revenue Mix</div><div class="india-met-v">100% Defence</div></div>
+          <div class="india-met"><div class="india-met-l">Order Book / Rev</div><div class="india-met-v">~3x</div></div>
+          <div class="india-met"><div class="india-met-l">10Y Compounder</div><div class="india-met-v">75%</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="india-card">
+      <div class="india-head">
+        <div><div class="india-name">L&amp;T Technology Services</div><div class="india-ticker">LTTS · NSE</div><div class="india-cat">Engineering R&amp;D Services · Industrial Automation / AI</div></div>
+        <div class="india-asml"><div class="india-asml-val">4.5</div><div class="india-asml-lbl">ASML Score</div></div>
+      </div>
+      <div class="india-body">
+        <div class="india-section-l">Investment Thesis</div>
+        <div class="india-analysis">LTTS is India's largest pure-play engineering R&amp;D services company and one of the most direct beneficiaries of global OEMs outsourcing robotics and industrial automation engineering work. Its Industrial Products segment serves factory automation, process industries, and heavy engineering clients globally. LTTS' growing AI-embedded engineering practice — integrating AI into industrial product development — positions it to capture robotics software and simulation engineering mandates as global robot companies build engineering teams in India. The company's client base (global Fortune 500 industrial OEMs) provides revenue quality and visibility that generic IT services firms cannot match.</div>
+        <div class="india-metrics">
+          <div class="india-met"><div class="india-met-l">EBIT Margin</div><div class="india-met-v">~18%</div></div>
+          <div class="india-met"><div class="india-met-l">Industrial Rev.</div><div class="india-met-v">~30%</div></div>
+          <div class="india-met"><div class="india-met-l">Offshore Mix</div><div class="india-met-v">~65%</div></div>
+          <div class="india-met"><div class="india-met-l">10Y Compounder</div><div class="india-met-v">62%</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="india-card">
+      <div class="india-head">
+        <div><div class="india-name">Paras Defence &amp; Space</div><div class="india-ticker">PARAS · NSE</div><div class="india-cat">Defence Optics · Space Systems</div></div>
+        <div class="india-asml"><div class="india-asml-val">6.0</div><div class="india-asml-lbl">ASML Score</div></div>
+      </div>
+      <div class="india-body">
+        <div class="india-section-l">Investment Thesis</div>
+        <div class="india-analysis">Paras Defence occupies a unique and difficult-to-replicate niche in India's defence ecosystem: optics and imaging systems for defence and space applications. Its products include heavy-duty optics for armoured vehicles, electro-optic systems, and space-grade optics for ISRO — domains that require precision glass manufacturing capabilities almost non-existent elsewhere in India. The robotics linkage comes via vision systems and machine vision optics for defence robotics, where Paras' optical expertise translates directly. A small company with a high-quality problem to solve: it is the only Indian listed entity with credible defence optics capability.</div>
+        <div class="india-metrics">
+          <div class="india-met"><div class="india-met-l">EBIT Margin</div><div class="india-met-v">~22%</div></div>
+          <div class="india-met"><div class="india-met-l">Optics Revenue</div><div class="india-met-v">~60%</div></div>
+          <div class="india-met"><div class="india-met-l">Space Exposure</div><div class="india-met-v">Growing</div></div>
+          <div class="india-met"><div class="india-met-l">10Y Compounder</div><div class="india-met-v">68%</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CHAPTER 10 DIVIDER (INDIA) ═══════ -->
+<div id="ch10" class="ch-div india-ch">
+  <div class="ch-num">10</div>
+  <div>
+    <div class="ch-kicker">Chapter Ten — India Hidden Compounders</div>
+    <div class="ch-title">India's <strong>Pre-Institutional Small-Caps</strong><br>— Before the Market Discovers Them</div>
+  </div>
+</div>
+
+<section class="section india-section">
+  <div class="sec-num">10.0 — India Small &amp; Mid-Cap Robotics Screen</div>
+  <h2 class="sec-title">The <strong>Next Generation</strong> of Indian<br>Industrial Champions</h2>
+  <div class="sec-rule"></div>
+  <p class="sec-lead">The following companies have not yet been widely adopted into mainstream institutional robotics investment narratives. Several represent genuine compounding opportunities in precision manufacturing, defence electronics, and embedded systems — domains that will grow materially as India's defence export program and domestic automation adoption accelerate.</p>
+
+  <div class="table-wrap">
+    <table class="data-tbl">
+      <thead>
+        <tr><th>Company</th><th>NSE/BSE</th><th>Segment</th><th>ASML Score</th><th>Primary Moat</th><th>AI / Robotics Link</th><th>Bull Case</th><th>Bear Case</th></tr>
+      </thead>
+      <tbody>
+        <tr class="tbl-section-row india-row"><td colspan="8">SMALL-CAP PRECISION ENGINEERING (Highest Moat Quality)</td></tr>
+        <tr><td>MTAR Technologies</td><td>MTAR</td><td>Precision Mfg.</td><td><span class="score-pill sp-high">7.5</span></td><td>Nuclear / aerospace qualification</td><td>Precision robot components for ISRO</td><td>Global aerospace partner wins; 25%+ revenue CAGR</td><td>Concentration in nuclear; project delays</td></tr>
+        <tr><td>Astra Microwave</td><td>ASTRAMICRO</td><td>Defence RF / Microwave</td><td><span class="score-pill sp-high">7.0</span></td><td>Microwave sub-system design IP</td><td>Radar sensors for autonomous systems</td><td>Defence export qualification; 30%+ order growth</td><td>Government budget dependence; long cycles</td></tr>
+        <tr><td>Dynamatic Technologies</td><td>DYNAMATECH</td><td>Aerospace Precision</td><td><span class="score-pill sp-med">6.5</span></td><td>Airbus / Boeing certification</td><td>Structural aerospace components</td><td>Airbus A320 ramp-up; 50%+ aerospace mix</td><td>Aerospace cyclicality; customer concentration</td></tr>
+        <tr class="tbl-section-row india-row"><td colspan="8">SMALL-CAP DEFENCE ELECTRONICS (Defence Robotics Pipeline)</td></tr>
+        <tr><td>Data Patterns India</td><td>DATAPATT</td><td>Defence Electronics</td><td><span class="score-pill sp-high">6.5</span></td><td>In-house ASIC design + radar IP</td><td>Defence robot embedded systems</td><td>Domestic defence content mandates; export wins</td><td>Government procurement delays; few large clients</td></tr>
+        <tr><td>Paras Defence &amp; Space</td><td>PARAS</td><td>Optics / Space</td><td><span class="score-pill sp-med">6.0</span></td><td>Only domestic defence optics supplier</td><td>Vision systems for defence robots</td><td>ISRO commercial orders; defence export recognition</td><td>Tiny scale; execution risk during rapid growth</td></tr>
+        <tr><td>Zen Technologies</td><td>ZENTEC</td><td>Defence Simulators</td><td><span class="score-pill sp-med">5.8</span></td><td>Simulation IP; no domestic competitor</td><td>Robotics training simulators for forces</td><td>Indian military modernisation; AI-powered simulators</td><td>Limited export track record; small order book</td></tr>
+        <tr><td>DCX Systems</td><td>DCXINDIA</td><td>Defence Harnesses</td><td><span class="score-pill sp-med">5.0</span></td><td>Defence qualification; long relationship</td><td>Cable harnesses for robotic platforms</td><td>India defence exports doubling; Elbit Systems work</td><td>Assembly play; limited IP differentiation</td></tr>
+        <tr class="tbl-section-row india-row"><td colspan="8">MID-CAP ELECTRONICS MANUFACTURING (Volume Beneficiaries)</td></tr>
+        <tr><td>Kaynes Technology</td><td>KAYNES</td><td>EMS + OSAT</td><td><span class="score-pill sp-med">5.5</span></td><td>Industrial electronics design capability</td><td>Industrial IoT and automation PCBs</td><td>OSAT facility; PLI benefits; domestic auto EV</td><td>Valuation premium; intense EMS competition</td></tr>
+        <tr><td>Syrma SGS Technology</td><td>SYRMA</td><td>Electronics Mfg.</td><td><span class="score-pill sp-low">4.5</span></td><td>Diversified EMS; medical capability</td><td>Industrial and medical electronics</td><td>Medical electronics indigenisation; PLI programmes</td><td>Commodity EMS pricing; margin pressure</td></tr>
+        <tr><td>HBL Power Systems</td><td>HBLPOWER</td><td>Railway / Defence Electronics</td><td><span class="score-pill sp-med">5.5</span></td><td>Railway TCAS system; defence VRLA</td><td>Railway automation electronics</td><td>Kavach rollout across Indian Railways network</td><td>Government payment cycles; revenue lumpy</td></tr>
+        <tr class="tbl-section-row india-row"><td colspan="8">ENGINEERING SERVICES (Software / Design Exports)</td></tr>
+        <tr><td>KPIT Technologies</td><td>KPIT</td><td>Embedded Software</td><td><span class="score-pill sp-low">4.5</span></td><td>Automotive OS and AUTOSAR expertise</td><td>Vehicle robotics and autonomous drive SW</td><td>Software-defined vehicle growth; EV + ADAS ramp</td><td>Auto slowdown sensitivity; key client risk</td></tr>
+        <tr><td>Cyient DLM</td><td>CYIENTDLM</td><td>Aerospace Electronics</td><td><span class="score-pill sp-low">4.8</span></td><td>Aerospace EMS qualification (AS9100)</td><td>Aerospace sub-systems for UAVs / drones</td><td>Drone indigenisation; parent Cyient ecosystem</td><td>Early stage; needs significant capex</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════ CHAPTER 11 DIVIDER ═══════ -->
+<div id="ch11" class="ch-div">
+  <div class="ch-num">11</div>
+  <div>
+    <div class="ch-kicker">Chapter Eleven</div>
+    <div class="ch-title">The <strong>Future Toll Booths</strong><br>— The Next Generation of Indispensables</div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="sec-num">11.0 — Future Robotics Toll Booth Analysis</div>
+  <h2 class="sec-title">Which Companies Could Become<br>the <strong>Infrastructure Layer</strong> of Physical AI?</h2>
+  <div class="sec-rule"></div>
+  <p class="sec-lead">Five archetypes of Physical AI toll booth will emerge over the next two decades. Each represents a distinct competitive dynamic and a different investment entry timing. Identifying which companies are on the path to each archetype — before institutions price it in — is the definitive task of Physical AI investing.</p>
+
+  <div class="cycle-grid">
+    <div class="cycle-card winner" style="border-top-color:var(--gold)">
+      <div class="cycle-label">The ASML of Robotics</div>
+      <div class="cycle-title">Harmonic Drive Systems</div>
+      <div class="cycle-body">The clearest candidate for ASML-equivalent status in Physical AI. Harmonic Drive's zero-backlash wave gear mechanism has no viable substitute for precision robot joints. As humanoid robot production scales from thousands to millions of units annually, Harmonic Drive becomes the literal choke point of global robot production — a position even more concentrated than ASML's because ASML has some niche competitors in older-generation lithography while Harmonic Drive has essentially none in its precision segment. The company's current ~¥350B market cap represents a fraction of the value it would command if the market priced Physical AI volumes correctly.</div>
+      <div class="cycle-examples"><strong>Why it qualifies:</strong> <span>Zero-backlash precision</span><span>No viable substitute</span><span>20-30yr manufacturing know-how</span><span>Humanoid volume optionality</span></div>
+    </div>
+    <div class="cycle-card winner" style="border-top-color:var(--blue)">
+      <div class="cycle-label">The NVIDIA of Robotics</div>
+      <div class="cycle-title">NVIDIA (Robotics Division)</div>
+      <div class="cycle-body">NVIDIA is already building its Physical AI dominance through three interconnected vectors: the Jetson edge compute platform (the GPU brain of most commercial robots today), the Isaac Sim simulation environment (where robot AI is trained in virtual environments before physical deployment), and the Omniverse digital twin platform (where factories are designed and tested virtually before construction). The CUDA flywheel that created the AI training monopoly is being deliberately extended into the Physical AI domain. If NVIDIA achieves platform lock-in across training, simulation, and edge inference for robotics — as it did for data center AI — the moat will be generational.</div>
+      <div class="cycle-examples"><strong>Why it qualifies:</strong> <span>Isaac Sim ecosystem</span><span>Jetson edge platform</span><span>CUDA extension into robotics</span><span>Already indispensable</span></div>
+    </div>
+    <div class="cycle-card cyclical">
+      <div class="cycle-label">The Synopsys of Robotics</div>
+      <div class="cycle-title">Robotics Simulation Platforms</div>
+      <div class="cycle-body">Synopsys became indispensable in chip design by creating the software tools that every chip designer must use — not by designing chips itself. A Synopsys-equivalent will emerge in robotics: the company that creates the dominant simulation, digital twin, and robot programming environment that every robot developer must subscribe to. The candidates are NVIDIA (Isaac), Siemens (Tecnomatix), and potentially a startup yet to emerge. The winner will earn software gross margins (75-85%) on subscription revenue from every robotics engineering team on earth. Timing: the platform winner may not be clear for 5–8 years, but the eventual moat will be extraordinary.</div>
+      <div class="cycle-examples"><strong>Candidates:</strong> <span>NVIDIA Isaac</span><span>Siemens Tecnomatix</span><span>Dassault DELMIA</span><span>Unknown startup</span></div>
+    </div>
+    <div class="cycle-card cyclical">
+      <div class="cycle-label">The Keyence of Robotics</div>
+      <div class="cycle-title">Next-Gen Sensing Specialists</div>
+      <div class="cycle-body">Keyence built its extraordinary 50%+ operating margins not through superior technology alone but through a distinctive direct-sales model where engineers sell to engineers, solve application-specific problems, and create switching costs measured in workflow re-engineering. A Keyence-equivalent for the Physical AI era will emerge in tactile sensing and force-torque measurement for humanoid manipulation — domains where current solutions are too large, too expensive, or too slow for commercial humanoid deployment. The company that miniaturizes force-torque sensing to fingertip scale and deploys it with application engineering support will own the most critical sensing layer in humanoid robotics.</div>
+      <div class="cycle-examples"><strong>Watch list:</strong> <span>Tactile sensing startups</span><span>MEMS F/T specialists</span><span>Skin-like sensor firms</span></div>
+    </div>
+  </div>
+
+  <div class="thesis" style="margin-top:32px">
+    <div class="thesis-label">The Hidden Mission-Critical Supplier Archetype</div>
+    <div class="thesis-text">"The most undervalued Physical AI investment archetype is the <strong>supplier whose product is a small fraction of the robot's bill-of-materials but whose absence would halt production entirely</strong>. Harmonic Drive's gearboxes cost $200–800 per unit in a robot that might sell for $50,000–150,000 — a 0.5–1.5% BOM share. Yet production cannot proceed without them. This asymmetry between BOM share and indispensability is the defining characteristic of every great component business in history, from ARM Holdings to ASML."</div>
+  </div>
+</section>
+
+<!-- ═══════ CHAPTER 12 DIVIDER ═══════ -->
+<div id="ch12" class="ch-div">
+  <div class="ch-num">12</div>
+  <div>
+    <div class="ch-kicker">Chapter Twelve</div>
+    <div class="ch-title"><strong>Capital Cycle Analysis</strong><br>— Scarcity, Commoditization &amp; Risk</div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="sec-num">12.0 — Where Capital Is Flowing and Where It Will Burn</div>
+  <h2 class="sec-title">Distinguishing <strong>Structural Winners</strong><br>from Commodity Traps</h2>
+  <div class="sec-rule"></div>
+  <p class="sec-lead">Capital is flooding into Physical AI at a pace not seen since the dot-com era. Not all segments will reward this capital equally. History shows that the segments attracting the most attention — and the most funding — often generate the worst long-term investment returns, while the overlooked infrastructure suppliers compound quietly into institutional-scale businesses.</p>
+
+  <div class="cycle-grid">
+    <div class="cycle-card winner">
+      <div class="cycle-label">Structural Winners — Durable Scarcity</div>
+      <div class="cycle-title">Precision Components &amp; Sensing</div>
+      <div class="cycle-body">These segments will remain scarce regardless of how much capital is invested, because the scarcity is not financial — it is technical and institutional. No amount of venture capital funding will produce a credible competitor to Harmonic Drive's precision wave gear mechanism in less than 10–15 years of engineering investment. Similarly, HEIDENHAIN's encoder expertise represents 80+ years of accumulated metrology knowledge that cannot be purchased. These companies will enjoy sustained pricing power, expanding volumes, and compounding returns on capital as Physical AI volumes scale from millions to billions of robot joints per decade.</div>
+      <div class="cycle-examples"><span>Harmonic drives</span><span>Precision encoders</span><span>Force/torque sensors</span><span>Rare earth magnets</span><span>Advanced photomasks</span><span>HBM memory</span></div>
+    </div>
+    <div class="cycle-card cyclical">
+      <div class="cycle-label">Cyclical Winners — Real but Volatile</div>
+      <div class="cycle-title">Industrial Robot OEMs &amp; Integrators</div>
+      <div class="cycle-body">Established robotics OEMs (FANUC, ABB, Yaskawa, KUKA) will benefit meaningfully from Physical AI volume growth, but their businesses are fundamentally cyclical — tied to capex cycles in automotive, electronics, and factory construction. When capital expenditure contracts — as it did in 2015-2016 and again in 2019 — robot orders fall sharply and margins compress. These businesses deserve positions in Physical AI portfolios, but investors should size them as cyclical beneficiaries rather than structural compounders, and should target purchase prices near cycle troughs rather than peaks of enthusiasm.</div>
+      <div class="cycle-examples"><span>FANUC</span><span>ABB Robotics</span><span>Yaskawa</span><span>KUKA</span><span>Rockwell Automation</span></div>
+    </div>
+    <div class="cycle-card trap">
+      <div class="cycle-label">Commodity Traps — Capital Destruction Risk</div>
+      <div class="cycle-title">Generic Robot Arms &amp; Mobile Platforms</div>
+      <div class="cycle-body">The industrial robot arm business is becoming structurally commoditized. Chinese manufacturers (ESTUN, Inovance, Siasun) have closed the technology gap with Western incumbents at 40–60% lower price points — forcing margin compression across the industry. Similarly, mobile robot (AMR) navigation has been reduced to open-source algorithms, making the hardware a commodity. Companies deriving the majority of their value from generic robot arm or AMR hardware — without proprietary software, sensors, or application domain expertise — face structural margin compression regardless of the volume growth in their end markets.</div>
+      <div class="cycle-examples"><span>Generic cobot arms</span><span>Commodity AMR navigation</span><span>Assembly-only integrators</span><span>No-IP robot manufacturers</span></div>
+    </div>
+    <div class="cycle-card speculative">
+      <div class="cycle-label">Speculative Narratives — Buyer Beware</div>
+      <div class="cycle-title">Humanoid OEM Startups &amp; Foundation Models</div>
+      <div class="cycle-body">The current venture capital funding cycle for humanoid robot companies (Figure AI, 1X, Agility, Apptronik, Physical Intelligence) resembles the EV startup boom of 2020-2021 — extraordinary valuations, minimal revenue, enormous capital requirements, and a structural tendency for the market to eventually converge on a small number of winners while the majority of capital is destroyed. The "foundation model for robotics" narrative is similarly early and uncertain. These represent high-risk/high-reward lottery tickets — not the compounding infrastructure plays that create durable institutional wealth. Allocate accordingly: small position sizes, venture-style portfolio construction.</div>
+      <div class="cycle-examples"><span>Figure AI</span><span>1X / Agility</span><span>Humanoid OEM startups</span><span>"AI robot OS" startups</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CHAPTER 13 DIVIDER ═══════ -->
+<div id="ch13" class="ch-div">
+  <div class="ch-num">13</div>
+  <div>
+    <div class="ch-kicker">Chapter Thirteen — Final Verdict</div>
+    <div class="ch-title">The <strong>Physical AI Investment Verdict</strong><br>— Where to Deploy Capital</div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="sec-num">13.0 — Final Investment Answers</div>
+  <h2 class="sec-title">Answering the <strong>Questions That Matter</strong></h2>
+  <div class="sec-rule"></div>
+
+  <div class="verdict-grid">
+    <div class="verdict-card">
+      <div class="verdict-q">Where does the majority of value accrue?</div>
+      <div class="verdict-a">Value will concentrate in the <strong>precision component layer</strong> (harmonic drives, encoders, force-torque sensors), the <strong>AI silicon layer</strong> (NVIDIA, with emerging competition at the edge), and eventually in the <strong>robotics software platform</strong> that achieves Windows-of-robotics status. The robot assemblers will capture a fraction of the total value created — as phone assemblers captured a fraction of smartphone-era value.</div>
+    </div>
+    <div class="verdict-card">
+      <div class="verdict-q">Which bottlenecks matter most for investment?</div>
+      <div class="verdict-a">The top five investable bottlenecks are: <strong>harmonic drives</strong> (Harmonic Drive Systems, Nabtesco), <strong>precision encoders</strong> (HEIDENHAIN, Renishaw), <strong>AI training compute</strong> (NVIDIA), <strong>high-bandwidth memory</strong> (SK Hynix, Samsung), and <strong>machine vision software libraries</strong> (Cognex, Keyence). These combine highest severity with longest replication timelines.</div>
+    </div>
+    <div class="verdict-card">
+      <div class="verdict-q">Which technologies are hardest to replicate?</div>
+      <div class="verdict-a">EUV lithography (ASML — 25 years, tens of billions), harmonic drive precision manufacturing (10-15 years, deep metallurgy expertise), TSMC's process recipes (institutional knowledge spanning thousands of engineers), and the CUDA software ecosystem (15+ years of developer lock-in). These are not financial barriers — they are <strong>institutional knowledge barriers</strong> that compound over decades.</div>
+    </div>
+    <div class="verdict-card">
+      <div class="verdict-q">Which small caps are most underappreciated?</div>
+      <div class="verdict-a">Globally: <strong>Harmonic Drive Systems</strong> (Japan, ¥350B), <strong>Nabtesco</strong> (Japan, ¥400B), <strong>Renishaw</strong> (UK, £2.2B), and <strong>THK</strong> (Japan, ¥500B). In India: <strong>MTAR Technologies</strong>, <strong>Paras Defence</strong>, and <strong>Data Patterns</strong>. All are either ignored by Western institutional investors or categorised as industrial/defence companies rather than Physical AI infrastructure.</div>
+    </div>
+    <div class="verdict-card">
+      <div class="verdict-q">Which companies are overhyped?</div>
+      <div class="verdict-a">Any humanoid robot OEM valued above $5B before achieving 10,000+ units of annual production. Any pure-play LiDAR company without a clear path to profitability at volume. Any "AI robotics" company that is fundamentally a system integrator with AI branding rather than a genuine technology IP owner. The pattern in prior technology cycles — dot-com, EV — shows that <strong>the most visible, most-funded players rarely become the long-term value winners</strong>.</div>
+    </div>
+    <div class="verdict-card">
+      <div class="verdict-q">What is the ideal portfolio construction?</div>
+      <div class="verdict-a">A Physical AI portfolio should be <strong>weighted toward indispensable infrastructure</strong> (harmonic drives, sensors, encoders — 40-50%), quality cyclicals with moats (FANUC, Yaskawa, Keyence — 25-35%), robotics software platform optionality (NVIDIA, Siemens simulation — 15-20%), and a small allocation to India precision engineering compounders (MTAR, Data Patterns — 5-10%). Humanoid OEM venture-stage positions: less than 5% aggregate.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FINAL TABLE ─────────────────────────────────────────────── -->
+<section id="final-table" class="section">
+  <div class="sec-num">Final Required Table</div>
+  <h2 class="sec-title">The <strong>Master Score Table</strong><br>— Global &amp; India Universe</h2>
+  <div class="sec-rule"></div>
+  <p class="sec-lead">The definitive ranking of every company profiled in this report, scored across the eight dimensions that determine long-term Physical AI investment attractiveness. Indian-listed companies are highlighted.</p>
+
+  <div class="table-wrap">
+    <table class="data-tbl">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Bottleneck Solved</th>
+          <th>ASML Score</th>
+          <th>Moat Score</th>
+          <th>Pricing Power</th>
+          <th>Export Potential</th>
+          <th>AI Exposure</th>
+          <th>Robotics Exposure</th>
+          <th>10Y Compounder Prob.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="tbl-section-row"><td colspan="9">GLOBAL — TIER 1 ELITE (ASML Score 9+)</td></tr>
+        <tr><td>ASML</td><td>EUV Lithography monopoly</td><td><span class="score-pill sp-elite">10.0</span></td><td><span class="score-pill sp-elite">10</span></td><td>Absolute</td><td>Global</td><td><span class="exposure-dot exp-high"></span>Very High</td><td><span class="exposure-dot exp-high"></span>Very High</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:87%"></div></div><div class="prob-text">87%</div></div></td></tr>
+        <tr><td>TSMC</td><td>Advanced semiconductor foundry</td><td><span class="score-pill sp-elite">9.8</span></td><td><span class="score-pill sp-elite">10</span></td><td>Very High</td><td>Global</td><td><span class="exposure-dot exp-high"></span>Very High</td><td><span class="exposure-dot exp-high"></span>Very High</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:84%"></div></div><div class="prob-text">84%</div></div></td></tr>
+        <tr><td>NVIDIA</td><td>AI training compute + CUDA ecosystem</td><td><span class="score-pill sp-elite">9.5</span></td><td><span class="score-pill sp-elite">9.5</span></td><td>Extreme</td><td>Global</td><td><span class="exposure-dot exp-high"></span>Very High</td><td><span class="exposure-dot exp-high"></span>Very High</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:90%"></div></div><div class="prob-text">90%</div></div></td></tr>
+        <tr><td>Harmonic Drive Systems</td><td>Zero-backlash robot joint actuation</td><td><span class="score-pill sp-elite">9.2</span></td><td><span class="score-pill sp-elite">9.0</span></td><td>Very High</td><td>Global</td><td><span class="exposure-dot exp-med"></span>Medium</td><td><span class="exposure-dot exp-high"></span>Very High</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:92%"></div></div><div class="prob-text">92%</div></div></td></tr>
+        <tr class="tbl-section-row"><td colspan="9">GLOBAL — TIER 2 HIGH-CONVICTION (ASML Score 7.5–9)</td></tr>
+        <tr><td>Keyence</td><td>Precision sensing + machine vision</td><td><span class="score-pill sp-high">8.8</span></td><td><span class="score-pill sp-high">9.0</span></td><td>Very High</td><td>Global</td><td><span class="exposure-dot exp-med"></span>Medium-High</td><td><span class="exposure-dot exp-high"></span>Very High</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:85%"></div></div><div class="prob-text">85%</div></div></td></tr>
+        <tr><td>FANUC</td><td>CNC + industrial robot vertical integration</td><td><span class="score-pill sp-high">8.5</span></td><td><span class="score-pill sp-high">8.5</span></td><td>High</td><td>Global</td><td><span class="exposure-dot exp-med"></span>Medium</td><td><span class="exposure-dot exp-high"></span>Very High</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:75%"></div></div><div class="prob-text">75%</div></div></td></tr>
+        <tr><td>Nabtesco</td><td>Cycloidal RV drives for robot shoulders</td><td><span class="score-pill sp-high">8.2</span></td><td><span class="score-pill sp-high">8.0</span></td><td>High</td><td>Global</td><td><span class="exposure-dot exp-low"></span>Low</td><td><span class="exposure-dot exp-high"></span>Very High</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:85%"></div></div><div class="prob-text">85%</div></div></td></tr>
+        <tr><td>Cognex</td><td>Machine vision + application libraries</td><td><span class="score-pill sp-high">8.0</span></td><td><span class="score-pill sp-high">8.0</span></td><td>Very High</td><td>Global</td><td><span class="exposure-dot exp-med"></span>High</td><td><span class="exposure-dot exp-high"></span>Very High</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:78%"></div></div><div class="prob-text">78%</div></div></td></tr>
+        <tr><td>Renishaw</td><td>Precision encoders + metrology</td><td><span class="score-pill sp-high">7.8</span></td><td><span class="score-pill sp-high">8.0</span></td><td>High</td><td>Global</td><td><span class="exposure-dot exp-low"></span>Low-Med</td><td><span class="exposure-dot exp-high"></span>Very High</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:78%"></div></div><div class="prob-text">78%</div></div></td></tr>
+        <tr><td>Yaskawa Electric</td><td>Servo drives + Motoman robotics</td><td><span class="score-pill sp-high">7.8</span></td><td><span class="score-pill sp-high">7.5</span></td><td>High</td><td>Global</td><td><span class="exposure-dot exp-med"></span>Medium</td><td><span class="exposure-dot exp-high"></span>Very High</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:72%"></div></div><div class="prob-text">72%</div></div></td></tr>
+        <tr><td>VAT Group</td><td>Vacuum valves in all chip fabs</td><td><span class="score-pill sp-high">8.0</span></td><td><span class="score-pill sp-high">7.8</span></td><td>Very High</td><td>Global</td><td><span class="exposure-dot exp-med"></span>Medium</td><td><span class="exposure-dot exp-med"></span>Medium</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:75%"></div></div><div class="prob-text">75%</div></div></td></tr>
+        <tr><td>THK Co.</td><td>Linear motion guides for all robots</td><td><span class="score-pill sp-high">7.5</span></td><td><span class="score-pill sp-high">7.5</span></td><td>High</td><td>Global</td><td><span class="exposure-dot exp-low"></span>Low</td><td><span class="exposure-dot exp-high"></span>Very High</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:72%"></div></div><div class="prob-text">72%</div></div></td></tr>
+        <tr><td>Rockwell Automation</td><td>PLC + software ecosystem</td><td><span class="score-pill sp-high">7.5</span></td><td><span class="score-pill sp-high">7.5</span></td><td>High</td><td>Americas + Global</td><td><span class="exposure-dot exp-med"></span>Medium</td><td><span class="exposure-dot exp-med"></span>High</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:65%"></div></div><div class="prob-text">65%</div></div></td></tr>
+        <tr class="tbl-section-row"><td colspan="9">GLOBAL — TIER 3 COMPOUNDERS (ASML Score 6–7.4)</td></tr>
+        <tr><td>ABB</td><td>Full-stack robotics + power + drives</td><td><span class="score-pill sp-med">7.0</span></td><td><span class="score-pill sp-med">7.0</span></td><td>Medium-High</td><td>Global</td><td><span class="exposure-dot exp-med"></span>Medium</td><td><span class="exposure-dot exp-high"></span>Very High</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:60%"></div></div><div class="prob-text">60%</div></div></td></tr>
+        <tr><td>Novanta</td><td>Precision motion for surgical + industrial</td><td><span class="score-pill sp-med">7.0</span></td><td><span class="score-pill sp-med">7.0</span></td><td>High</td><td>Global</td><td><span class="exposure-dot exp-med"></span>Medium</td><td><span class="exposure-dot exp-high"></span>High</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:72%"></div></div><div class="prob-text">72%</div></div></td></tr>
+        <tr><td>Photronics</td><td>Photomasks for all advanced chips</td><td><span class="score-pill sp-med">7.2</span></td><td><span class="score-pill sp-med">6.8</span></td><td>High</td><td>Global</td><td><span class="exposure-dot exp-med"></span>Medium</td><td><span class="exposure-dot exp-med"></span>Medium</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:68%"></div></div><div class="prob-text">68%</div></div></td></tr>
+        <tr><td>Hiwin Technologies</td><td>Linear motion (Taiwan/Asia)</td><td><span class="score-pill sp-med">6.8</span></td><td><span class="score-pill sp-med">6.5</span></td><td>Medium-High</td><td>Asia + Global</td><td><span class="exposure-dot exp-low"></span>Low</td><td><span class="exposure-dot exp-high"></span>Very High</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:70%"></div></div><div class="prob-text">70%</div></div></td></tr>
+        <tr><td>Allied Motion Tech.</td><td>Precision motors for robotics/medical</td><td><span class="score-pill sp-med">6.5</span></td><td><span class="score-pill sp-med">6.2</span></td><td>Medium</td><td>Global</td><td><span class="exposure-dot exp-low"></span>Low-Med</td><td><span class="exposure-dot exp-high"></span>High</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:65%"></div></div><div class="prob-text">65%</div></div></td></tr>
+        <tr class="tbl-section-row india-row"><td colspan="9">INDIA — LISTED EQUITY UNIVERSE</td></tr>
+        <tr class="tr-india"><td>MTAR Technologies</td><td>Precision aerospace/nuclear components</td><td><span class="score-pill sp-high">7.5</span></td><td><span class="score-pill sp-high">7.5</span></td><td>High</td><td>Growing</td><td><span class="exposure-dot exp-low"></span>Low</td><td><span class="exposure-dot exp-med"></span>High</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:78%"></div></div><div class="prob-text">78%</div></div></td></tr>
+        <tr class="tr-india"><td>Data Patterns India</td><td>Defence embedded systems / radar</td><td><span class="score-pill sp-med">6.5</span></td><td><span class="score-pill sp-med">6.5</span></td><td>High</td><td>Limited</td><td><span class="exposure-dot exp-med"></span>Medium</td><td><span class="exposure-dot exp-med"></span>Medium</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:75%"></div></div><div class="prob-text">75%</div></div></td></tr>
+        <tr class="tr-india"><td>Paras Defence &amp; Space</td><td>Defence optics (only domestic supplier)</td><td><span class="score-pill sp-med">6.0</span></td><td><span class="score-pill sp-med">6.0</span></td><td>High</td><td>Limited</td><td><span class="exposure-dot exp-low"></span>Low</td><td><span class="exposure-dot exp-med"></span>Medium</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:68%"></div></div><div class="prob-text">68%</div></div></td></tr>
+        <tr class="tr-india"><td>Kaynes Technology</td><td>Electronics manufacturing for automation</td><td><span class="score-pill sp-med">5.5</span></td><td><span class="score-pill sp-med">5.5</span></td><td>Medium</td><td>Growing</td><td><span class="exposure-dot exp-low"></span>Low-Med</td><td><span class="exposure-dot exp-med"></span>Medium</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:72%"></div></div><div class="prob-text">72%</div></div></td></tr>
+        <tr class="tr-india"><td>Tata Elxsi</td><td>Robotics software + embedded design</td><td><span class="score-pill sp-med">5.0</span></td><td><span class="score-pill sp-med">5.5</span></td><td>Medium</td><td>Strong</td><td><span class="exposure-dot exp-med"></span>High</td><td><span class="exposure-dot exp-med"></span>Medium</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:68%"></div></div><div class="prob-text">68%</div></div></td></tr>
+        <tr class="tr-india"><td>HBL Power Systems</td><td>Railway automation electronics (Kavach)</td><td><span class="score-pill sp-med">5.5</span></td><td><span class="score-pill sp-med">5.0</span></td><td>Medium</td><td>Limited</td><td><span class="exposure-dot exp-low"></span>Low-Med</td><td><span class="exposure-dot exp-med"></span>Medium</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:65%"></div></div><div class="prob-text">65%</div></div></td></tr>
+        <tr class="tr-india"><td>KPIT Technologies</td><td>Automotive embedded / ADAS software</td><td><span class="score-pill sp-low">4.5</span></td><td><span class="score-pill sp-med">5.0</span></td><td>Medium</td><td>Strong</td><td><span class="exposure-dot exp-med"></span>High</td><td><span class="exposure-dot exp-med"></span>Medium</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:60%"></div></div><div class="prob-text">60%</div></div></td></tr>
+        <tr class="tr-india"><td>L&amp;T Technology Services</td><td>Industrial engineering R&amp;D services</td><td><span class="score-pill sp-low">4.5</span></td><td><span class="score-pill sp-med">5.0</span></td><td>Medium</td><td>Strong</td><td><span class="exposure-dot exp-med"></span>Medium</td><td><span class="exposure-dot exp-med"></span>Medium</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:62%"></div></div><div class="prob-text">62%</div></div></td></tr>
+        <tr class="tr-india"><td>Astra Microwave</td><td>Microwave / RF sub-systems for radar</td><td><span class="score-pill sp-med">7.0</span></td><td><span class="score-pill sp-med">6.5</span></td><td>High</td><td>Limited</td><td><span class="exposure-dot exp-low"></span>Low</td><td><span class="exposure-dot exp-med"></span>Medium</td><td><div class="prob-bar"><div class="prob-track"><div class="prob-fill" style="width:70%"></div></div><div class="prob-text">70%</div></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ── 2025–2045 ROADMAP ───────────────────────────────────────── -->
+<section id="roadmap" class="section">
+  <div class="sec-num">Final Conclusion — 2025–2045</div>
+  <h2 class="sec-title">The Physical AI Revolution<br><strong>A Probabilistic 20-Year Roadmap</strong></h2>
+  <div class="sec-rule"></div>
+  <p class="sec-lead">The Physical AI era is not a single event — it is a multi-decade capital formation and wealth creation cycle unfolding in four distinct phases, each with its own set of bottlenecks, winners, and investment themes. Understanding phase timing determines portfolio positioning.</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+      <div class="tl-phase">Phase One</div>
+      <div class="tl-period">2025 – 2028</div>
+      <div class="tl-title">Industrial Robotics Acceleration &amp; Humanoid Pilots</div>
+      <div class="tl-body">The reshoring supercycle drives 25-35% CAGR in industrial robot installations in North America, Europe, and India. Manufacturing automation density in the US and EU doubles from historically low bases. <strong>Humanoid robot pilots begin in controlled factory environments</strong> (automotive assembly, electronics manufacturing) from 2026-2027, with Tesla Optimus, Figure, and 1X units deployed at under 10,000 units annually. The key investment theme of this phase: sensor, actuator, and AI silicon companies benefit from volume growth in traditional industrial robotics while humanoid optionality is added for free. <strong>Harmonic Drive, Nabtesco, Cognex, and Keyence</strong> see meaningful upside from industrial automation alone before humanoids drive the next step-change.</div>
+      <div class="tl-tags"><span>Industrial Robotics</span><span>Reshoring Capex</span><span>Harmonic Drives</span><span>Machine Vision</span><span>Humanoid Pilots</span></div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+      <div class="tl-phase">Phase Two</div>
+      <div class="tl-period">2028 – 2032</div>
+      <div class="tl-title">Humanoid Scale-Up &amp; Supply Chain Bottlenecks Emerge</div>
+      <div class="tl-body">Commercial humanoid deployments reach scale: <strong>50,000 to 500,000 units annually</strong>. At this volume, the actuator bottleneck becomes acute — harmonic drive and cycloidal gearbox capacity becomes the binding constraint on global humanoid production. Lead times extend from weeks to quarters. Harmonic Drive Systems and Nabtesco enjoy extraordinary pricing power as demand dramatically outstrips supply expansion capability. The robotics software platform wars reach an inflection: NVIDIA Isaac, Siemens Tecnomatix, and 1-2 startup platforms compete for developer mindshare. <strong>Whichever platform wins by 2031 will be dominant for a decade.</strong> India emerges as a serious robotics software export hub, with Tata Elxsi, KPIT, and new specialist firms winning engineering mandates from global robot OEMs.</div>
+      <div class="tl-tags"><span>Humanoid Scale</span><span>Actuator Bottleneck</span><span>Software Platform Wars</span><span>India Software Export</span><span>Sensor Demand Surge</span></div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+      <div class="tl-phase">Phase Three</div>
+      <div class="tl-period">2032 – 2038</div>
+      <div class="tl-title">Physical AI Mainstream — Robots in Warehouses, Hospitals &amp; Construction</div>
+      <div class="tl-body">Physical AI crosses the mainstream adoption threshold: <strong>2-5 million humanoid units annually</strong>, tens of millions of specialized robots in logistics, healthcare, and construction. Amazon, JD Logistics, DHL, and other mega-operators deploy humanoids at scale. Elder care robots become commercially viable in Japan and South Korea. The <strong>robotics software platform has consolidated to 2-3 dominant players</strong>, each earning subscription revenue from millions of deployed robots — a software economics model generating 80%+ gross margins at extraordinary scale. New bottlenecks emerge: tactile sensing at humanoid scale, dexterous manipulation software, and human-robot interaction safety certification become the next generation of indispensable components. <strong>India's precision engineering firms</strong> (MTAR, Astra Microwave, and successors) begin winning global supply chain positions as quality standards rise with export credentials.</div>
+      <div class="tl-tags"><span>Mass Deployment</span><span>Logistics Robots</span><span>Healthcare Robots</span><span>Software Revenues</span><span>India Export Win</span><span>Tactile Sensing</span></div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+      <div class="tl-phase">Phase Four</div>
+      <div class="tl-period">2038 – 2045</div>
+      <div class="tl-title">Physical AI Infrastructure — Ubiquitous, Essential, Compounding</div>
+      <div class="tl-body">Physical AI becomes as fundamental as electricity or cloud computing: <strong>tens of millions of robots deployed annually</strong>, generating $5-15T in annual economic activity directly attributable to the Physical AI ecosystem. Hardware at the commodity end (generic robot frames, simple grippers, basic navigation) has commoditized to Chinese manufacturing with 5-10% margins. <strong>Premium precision components — advanced harmonic drives, next-generation force-torque sensors, specialized AI silicon — continue commanding extraordinary margins</strong> because the performance delta justifies premium pricing in high-value applications. The robotics software platform incumbents earn structural software royalties on every robot sold — the ARM Holdings business model applied to Physical AI. <strong>The compounding machines identified in this report — Harmonic Drive, Nabtesco, Keyence, Cognex, Renishaw, THK — have by this point delivered 15-25 years of sustained above-market returns</strong>, having been early-identified as the infrastructure layer of the Physical AI era before institutional consensus formed.</div>
+      <div class="tl-tags"><span>Physical AI as Infrastructure</span><span>Software Royalties</span><span>Precision Premium</span><span>15-25yr Compounders</span><span>New Bottlenecks</span></div>
+    </div>
+  </div>
+
+  <div class="thesis" style="margin-top:48px">
+    <div class="thesis-label">The Closing Investment Thesis</div>
+    <div class="thesis-text">"The Physical AI revolution is the most significant economic transformation since the internet — and it will create wealth by the same mechanism the internet did: not in the most visible applications, but in the <strong>invisible infrastructure</strong> that every application depends on. ASML did not build chips. ARM did not build phones. TSMC did not build servers. They built the indispensable foundations upon which everything else was constructed — and they compounded extraordinary returns for decades as a result. <strong>The harmonic drives, precision encoders, force-torque sensors, and AI silicon that power every robot on earth are the ASMLs, ARMs, and TSMCs of Physical AI.</strong> Identifying them now, before institutional consensus forms, is the defining opportunity of the next two decades of investing."</div>
+  </div>
+</section>
+
+<!-- ── REPORT FOOTER ───────────────────────────────────────────── -->
+<footer class="report-footer">
+  <div>
+    <div class="rf-col-lbl">About This Report</div>
+    <div class="rf-col-body">This document is Part II of a two-part institutional research series. Part I covers the Physical AI Revolution thesis, global value chain, eight bottleneck case studies, and the top 50 robotics bottlenecks. Together, the two documents constitute the definitive Physical AI &amp; Robotics Super-Cycle investment framework.</div>
+  </div>
+  <div>
+    <div class="rf-col-lbl">Scope of Part II</div>
+    <div class="rf-col-body">Chapters 5–13: Value attribution by segment, ASML Framework full scoring, 15 global small-cap hidden compounders, 6 mid-cap compounders, India opportunity analysis, India listed equity mapping (14 companies), India hidden compounder screen, future toll booth analysis, capital cycle classification, and the 2025–2045 probabilistic investment roadmap.</div>
+  </div>
+  <div>
+    <div class="rf-col-lbl">Disclaimer</div>
+    <div class="rf-col-body">This report is produced for institutional research and educational purposes only. It does not constitute investment advice, a solicitation to buy or sell securities, or a guarantee of future performance. All financial estimates are approximations based on publicly available information as of June 2026. Investors should conduct independent due diligence before making investment decisions.</div>
+  </div>
+</footer>
+<div class="rf-nav">
+  <span>© 2026 Physical AI Research Consortium &nbsp;·&nbsp; Institutional Research &nbsp;·&nbsp; Confidential</span>
+  <span>← Part I &nbsp;·&nbsp; <strong>End of Report</strong></span>
+</div>
+
+</main>
+
+<script>
+const navItems = document.querySelectorAll('.nav-item');
+const targets = [];
+navItems.forEach(item => {
+  const href = item.getAttribute('href');
+  if (href && href.startsWith('#')) {
+    const el = document.getElementById(href.slice(1));
+    if (el) targets.push({ el, item });
+  }
+});
+
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navItems.forEach(i => i.classList.remove('active'));
+      const match = targets.find(t => t.el === e.target);
+      if (match) match.item.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+targets.forEach(t => obs.observe(t.el));
+
+navItems.forEach(item => {
+  item.addEventListener('click', e => {
+    const href = item.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      e.preventDefault();
+      const el = document.getElementById(href.slice(1));
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>

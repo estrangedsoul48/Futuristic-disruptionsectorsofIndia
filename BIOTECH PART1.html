@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Biotechnology Super-Cycle · Part I — The Biology Revolution</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #070B14;
+  --bg2:       #0C1220;
+  --bg3:       #111828;
+  --gold:      #C4962A;
+  --gold-lt:   #E0B84A;
+  --gold-dim:  #7A5A10;
+  --blue:      #3B7DD8;
+  --blue-dim:  #1E3D6E;
+  --text:      #E4DFCE;
+  --text2:     #9A9082;
+  --text3:     #5A5448;
+  --green:     #4CAF7D;
+  --red:       #E05252;
+  --amber:     #F59E0B;
+  --border:    #1E2530;
+  --border-g:  #3D2E0E;
+  --fw: 260px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.75;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ── SIDEBAR ─────────────────────────────── */
+nav#sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: var(--fw);
+  height: 100vh;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+nav#sidebar .brand {
+  padding: 28px 20px 22px;
+  border-bottom: 1px solid var(--border-g);
+}
+nav#sidebar .brand-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: .18em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+nav#sidebar .brand-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+}
+nav#sidebar .part-badge {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 2px 10px;
+  background: var(--gold);
+  color: #000;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+nav#sidebar ul { list-style: none; padding: 16px 0; flex: 1; }
+nav#sidebar ul li a {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 20px;
+  text-decoration: none;
+  color: var(--text2);
+  font-family: 'Crimson Pro', serif;
+  font-size: 13px;
+  line-height: 1.4;
+  transition: color .2s, background .2s;
+  border-left: 2px solid transparent;
+}
+nav#sidebar ul li a:hover,
+nav#sidebar ul li a.active {
+  color: var(--gold);
+  background: rgba(196,150,42,.07);
+  border-left-color: var(--gold);
+}
+nav#sidebar ul li a .nav-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--gold-dim);
+  min-width: 22px;
+  margin-top: 1px;
+}
+nav#sidebar .part-link {
+  margin: 0 16px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 14px;
+  background: var(--bg3);
+  border: 1px solid var(--border-g);
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--gold);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  transition: background .2s;
+}
+nav#sidebar .part-link:hover { background: var(--bg3); border-color: var(--gold); }
+
+/* ── MAIN CONTENT ─────────────────────────── */
+main {
+  margin-left: var(--fw);
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── COVER ──────────────────────────────── */
+#cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 72px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-g);
+}
+#cover::before {
+  content: '';
+  position: absolute;
+  top: -30%; right: -20%;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(196,150,42,.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+#cover::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.cover-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .25em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.cover-eyebrow::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+}
+.cover-number {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(72px, 10vw, 130px);
+  font-weight: 900;
+  line-height: .9;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(196,150,42,.25);
+  position: absolute;
+  top: 60px; right: 60px;
+  user-select: none;
+  letter-spacing: -.02em;
+}
+.cover-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text);
+  max-width: 780px;
+  margin-bottom: 12px;
+}
+.cover-title em {
+  font-style: italic;
+  color: var(--gold-lt);
+}
+.cover-subtitle {
+  font-family: 'Crimson Pro', serif;
+  font-size: clamp(17px, 2vw, 22px);
+  font-weight: 300;
+  color: var(--text2);
+  max-width: 680px;
+  margin-bottom: 48px;
+  line-height: 1.6;
+}
+.cover-meta {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.meta-block { display: flex; flex-direction: column; gap: 3px; }
+.meta-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .18em;
+  color: var(--text3);
+  text-transform: uppercase;
+}
+.meta-value {
+  font-family: 'Crimson Pro', serif;
+  font-size: 14px;
+  color: var(--text2);
+}
+.cover-divider {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  margin: 40px 0;
+}
+.cover-question {
+  max-width: 620px;
+  padding: 24px 28px;
+  border: 1px solid var(--border-g);
+  border-left: 3px solid var(--gold);
+  background: rgba(196,150,42,.04);
+  border-radius: 0 4px 4px 0;
+}
+.cover-question .q-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.cover-question p {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* ── SECTION COMMON ─────────────────────── */
+section {
+  padding: 72px 72px 80px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+section:last-child { border-bottom: none; }
+
+.section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .14em;
+  color: var(--gold);
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border: 1px solid var(--border-g);
+  background: rgba(196,150,42,.06);
+  white-space: nowrap;
+  margin-top: 6px;
+  border-radius: 2px;
+}
+.section-title-block { flex: 1; }
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 3vw, 38px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+.section-lead {
+  font-family: 'Crimson Pro', serif;
+  font-size: 18px;
+  font-style: italic;
+  color: var(--text2);
+  line-height: 1.6;
+  max-width: 760px;
+}
+
+/* ── PROSE ──────────────────────────────── */
+.prose p { margin-bottom: 1.2em; color: var(--text); font-size: 16.5px; }
+.prose p:last-child { margin-bottom: 0; }
+.prose strong { color: var(--text); font-weight: 600; }
+.prose em { color: var(--gold-lt); font-style: italic; }
+
+/* ── CALLOUT BOX ─────────────────────────── */
+.callout {
+  padding: 24px 28px;
+  border: 1px solid var(--border-g);
+  border-left: 3px solid var(--gold);
+  background: rgba(196,150,42,.04);
+  border-radius: 0 6px 6px 0;
+  margin: 28px 0;
+}
+.callout.blue {
+  border-color: var(--blue-dim);
+  border-left-color: var(--blue);
+  background: rgba(59,125,216,.04);
+}
+.callout.green {
+  border-color: rgba(76,175,125,.3);
+  border-left-color: var(--green);
+  background: rgba(76,175,125,.04);
+}
+.callout-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.callout.blue .callout-label { color: var(--blue); }
+.callout.green .callout-label { color: var(--green); }
+.callout p { font-size: 15.5px; color: var(--text); margin: 0; line-height: 1.65; }
+
+/* ── ERA TIMELINE ─────────────────────── */
+.era-timeline {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  margin: 40px 0;
+}
+.era-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 24px 18px 20px;
+  position: relative;
+  transition: border-color .2s;
+}
+.era-card:hover { border-color: var(--gold-dim); }
+.era-card.current {
+  border-color: var(--gold-dim);
+  background: rgba(196,150,42,.06);
+}
+.era-card::after {
+  content: '▶';
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text3);
+  font-size: 10px;
+  z-index: 2;
+}
+.era-card:last-child::after { display: none; }
+.era-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .15em;
+  color: var(--text3);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.era-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.era-card.current .era-name { color: var(--gold-lt); }
+.era-period {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--gold-dim);
+  margin-bottom: 12px;
+}
+.era-desc {
+  font-size: 12.5px;
+  color: var(--text2);
+  line-height: 1.6;
+}
+.era-tag {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.tag-green { background: rgba(76,175,125,.15); color: var(--green); }
+.tag-gold  { background: rgba(196,150,42,.15); color: var(--gold); }
+.tag-blue  { background: rgba(59,125,216,.15); color: var(--blue); }
+.tag-dim   { background: rgba(255,255,255,.05); color: var(--text3); }
+
+/* ── BOTTLENECK TABLE ─────────────────── */
+.bottleneck-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 32px 0;
+}
+.bn-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 22px 24px;
+  border-radius: 4px;
+}
+.bn-step {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--gold-dim);
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.bn-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.bn-before {
+  font-size: 13px;
+  color: var(--text2);
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.55;
+}
+.bn-after {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.55;
+}
+.bn-after strong { color: var(--green); }
+.bn-impact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+.impact-bar {
+  flex: 1;
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.impact-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+  border-radius: 2px;
+}
+.impact-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+/* ── VALUE CHAIN TIERS ─────────────────── */
+.tier-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 220px;
+  gap: 0;
+  border: 1px solid var(--border);
+  margin-bottom: -1px;
+  background: var(--bg2);
+}
+.tier-row:first-child { border-radius: 4px 4px 0 0; }
+.tier-row:last-child { border-radius: 0 0 4px 4px; }
+.tier-row:hover { background: var(--bg3); }
+.tier-label {
+  padding: 18px 20px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.tier-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--gold-dim);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.tier-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold-lt);
+  line-height: 1.3;
+}
+.tier-content {
+  padding: 18px 24px;
+  border-right: 1px solid var(--border);
+}
+.tier-content h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.tier-content p {
+  font-size: 13.5px;
+  color: var(--text2);
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+.tier-players {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+}
+.player-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  padding: 3px 8px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  border-radius: 2px;
+}
+.tier-metrics {
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+.metric-row { display: flex; flex-direction: column; }
+.metric-key {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--text3);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.metric-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--green);
+}
+.metric-val.mid { color: var(--amber); }
+.metric-val.low { color: var(--red); }
+
+/* ── COMPANY PROFILES ─────────────────── */
+.company-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin: 32px 0;
+}
+.co-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 28px 28px 24px;
+  transition: border-color .2s;
+}
+.co-card:hover { border-color: var(--border-g); }
+.co-ticker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .14em;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.co-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.co-tagline {
+  font-size: 13.5px;
+  color: var(--text2);
+  margin-bottom: 16px;
+  line-height: 1.6;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.co-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.co-stat {}
+.co-stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  color: var(--text3);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.co-stat-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+}
+.co-moat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 14px;
+}
+.moat-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  padding: 3px 9px;
+  border-radius: 2px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.moat-tech  { background: rgba(59,125,216,.15); color: var(--blue); border: 1px solid rgba(59,125,216,.3); }
+.moat-reg   { background: rgba(196,150,42,.12); color: var(--gold); border: 1px solid rgba(196,150,42,.3); }
+.moat-data  { background: rgba(76,175,125,.12); color: var(--green); border: 1px solid rgba(76,175,125,.3); }
+.moat-eco   { background: rgba(245,158,11,.12); color: var(--amber); border: 1px solid rgba(245,158,11,.3); }
+.moat-mfg   { background: rgba(224,82,82,.12); color: var(--red); border: 1px solid rgba(224,82,82,.3); }
+.co-insight {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.65;
+  font-style: italic;
+}
+
+/* ── ASML SCORE TABLE ─────────────────── */
+.score-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  margin: 32px 0;
+}
+.score-table thead tr {
+  background: rgba(196,150,42,.08);
+  border-bottom: 1px solid var(--border-g);
+}
+.score-table thead th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .14em;
+  color: var(--gold);
+  text-transform: uppercase;
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 500;
+}
+.score-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background .15s;
+}
+.score-table tbody tr:hover { background: var(--bg3); }
+.score-table tbody td {
+  padding: 13px 14px;
+  color: var(--text);
+  vertical-align: middle;
+}
+.score-table .td-co {
+  font-family: 'Playfair Display', serif;
+  font-size: 14.5px;
+  font-weight: 600;
+}
+.score-table .td-mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text2);
+}
+.score-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  padding: 3px 10px;
+  border-radius: 3px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+}
+.score-top    { background: rgba(196,150,42,.2); color: var(--gold-lt); border: 1px solid var(--gold-dim); }
+.score-high   { background: rgba(76,175,125,.15); color: var(--green); border: 1px solid rgba(76,175,125,.3); }
+.score-mid    { background: rgba(245,158,11,.15); color: var(--amber); border: 1px solid rgba(245,158,11,.3); }
+.score-low    { background: rgba(224,82,82,.15); color: var(--red); border: 1px solid rgba(224,82,82,.3); }
+
+/* ── MARGIN RANKING ─────────────────────── */
+.rank-list { counter-reset: rank; margin: 32px 0; }
+.rank-item {
+  counter-increment: rank;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  margin-bottom: -1px;
+  background: var(--bg2);
+  transition: background .15s;
+}
+.rank-item:hover { background: var(--bg3); }
+.rank-item:first-child { border-radius: 4px 4px 0 0; }
+.rank-item:last-child { border-radius: 0 0 4px 4px; }
+.rank-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  color: var(--gold-dim);
+  font-weight: 300;
+  min-width: 32px;
+  line-height: 1;
+  margin-top: 3px;
+}
+.rank-content { flex: 1; }
+.rank-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 5px;
+}
+.rank-desc { font-size: 13px; color: var(--text2); line-height: 1.6; }
+.rank-metrics {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  min-width: 120px;
+}
+.rank-metric-gm, .rank-metric-moat {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-align: right;
+}
+.rank-metric-gm { color: var(--green); }
+.rank-metric-moat { color: var(--text3); }
+
+/* ── TWO-COL ─────────────────────────── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin: 28px 0; }
+
+/* ── INSIGHT BLOCK ─────────────────────── */
+.insight-box {
+  padding: 26px 28px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+.insight-box h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gold-lt);
+  margin-bottom: 10px;
+}
+.insight-box ul { list-style: none; }
+.insight-box ul li {
+  font-size: 13.5px;
+  color: var(--text2);
+  line-height: 1.7;
+  padding: 4px 0;
+  padding-left: 16px;
+  position: relative;
+}
+.insight-box ul li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--gold-dim);
+}
+
+/* ── STAT BAND ─────────────────────────── */
+.stat-band {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  margin: 32px 0;
+}
+.stat-block {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.stat-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--gold-lt);
+  line-height: 1;
+}
+.stat-unit { font-size: 14px; color: var(--text2); }
+.stat-desc { font-size: 12.5px; color: var(--text3); margin-top: 4px; line-height: 1.5; }
+
+/* ── FOOTER ─────────────────────────────── */
+footer {
+  padding: 40px 72px;
+  border-top: 1px solid var(--border-g);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg2);
+}
+footer .footer-left { font-size: 12px; color: var(--text3); line-height: 1.7; }
+footer .footer-right {
+  display: flex;
+  gap: 16px;
+}
+footer .footer-right a {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .12em;
+  color: var(--gold-dim);
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 1px solid var(--border-g);
+  padding: 7px 16px;
+  border-radius: 2px;
+  transition: border-color .2s, color .2s;
+}
+footer .footer-right a:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── SCROLLBAR ─────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
+
+/* ── RESPONSIVE ─────────────────────────── */
+@media (max-width: 960px) {
+  :root { --fw: 0px; }
+  nav#sidebar { display: none; }
+  main { margin-left: 0; }
+  section { padding: 48px 28px 56px; }
+  #cover { padding: 56px 28px; }
+  .era-timeline { grid-template-columns: 1fr 1fr; }
+  .bottleneck-grid { grid-template-columns: 1fr; }
+  .company-grid { grid-template-columns: 1fr; }
+  .stat-band { grid-template-columns: 1fr 1fr; }
+  .two-col { grid-template-columns: 1fr; }
+  .tier-row { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 20px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════ SIDEBAR ══════════════════════════════════════════ -->
+<nav id="sidebar">
+  <div class="brand">
+    <div class="brand-label">Institutional Research</div>
+    <div class="brand-title">Global Biotechnology<br>Super-Cycle Report</div>
+    <div class="part-badge">Part I of II</div>
+  </div>
+  <ul>
+    <li><a href="#cover"><span class="nav-num">00</span>Cover</a></li>
+    <li><a href="#exec"><span class="nav-num">01</span>Executive Summary</a></li>
+    <li><a href="#revolution"><span class="nav-num">02</span>The Biology Revolution</a></li>
+    <li><a href="#ai-debottleneck"><span class="nav-num">03</span>AI De-bottlenecking Biology</a></li>
+    <li><a href="#value-chain"><span class="nav-num">04</span>Global Bioeconomy Value Chain</a></li>
+    <li><a href="#bottleneck-analysis"><span class="nav-num">05</span>Bottleneck Company Analysis</a></li>
+    <li><a href="#value-ranking"><span class="nav-num">06</span>Where Does Value Live</a></li>
+    <li><a href="#asml-framework"><span class="nav-num">07</span>The ASML Framework</a></li>
+  </ul>
+  <a class="part-link" href="biotech_supercycle_part2.html">Part II: India &amp; Investment →</a>
+</nav>
+
+<!-- ════════════════════════════════════════ MAIN ════════════════════════════════════════════ -->
+<main>
+
+<!-- ══ COVER ══ -->
+<section id="cover">
+  <div class="cover-number">I</div>
+  <div class="cover-eyebrow">Institutional Research · Biotechnology &amp; Life Sciences</div>
+  <h1 class="cover-title">The <em>Biology Revolution</em><br>&amp; Global Bioeconomy Framework</h1>
+  <p class="cover-subtitle">Identifying the ASMLs, Nvidias, and Platform Owners of the Next Biological Revolution — Where Value Accrues as AI De-bottlenecks the Life Sciences</p>
+  <div class="cover-divider"></div>
+  <div class="cover-question">
+    <div class="q-label">Core Investment Question</div>
+    <p>"Where will the majority of economic value accrue as AI begins to de-bottleneck biology — and which companies own those chokepoints regardless of which drug succeeds?"</p>
+  </div>
+  <div style="height:40px;"></div>
+  <div class="cover-meta">
+    <div class="meta-block"><div class="meta-label">Classification</div><div class="meta-value">Global Bioeconomy · Long-Term Structural</div></div>
+    <div class="meta-block"><div class="meta-label">Time Horizon</div><div class="meta-value">2025 – 2045</div></div>
+    <div class="meta-block"><div class="meta-label">Document</div><div class="meta-value">Part I of II — Global Framework</div></div>
+    <div class="meta-block"><div class="meta-label">Focus</div><div class="meta-value">AI, Tools, Value Chain, Bottlenecks</div></div>
+  </div>
+</section>
+
+<!-- ══ EXECUTIVE SUMMARY ══ -->
+<section id="exec">
+  <div class="section-header">
+    <div class="section-num">Section 01</div>
+    <div class="section-title-block">
+      <h2 class="section-title">Executive Summary</h2>
+      <p class="section-lead">Biology is becoming an engineering discipline. This transition — from empirical wet-lab science to data-driven, AI-powered programmable biology — represents the largest investment opportunity of the 21st century.</p>
+    </div>
+  </div>
+
+  <div class="stat-band">
+    <div class="stat-block">
+      <div class="stat-val">$4.2<span class="stat-unit">T</span></div>
+      <div class="stat-desc">Global bioeconomy in 2022. Projected to exceed $30T by 2040 — a 7× expansion over 18 years.</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-val">$2.5<span class="stat-unit">B</span></div>
+      <div class="stat-desc">Average cost to bring one drug to market. AI has the potential to compress this by 30–60% over the next decade.</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-val">&gt;90<span class="stat-unit">%</span></div>
+      <div class="stat-desc">Clinical trial failure rate. The single largest destruction of capital in modern industry. AI's most critical target.</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-val">12–15<span class="stat-unit">yr</span></div>
+      <div class="stat-desc">Traditional drug development timeline. AI-driven pipelines could compress this to 6–8 years within a decade.</div>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p>The biotechnology super-cycle is not primarily a story about which company discovers the next blockbuster drug. It is a story about <strong>platform ownership, data moats, regulatory barriers, and indispensable infrastructure</strong> — the businesses that sit at chokepoints in the biology value chain and extract value regardless of which therapeutic candidate ultimately succeeds.</p>
+    <p>The central analogy is the semiconductor industry. In chipmaking, ASML does not manufacture the most chips — it builds the machines (EUV lithography systems) without which no advanced chip can exist. Nvidia does not own the most data centres — it manufactures the GPUs that all AI requires. TSMC does not design the most chips — it manufactures them for everyone. These companies captured extraordinary returns not by picking winners, but by <strong>owning the infrastructure through which winners must pass</strong>.</p>
+    <p>In biology, analogous chokepoints are forming around genomic sequencing infrastructure, bioprocessing consumables, analytical instrumentation, clinical data platforms, and increasingly, AI foundation models for molecular design. This report maps those chokepoints, scores them, and — in Part II — applies the framework to India's rapidly emerging bioeconomy.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Central Thesis</div>
+    <p>The greatest long-term wealth in the biotech super-cycle will be created not by drug developers, but by the <strong>pick-and-shovel suppliers, data platform owners, and manufacturing chokepoint operators</strong> who enable the biology ecosystem — regardless of which specific therapies succeed or fail in clinical trials.</p>
+  </div>
+</section>
+
+<!-- ══ THE BIOLOGY REVOLUTION ══ -->
+<section id="revolution">
+  <div class="section-header">
+    <div class="section-num">Section 02</div>
+    <div class="section-title-block">
+      <h2 class="section-title">The Biology Revolution</h2>
+      <p class="section-lead">A 100-year compression — from Mendelian genetics to programmable biology — is now entering its most disruptive phase.</p>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p>Human civilization has navigated a series of technological eras, each building on the last. Chemistry gave us materials and medicines. The information era gave us computation. The internet era connected computation globally. The AI era applies machine intelligence to data at scale. Each transition created entirely new industry categories and destroyed existing ones.</p>
+    <p>Biology is about to become the next great technology platform — and unlike prior eras, it operates on the most complex, data-rich substrate known: living systems. The transformation is already underway, driven by three convergent forces: <strong>exponential cost declines in sequencing, the arrival of AI capable of reasoning about biological systems, and the engineering of biology itself through synthetic biology and CRISPR.</strong></p>
+  </div>
+
+  <div class="era-timeline">
+    <div class="era-card">
+      <div class="era-num">Era I</div>
+      <div class="era-name">Chemistry Era</div>
+      <div class="era-period">1850 — 1950</div>
+      <div class="era-desc">Small molecules, empirical drug discovery. Aspirin, penicillin, sulfonamides. Trial-and-error chemistry.</div>
+      <span class="era-tag tag-dim">Empirical</span>
+    </div>
+    <div class="era-card">
+      <div class="era-num">Era II</div>
+      <div class="era-name">Information Era</div>
+      <div class="era-period">1953 — 2000</div>
+      <div class="era-desc">DNA double helix, PCR, recombinant DNA, monoclonal antibodies. Biology meets molecular tools.</div>
+      <span class="era-tag tag-blue">Molecular</span>
+    </div>
+    <div class="era-card">
+      <div class="era-num">Era III</div>
+      <div class="era-name">Genomics Era</div>
+      <div class="era-period">2000 — 2015</div>
+      <div class="era-desc">Human Genome Project completes. Next-gen sequencing drives costs from $3B to $200 per genome. Omics explosion.</div>
+      <span class="era-tag tag-blue">Digital</span>
+    </div>
+    <div class="era-card">
+      <div class="era-num">Era IV</div>
+      <div class="era-name">AI-Biology Fusion</div>
+      <div class="era-period">2015 — 2025</div>
+      <div class="era-desc">AlphaFold solves protein folding. Foundation models emerge. AI discovers novel antibiotics, designs proteins from scratch.</div>
+      <span class="era-tag tag-gold">AI-Driven</span>
+    </div>
+    <div class="era-card current">
+      <div class="era-num">Era V</div>
+      <div class="era-name">Programmable Biology</div>
+      <div class="era-period">2025 — 2045</div>
+      <div class="era-desc">Biology as engineering. CRISPR-based cures, mRNA platforms, cell therapies, synthetic biology organisms designed on computers.</div>
+      <span class="era-tag tag-green">Emerging Now</span>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="insight-box">
+      <h4>Moore's Law Analogue in Biology</h4>
+      <ul>
+        <li>Human Genome Project cost: $3 billion (2003)</li>
+        <li>Illumina sequencing cost: ~$200/genome (2024)</li>
+        <li>Ultima Genomics target: $1/genome (2025–26)</li>
+        <li>Cost decline: 15 million× in 20 years — faster than transistor scaling</li>
+        <li>Data generated doubles every 12–18 months</li>
+        <li>AI models trained on this data grow more capable annually</li>
+      </ul>
+    </div>
+    <div class="insight-box">
+      <h4>Why Biology Becomes a Software Problem</h4>
+      <ul>
+        <li>DNA is a 4-letter digital code — inherently computable</li>
+        <li>Protein structures follow physical laws amenable to simulation</li>
+        <li>Gene regulatory networks are logical circuits</li>
+        <li>Metabolic pathways can be modelled as reaction networks</li>
+        <li>Clinical outcomes are patterns in high-dimensional data</li>
+        <li>Synthetic biology treats cells as programmable factories</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">Critical Structural Insight</div>
+    <p>In every prior technology era, the companies that became the most valuable were not the end-product makers but the <strong>platform infrastructure providers</strong>: Intel (chips), Oracle (databases), Cisco (networking), Microsoft (OS/software). The biology revolution will likely follow the same pattern — the infrastructure layer owners will create disproportionate and durable value.</p>
+  </div>
+</section>
+
+<!-- ══ AI DE-BOTTLENECKING ══ -->
+<section id="ai-debottleneck">
+  <div class="section-header">
+    <div class="section-num">Section 03</div>
+    <div class="section-title-block">
+      <h2 class="section-title">How AI Is De-bottlenecking Biology</h2>
+      <p class="section-lead">Drug development has 7 critical bottlenecks. AI is materially transforming 4 of them. The remaining 3 — regulatory, manufacturing, and clinical execution — grow more valuable as AI absorbs the others.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">The AlphaFold Moment</div>
+    <p>In November 2020, DeepMind's AlphaFold 2 solved the 50-year protein structure prediction problem — achieving accuracy comparable to experimental methods at a fraction of the cost and time. This was the biology equivalent of the microprocessor: a step-change that rendered an entire class of prior tooling obsolete and opened a new design space. <strong>The 200 million protein structures now available in the AlphaFold database have permanently transformed structural biology.</strong></p>
+  </div>
+
+  <div class="bottleneck-grid">
+    <div class="bn-card">
+      <div class="bn-step">Bottleneck 01</div>
+      <div class="bn-title">Drug Target Identification</div>
+      <div class="bn-before"><strong>Before AI:</strong> Years of literature review, genetic association studies, and manual hypothesis generation. High failure from poorly validated targets (accounts for ~40% of Phase II failures).</div>
+      <div class="bn-after"><strong>AI Impact:</strong> <strong>Transformative.</strong> ML models process multi-omics data (genomics + proteomics + single-cell RNA-seq) to surface novel targets. Companies like Recursion Pharmaceuticals and BioMap identify targets at 100× the throughput of traditional approaches.</div>
+      <div class="bn-impact"><div class="impact-bar"><div class="impact-fill" style="width:85%"></div></div><span class="impact-label">85% disrupted</span></div>
+    </div>
+    <div class="bn-card">
+      <div class="bn-step">Bottleneck 02</div>
+      <div class="bn-title">Molecule Discovery &amp; Design</div>
+      <div class="bn-before"><strong>Before AI:</strong> High-throughput screening of millions of compounds. Chemical libraries, combinatorial chemistry. Primarily a search process, not a design process. Slow, costly, hit-rate ~0.01%.</div>
+      <div class="bn-after"><strong>AI Impact:</strong> <strong>Revolutionary.</strong> Generative models (RFdiffusion, EvolutionaryScale ESM3, BioNeMo) design novel molecules from scratch. Insilico Medicine achieved IND-enabling studies in 18 months vs 4–5 years for first AI-designed drug candidate.</div>
+      <div class="bn-impact"><div class="impact-bar"><div class="impact-fill" style="width:90%"></div></div><span class="impact-label">90% disrupted</span></div>
+    </div>
+    <div class="bn-card">
+      <div class="bn-step">Bottleneck 03</div>
+      <div class="bn-title">Protein Structure &amp; Design</div>
+      <div class="bn-before"><strong>Before AI:</strong> X-ray crystallography, cryo-EM — each structure took years and millions of dollars. Only ~200,000 structures existed in the PDB after 60 years of research. Major bottleneck for drug binding studies.</div>
+      <div class="bn-after"><strong>AI Impact:</strong> <strong>Solved.</strong> AlphaFold 2 and successors have deposited 200M+ predicted structures. RFdiffusion and ProteinMPNN can now design novel proteins with desired functions. This bottleneck is largely eliminated for structure prediction; design remains an active frontier.</div>
+      <div class="bn-impact"><div class="impact-bar"><div class="impact-fill" style="width:92%"></div></div><span class="impact-label">92% disrupted</span></div>
+    </div>
+    <div class="bn-card">
+      <div class="bn-step">Bottleneck 04</div>
+      <div class="bn-title">Toxicity &amp; ADME Prediction</div>
+      <div class="bn-before"><strong>Before AI:</strong> Lab animal studies, in vitro assays, expensive and slow. Toxicity failures discovered late in development destroy billions in capital. Estimated 30% of clinical failures stem from unexpected toxicity.</div>
+      <div class="bn-after"><strong>AI Impact:</strong> <strong>Significant.</strong> Graph neural networks and transformer models trained on historical compound-toxicity data predict ADME/Tox profiles in silico. Reduces wet-lab experiments by 40–60%. Recursion, Schrödinger, and BioNTech platforms demonstrate strong predictive accuracy.</div>
+      <div class="bn-impact"><div class="impact-bar"><div class="impact-fill" style="width:65%"></div></div><span class="impact-label">65% disrupted</span></div>
+    </div>
+    <div class="bn-card">
+      <div class="bn-step">Bottleneck 05</div>
+      <div class="bn-title">Clinical Trial Design</div>
+      <div class="bn-before"><strong>Before AI:</strong> Patient recruitment takes 1–3 years. Protocol design is largely empirical. 85% of trials fail to recruit on time. Biomarker strategy often poorly designed, leading to underpowered studies.</div>
+      <div class="bn-after"><strong>AI Impact:</strong> <strong>Early Stage — Partial.</strong> AI-assisted patient identification, adaptive trial design, synthetic control arms (from historical data). Medidata, IQVIA, and Veeva Systems are deploying AI tools, but human regulatory judgment and patient recruitment remain high-friction. <em>This bottleneck remains highly valuable.</em></div>
+      <div class="bn-impact"><div class="impact-bar"><div class="impact-fill" style="width:35%"></div></div><span class="impact-label">35% disrupted</span></div>
+    </div>
+    <div class="bn-card">
+      <div class="bn-step">Bottleneck 06</div>
+      <div class="bn-title">Biomarker Discovery</div>
+      <div class="bn-before"><strong>Before AI:</strong> Manual analysis of genomic and proteomic data. Statistical associations in clinical datasets. Companion diagnostic development adds 2–4 years. Frequent failure: drugs work only in subpopulations not yet identified.</div>
+      <div class="bn-after"><strong>AI Impact:</strong> <strong>Meaningful.</strong> Foundation models trained on multi-modal clinical data (imaging + genomics + EHR) identify patient stratification signatures. Foundation Medicine (Roche), Guardant Health, and Tempus AI are building data-driven biomarker platforms. Patient data scarcity remains the binding constraint.</div>
+      <div class="bn-impact"><div class="impact-bar"><div class="impact-fill" style="width:55%"></div></div><span class="impact-label">55% disrupted</span></div>
+    </div>
+    <div class="bn-card">
+      <div class="bn-step">Bottleneck 07</div>
+      <div class="bn-title">Biologics Manufacturing Optimization</div>
+      <div class="bn-before"><strong>Before AI:</strong> Cell culture optimization by design-of-experiment (DoE) methods — slow, expensive, highly empirical. Each bioreactor scale-up takes 12–18 months of optimization. Manufacturing failures in clinical supply delay programs by years.</div>
+      <div class="bn-after"><strong>AI Impact:</strong> <strong>Emerging.</strong> Digital twins, process analytical technology (PAT), and ML-driven bioreactor control are reducing optimization timelines by 30–50%. Sartorius, Cytiva, and Lonza are embedding AI into bioprocess platforms. <em>This bottleneck remains a powerful economic moat for expert CDMOs.</em></div>
+      <div class="bn-impact"><div class="impact-bar"><div class="impact-fill" style="width:40%"></div></div><span class="impact-label">40% disrupted</span></div>
+    </div>
+    <div class="bn-card" style="background: rgba(196,150,42,.04); border-color: var(--border-g);">
+      <div class="bn-step" style="color: var(--gold);">Key Insight</div>
+      <div class="bn-title">The Regulatory Moat Grows Stronger</div>
+      <div class="bn-before" style="border-color: var(--border-g); color: var(--text2);">As AI compresses the early discovery phases, the remaining bottlenecks — regulatory approval, manufacturing scale-up, and clinical execution — become proportionally more valuable. The expertise to navigate these is not AI-solvable in the near term.</div>
+      <div class="bn-after" style="color: var(--gold-lt);">Companies with deep regulatory relationships, proven manufacturing track records, and established clinical networks become more, not less, valuable as AI adoption accelerates.</div>
+      <div class="bn-impact"><div class="impact-bar"><div class="impact-fill" style="width:0%"></div></div><span class="impact-label" style="color: var(--gold);">Moat Strengthens</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ VALUE CHAIN ══ -->
+<section id="value-chain">
+  <div class="section-header">
+    <div class="section-num">Section 04</div>
+    <div class="section-title-block">
+      <h2 class="section-title">Global Bioeconomy Value Chain</h2>
+      <p class="section-lead">Six tiers of value creation — from raw biological data to commercialised precision medicine. The most durable value concentrates at the infrastructure and tool layers, not the drug itself.</p>
+    </div>
+  </div>
+
+  <div style="overflow-x:auto;">
+    <div style="min-width:700px;">
+      <div class="tier-row">
+        <div class="tier-label">
+          <div class="tier-num">T1</div>
+          <div class="tier-name">Biological Data</div>
+        </div>
+        <div class="tier-content">
+          <h4>Genomics, Proteomics &amp; Multi-Omics Platforms</h4>
+          <p>The raw material of the biology revolution. Whoever controls large, curated, clinically annotated datasets holds a structural advantage that compounds over time. Sequencing cost declines are generating an exponential data explosion — but access to clinical phenotype data remains scarce and therefore highly valuable.</p>
+          <div class="tier-players">
+            <span class="player-chip">Illumina</span><span class="player-chip">BGI Genomics</span><span class="player-chip">Tempus AI</span><span class="player-chip">Flatiron Health</span><span class="player-chip">Foundation Medicine</span><span class="player-chip">23andMe</span><span class="player-chip">UK Biobank</span>
+          </div>
+        </div>
+        <div class="tier-metrics">
+          <div class="metric-row"><div class="metric-key">Gross Margin</div><div class="metric-val">70–90%</div></div>
+          <div class="metric-row"><div class="metric-key">Moat Strength</div><div class="metric-val">Extreme</div></div>
+          <div class="metric-row"><div class="metric-key">Network Effect</div><div class="metric-val">Strong</div></div>
+        </div>
+      </div>
+
+      <div class="tier-row">
+        <div class="tier-label">
+          <div class="tier-num">T2</div>
+          <div class="tier-name">AI &amp; Computational Biology</div>
+        </div>
+        <div class="tier-content">
+          <h4>Drug Discovery Platforms &amp; Foundation Models</h4>
+          <p>The fastest-evolving tier. AI drug discovery platforms (Recursion, Schrödinger, BioNTech AI), protein design models (RFdiffusion, ESMFold), and emerging biology foundation models (BioMedLM, Genentech's approaches) are compressing preclinical timelines dramatically. Winner-take-most dynamics likely for foundation model providers.</p>
+          <div class="tier-players">
+            <span class="player-chip">Schrödinger</span><span class="player-chip">Recursion</span><span class="player-chip">Insilico Medicine</span><span class="player-chip">Exscientia</span><span class="player-chip">EvolutionaryScale</span><span class="player-chip">BioNeMo (Nvidia)</span>
+          </div>
+        </div>
+        <div class="tier-metrics">
+          <div class="metric-row"><div class="metric-key">Gross Margin</div><div class="metric-val">60–85%</div></div>
+          <div class="metric-row"><div class="metric-key">Moat Strength</div><div class="metric-val">Emerging</div></div>
+          <div class="metric-row"><div class="metric-key">Network Effect</div><div class="metric-val">Very Strong</div></div>
+        </div>
+      </div>
+
+      <div class="tier-row">
+        <div class="tier-label">
+          <div class="tier-num">T3</div>
+          <div class="tier-name">Life Science Tools</div>
+        </div>
+        <div class="tier-content">
+          <h4>Instruments, Automation &amp; Reagents — The Picks &amp; Shovels Layer</h4>
+          <p>The most consistently profitable layer in the bioeconomy. Oligopolistic instrument makers (Illumina, Thermo Fisher, Danaher, Sartorius, Waters) have extraordinary pricing power, high switching costs, and recurring revenue from consumables. As the biotech R&amp;D industry grows, tools spending grows with it — regardless of trial outcomes.</p>
+          <div class="tier-players">
+            <span class="player-chip">Illumina</span><span class="player-chip">Thermo Fisher</span><span class="player-chip">Danaher</span><span class="player-chip">Sartorius</span><span class="player-chip">Waters Corp</span><span class="player-chip">Agilent</span><span class="player-chip">Bio-Techne</span><span class="player-chip">10x Genomics</span>
+          </div>
+        </div>
+        <div class="tier-metrics">
+          <div class="metric-row"><div class="metric-key">Gross Margin</div><div class="metric-val">50–65%</div></div>
+          <div class="metric-row"><div class="metric-key">Moat Strength</div><div class="metric-val">Very High</div></div>
+          <div class="metric-row"><div class="metric-key">Switching Costs</div><div class="metric-val">Extreme</div></div>
+        </div>
+      </div>
+
+      <div class="tier-row">
+        <div class="tier-label">
+          <div class="tier-num">T4</div>
+          <div class="tier-name">Drug Development</div>
+        </div>
+        <div class="tier-content">
+          <h4>CROs, Clinical Trials &amp; Biomarker Platforms</h4>
+          <p>CROs (Contract Research Organisations) are indispensable intermediaries — Pharma spends $50B+ annually on outsourced research. The best CROs are vertically integrating into data, AI, and biomarker services. IQVIA and Charles River represent the premium tier, with strong data moats from accumulated trial experience.</p>
+          <div class="tier-players">
+            <span class="player-chip">IQVIA</span><span class="player-chip">Covance/Labcorp</span><span class="player-chip">Charles River Labs</span><span class="player-chip">PPD/Thermo Fisher</span><span class="player-chip">Medpace</span><span class="player-chip">PRA Health</span>
+          </div>
+        </div>
+        <div class="tier-metrics">
+          <div class="metric-row"><div class="metric-key">Gross Margin</div><div class="metric-key">30–45%</div></div>
+          <div class="metric-row"><div class="metric-key">Moat Strength</div><div class="metric-val mid">Moderate</div></div>
+          <div class="metric-row"><div class="metric-key">Data Advantage</div><div class="metric-val">Accumulating</div></div>
+        </div>
+      </div>
+
+      <div class="tier-row">
+        <div class="tier-label">
+          <div class="tier-num">T5</div>
+          <div class="tier-name">Manufacturing</div>
+        </div>
+        <div class="tier-content">
+          <h4>Biologics, Cell Therapy &amp; Gene Therapy CDMOs</h4>
+          <p>The TSMC layer of biotechnology. CDMOs (Contract Development and Manufacturing Organisations) for biologics are capacity-constrained: Lonza's slots are sold 3–5 years in advance. Cell and gene therapy manufacturing represents the next wave — highly complex, limited global capacity, extreme pricing power for those with proven tracks records and regulatory approvals.</p>
+          <div class="tier-players">
+            <span class="player-chip">Lonza</span><span class="player-chip">Samsung Biologics</span><span class="player-chip">Fujifilm Diosynth</span><span class="player-chip">Catalent (NVO)</span><span class="player-chip">WuXi Biologics</span><span class="player-chip">Rentschler</span>
+          </div>
+        </div>
+        <div class="tier-metrics">
+          <div class="metric-row"><div class="metric-key">Gross Margin</div><div class="metric-val mid">30–50%</div></div>
+          <div class="metric-row"><div class="metric-key">Pricing Power</div><div class="metric-val">High &amp; Rising</div></div>
+          <div class="metric-row"><div class="metric-key">Capacity Constraint</div><div class="metric-val">Severe</div></div>
+        </div>
+      </div>
+
+      <div class="tier-row">
+        <div class="tier-label">
+          <div class="tier-num">T6</div>
+          <div class="tier-name">Commercialisation</div>
+        </div>
+        <div class="tier-content">
+          <h4>Specialty Pharma, Precision Medicine &amp; Companion Diagnostics</h4>
+          <p>The end-market layer — highest risk, highest potential reward, but also the most binary and dependent on clinical success. Companion diagnostics (CDx) are an interesting sub-category: FDA increasingly mandates CDx for precision therapies, creating a regulatory-enforced duopoly dynamic for Roche, Thermo Fisher, and others with approved CDx platforms.</p>
+          <div class="tier-players">
+            <span class="player-chip">Roche</span><span class="player-chip">AstraZeneca</span><span class="player-chip">Novo Nordisk</span><span class="player-chip">Regeneron</span><span class="player-chip">Guardant Health</span><span class="player-chip">Myriad Genetics</span>
+          </div>
+        </div>
+        <div class="tier-metrics">
+          <div class="metric-row"><div class="metric-key">Gross Margin</div><div class="metric-val">60–85%</div></div>
+          <div class="metric-row"><div class="metric-key">Risk Profile</div><div class="metric-val low">Binary / High</div></div>
+          <div class="metric-row"><div class="metric-key">IP Duration</div><div class="metric-val mid">7–12 Years</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ COMPANY BOTTLENECK ANALYSIS ══ -->
+<section id="bottleneck-analysis">
+  <div class="section-header">
+    <div class="section-num">Section 05</div>
+    <div class="section-title-block">
+      <h2 class="section-title">Global Biotech Bottleneck Analysis</h2>
+      <p class="section-lead">The chokepoint companies — those whose disappearance would materially halt global biology research. Examined through five moat dimensions: technology, regulatory, installed base, ecosystem, and data.</p>
+    </div>
+  </div>
+
+  <div class="company-grid">
+    <div class="co-card">
+      <div class="co-ticker">NASDAQ: ILMN</div>
+      <div class="co-name">Illumina</div>
+      <div class="co-tagline">Owns 80%+ of the short-read sequencing market. The instrument, reagent, and software standard for genomics research globally. The DNA sequencing infrastructure company.</div>
+      <div class="co-stats">
+        <div class="co-stat"><div class="co-stat-label">Revenue</div><div class="co-stat-val">~$4.5B</div></div>
+        <div class="co-stat"><div class="co-stat-label">Gross Margin</div><div class="co-stat-val">65–68%</div></div>
+        <div class="co-stat"><div class="co-stat-label">Market Position</div><div class="co-stat-val">#1 Global</div></div>
+      </div>
+      <div class="co-moat-row">
+        <span class="moat-tag moat-tech">Technology Moat</span>
+        <span class="moat-tag moat-eco">Ecosystem Lock-in</span>
+        <span class="moat-tag moat-reg">Regulatory Moat</span>
+      </div>
+      <div class="co-insight">The installed base of Illumina sequencers at academic and commercial labs creates an extreme switching cost: changing sequencer platforms requires revalidating entire workflows, retraining staff, and rebuilding bioinformatics pipelines. However, the long-read sequencing threat from PacBio and Oxford Nanopore, and ultra-low-cost sequencing from Ultima Genomics, represents genuine disruptive risk over a 5–7 year horizon.</div>
+    </div>
+
+    <div class="co-card">
+      <div class="co-ticker">NYSE: TMO</div>
+      <div class="co-name">Thermo Fisher Scientific</div>
+      <div class="co-tagline">The "Amazon of Life Sciences" — 80,000+ product catalog. Instruments, reagents, CRO services, and CDMO. The single-source supplier for the global research community.</div>
+      <div class="co-stats">
+        <div class="co-stat"><div class="co-stat-label">Revenue</div><div class="co-stat-val">~$43B</div></div>
+        <div class="co-stat"><div class="co-stat-label">Gross Margin</div><div class="co-stat-val">~46%</div></div>
+        <div class="co-stat"><div class="co-stat-label">Employees</div><div class="co-stat-val">130,000+</div></div>
+      </div>
+      <div class="co-moat-row">
+        <span class="moat-tag moat-eco">Ecosystem Lock-in</span>
+        <span class="moat-tag moat-reg">Regulatory Moat</span>
+        <span class="moat-tag moat-mfg">Supply Chain</span>
+      </div>
+      <div class="co-insight">Thermo Fisher's moat is less about any single product and more about the totality of its ecosystem. Switching away from Thermo Fisher means switching dozens of reagent systems, software platforms, and service contracts simultaneously. The COVID-19 pandemic demonstrated its strategic importance: governments treated Thermo Fisher as critical national infrastructure for diagnostics and vaccine manufacturing supply.</div>
+    </div>
+
+    <div class="co-card">
+      <div class="co-ticker">NYSE: DHR</div>
+      <div class="co-name">Danaher Corporation</div>
+      <div class="co-tagline">The Berkshire Hathaway of life science instruments. Brands include Cytiva (bioprocessing), Beckman Coulter (diagnostics), Leica (microscopy), and IDT (genomics). Famous for the Danaher Business System (DBS) — a relentless operational improvement framework.</div>
+      <div class="co-stats">
+        <div class="co-stat"><div class="co-stat-label">Revenue</div><div class="co-stat-val">~$24B</div></div>
+        <div class="co-stat"><div class="co-stat-label">Gross Margin</div><div class="co-stat-val">~58%</div></div>
+        <div class="co-stat"><div class="co-stat-label">ROIC</div><div class="co-stat-val">~14%</div></div>
+      </div>
+      <div class="co-moat-row">
+        <span class="moat-tag moat-tech">Technology Moat</span>
+        <span class="moat-tag moat-eco">Ecosystem Lock-in</span>
+        <span class="moat-tag moat-data">Data Moat</span>
+      </div>
+      <div class="co-insight">After spinning off Fortive (2016) and Veralto (2023), Danaher is now a pure-play life sciences and diagnostics platform. Its Cytiva division (acquired from GE Healthcare for $21B) is deeply embedded in biologics manufacturing supply chains globally — chromatography resins, filtration systems, and cell culture media that cannot be easily substituted in an already-validated manufacturing process.</div>
+    </div>
+
+    <div class="co-card">
+      <div class="co-ticker">XETRA: SRT</div>
+      <div class="co-name">Sartorius AG</div>
+      <div class="co-tagline">The single-use bioprocessing infrastructure company. Dominates filtration membranes, bioreactor bags, and downstream processing equipment for biologics manufacturing. A genuine ASML-like chokepoint in the biologics supply chain.</div>
+      <div class="co-stats">
+        <div class="co-stat"><div class="co-stat-label">Revenue</div><div class="co-stat-val">~€3.4B</div></div>
+        <div class="co-stat"><div class="co-stat-label">EBITDA Margin</div><div class="co-stat-val">~32%</div></div>
+        <div class="co-stat"><div class="co-stat-label">Filtration Share</div><div class="co-stat-val">&gt;40%</div></div>
+      </div>
+      <div class="co-moat-row">
+        <span class="moat-tag moat-tech">Technology Moat</span>
+        <span class="moat-tag moat-reg">Regulatory Moat</span>
+        <span class="moat-tag moat-mfg">Manufacturing Moat</span>
+      </div>
+      <div class="co-insight">Sartorius is perhaps the purest ASML analogue in biotechnology. Its single-use bioreactor bags and filtration membranes are validated into drug manufacturing processes that cannot be changed without re-running expensive FDA/EMA validation studies. Once validated in, Sartorius is effectively irreplaceable for the lifetime of that manufacturing process — often 10+ years. This is regulatory lock-in at its most powerful.</div>
+    </div>
+
+    <div class="co-card">
+      <div class="co-ticker">SWX: LONN</div>
+      <div class="co-name">Lonza Group</div>
+      <div class="co-tagline">The TSMC of biologics manufacturing — a pure-play contract manufacturer that competes with nobody. Capacity for mAbs, cell &amp; gene therapies, and HPAPI small molecules. Slots booked 3–5 years in advance for certain modalities.</div>
+      <div class="co-stats">
+        <div class="co-stat"><div class="co-stat-label">Revenue</div><div class="co-stat-val">~CHF 6B</div></div>
+        <div class="co-stat"><div class="co-stat-label">EBITDA Margin</div><div class="co-stat-val">~35%</div></div>
+        <div class="co-stat"><div class="co-stat-label">Gene Therapy</div><div class="co-stat-val">Market Leader</div></div>
+      </div>
+      <div class="co-moat-row">
+        <span class="moat-tag moat-reg">Regulatory Moat</span>
+        <span class="moat-tag moat-mfg">Manufacturing Moat</span>
+        <span class="moat-tag moat-tech">Technology Moat</span>
+      </div>
+      <div class="co-insight">Lonza's business model is structurally superior to integrated pharma companies: it captures economics across all drug modalities without bearing clinical risk. Every new modality — cell therapy, gene therapy, mRNA — requires new, highly specialized manufacturing infrastructure that Lonza is building years ahead of demand. The 5-year lead time on capacity effectively guarantees pricing power for the remainder of the decade.</div>
+    </div>
+
+    <div class="co-card">
+      <div class="co-ticker">CPH: NOVO B</div>
+      <div class="co-name">Novo Nordisk</div>
+      <div class="co-tagline">Controls ~50% of global insulin supply and is rapidly dominating GLP-1 agonist markets (Ozempic, Wegovy). Manufacturing is its moat — the complexity of peptide and protein manufacturing is a genuine barrier to entry that explains the supply constraints seen globally.</div>
+      <div class="co-stats">
+        <div class="co-stat"><div class="co-stat-label">Revenue</div><div class="co-stat-val">~DKK 232B</div></div>
+        <div class="co-stat"><div class="co-stat-label">EBIT Margin</div><div class="co-stat-val">~45%</div></div>
+        <div class="co-stat"><div class="co-stat-label">GLP-1 Share</div><div class="co-stat-val">~50%</div></div>
+      </div>
+      <div class="co-moat-row">
+        <span class="moat-tag moat-mfg">Manufacturing Moat</span>
+        <span class="moat-tag moat-reg">Regulatory Moat</span>
+        <span class="moat-tag moat-tech">Technology Depth</span>
+      </div>
+      <div class="co-insight">Novo Nordisk demonstrates that manufacturing excellence can be as powerful a moat as IP. Its semaglutide manufacturing capacity — peptide synthesis at multi-tonne scale with GMP compliance — took decades to build and cannot be replicated quickly. The company is investing $10B+ in additional capacity globally. This is the GLP-1 "supply constraint moat" in action: demand has dramatically outstripped supply, and only Novo and Eli Lilly can close that gap.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHERE DOES VALUE LIVE ══ -->
+<section id="value-ranking">
+  <div class="section-header">
+    <div class="section-num">Section 06</div>
+    <div class="section-title-block">
+      <h2 class="section-title">Where Does Value Live?</h2>
+      <p class="section-lead">All biotech segments are not equal. Ranked from most to least attractive for long-term wealth creation based on margin profiles, moat durability, pricing power, and scalability.</p>
+    </div>
+  </div>
+
+  <div class="rank-list">
+    <div class="rank-item">
+      <div class="rank-num">1</div>
+      <div class="rank-content">
+        <div class="rank-title">Biological Data &amp; Clinical Database Platforms</div>
+        <div class="rank-desc">Compounding data moats. Every new dataset improves the model, which attracts more users, which generates more data. Network effects compound over decades. The clinical phenotype data problem — connecting genomics to patient outcomes — is the scarcest resource in biology. Whoever solves data curation and access at scale will own the foundation model training substrate.</div>
+      </div>
+      <div class="rank-metrics">
+        <div class="rank-metric-gm">GM: 70–90%</div>
+        <div class="rank-metric-moat">Moat: Extreme / Data</div>
+      </div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-num">2</div>
+      <div class="rank-content">
+        <div class="rank-title">Life Science Instruments &amp; Analytical Tools</div>
+        <div class="rank-desc">Oligopolistic markets with extreme switching costs, regulatory validation lock-in, and recurring consumable revenue streams. Every dollar of biotech R&amp;D funding flows through instrument makers. Market grows with biology R&amp;D spending regardless of drug outcomes. The picks-and-shovels of the gold rush.</div>
+      </div>
+      <div class="rank-metrics">
+        <div class="rank-metric-gm">GM: 50–65%</div>
+        <div class="rank-metric-moat">Moat: Very High / Tech + Reg</div>
+      </div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-num">3</div>
+      <div class="rank-content">
+        <div class="rank-title">Bioprocessing Consumables &amp; Single-Use Systems</div>
+        <div class="rank-desc">Sartorius and Cytiva-type businesses. Regulatory validation makes substitution near-impossible for validated processes. Recurring revenues from single-use bags, filters, and membranes that must be replaced every manufacturing run. Grows proportionally with biologics manufacturing volume — a secular mega-trend.</div>
+      </div>
+      <div class="rank-metrics">
+        <div class="rank-metric-gm">GM: 55–75%</div>
+        <div class="rank-metric-moat">Moat: Extreme / Reg + Mfg</div>
+      </div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-num">4</div>
+      <div class="rank-content">
+        <div class="rank-title">Branded Biologics &amp; Specialty Pharmaceuticals</div>
+        <div class="rank-desc">Very high margins during patent protection, but binary risk and finite IP duration. Best positioned: platform biologics companies that can leverage the same manufacturing and regulatory infrastructure across multiple drugs (Regeneron, Amgen). Risk: biosimilar entry compresses margins sharply post-patent.</div>
+      </div>
+      <div class="rank-metrics">
+        <div class="rank-metric-gm">GM: 75–90%</div>
+        <div class="rank-metric-moat">Moat: IP-dependent / High Risk</div>
+      </div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-num">5</div>
+      <div class="rank-content">
+        <div class="rank-title">Biologics &amp; Gene Therapy CDMOs</div>
+        <div class="rank-desc">Capacity constrained, 3–5 year booking horizons, regulatory-moated. Cell and gene therapy CDMOs command premium pricing due to extreme technical complexity. Risk: capital-intensive to build, quality failures can be catastrophic. Best compounders will be those with multi-modal expertise (mAb + cell therapy + gene therapy) under one GMP roof.</div>
+      </div>
+      <div class="rank-metrics">
+        <div class="rank-metric-gm">GM: 35–55%</div>
+        <div class="rank-metric-moat">Moat: High / Reg + Cap</div>
+      </div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-num">6</div>
+      <div class="rank-content">
+        <div class="rank-title">Data-Rich CROs &amp; Clinical Research Platforms</div>
+        <div class="rank-desc">IQVIA, Charles River, Medpace. The best CROs are building data moats from accumulated clinical trial experience. AI integration (adaptive trial design, patient identification, synthetic controls) is creating differentiation. Scale and therapeutic area specialisation are the key competitive dimensions. Attractive on a risk-adjusted basis given the predictability of the revenue stream.</div>
+      </div>
+      <div class="rank-metrics">
+        <div class="rank-metric-gm">GM: 30–45%</div>
+        <div class="rank-metric-moat">Moat: Growing / Data</div>
+      </div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-num">7</div>
+      <div class="rank-content">
+        <div class="rank-title">Biosimilars Manufacturers</div>
+        <div class="rank-desc">Growing market as biologic drugs go off-patent ($100B+ of biologics lose exclusivity by 2030). But margins are structurally lower than branded biologics and competition is intensifying. Premium positioning requires regulatory track record, manufacturing scale, and preferably owned commercial channels in regulated markets (US/EU). Otherwise risks commoditisation.</div>
+      </div>
+      <div class="rank-metrics">
+        <div class="rank-metric-gm">GM: 30–50%</div>
+        <div class="rank-metric-moat">Moat: Moderate / Reg + Mfg</div>
+      </div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-num">8</div>
+      <div class="rank-content">
+        <div class="rank-title">Small-Molecule APIs &amp; Generic CDMO Services</div>
+        <div class="rank-desc">Lowest structural attractiveness. Severe pricing pressure from competition (particularly from Indian and Chinese API manufacturers). Commoditising rapidly. Value creation requires migration up the complexity curve toward highly potent APIs (HPAPIs), oligonucleotides, or complex finished dosage forms. Niche players with chemistry expertise in difficult-to-replicate molecules retain pricing power.</div>
+      </div>
+      <div class="rank-metrics">
+        <div class="rank-metric-gm">GM: 20–40%</div>
+        <div class="rank-metric-moat">Moat: Low / Eroding</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ASML FRAMEWORK ══ -->
+<section id="asml-framework">
+  <div class="section-header">
+    <div class="section-num">Section 07</div>
+    <div class="section-title-block">
+      <h2 class="section-title">The ASML Framework for Biotechnology</h2>
+      <p class="section-lead">For each company, a single test: if it disappeared tomorrow, would global biology R&amp;D materially halt? This framework assigns an ASML Score (0–10) based on criticality, technology depth, ecosystem dependency, and replication difficulty.</p>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">Scoring Methodology</div>
+    <p>The ASML Score weights four dimensions equally: <strong>Operational Criticality</strong> (would absence halt work?), <strong>Technology Depth</strong> (how many years to replicate?), <strong>Ecosystem Dependency</strong> (how many downstream workflows depend on this firm?), and <strong>Replication Difficulty</strong> (regulatory, IP, and capital barriers to entry). Score of 10 = absolute irreplaceable monopoly (ASML itself in chips). Score of 0 = commoditised service with easy substitution.</p>
+  </div>
+
+  <div style="overflow-x:auto; margin-top:28px;">
+    <table class="score-table">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Biology Bottleneck Owned</th>
+          <th>ASML Score</th>
+          <th>Technology Moat</th>
+          <th>Eco. Dependency</th>
+          <th>Replication Timeline</th>
+          <th>Primary Risk</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-co">Illumina</td>
+          <td class="td-mono">Short-read DNA sequencing infrastructure; universal genomics standard</td>
+          <td><span class="score-pill score-top">9.5</span></td>
+          <td><span class="score-pill score-top">Extreme</span></td>
+          <td><span class="score-pill score-top">Extreme</span></td>
+          <td class="td-mono">15–20 years</td>
+          <td class="td-mono" style="color:var(--red);">Long-read disruption</td>
+        </tr>
+        <tr>
+          <td class="td-co">Sartorius</td>
+          <td class="td-mono">Single-use bioprocessing membranes, filtration, bioreactor systems</td>
+          <td><span class="score-pill score-top">9.0</span></td>
+          <td><span class="score-pill score-top">Extreme</span></td>
+          <td><span class="score-pill score-top">Extreme</span></td>
+          <td class="td-mono">15+ years (regulatory)</td>
+          <td class="td-mono" style="color:var(--amber);">Execution risk / Q issues</td>
+        </tr>
+        <tr>
+          <td class="td-co">Thermo Fisher Scientific</td>
+          <td class="td-mono">Life science supply chain; universal reagent and instrument platform</td>
+          <td><span class="score-pill score-top">9.0</span></td>
+          <td><span class="score-pill score-high">Very High</span></td>
+          <td><span class="score-pill score-top">Extreme</span></td>
+          <td class="td-mono">20+ years</td>
+          <td class="td-mono" style="color:var(--amber);">Chinese competition in reagents</td>
+        </tr>
+        <tr>
+          <td class="td-co">Danaher (Cytiva)</td>
+          <td class="td-mono">Bioprocess chromatography, filtration, cell culture — Cytiva division</td>
+          <td><span class="score-pill score-top">8.5</span></td>
+          <td><span class="score-pill score-high">Very High</span></td>
+          <td><span class="score-pill score-top">Extreme</span></td>
+          <td class="td-mono">12–18 years</td>
+          <td class="td-mono" style="color:var(--text3);">Portfolio complexity</td>
+        </tr>
+        <tr>
+          <td class="td-co">Lonza Group</td>
+          <td class="td-mono">GMP biologics, cell/gene therapy CDMO — irreplaceable for many drugs</td>
+          <td><span class="score-pill score-high">8.0</span></td>
+          <td><span class="score-pill score-high">Very High</span></td>
+          <td><span class="score-pill score-high">Very High</span></td>
+          <td class="td-mono">10–15 years</td>
+          <td class="td-mono" style="color:var(--amber);">Customer concentration</td>
+        </tr>
+        <tr>
+          <td class="td-co">Novo Nordisk</td>
+          <td class="td-mono">GLP-1 &amp; insulin manufacturing at scale; peptide synthesis bottleneck</td>
+          <td><span class="score-pill score-high">7.5</span></td>
+          <td><span class="score-pill score-high">High</span></td>
+          <td><span class="score-pill score-high">Very High</span></td>
+          <td class="td-mono">10–12 years</td>
+          <td class="td-mono" style="color:var(--amber);">Lilly competition</td>
+        </tr>
+        <tr>
+          <td class="td-co">IQVIA</td>
+          <td class="td-mono">Clinical trial execution, real-world data, regulatory intelligence platform</td>
+          <td><span class="score-pill score-high">7.5</span></td>
+          <td><span class="score-pill score-high">High</span></td>
+          <td><span class="score-pill score-high">Very High</span></td>
+          <td class="td-mono">12–15 years</td>
+          <td class="td-mono" style="color:var(--text3);">AI disruption to CROs</td>
+        </tr>
+        <tr>
+          <td class="td-co">Regeneron Pharmaceuticals</td>
+          <td class="td-mono">VelociGene antibody discovery platform; VEGF &amp; mAb manufacturing</td>
+          <td><span class="score-pill score-mid">6.5</span></td>
+          <td><span class="score-pill score-high">High</span></td>
+          <td><span class="score-pill score-mid">Moderate</span></td>
+          <td class="td-mono">8–12 years</td>
+          <td class="td-mono" style="color:var(--amber);">Patent cliffs; biosimilar entry</td>
+        </tr>
+        <tr>
+          <td class="td-co">Waters Corporation</td>
+          <td class="td-mono">HPLC/mass spectrometry — analytical standard for drug quality control</td>
+          <td><span class="score-pill score-mid">7.0</span></td>
+          <td><span class="score-pill score-high">Very High</span></td>
+          <td><span class="score-pill score-high">High</span></td>
+          <td class="td-mono">10–15 years</td>
+          <td class="td-mono" style="color:var(--text3);">Agilent/Bruker competition</td>
+        </tr>
+        <tr>
+          <td class="td-co">10x Genomics</td>
+          <td class="td-mono">Single-cell &amp; spatial transcriptomics — next-generation genomics research standard</td>
+          <td><span class="score-pill score-mid">6.0</span></td>
+          <td><span class="score-pill score-high">High</span></td>
+          <td><span class="score-pill score-mid">Moderate</span></td>
+          <td class="td-mono">6–10 years</td>
+          <td class="td-mono" style="color:var(--red);">Platform competition; IP litigation</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout green" style="margin-top:32px;">
+    <div class="callout-label">The Future ASML of Biology</div>
+    <p>The highest-probability candidate for a future 10/10 ASML-score business in biology is <strong>whoever builds the dominant foundation model infrastructure for drug design</strong> — analogous to what Nvidia's CUDA ecosystem became for AI. This could be Nvidia itself (BioNeMo platform), a dedicated company like EvolutionaryScale (ESM3), or a major pharma company that open-sources its platform to gain ecosystem dominance. <strong>In Part II, we assess which Indian companies could participate in building this infrastructure layer.</strong></p>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-left">
+    Global Biotechnology Super-Cycle · Institutional Research Framework<br>
+    Part I of II — The Biology Revolution &amp; Global Bioeconomy Framework<br>
+    For professional investor use. Not financial advice. All data indicative.
+  </div>
+  <div class="footer-right">
+    <a href="#cover">↑ Top</a>
+    <a href="biotech_supercycle_part2.html">Part II: India →</a>
+  </div>
+</footer>
+
+</main>
+
+<script>
+// Scrollspy for sidebar navigation
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav#sidebar ul li a');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+      });
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

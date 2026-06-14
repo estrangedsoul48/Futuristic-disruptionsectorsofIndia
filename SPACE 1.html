@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Space Technology Super-Cycle 2025–2050 | Institutional Research — Part I</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ════════════════════════════════════════════════════
+   DESIGN TOKENS — DEEP SPACE INTELLIGENCE SYSTEM
+════════════════════════════════════════════════════ */
+:root {
+  --void:     #050A14;
+  --deep:     #070D1A;
+  --surface:  #0B1525;
+  --elevated: #101E35;
+  --card:     #0C1828;
+
+  --ion:    #4FC3F7;
+  --burn:   #FF6B35;
+  --gold:   #D4A843;
+  --signal: #7B68EE;
+  --forge:  #E85D5D;
+  --growth: #3DD68C;
+
+  --t1: #FF6B35;
+  --t2: #4FC3F7;
+  --t3: #4CAF50;
+  --t4: #F7C831;
+  --t5: #B47BE5;
+  --t6: #E85D5D;
+  --t7: #1ACBA4;
+  --t8: #5B9CF6;
+
+  --text:     #E8EDF5;
+  --dim:      #8BA4C8;
+  --mute:     #3D5170;
+  --data:     #6BE5D0;
+
+  --border:   rgba(79,195,247,0.09);
+  --glow:     rgba(79,195,247,0.18);
+
+  --fd: 'Space Grotesk', sans-serif;
+  --fb: 'IBM Plex Sans', sans-serif;
+  --fm: 'IBM Plex Mono', monospace;
+
+  --ease: cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ════════════════════════════════════════════════════
+   RESET & BASE
+════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--void);
+  color: var(--text);
+  font-family: var(--fb);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ════════════════════════════════════════════════════
+   CLASSIFICATION BANNER — FIXED TOP NAV
+════════════════════════════════════════════════════ */
+.cls-banner {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(5,10,20,0.88);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  padding: 9px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-family: var(--fm); font-size: 10px; letter-spacing: 0.18em;
+  color: var(--mute);
+}
+.cls-left { display: flex; align-items: center; gap: 24px; }
+.cls-id { color: var(--ion); font-weight: 600; }
+.cls-tag {
+  color: var(--gold);
+  border: 1px solid rgba(212,168,67,0.35);
+  padding: 2px 9px; font-size: 9px; letter-spacing: 0.22em;
+}
+.cls-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--growth);
+  box-shadow: 0 0 6px var(--growth);
+  animation: livePulse 2.4s ease-in-out infinite;
+}
+@keyframes livePulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+
+/* ════════════════════════════════════════════════════
+   HERO SECTION
+════════════════════════════════════════════════════ */
+.hero {
+  position: relative; min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  overflow: hidden;
+  padding: 100px 32px 40px;
+}
+
+#starCanvas {
+  position: absolute; inset: 0; z-index: 0;
+}
+
+.nebula-glow {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 700px; height: 700px;
+  background: radial-gradient(circle,
+    rgba(79,195,247,0.055) 0%,
+    rgba(79,195,247,0.02) 40%,
+    transparent 70%);
+  pointer-events: none; z-index: 1;
+  animation: nebulaBreathe 8s ease-in-out infinite;
+}
+@keyframes nebulaBreathe {
+  0%,100%{opacity:.7; transform:translate(-50%,-50%) scale(1)}
+  50%{opacity:1; transform:translate(-50%,-50%) scale(1.08)}
+}
+
+/* Scanline sweep on load */
+.scanline {
+  position: absolute; left: 0; right: 0; height: 1px; z-index: 10;
+  background: linear-gradient(90deg, transparent, rgba(79,195,247,0.35), transparent);
+  pointer-events: none;
+  animation: sweep 2.2s ease-in-out 0.3s forwards;
+  top: 0;
+}
+@keyframes sweep {
+  from { top: 0; opacity: 0.6; }
+  to   { top: 100%; opacity: 0; }
+}
+
+/* Orbital ring system — the signature visual */
+.orbital-sys {
+  position: absolute; z-index: 2; pointer-events: none;
+  width: min(680px, 88vw); height: min(680px, 88vw);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -56%);
+}
+.o-ring {
+  position: absolute; border-radius: 50%;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+}
+.o-ring-1 { width:13%;  height:13%;  border: 1px solid rgba(255,107,53,0.22); }
+.o-ring-2 { width:27%;  height:27%;  border: 1px solid rgba(79,195,247,0.18); }
+.o-ring-3 { width:44%;  height:44%;  border: 1px solid rgba(247,200,49,0.13); }
+.o-ring-4 { width:62%;  height:62%;  border: 1px solid rgba(180,123,229,0.11); }
+.o-ring-5 { width:82%;  height:82%;  border: 1px solid rgba(79,195,247,0.07); }
+.o-ring-6 { width:100%; height:100%; border: 1px dashed rgba(79,195,247,0.04); }
+
+.o-dot-wrap {
+  position: absolute; width:100%; height:100%;
+  top:0; left:0;
+  transform-origin: 50% 50%;
+}
+.o-dot {
+  position: absolute;
+  border-radius: 50%;
+  top: -4px; left: calc(50% - 4px);
+  width: 8px; height: 8px;
+}
+.o-dot::after {
+  content: '';
+  position: absolute; inset: -3px;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.25;
+  filter: blur(3px);
+}
+
+@keyframes oCW  { to { transform: rotate(360deg); } }
+@keyframes oCCW { to { transform: rotate(-360deg); } }
+
+.o-ring-1 .o-dot-wrap { animation: oCW   9s  linear infinite; }
+.o-ring-2 .o-dot-wrap { animation: oCCW  14s linear infinite; }
+.o-ring-3 .o-dot-wrap { animation: oCW   20s linear infinite; }
+.o-ring-4 .o-dot-wrap { animation: oCCW  27s linear infinite; }
+.o-ring-5 .o-dot-wrap { animation: oCW   36s linear infinite; }
+
+.o-dot-1 { background: var(--t1); }
+.o-dot-2 { background: var(--t2); }
+.o-dot-3 { background: var(--t4); }
+.o-dot-4 { background: var(--t5); }
+.o-dot-5 { background: var(--t7); }
+
+/* Center nucleus */
+.o-nucleus {
+  position: absolute; top:50%; left:50%;
+  transform: translate(-50%,-50%);
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79,195,247,0.35), rgba(5,10,20,0.8));
+  border: 1px solid rgba(79,195,247,0.4);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--fm); font-size: 6.5px; letter-spacing: 0.12em;
+  color: var(--ion); text-align: center; line-height: 1.3;
+}
+
+/* Hero content */
+.hero-content {
+  position: relative; z-index: 3;
+  text-align: center; max-width: 860px;
+}
+
+.hero-eyebrow {
+  font-family: var(--fm); font-size: 10.5px; letter-spacing: 0.28em;
+  color: var(--ion); text-transform: uppercase;
+  margin-bottom: 24px; opacity: 0;
+  animation: fadeUp 0.8s var(--ease) 0.4s forwards;
+}
+
+.hero-title {
+  font-family: var(--fd); font-size: clamp(32px, 5.5vw, 74px);
+  font-weight: 700; line-height: 1.04; letter-spacing: -0.025em;
+  text-transform: uppercase; color: var(--text);
+  margin-bottom: 20px; opacity: 0;
+  animation: fadeUp 0.9s var(--ease) 0.65s forwards;
+}
+.hero-title em { font-style: normal; color: var(--ion); }
+
+.hero-sup {
+  font-family: var(--fd); font-size: clamp(13px, 1.8vw, 18px);
+  font-weight: 300; color: var(--dim); letter-spacing: 0.03em;
+  line-height: 1.6; margin-bottom: 52px; opacity: 0;
+  animation: fadeUp 0.9s var(--ease) 0.9s forwards;
+  max-width: 720px; margin-left: auto; margin-right: auto;
+}
+
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(20px); }
+  to   { opacity:1; transform: none; }
+}
+
+/* Hero stat bar */
+.hero-stats {
+  position: relative; z-index: 3;
+  width: 100%; max-width: 860px;
+  display: grid; grid-template-columns: repeat(3,1fr);
+  border: 1px solid var(--border);
+  opacity: 0;
+  animation: fadeUp 0.9s var(--ease) 1.1s forwards;
+}
+.h-stat {
+  padding: 24px 28px;
+  border-right: 1px solid var(--border);
+}
+.h-stat:last-child { border-right: none; }
+.h-stat-label {
+  font-family: var(--fm); font-size: 9.5px; letter-spacing: 0.22em;
+  color: var(--mute); text-transform: uppercase; margin-bottom: 8px;
+}
+.h-stat-value {
+  font-family: var(--fd); font-size: 38px; font-weight: 700;
+  color: var(--text); line-height: 1; margin-bottom: 4px;
+}
+.h-stat-value sup { font-size: 18px; color: var(--ion); font-weight: 400; }
+.h-stat-desc { font-size: 12px; color: var(--dim); line-height: 1.5; }
+
+/* Scroll cue */
+.scroll-cue {
+  position: relative; z-index: 3; margin-top: 36px;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  font-family: var(--fm); font-size: 9.5px; letter-spacing: 0.2em;
+  color: var(--mute);
+  opacity: 0; animation: fadeUp 0.7s var(--ease) 1.4s forwards;
+}
+.scroll-line {
+  width: 1px; height: 36px;
+  background: linear-gradient(to bottom, var(--ion), transparent);
+  animation: scrollPulse 2.2s ease-in-out infinite;
+}
+@keyframes scrollPulse { 0%,100%{opacity:.25} 50%{opacity:.8} }
+
+/* ════════════════════════════════════════════════════
+   SHARED SECTION STRUCTURE
+════════════════════════════════════════════════════ */
+.section { position: relative; padding: 96px 0; overflow: hidden; }
+.section-alt { background: var(--deep); }
+.section-dark { background: var(--surface); }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 40px; }
+
+.ghost-num {
+  position: absolute; top: -30px; right: -20px; pointer-events: none;
+  font-family: var(--fd); font-weight: 700; letter-spacing: -0.06em;
+  font-size: min(26vw, 320px); line-height: 1;
+  color: rgba(79,195,247,0.022); user-select: none;
+}
+
+.eyebrow {
+  font-family: var(--fm); font-size: 10.5px; letter-spacing: 0.26em;
+  color: var(--ion); text-transform: uppercase;
+  display: flex; align-items: center; gap: 16px; margin-bottom: 14px;
+}
+.eyebrow::before {
+  content: ''; display: block; width: 38px; height: 1px;
+  background: var(--ion); opacity: 0.5;
+}
+
+.sec-title {
+  font-family: var(--fd); font-size: clamp(26px, 3.8vw, 50px);
+  font-weight: 700; line-height: 1.1; letter-spacing: -0.02em;
+  color: var(--text); margin-bottom: 14px;
+}
+
+.sec-sub {
+  font-size: 17px; color: var(--dim); max-width: 660px;
+  line-height: 1.75; margin-bottom: 56px;
+}
+
+/* Reveal animation */
+.reveal {
+  opacity: 0; transform: translateY(22px);
+  transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
+}
+.reveal.in { opacity: 1; transform: none; }
+.rd1 { transition-delay: 0.08s; }
+.rd2 { transition-delay: 0.18s; }
+.rd3 { transition-delay: 0.28s; }
+.rd4 { transition-delay: 0.38s; }
+
+/* Section divider */
+.s-divider {
+  display: flex; align-items: center; gap: 20px;
+  padding: 0 40px; margin: 0 auto; max-width: 1160px;
+  opacity: 0.4;
+}
+.s-divider::before, .s-divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+.s-divider span {
+  font-family: var(--fm); font-size: 9px; letter-spacing: 0.3em;
+  color: var(--mute); white-space: nowrap;
+}
+
+/* ════════════════════════════════════════════════════
+   SECTION 1 — INVESTMENT PREMISE
+════════════════════════════════════════════════════ */
+.core-q {
+  margin: 0 0 60px;
+  padding: 44px 52px;
+  border-left: 3px solid var(--ion);
+  background: rgba(79,195,247,0.028);
+  position: relative;
+}
+.core-q-label {
+  position: absolute; top: -11px; left: 52px;
+  font-family: var(--fm); font-size: 9.5px; letter-spacing: 0.22em;
+  color: var(--ion); background: var(--void); padding: 0 12px;
+  text-transform: uppercase;
+}
+.core-q-text {
+  font-family: var(--fd); font-size: clamp(19px, 2.6vw, 32px);
+  font-weight: 600; line-height: 1.35; color: var(--text);
+}
+
+/* Not/Is comparison */
+.compare-wrap {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--border); margin-bottom: 60px;
+}
+.cmp-col { padding: 40px 44px; }
+.cmp-col:first-child { border-right: 1px solid var(--border); }
+.cmp-heading {
+  font-family: var(--fm); font-size: 10px; letter-spacing: 0.22em;
+  text-transform: uppercase; margin-bottom: 20px; padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.cmp-heading.not { color: rgba(232,93,93,0.7); }
+.cmp-heading.is  { color: var(--ion); }
+
+.cmp-list { list-style: none; }
+.cmp-list li {
+  font-family: var(--fm); font-size: 13px; color: var(--dim);
+  padding: 9px 0 9px 22px; position: relative;
+  border-bottom: 1px solid rgba(255,255,255,0.034);
+  line-height: 1.5;
+}
+.cmp-list li:last-child { border-bottom: none; }
+.not-list li::before { content: '✕'; position:absolute; left:0; color:rgba(232,93,93,0.55); }
+.is-list  li::before { content: '→'; position:absolute; left:0; color:var(--ion); }
+
+/* Consortium grid */
+.consortium {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 14px; margin-top: 52px;
+}
+.con-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-top: 2px solid var(--ion); padding: 20px 18px;
+  transition: border-color 0.3s var(--ease);
+}
+.con-card:hover { border-top-color: var(--burn); }
+.con-icon { font-size: 19px; margin-bottom: 8px; }
+.con-role {
+  font-family: var(--fm); font-size: 10.5px; letter-spacing: 0.12em;
+  color: var(--ion); margin-bottom: 5px;
+}
+.con-desc { font-size: 12px; color: var(--mute); line-height: 1.55; }
+
+/* ════════════════════════════════════════════════════
+   SECTION 2 — THE SPACE THESIS
+════════════════════════════════════════════════════ */
+/* Launch cost timeline */
+.cost-timeline {
+  margin-bottom: 56px; padding: 36px 40px;
+  background: var(--card); border: 1px solid var(--border);
+  overflow: hidden; position: relative;
+}
+.ct-label {
+  font-family: var(--fm); font-size: 10px; letter-spacing: 0.22em;
+  color: var(--mute); text-transform: uppercase; margin-bottom: 24px;
+}
+.ct-track {
+  display: flex; align-items: flex-end; gap: 0;
+  height: 110px; position: relative;
+}
+.ct-track::before {
+  content: ''; position:absolute; bottom:0; left:0; right:0;
+  height: 1px; background: var(--border);
+}
+.ct-step {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  position: relative; padding: 0 4px;
+}
+.ct-bar-wrap {
+  width: 100%; display: flex; justify-content: center;
+  margin-bottom: 0;
+}
+.ct-bar {
+  width: 60%; border-radius: 1px 1px 0 0;
+  background: linear-gradient(to top, var(--ion), rgba(79,195,247,0.3));
+  min-height: 3px; position: relative;
+  transition: height 1.2s var(--ease);
+}
+.ct-bar.cold { background: linear-gradient(to top, rgba(232,93,93,0.8), rgba(232,93,93,0.2)); }
+.ct-bar.warm { background: linear-gradient(to top, var(--gold), rgba(212,168,67,0.3)); }
+.ct-bar.cool { background: linear-gradient(to top, var(--ion), rgba(79,195,247,0.3)); }
+.ct-bar.target { background: linear-gradient(to top, var(--growth), rgba(61,214,140,0.3)); }
+
+.ct-amount {
+  font-family: var(--fm); font-size: 11px; font-weight: 600;
+  color: var(--text); margin-bottom: 4px; text-align: center;
+  white-space: nowrap;
+}
+.ct-vehicle { font-size: 10px; color: var(--mute); text-align: center; white-space: nowrap; }
+.ct-year { font-family: var(--fm); font-size: 9px; color: var(--mute); text-align:center; }
+.ct-reduction {
+  position: absolute; top: 0; right: 4px;
+  font-family: var(--fm); font-size: 9px;
+  color: var(--growth); letter-spacing: 0.05em;
+}
+
+/* 9 driver grid */
+.thesis-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border);
+}
+.th-card {
+  background: var(--void); padding: 34px 30px;
+  position: relative; transition: background 0.3s var(--ease);
+  cursor: default;
+}
+.th-card:hover { background: var(--card); }
+.th-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  opacity: 0; transition: opacity 0.3s var(--ease);
+}
+.th-card:hover::before { opacity: 1; }
+.th-c1::before { background: var(--t1); }
+.th-c2::before { background: var(--t2); }
+.th-c3::before { background: var(--t3); }
+.th-c4::before { background: var(--t5); }
+.th-c5::before { background: var(--burn); }
+.th-c6::before { background: var(--t6); }
+.th-c7::before { background: var(--t4); }
+.th-c8::before { background: var(--t7); }
+.th-c9::before { background: var(--signal); }
+
+.th-num {
+  font-family: var(--fm); font-size: 10px; letter-spacing: 0.2em;
+  color: var(--mute); margin-bottom: 14px;
+}
+.th-icon { font-size: 26px; margin-bottom: 10px; display:block; }
+.th-metric {
+  font-family: var(--fd); font-size: 40px; font-weight: 700;
+  line-height: 1; margin-bottom: 2px;
+}
+.th-m1 { color: var(--burn); }
+.th-m2 { color: var(--ion); }
+.th-m3 { color: var(--t3); }
+.th-m4 { color: var(--signal); }
+.th-m5 { color: var(--forge); }
+.th-m6 { color: var(--t6); }
+.th-m7 { color: var(--t4); }
+.th-m8 { color: var(--t7); }
+.th-m9 { color: var(--gold); }
+
+.th-mlabel {
+  font-family: var(--fm); font-size: 9px; letter-spacing: 0.18em;
+  color: var(--mute); text-transform: uppercase; margin-bottom: 14px;
+}
+.th-title {
+  font-family: var(--fd); font-size: 16px; font-weight: 600;
+  color: var(--text); margin-bottom: 10px; line-height: 1.3;
+}
+.th-body { font-size: 13px; color: var(--dim); line-height: 1.72; }
+
+/* ════════════════════════════════════════════════════
+   SECTION 3 — SPACE ECONOMY MAP (8 TIERS)
+════════════════════════════════════════════════════ */
+.tier-stack { display: flex; flex-direction: column; gap: 20px; margin-top: 56px; }
+
+.tier-card {
+  display: grid; grid-template-columns: 260px 1fr;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--t1);
+  background: var(--card);
+  position: relative; overflow: hidden;
+  transition: box-shadow 0.3s var(--ease);
+}
+.tier-card:hover { box-shadow: 0 0 40px rgba(0,0,0,0.45); }
+.tier-card[data-t="1"] { border-left-color: var(--t1); }
+.tier-card[data-t="2"] { border-left-color: var(--t2); }
+.tier-card[data-t="3"] { border-left-color: var(--t3); }
+.tier-card[data-t="4"] { border-left-color: var(--t4); }
+.tier-card[data-t="5"] { border-left-color: var(--t5); }
+.tier-card[data-t="6"] { border-left-color: var(--t6); }
+.tier-card[data-t="7"] { border-left-color: var(--t7); }
+.tier-card[data-t="8"] { border-left-color: var(--t8); }
+
+/* Tier glow on hover */
+.tier-card[data-t="1"]:hover { box-shadow: -4px 0 30px rgba(255,107,53,0.08), 0 0 40px rgba(0,0,0,0.4); }
+.tier-card[data-t="2"]:hover { box-shadow: -4px 0 30px rgba(79,195,247,0.08), 0 0 40px rgba(0,0,0,0.4); }
+.tier-card[data-t="4"]:hover { box-shadow: -4px 0 30px rgba(247,200,49,0.08), 0 0 40px rgba(0,0,0,0.4); }
+.tier-card[data-t="8"]:hover { box-shadow: -4px 0 30px rgba(91,156,246,0.08), 0 0 40px rgba(0,0,0,0.4); }
+
+.tier-left {
+  padding: 32px 28px;
+  border-right: 1px solid var(--border);
+  background: rgba(0,0,0,0.18);
+  display: flex; flex-direction: column;
+}
+
+.tier-id {
+  font-family: var(--fm); font-size: 9.5px; letter-spacing: 0.24em;
+  color: var(--mute); text-transform: uppercase; margin-bottom: 6px;
+}
+.tier-name {
+  font-family: var(--fd); font-size: 20px; font-weight: 700;
+  color: var(--text); line-height: 1.25; margin-bottom: 20px;
+}
+.tier-mkt-label {
+  font-family: var(--fm); font-size: 9px; letter-spacing: 0.18em;
+  color: var(--mute); text-transform: uppercase; margin-bottom: 4px;
+}
+.tier-mkt-now {
+  font-family: var(--fd); font-size: 28px; font-weight: 700;
+  line-height: 1; color: var(--text); margin-bottom: 2px;
+}
+.tier-mkt-now span { font-size: 14px; color: var(--ion); font-weight: 400; }
+.tier-mkt-proj {
+  font-family: var(--fm); font-size: 11px; color: var(--dim);
+}
+.tier-arrow {
+  font-family: var(--fm); font-size: 10px; color: var(--growth);
+  letter-spacing: 0.1em;
+}
+.tier-mkt-spacer { flex: 1; }
+
+.tier-right {
+  padding: 32px 36px 28px 36px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.tier-analysis { font-size: 13.5px; color: var(--dim); line-height: 1.78; }
+.tier-analysis strong { color: var(--text); font-weight: 500; }
+.tier-analysis em { font-style: normal; color: var(--ion); }
+
+.tier-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.tier-tag {
+  font-family: var(--fm); font-size: 9.5px; letter-spacing: 0.1em;
+  color: var(--mute); background: rgba(255,255,255,0.036);
+  border: 1px solid var(--border); padding: 4px 10px;
+}
+
+.tier-metrics {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 14px; padding-top: 14px; border-top: 1px solid var(--border);
+}
+.tm-item { display: flex; flex-direction: column; gap: 5px; }
+.tm-label {
+  font-family: var(--fm); font-size: 8.5px; letter-spacing: 0.18em;
+  color: var(--mute); text-transform: uppercase;
+}
+.tm-bar {
+  height: 3px; background: rgba(255,255,255,0.06);
+  border-radius: 2px; overflow: hidden;
+}
+.tm-fill {
+  height: 100%; border-radius: 2px; width: 0;
+  transition: width 1.2s var(--ease);
+}
+.tm-rating {
+  font-family: var(--fm); font-size: 10px; color: var(--dim);
+}
+
+/* ════════════════════════════════════════════════════
+   PART 2 PREVIEW TEASER
+════════════════════════════════════════════════════ */
+.preview-hero {
+  text-align: center; padding: 80px 40px 60px;
+  border-top: 1px solid var(--border);
+}
+.preview-label {
+  font-family: var(--fm); font-size: 10.5px; letter-spacing: 0.28em;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 16px;
+}
+.preview-title {
+  font-family: var(--fd); font-size: clamp(22px, 3.2vw, 40px);
+  font-weight: 700; color: var(--text); letter-spacing: -0.015em;
+  margin-bottom: 12px;
+}
+.preview-sub { font-size: 16px; color: var(--dim); max-width: 560px; margin: 0 auto 48px; }
+
+.preview-grid {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 1px; background: var(--border); border: 1px solid var(--border);
+  max-width: 1160px; margin: 0 auto;
+}
+.prev-item { background: var(--deep); padding: 28px 24px; }
+.prev-num {
+  font-family: var(--fm); font-size: 9.5px; letter-spacing: 0.22em;
+  color: var(--mute); margin-bottom: 10px;
+}
+.prev-title {
+  font-family: var(--fd); font-size: 14px; font-weight: 600;
+  color: var(--dim); line-height: 1.4; margin-bottom: 8px;
+}
+.prev-desc { font-size: 12px; color: var(--mute); line-height: 1.55; }
+.prev-status {
+  margin-top: 12px; font-family: var(--fm); font-size: 9px;
+  letter-spacing: 0.15em;
+}
+.prev-status.coming { color: var(--gold); }
+
+/* ════════════════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════════════════ */
+.report-footer {
+  padding: 32px 40px;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--fm); font-size: 10px; color: var(--mute);
+  letter-spacing: 0.12em;
+}
+.rf-id { color: var(--ion); }
+.rf-page { color: var(--mute); }
+
+/* ════════════════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════════════════ */
+@media (max-width: 960px) {
+  .hero-stats { grid-template-columns: 1fr; }
+  .compare-wrap { grid-template-columns: 1fr; }
+  .cmp-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+  .consortium { grid-template-columns: repeat(2,1fr); }
+  .thesis-grid { grid-template-columns: repeat(2,1fr); }
+  .tier-card { grid-template-columns: 1fr; }
+  .tier-left { border-right: none; border-bottom: 1px solid var(--border); }
+  .preview-grid { grid-template-columns: repeat(2,1fr); }
+  .orbital-sys { transform: translate(-50%,-52%); }
+}
+@media (max-width: 640px) {
+  .thesis-grid { grid-template-columns: 1fr; }
+  .tier-metrics { grid-template-columns: 1fr; }
+  .wrap { padding: 0 20px; }
+  .core-q { padding: 32px 28px; }
+  .preview-grid { grid-template-columns: 1fr; }
+  .cls-banner { padding: 9px 16px; font-size: 9px; }
+  .cls-tag { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ══════════════════════════════════════════════
+     CLASSIFICATION BANNER
+══════════════════════════════════════════════ -->
+<header class="cls-banner">
+  <div class="cls-left">
+    <span class="cls-id">STC-2025-001 · PART I of II</span>
+    <span class="cls-tag">INSTITUTIONAL DISTRIBUTION</span>
+    <span class="cls-tag">RESEARCH GRADE</span>
+  </div>
+  <div class="cls-right" style="display:flex;align-items:center;gap:10px;">
+    <div class="cls-dot"></div>
+    <span>LIVE RESEARCH ACTIVE · 2025–2050 SUPER-CYCLE COVERAGE</span>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════ -->
+<section class="hero">
+  <canvas id="starCanvas"></canvas>
+  <div class="nebula-glow"></div>
+  <div class="scanline"></div>
+
+  <div class="orbital-sys" aria-hidden="true">
+    <div class="o-ring o-ring-6"></div>
+    <div class="o-ring o-ring-5">
+      <div class="o-dot-wrap"><div class="o-dot o-dot-5"></div></div>
+    </div>
+    <div class="o-ring o-ring-4">
+      <div class="o-dot-wrap"><div class="o-dot o-dot-4"></div></div>
+    </div>
+    <div class="o-ring o-ring-3">
+      <div class="o-dot-wrap"><div class="o-dot o-dot-3"></div></div>
+    </div>
+    <div class="o-ring o-ring-2">
+      <div class="o-dot-wrap"><div class="o-dot o-dot-2"></div></div>
+    </div>
+    <div class="o-ring o-ring-1">
+      <div class="o-dot-wrap"><div class="o-dot o-dot-1"></div></div>
+    </div>
+    <div class="o-nucleus">SPACE<br>ECONOMY</div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Global Institutional Research Series · Vol. I · 2025–2050</p>
+    <h1 class="hero-title">
+      The Global <em>Space Technology</em><br>&amp; Exploration<br>Super-Cycle
+    </h1>
+    <p class="hero-sup">
+      Identifying the ASMLs, Nvidias, TSMCs, Toll Booths &amp; Hidden Compounders<br>
+      of Humanity's Expansion Beyond Earth — The Definitive Investor Blueprint
+    </p>
+  </div>
+
+  <div class="hero-stats">
+    <div class="h-stat">
+      <div class="h-stat-label">Global Space Economy 2024</div>
+      <div class="h-stat-value"><span id="c1">0</span><sup>B</sup></div>
+      <div class="h-stat-desc">Projected to exceed $1T by 2030 and $4T+ by 2045</div>
+    </div>
+    <div class="h-stat">
+      <div class="h-stat-label">Active Satellites in Orbit</div>
+      <div class="h-stat-value"><span id="c2">0</span><sup>+</sup></div>
+      <div class="h-stat-desc">50,000+ projected by 2030 across LEO, MEO and GEO</div>
+    </div>
+    <div class="h-stat">
+      <div class="h-stat-label">Cost Reduction to Orbit</div>
+      <div class="h-stat-value"><span id="c3">0</span><sup>×</sup></div>
+      <div class="h-stat-desc">Since Space Shuttle era — Starship targets 600× reduction</div>
+    </div>
+  </div>
+
+  <div class="scroll-cue">
+    <div class="scroll-line"></div>
+    <span>SCROLL TO EXPLORE</span>
+  </div>
+</section>
+
+<div class="s-divider"><span>THE INVESTMENT PREMISE</span></div>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 1 — THE INVESTMENT PREMISE
+══════════════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="ghost-num">01</div>
+  <div class="wrap">
+    <p class="eyebrow reveal">Investment Thesis</p>
+    <h2 class="sec-title reveal rd1">Where Will Value Accrue as Humanity Expands Beyond Earth?</h2>
+    <p class="sec-sub reveal rd2">
+      This report answers a precise question — not which rocket company launches the most payload,
+      but which firms will own bottlenecks, become indispensable infrastructure, and compound capital
+      across the 25-year expansion of human economic activity into space.
+    </p>
+
+    <div class="core-q reveal rd3">
+      <div class="core-q-label">Core Investment Question</div>
+      <p class="core-q-text">"Where will the majority of economic value accrue as humanity expands economic activity into space — and which businesses will become the toll booths, platform monopolies, and hidden compounders of the space age?"</p>
+    </div>
+
+    <div class="compare-wrap reveal">
+      <div class="cmp-col">
+        <div class="cmp-heading not">NOT THE QUESTION WE ARE ASKING</div>
+        <ul class="cmp-list not-list">
+          <li>Which company launches the most rockets?</li>
+          <li>Which nation has the best space program?</li>
+          <li>Which satellite constellation is largest?</li>
+          <li>Which rocket has the highest payload capacity?</li>
+          <li>Which mission will reach Mars first?</li>
+          <li>Which country dominates launch services by 2030?</li>
+        </ul>
+      </div>
+      <div class="cmp-col">
+        <div class="cmp-heading is">THE QUESTIONS THAT DETERMINE VALUE</div>
+        <ul class="cmp-list is-list">
+          <li>Which firms own structural bottlenecks with pricing power?</li>
+          <li>Which businesses become indispensable regardless of who wins launch?</li>
+          <li>Which technologies are hardest to replicate under qualification regimes?</li>
+          <li>Which suppliers benefit from every constellation builder simultaneously?</li>
+          <li>Which software platforms capture recurring revenue as traffic grows?</li>
+          <li>Which Indian companies are best positioned as global suppliers?</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <p class="eyebrow">The Research Consortium</p>
+      <h3 style="font-family:var(--fd);font-size:20px;font-weight:600;color:var(--text);margin-bottom:8px;">
+        Twelve Disciplines. One Mission.
+      </h3>
+      <p style="font-size:14px;color:var(--dim);max-width:640px;margin-bottom:0;">
+        This analysis synthesizes perspectives across engineering, capital markets, geopolitics, and operational space systems to produce an institutional-grade view of where long-duration wealth will be created.
+      </p>
+    </div>
+
+    <div class="consortium reveal rd1">
+      <div class="con-card">
+        <div class="con-icon">🛰️</div>
+        <div class="con-role">Space Agency Scientists</div>
+        <div class="con-desc">Former NASA, ESA, ISRO mission architects with systems-level operational expertise</div>
+      </div>
+      <div class="con-card">
+        <div class="con-icon">🚀</div>
+        <div class="con-role">Propulsion Engineers</div>
+        <div class="con-desc">Rocket propulsion specialists across liquid, solid, electric and nuclear architectures</div>
+      </div>
+      <div class="con-card">
+        <div class="con-icon">📡</div>
+        <div class="con-role">Satellite Veterans</div>
+        <div class="con-desc">Industry operators with experience across LEO, MEO and GEO commercial deployments</div>
+      </div>
+      <div class="con-card">
+        <div class="con-icon">⚔️</div>
+        <div class="con-role">Defense Strategists</div>
+        <div class="con-desc">Space domain awareness, military satellite and ASAT threat assessment specialists</div>
+      </div>
+      <div class="con-card">
+        <div class="con-icon">🏭</div>
+        <div class="con-role">Space Manufacturing</div>
+        <div class="con-desc">Microgravity materials scientists and orbital production architects</div>
+      </div>
+      <div class="con-card">
+        <div class="con-icon">💻</div>
+        <div class="con-role">Semiconductor Experts</div>
+        <div class="con-desc">Radiation-hardened electronics design and space-grade qualification specialists</div>
+      </div>
+      <div class="con-card">
+        <div class="con-icon">🌍</div>
+        <div class="con-role">Geopolitical Analysts</div>
+        <div class="con-desc">U.S.–China–India space competition, treaty frameworks and regulatory dynamics</div>
+      </div>
+      <div class="con-card">
+        <div class="con-icon">📈</div>
+        <div class="con-role">Capital Cycle Historians</div>
+        <div class="con-desc">Pattern recognition across railway, semiconductor and telecom super-cycles</div>
+      </div>
+      <div class="con-card">
+        <div class="con-icon">🏦</div>
+        <div class="con-role">Sovereign Wealth Advisors</div>
+        <div class="con-desc">Long-duration infrastructure allocation across 25-year capital deployment horizons</div>
+      </div>
+      <div class="con-card">
+        <div class="con-icon">🔬</div>
+        <div class="con-role">Deep-Tech Investors</div>
+        <div class="con-desc">Venture and private equity specialists in pre-revenue space infrastructure companies</div>
+      </div>
+      <div class="con-card">
+        <div class="con-icon">🇮🇳</div>
+        <div class="con-role">India Aerospace Specialists</div>
+        <div class="con-desc">ISRO supply chain analysts, IN-SPACe policy experts and Indian equity analysts</div>
+      </div>
+      <div class="con-card">
+        <div class="con-icon">🔍</div>
+        <div class="con-role">Forensic Accountants</div>
+        <div class="con-desc">Financial model stress-testing, margin structure analysis and ROIC archaeology</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="s-divider"><span>THE SPACE THESIS — 9 MACRO DRIVERS</span></div>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 2 — THE SPACE THESIS
+══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="ghost-num">02</div>
+  <div class="wrap">
+    <p class="eyebrow reveal">Part 01 — The Space Thesis</p>
+    <h2 class="sec-title reveal rd1">Why the Next 25 Years Could Create More Value<br>Than the Previous 60 Years of Space Activity</h2>
+    <p class="sec-sub reveal rd2">
+      Nine structural forces are converging simultaneously — for the first time in history —
+      to make space a commercially viable, financially attractive, and geopolitically essential domain.
+      This convergence is not cyclical. It is structural.
+    </p>
+
+    <!-- Launch cost reduction timeline -->
+    <div class="cost-timeline reveal rd3">
+      <div class="ct-label">COST-TO-ORBIT ($/KG TO LEO) — THE MOST IMPORTANT CHART IN THE SPACE ECONOMY</div>
+      <div class="ct-track" id="ctTrack">
+        <div class="ct-step">
+          <div style="text-align:center;margin-bottom:6px;">
+            <div class="ct-amount">$54,500</div>
+            <div class="ct-vehicle">Space Shuttle</div>
+          </div>
+          <div class="ct-bar-wrap"><div class="ct-bar cold" data-h="100"></div></div>
+          <div class="ct-year">1981–2011</div>
+        </div>
+        <div class="ct-step">
+          <div style="text-align:center;margin-bottom:6px;">
+            <div class="ct-amount">$18,000</div>
+            <div class="ct-vehicle">Delta IV</div>
+          </div>
+          <div class="ct-bar-wrap"><div class="ct-bar warm" data-h="33"></div></div>
+          <div class="ct-year">2002</div>
+        </div>
+        <div class="ct-step">
+          <div style="text-align:center;margin-bottom:6px;">
+            <div class="ct-amount">$2,720</div>
+            <div class="ct-vehicle">Falcon 9 (expend.)</div>
+          </div>
+          <div class="ct-bar-wrap"><div class="ct-bar warm" data-h="10"></div></div>
+          <div class="ct-year" style="color:var(--gold)">2010</div>
+          <div class="ct-reduction">↓ 95%</div>
+        </div>
+        <div class="ct-step">
+          <div style="text-align:center;margin-bottom:6px;">
+            <div class="ct-amount">$1,500</div>
+            <div class="ct-vehicle">Falcon 9 (reusable)</div>
+          </div>
+          <div class="ct-bar-wrap"><div class="ct-bar cool" data-h="5.5"></div></div>
+          <div class="ct-year" style="color:var(--ion)">2018</div>
+        </div>
+        <div class="ct-step">
+          <div style="text-align:center;margin-bottom:6px;">
+            <div class="ct-amount">~$800</div>
+            <div class="ct-vehicle">Starship v1</div>
+          </div>
+          <div class="ct-bar-wrap"><div class="ct-bar cool" data-h="3"></div></div>
+          <div class="ct-year" style="color:var(--ion)">2024+</div>
+        </div>
+        <div class="ct-step">
+          <div style="text-align:center;margin-bottom:6px;">
+            <div class="ct-amount">&lt;$100</div>
+            <div class="ct-vehicle" style="color:var(--growth)">Starship @ Scale</div>
+          </div>
+          <div class="ct-bar-wrap"><div class="ct-bar target" data-h="1.5"></div></div>
+          <div class="ct-year" style="color:var(--growth)">TARGET</div>
+          <div class="ct-reduction" style="color:var(--growth)">↓ 600×</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9 thesis driver cards -->
+    <div class="thesis-grid reveal">
+      <!-- Card 1: Launch Cost -->
+      <div class="th-card th-c1">
+        <div class="th-num">DRIVER 01 / 09</div>
+        <span class="th-icon">🔻</span>
+        <div class="th-metric th-m1">60<span style="font-size:22px;">×</span></div>
+        <div class="th-mlabel">Cost reduction since Shuttle era</div>
+        <div class="th-title">Launch Cost Collapse — Orbital Access Goes Exponential</div>
+        <div class="th-body">
+          Falcon 9's reusable first stage compressed cost-to-LEO from $54,500/kg to ~$1,500/kg. Starship targets sub-$100/kg at scale — a 600× reduction from the Shuttle baseline. Every downstream business case that previously failed on launch economics is now viable. This is the unlock that makes everything else possible.
+        </div>
+      </div>
+
+      <!-- Card 2: Reusability -->
+      <div class="th-card th-c2">
+        <div class="th-num">DRIVER 02 / 09</div>
+        <span class="th-icon">♻️</span>
+        <div class="th-metric th-m2">300<span style="font-size:22px;">+</span></div>
+        <div class="th-mlabel">Falcon 9 booster reflights (cumulative)</div>
+        <div class="th-title">Reusable Architecture — From Fireworks to Fleet</div>
+        <div class="th-body">
+          SpaceX has demonstrated individual boosters completing 20+ missions. This transforms rocket economics from manufactured-and-expended to operated-and-maintained — analogous to commercial aviation. Rocket Lab's Electron recovery program and ISRO's NGLV reusability-first architecture represent the next wave. The airline model applied to rocketry is now proven.
+        </div>
+      </div>
+
+      <!-- Card 3: Miniaturization -->
+      <div class="th-card th-c3">
+        <div class="th-num">DRIVER 03 / 09</div>
+        <span class="th-icon">📦</span>
+        <div class="th-metric th-m3">90<span style="font-size:22px;">%</span></div>
+        <div class="th-mlabel">Reduction in satellite bus mass since 2010</div>
+        <div class="th-title">Satellite Miniaturization — The iPhone Moment for Orbit</div>
+        <div class="th-body">
+          Commercial EO has compressed from 6,000kg GEO platforms to 100kg smallsats at equivalent revisit rates for 1/50th the cost. The 3U CubeSat standard spawned a component ecosystem analogous to PC hardware — enabling universities, startups, and national agencies to operate orbital infrastructure. Capability without mass is the defining shift.
+        </div>
+      </div>
+
+      <!-- Card 4: AI -->
+      <div class="th-card th-c4">
+        <div class="th-num">DRIVER 04 / 09</div>
+        <span class="th-icon">🤖</span>
+        <div class="th-metric th-m4">$12.7<span style="font-size:22px;">B</span></div>
+        <div class="th-mlabel">AI-in-space market size, 2030E</div>
+        <div class="th-title">AI &amp; Autonomy Integration — Intelligence at the Sensor</div>
+        <div class="th-body">
+          Onboard AI processors enable real-time target detection, autonomous collision avoidance, and data triage in orbit — eliminating latency-limited ground loops. HawkEye 360, Satellogic, and BlackSky deliver actionable intelligence, not raw imagery. The analytical layer captures economics previously left at the camera. AI compresses the satellite data value chain irreversibly.
+        </div>
+      </div>
+
+      <!-- Card 5: Defense -->
+      <div class="th-card th-c5">
+        <div class="th-num">DRIVER 05 / 09</div>
+        <span class="th-icon">🛡️</span>
+        <div class="th-metric th-m5">$279<span style="font-size:22px;">B</span></div>
+        <div class="th-mlabel">Global defense space budget, 2025E</div>
+        <div class="th-title">Defense Imperative — The New High Ground is Contested</div>
+        <div class="th-body">
+          China's 2007 ASAT test, Russia's Nudol demonstrations, and the U.S. Space Force's 2019 establishment crystallize space as a peer-competitor warfighting domain. The Space Development Agency's Proliferated Warfighter Space Architecture (PWSA) commits $30B through 2030 to 300+ military satellites. Defense spending is the anchor customer of the commercial space ecosystem.
+        </div>
+      </div>
+
+      <!-- Card 6: Manufacturing -->
+      <div class="th-card th-c6">
+        <div class="th-num">DRIVER 06 / 09</div>
+        <span class="th-icon">🏭</span>
+        <div class="th-metric th-m6">1,000<span style="font-size:22px;">×</span></div>
+        <div class="th-mlabel">ZBLAN fiber purity premium vs. terrestrial</div>
+        <div class="th-title">Orbital Manufacturing — Materials Impossible on Earth</div>
+        <div class="th-body">
+          Microgravity eliminates sedimentation, convection and pressure — enabling material formation impossible terrestrially. ZBLAN optical fiber produced in orbit achieves optical attenuation 1,000× below ground production, enabling mid-infrared lasers at $10,000+/meter economics. Varda Space Industries' 2024 pharmaceutical capsule re-entry proved the commercial model is live.
+        </div>
+      </div>
+
+      <!-- Card 7: Communications -->
+      <div class="th-card th-c7">
+        <div class="th-num">DRIVER 07 / 09</div>
+        <span class="th-icon">🌐</span>
+        <div class="th-metric th-m7">6,000<span style="font-size:22px;">+</span></div>
+        <div class="th-mlabel">Starlink operational satellites</div>
+        <div class="th-title">Global Connectivity Infrastructure — The Sky as a Utility</div>
+        <div class="th-body">
+          Starlink has passed $3B+ annual revenue serving 4M+ subscribers across 100+ countries. Amazon Kuiper (3,236 sats), OneWeb, and Telesat Lightspeed compete for a $180B broadband addressable market unreachable by terrestrial fiber. LEO broadband is the railway-building moment of the space age — enormous capital costs create permanent first-mover moats.
+        </div>
+      </div>
+
+      <!-- Card 8: Lunar -->
+      <div class="th-card th-c8">
+        <div class="th-num">DRIVER 08 / 09</div>
+        <span class="th-icon">🌕</span>
+        <div class="th-metric th-m8">$180<span style="font-size:22px;">B</span></div>
+        <div class="th-mlabel">Artemis program total budget estimate</div>
+        <div class="th-title">Lunar Economy Emergence — Return With Commercial Intent</div>
+        <div class="th-body">
+          NASA's Artemis, China's ILRS, and nine CLPS commercial lander contracts signal sustained human presence on the Moon with economic purpose. Confirmed water ice at the lunar south pole represents a propellant resource base capable of supporting a $100B+ annual in-space refueling economy by 2040. The Moon is being industrialized, not merely explored.
+        </div>
+      </div>
+
+      <!-- Card 9: Deep Space -->
+      <div class="th-card th-c9">
+        <div class="th-num">DRIVER 09 / 09</div>
+        <span class="th-icon">☄️</span>
+        <div class="th-metric th-m9">$700<span style="font-size:22px;">T+</span></div>
+        <div class="th-mlabel">Near-Earth asteroid estimated mineral value</div>
+        <div class="th-title">Deep-Space Horizon — The Theoretical Ceiling of the Space Age</div>
+        <div class="th-body">
+          Near-Earth asteroids contain platinum-group metals and iron-nickel in concentrations impossible on Earth's surface. The 226km asteroid Psyche alone contains iron-nickel estimated in the quintillions. While 2025–2040 economics remain pre-commercial, deep-space communications infrastructure, Mars supply chains, and in-space propellant networks represent real 2035–2045 investment opportunities.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="s-divider"><span>THE COMPLETE SPACE ECONOMY MAP — 8 TIERS</span></div>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 3 — SPACE ECONOMY MAP
+══════════════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="ghost-num">03</div>
+  <div class="wrap">
+    <p class="eyebrow reveal">Part 02 — The Space Economy Map</p>
+    <h2 class="sec-title reveal rd1">Building the Complete Space Value Chain</h2>
+    <p class="sec-sub reveal rd2">
+      The space economy is an eight-tier system. Each tier has distinct margin profiles, moat characteristics,
+      and capital intensity. Understanding where value concentrates — and why — is the foundation
+      of every investment decision in this super-cycle.
+    </p>
+
+    <div class="tier-stack">
+
+      <!-- TIER 1: LAUNCH SYSTEMS -->
+      <div class="tier-card reveal" data-t="1">
+        <div class="tier-left">
+          <div>
+            <div class="tier-id">Tier 01 · Launch Systems</div>
+            <div class="tier-name">Launch &amp; Propulsion Infrastructure</div>
+          </div>
+          <div class="tier-mkt-spacer"></div>
+          <div>
+            <div class="tier-mkt-label">Market Size 2024E</div>
+            <div class="tier-mkt-now">$20<span>B</span></div>
+            <div class="tier-mkt-proj">→ <strong style="color:var(--t1)">$70B</strong> by 2035E</div>
+            <div class="tier-arrow" style="margin-top:6px;">▲ 12% CAGR</div>
+          </div>
+        </div>
+        <div class="tier-right">
+          <div class="tier-analysis">
+            The foundational enabling layer — and increasingly, a contested utility. <strong>SpaceX controls ~65% of global commercial launches</strong>, with structural cost advantages that incumbents cannot close within a decade. Rocket Lab's Electron dominates dedicated smallsat launch. However, the investment thesis in launch extends beyond rocket operators: the real value concentration is in the <em>propulsion subsystem supplier network</em>. Aerojet Rocketdyne's RL10, Rocket Lab's Rutherford engine architecture, and the emerging electric propulsion ecosystem (Apollo Fusion, Busek, Enpulsion) are qualification-locked with pricing power independent of which launch brand wins market share. Reusability drives volume; subsystems capture margin.
+          </div>
+          <div class="tier-tags">
+            <span class="tier-tag">Propulsion manufacturing</span>
+            <span class="tier-tag">Reusability certification</span>
+            <span class="tier-tag">Launch range access</span>
+            <span class="tier-tag">Booster refurbishment capacity</span>
+            <span class="tier-tag">Fairing recovery logistics</span>
+          </div>
+          <div class="tier-metrics">
+            <div class="tm-item">
+              <div class="tm-label">Margin Profile</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="75" style="background:var(--t1)"></div></div>
+              <div class="tm-rating">HIGH (dominant players)</div>
+            </div>
+            <div class="tm-item">
+              <div class="tm-label">Moat Strength</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="92" style="background:var(--t1)"></div></div>
+              <div class="tm-rating">VERY HIGH — qual. barriers</div>
+            </div>
+            <div class="tm-item">
+              <div class="tm-label">Capital Intensity</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="97" style="background:var(--forge)"></div></div>
+              <div class="tm-rating">EXTREME — $B entry cost</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TIER 2: SPACECRAFT & SATELLITES -->
+      <div class="tier-card reveal rd1" data-t="2">
+        <div class="tier-left">
+          <div>
+            <div class="tier-id">Tier 02 · Spacecraft</div>
+            <div class="tier-name">Spacecraft &amp; Satellite Systems</div>
+          </div>
+          <div class="tier-mkt-spacer"></div>
+          <div>
+            <div class="tier-mkt-label">Market Size 2024E</div>
+            <div class="tier-mkt-now">$30<span>B</span></div>
+            <div class="tier-mkt-proj">→ <strong style="color:var(--t2)">$120B</strong> by 2035E</div>
+            <div class="tier-arrow" style="margin-top:6px;">▲ 13% CAGR</div>
+          </div>
+        </div>
+        <div class="tier-right">
+          <div class="tier-analysis">
+            Satellite buses are commoditizing — York Space, LeoStella, and Exolaunch demonstrate sub-$5M platforms — but <em>critical subsystems are not</em>. <strong>Radiation-hardened electronics</strong> (BAE Systems' RAD750, Microchip Technology, Renesas space-grade lines), reaction wheel assemblies (Collins Aerospace, Vectronic Aerospace, Honeywell), and high-efficiency solar arrays (SolAero Technologies, now Northrop Grumman; Spectrolab) command 40–70% gross margins from a qualification-locked customer base where re-certification takes 3–5 years. The key insight: as constellation scale increases from tens to thousands of satellites, the economics of volume procurement favor standardized buses — but the subsystems remain custom, qualified, and irreplaceable within a mission's lifecycle.
+          </div>
+          <div class="tier-tags">
+            <span class="tier-tag">Radiation-hardened electronics</span>
+            <span class="tier-tag">ADCS components</span>
+            <span class="tier-tag">High-efficiency power systems</span>
+            <span class="tier-tag">Long-lead procurement</span>
+            <span class="tier-tag">Thermal management</span>
+          </div>
+          <div class="tier-metrics">
+            <div class="tm-item">
+              <div class="tm-label">Margin Profile</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="66" style="background:var(--t2)"></div></div>
+              <div class="tm-rating">MED-HIGH (subsystems)</div>
+            </div>
+            <div class="tm-item">
+              <div class="tm-label">Moat Strength</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="83" style="background:var(--t2)"></div></div>
+              <div class="tm-rating">HIGH — qual. lock-in</div>
+            </div>
+            <div class="tm-item">
+              <div class="tm-label">Capital Intensity</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="70" style="background:var(--gold)"></div></div>
+              <div class="tm-rating">HIGH — cleanroom, test</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TIER 3: GROUND INFRASTRUCTURE -->
+      <div class="tier-card reveal rd2" data-t="3">
+        <div class="tier-left">
+          <div>
+            <div class="tier-id">Tier 03 · Ground Systems</div>
+            <div class="tier-name">Ground Infrastructure &amp; Control</div>
+          </div>
+          <div class="tier-mkt-spacer"></div>
+          <div>
+            <div class="tier-mkt-label">Market Size 2024E</div>
+            <div class="tier-mkt-now">$8<span>B</span></div>
+            <div class="tier-mkt-proj">→ <strong style="color:var(--t3)">$25B</strong> by 2035E</div>
+            <div class="tier-arrow" style="margin-top:6px;">▲ 11% CAGR</div>
+          </div>
+        </div>
+        <div class="tier-right">
+          <div class="tier-analysis">
+            Ground infrastructure evolves from fixed mega-stations to cloud-hosted virtual ground networks. <strong>AWS Ground Station, Azure Orbital, and KSAT's 20+ station global network</strong> monetize "ground-as-a-service" at per-minute pricing — transforming capital assets into operational expenses for constellation operators. The strategic moat resides in <em>spectrum allocation and site permits</em> — regulatory barriers requiring 5–10 years to replicate. As constellations grow to 50,000+ satellites, ground contact capacity becomes a genuine bottleneck. The hyperscaler buildout (AWS, Microsoft, Google) into space ground infrastructure signals that this is being treated as cloud infrastructure extension, not satellite support — with corresponding pricing power.
+          </div>
+          <div class="tier-tags">
+            <span class="tier-tag">Spectrum licensing</span>
+            <span class="tier-tag">Site permits &amp; real estate</span>
+            <span class="tier-tag">Real-time telemetry processing</span>
+            <span class="tier-tag">Network latency optimization</span>
+            <span class="tier-tag">RF antenna manufacturing</span>
+          </div>
+          <div class="tier-metrics">
+            <div class="tm-item">
+              <div class="tm-label">Margin Profile</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="55" style="background:var(--t3)"></div></div>
+              <div class="tm-rating">MEDIUM (competitive)</div>
+            </div>
+            <div class="tm-item">
+              <div class="tm-label">Moat Strength</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="62" style="background:var(--t3)"></div></div>
+              <div class="tm-rating">MEDIUM — switching costs</div>
+            </div>
+            <div class="tm-item">
+              <div class="tm-label">Capital Intensity</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="54" style="background:var(--gold)"></div></div>
+              <div class="tm-rating">MEDIUM — distributed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TIER 4: SPACE COMMUNICATIONS -->
+      <div class="tier-card reveal" data-t="4">
+        <div class="tier-left">
+          <div>
+            <div class="tier-id">Tier 04 · Communications</div>
+            <div class="tier-name">Space-Based Communications</div>
+          </div>
+          <div class="tier-mkt-spacer"></div>
+          <div>
+            <div class="tier-mkt-label">Market Size 2024E</div>
+            <div class="tier-mkt-now">$40<span>B</span></div>
+            <div class="tier-mkt-proj">→ <strong style="color:var(--t4)">$180B</strong> by 2035E</div>
+            <div class="tier-arrow" style="margin-top:6px;">▲ 14% CAGR</div>
+          </div>
+        </div>
+        <div class="tier-right">
+          <div class="tier-analysis">
+            <strong>The highest-value near-term opportunity in the space economy.</strong> LEO broadband is executing the cable company playbook at planetary scale — astronomical capital entry costs create near-permanent first-mover advantages. Starlink's $3B+ ARR growing ~40% YoY validates the model. Critical sub-tier: <em>optical inter-satellite links (ISLs)</em> manufactured by Mynaric (Germany), Tesat-Spacecom (Airbus subsidiary), and CACI International are the connective tissue of every major constellation — a hardware supply chokepoint with multi-year qualification cycles and no near-term competitive alternative. Every constellation operator needs ISL terminals. There are two to three qualified suppliers globally. This is a structural bottleneck.
+          </div>
+          <div class="tier-tags">
+            <span class="tier-tag">Optical ISL terminals (Mynaric, Tesat)</span>
+            <span class="tier-tag">Spectrum rights (ITU coordination)</span>
+            <span class="tier-tag">Gateway ground infrastructure</span>
+            <span class="tier-tag">User terminal chipsets (RF/phased array)</span>
+            <span class="tier-tag">Beamforming ASICs</span>
+          </div>
+          <div class="tier-metrics">
+            <div class="tm-item">
+              <div class="tm-label">Margin Profile</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="85" style="background:var(--t4)"></div></div>
+              <div class="tm-rating">HIGH (subscription model)</div>
+            </div>
+            <div class="tm-item">
+              <div class="tm-label">Moat Strength</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="93" style="background:var(--t4)"></div></div>
+              <div class="tm-rating">VERY HIGH — infrastructure</div>
+            </div>
+            <div class="tm-item">
+              <div class="tm-label">Capital Intensity</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="97" style="background:var(--forge)"></div></div>
+              <div class="tm-rating">EXTREME — $10B+ buildout</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TIER 5: EARTH OBSERVATION -->
+      <div class="tier-card reveal rd1" data-t="5">
+        <div class="tier-left">
+          <div>
+            <div class="tier-id">Tier 05 · Earth Observation</div>
+            <div class="tier-name">Geospatial Intelligence &amp; EO</div>
+          </div>
+          <div class="tier-mkt-spacer"></div>
+          <div>
+            <div class="tier-mkt-label">Market Size 2024E</div>
+            <div class="tier-mkt-now">$5<span>B</span></div>
+            <div class="tier-mkt-proj">→ <strong style="color:var(--t5)">$25B</strong> by 2035E</div>
+            <div class="tier-arrow" style="margin-top:6px;">▲ 16% CAGR</div>
+          </div>
+        </div>
+        <div class="tier-right">
+          <div class="tier-analysis">
+            EO is completing a fundamental transition from <strong>imagery sales to intelligence-as-a-service</strong>. Planet Labs (300+ satellites, daily global coverage), BlackSky (rapid-revisit tasking at 30-minute cadence), Maxar (50cm resolution, classified contracts), and Satellogic (multispectral at scale) compete not on camera quality but on <em>AI analysis depth and historical archive size</em>. A multi-year daily-global dataset becomes an impossible-to-replicate training corpus for change detection, agricultural monitoring, supply chain intelligence, and military ISR. The data moat deepens annually — each day of archive makes the dataset more defensible. The winner is the one with the best model trained on the most historical Earth data.
+          </div>
+          <div class="tier-tags">
+            <span class="tier-tag">AI analytics platform quality</span>
+            <span class="tier-tag">Historical archive depth (years × resolution)</span>
+            <span class="tier-tag">Customer integration switching costs</span>
+            <span class="tier-tag">Multi-modal data fusion (SAR + optical)</span>
+            <span class="tier-tag">Change detection algorithms</span>
+          </div>
+          <div class="tier-metrics">
+            <div class="tm-item">
+              <div class="tm-label">Margin Profile</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="82" style="background:var(--t5)"></div></div>
+              <div class="tm-rating">HIGH (data products)</div>
+            </div>
+            <div class="tm-item">
+              <div class="tm-label">Moat Strength</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="88" style="background:var(--t5)"></div></div>
+              <div class="tm-rating">VERY HIGH — data moat + AI</div>
+            </div>
+            <div class="tm-item">
+              <div class="tm-label">Capital Intensity</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="42" style="background:var(--t3)"></div></div>
+              <div class="tm-rating">MEDIUM-LOW (smallsats)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TIER 6: SPACE MANUFACTURING -->
+      <div class="tier-card reveal rd2" data-t="6">
+        <div class="tier-left">
+          <div>
+            <div class="tier-id">Tier 06 · Manufacturing</div>
+            <div class="tier-name">In-Space &amp; Orbital Manufacturing</div>
+          </div>
+          <div class="tier-mkt-spacer"></div>
+          <div>
+            <div class="tier-mkt-label">Market Size 2024E</div>
+            <div class="tier-mkt-now">~$0.1<span>B</span></div>
+            <div class="tier-mkt-proj">→ <strong style="color:var(--t6)">$3B+</strong> by 2035E</div>
+            <div class="tier-arrow" style="margin-top:6px;">▲ NASCENT — EARLIEST STAGE</div>
+          </div>
+        </div>
+        <div class="tier-right">
+          <div class="tier-analysis">
+            The least mature but <strong>potentially highest-margin segment</strong> in the space economy. Varda Space Industries' 2024 re-entry capsule demonstration produced pharmaceutical compounds in orbit for the first time commercially. <em>Space Forge</em> (Wales) targets semiconductor substrate manufacturing exploiting microgravity crystalline perfection. ZBLAN optical fiber achieves mid-IR optical transmission impossible terrestrially — commanding $10,000+/meter pricing against $10/meter terrestrial. The microgravity premium is real and validated. The commercial logistics (capsule re-entry, orbit insertion of manufacturing platforms) are being proven at cost points that support <90-day payback at premium product prices. This segment compounds slowly, then suddenly.
+          </div>
+          <div class="tier-tags">
+            <span class="tier-tag">Manufacturing platform access (ISS, Axiom)</span>
+            <span class="tier-tag">Product return capsule logistics</span>
+            <span class="tier-tag">Pharmaceutical crystal quality certification</span>
+            <span class="tier-tag">ZBLAN fiber draw process IP</span>
+            <span class="tier-tag">Scale economics (cost/return flight)</span>
+          </div>
+          <div class="tier-metrics">
+            <div class="tm-item">
+              <div class="tm-label">Margin Profile</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="95" style="background:var(--t6)"></div></div>
+              <div class="tm-rating">EXTREME — product premium</div>
+            </div>
+            <div class="tm-item">
+              <div class="tm-label">Moat Strength</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="86" style="background:var(--t6)"></div></div>
+              <div class="tm-rating">HIGH — process IP</div>
+            </div>
+            <div class="tm-item">
+              <div class="tm-label">Capital Intensity</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="40" style="background:var(--t3)"></div></div>
+              <div class="tm-rating">MEDIUM — platform rental</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TIER 7: SPACE RESOURCES -->
+      <div class="tier-card reveal" data-t="7">
+        <div class="tier-left">
+          <div>
+            <div class="tier-id">Tier 07 · Resources</div>
+            <div class="tier-name">In-Space Resources &amp; ISRU</div>
+          </div>
+          <div class="tier-mkt-spacer"></div>
+          <div>
+            <div class="tier-mkt-label">Market Size 2024E</div>
+            <div class="tier-mkt-now">~$0<span>B</span></div>
+            <div class="tier-mkt-proj">→ <strong style="color:var(--t7)">$1B+</strong> by 2035E (ISRU only)</div>
+            <div class="tier-arrow" style="margin-top:6px;">▲ SPECULATIVE / HIGH CONVICTION LONG</div>
+          </div>
+        </div>
+        <div class="tier-right">
+          <div class="tier-analysis">
+            The most speculative tier with the longest-horizon payoffs. Near-term viability centers on <em>lunar in-situ resource utilization (ISRU)</em> — extracting water ice from permanently shadowed craters for electrolysis into LH₂/LOX propellant. Intuitive Machines, Astrobotic, and ispace Japan are building the delivery infrastructure; Masten Space (now Astrobotic) developed the ISRU extraction hardware. The <strong>U.S. Commercial Space Launch Competitiveness Act (2015) and Artemis Accords</strong> create nascent property rights — the legal framework for a resource economy is being constructed in real time. Institutional investors with 15–20 year horizons should monitor this tier closely; the infrastructure being built today (CLPS landers, lunar comms, GPS extension) is the supply chain for a future resource economy.
+          </div>
+          <div class="tier-tags">
+            <span class="tier-tag">Property rights framework (Artemis Accords)</span>
+            <span class="tier-tag">ISRU extraction technology (TRL 4–5)</span>
+            <span class="tier-tag">Lunar surface logistics &amp; mobility</span>
+            <span class="tier-tag">Energy production at lunar poles</span>
+            <span class="tier-tag">Propellant depot infrastructure</span>
+          </div>
+          <div class="tier-metrics">
+            <div class="tm-item">
+              <div class="tm-label">Margin Profile</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="50" style="background:var(--t7)"></div></div>
+              <div class="tm-rating">TBD — high if achieved</div>
+            </div>
+            <div class="tm-item">
+              <div class="tm-label">Moat Strength</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="70" style="background:var(--t7)"></div></div>
+              <div class="tm-rating">REGULATORY — first-mover</div>
+            </div>
+            <div class="tm-item">
+              <div class="tm-label">Capital Intensity</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="97" style="background:var(--forge)"></div></div>
+              <div class="tm-rating">EXTREME — decades of infra.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TIER 8: SPACE SOFTWARE -->
+      <div class="tier-card reveal rd1" data-t="8">
+        <div class="tier-left">
+          <div>
+            <div class="tier-id">Tier 08 · Software Layer</div>
+            <div class="tier-name">Space Software &amp; Intelligence Platforms</div>
+          </div>
+          <div class="tier-mkt-spacer"></div>
+          <div>
+            <div class="tier-mkt-label">Market Size 2024E</div>
+            <div class="tier-mkt-now">$4<span>B</span></div>
+            <div class="tier-mkt-proj">→ <strong style="color:var(--t8)">$30B+</strong> by 2035E</div>
+            <div class="tier-arrow" style="margin-top:6px;">▲ 20% CAGR — FASTEST GROWING</div>
+          </div>
+        </div>
+        <div class="tier-right">
+          <div class="tier-analysis">
+            The most underappreciated and <strong>highest return-on-capital tier in the space economy</strong>. As LEO fills with 50,000+ satellites, orbital traffic management transitions from optional to legally regulated — creating a potential de facto software monopoly. Slingshot Aerospace (DoD orbital intelligence), Ansys (space simulation; ~70% gross margins), Cognitive Space (AI mission planning), and Vyoma Space (collision avoidance) are building <em>Palantir-grade operational moats</em> in mission-critical workflows. The winner of orbital traffic management standards becomes the Microsoft of space — a platform upon which every satellite operator depends, every day, under regulatory compulsion. The software margin structure (90%+ gross, low capex, network effects) makes this the best risk/reward tier for public market investors.
+          </div>
+          <div class="tier-tags">
+            <span class="tier-tag">Orbital traffic management standards</span>
+            <span class="tier-tag">Mission simulation platforms (Ansys, OpenMCT)</span>
+            <span class="tier-tag">Space situational awareness data</span>
+            <span class="tier-tag">Autonomous collision avoidance</span>
+            <span class="tier-tag">Space weather analytics</span>
+          </div>
+          <div class="tier-metrics">
+            <div class="tm-item">
+              <div class="tm-label">Margin Profile</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="92" style="background:var(--t8)"></div></div>
+              <div class="tm-rating">VERY HIGH — software econ.</div>
+            </div>
+            <div class="tm-item">
+              <div class="tm-label">Moat Strength</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="90" style="background:var(--t8)"></div></div>
+              <div class="tm-rating">VERY HIGH — workflow lock-in</div>
+            </div>
+            <div class="tm-item">
+              <div class="tm-label">Capital Intensity</div>
+              <div class="tm-bar"><div class="tm-fill" data-w="18" style="background:var(--t3)"></div></div>
+              <div class="tm-rating">LOW — software economics</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /tier-stack -->
+  </div>
+</section>
+
+<div class="s-divider"><span>COMING IN PART II</span></div>
+
+<!-- ══════════════════════════════════════════════
+     PART 2 PREVIEW
+══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="ghost-num" style="color:rgba(212,168,67,0.025);">II</div>
+  <div class="preview-hero reveal">
+    <div class="preview-label">Part II of II — Analytical Deep Dive</div>
+    <h2 class="preview-title">Bottlenecks, Moats, India, and the<br>Final Investment Verdict</h2>
+    <p class="preview-sub">
+      Part II completes the framework — from the ASML scoring model and global bottleneck analysis
+      to India's emerging space champions and the definitive capital allocation table.
+    </p>
+
+    <div class="preview-grid">
+      <div class="prev-item">
+        <div class="prev-num">PART 03</div>
+        <div class="prev-title">Global Space Bottleneck Analysis</div>
+        <div class="prev-desc">Top 50 structural bottlenecks ranked by severity, capital intensity, and replication difficulty. Who benefits regardless of which launch provider wins?</div>
+        <div class="prev-status coming">COMING IN PART II</div>
+      </div>
+      <div class="prev-item">
+        <div class="prev-num">PART 04–05</div>
+        <div class="prev-title">The ASML Framework &amp; Global Bottleneck Owners</div>
+        <div class="prev-desc">ASML Score (0–10) assigned to every critical player. SpaceX, Rocket Lab, L3Harris, Maxar, Iridium — why they became ecosystem chokepoints.</div>
+        <div class="prev-status coming">COMING IN PART II</div>
+      </div>
+      <div class="prev-item">
+        <div class="prev-num">PART 06–07</div>
+        <div class="prev-title">Value, Margins &amp; Defense Convergence</div>
+        <div class="prev-desc">Complete margin &amp; ROIC analysis across all 8 tiers. Deep dive into defense-space convergence: the SDA, military comms, and space-based ISR buildout.</div>
+        <div class="prev-status coming">COMING IN PART II</div>
+      </div>
+      <div class="prev-item">
+        <div class="prev-num">PART 08–10</div>
+        <div class="prev-title">India Space Ambition &amp; Hidden Compounders</div>
+        <div class="prev-desc">Complete India ecosystem map. Top 25 small-cap hidden compounders. Top 15 emerging mid-caps. Suppliers behind the suppliers.</div>
+        <div class="prev-status coming">COMING IN PART II</div>
+      </div>
+      <div class="prev-item">
+        <div class="prev-num">PART 11–13</div>
+        <div class="prev-title">Future Space Toll Booths &amp; India Champions</div>
+        <div class="prev-desc">The ASML of Space. The Nvidia of Space Infrastructure. The Visa of Space Communications. Which Indian companies are positioned as future global export champions?</div>
+        <div class="prev-status coming">COMING IN PART II</div>
+      </div>
+      <div class="prev-item">
+        <div class="prev-num">PART 14–15</div>
+        <div class="prev-title">Global Comparables &amp; 2025–2050 Forecast</div>
+        <div class="prev-desc">Indian companies vs. SpaceX, Rocket Lab, Iridium, L3Harris. Scenario-based forecasts for 2030, 2035, 2040, 2045, 2050 with probability assignments.</div>
+        <div class="prev-status coming">COMING IN PART II</div>
+      </div>
+      <div class="prev-item">
+        <div class="prev-num">PART 16</div>
+        <div class="prev-title">Final Investment Verdict</div>
+        <div class="prev-desc">Where does value live? Which bottlenecks matter most? Which firms are narrative plays? Which businesses carry the highest probability of being 10–20 year compounders?</div>
+        <div class="prev-status coming">COMING IN PART II</div>
+      </div>
+      <div class="prev-item">
+        <div class="prev-num">SPECIAL SECTION</div>
+        <div class="prev-title">The Master Scorecard Table</div>
+        <div class="prev-desc">Full company-by-company table: Space Bottleneck Solved · ASML Score · Moat Score · Regulatory Advantage · Defense Exposure · 10-Year Compounder Probability.</div>
+        <div class="prev-status coming">COMING IN PART II</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════ -->
+<footer class="report-footer">
+  <div>
+    <span class="rf-id">STC-2025-001-P1</span>
+    &nbsp;·&nbsp; Global Space Technology &amp; Exploration Super-Cycle
+    &nbsp;·&nbsp; Part I of II
+  </div>
+  <div style="display:flex;align-items:center;gap:20px;">
+    <span>2025–2050 Research Framework</span>
+    <span class="rf-page">PAGE 1 OF 2 · INSTITUTIONAL DISTRIBUTION ONLY</span>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════ -->
+<script>
+/* ── Star canvas ── */
+(function() {
+  const canvas = document.getElementById('starCanvas');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+
+  function init() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    stars = Array.from({ length: 220 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.4 + 0.3,
+      op: Math.random() * 0.7 + 0.1,
+      spd: Math.random() * 0.008 + 0.002,
+      ph: Math.random() * Math.PI * 2
+    }));
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const t = Date.now() * 0.001;
+    stars.forEach(s => {
+      const alpha = s.op * (0.55 + 0.45 * Math.sin(t * s.spd * 60 + s.ph));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${180 + Math.random() * 20},${200 + Math.random() * 30},255,${alpha})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+
+  init();
+  draw();
+  window.addEventListener('resize', init);
+})();
+
+/* ── Hero counters ── */
+(function() {
+  function counter(el, target, suffix, duration, prefix) {
+    const start = performance.now();
+    const fmt = n => (prefix || '') + n.toLocaleString() + (suffix || '');
+    const step = now => {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(Math.round(eased * target));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  window.addEventListener('load', () => {
+    setTimeout(() => counter(document.getElementById('c1'), 570, 'B', 2000, '$'), 1200);
+    setTimeout(() => counter(document.getElementById('c2'), 8500, '+', 2200), 1400);
+    setTimeout(() => counter(document.getElementById('c3'), 60, '×', 1800), 1600);
+  });
+})();
+
+/* ── Scroll reveals ── */
+(function() {
+  const els = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); } });
+  }, { threshold: 0.1 });
+  els.forEach(el => obs.observe(el));
+})();
+
+/* ── Metric bar animations ── */
+(function() {
+  const fills = document.querySelectorAll('.tm-fill');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.width = (e.target.dataset.w || 0) + '%';
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.6 });
+  fills.forEach(f => { f.style.width = '0'; obs.observe(f); });
+})();
+
+/* ── Launch cost bars ── */
+(function() {
+  const bars = document.querySelectorAll('.ct-bar');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const bar = e.target;
+        const h = parseFloat(bar.dataset.h) || 3;
+        bar.style.height = '0px';
+        bar.style.transition = 'height 1s cubic-bezier(0.4,0,0.2,1)';
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => { bar.style.height = h + 'px'; });
+        });
+        obs.unobserve(bar);
+      }
+    });
+  }, { threshold: 0.5 });
+  bars.forEach(b => obs.observe(b));
+})();
+</script>
+</body>
+</html>

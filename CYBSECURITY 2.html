@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cybersecurity & AI Security Superwave — Part II of II</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ─── DESIGN TOKENS ─── */
+:root {
+  --ink:#03071A; --ink2:#0B1228; --page:#F1F4FB; --white:#FFFFFF;
+  --teal:#009D8D; --teal-l:rgba(0,157,141,.12); --teal-b:rgba(0,157,141,.3);
+  --gold:#B8870C; --gold-l:rgba(184,135,12,.10); --gold-b:rgba(184,135,12,.3);
+  --elec:#1452F0; --elec-l:rgba(20,82,240,.09); --elec-b:rgba(20,82,240,.22);
+  --red:#C4261C;  --red-l:rgba(196,38,28,.09);   --red-b:rgba(196,38,28,.22);
+  --pur:#6420C8;  --pur-l:rgba(100,32,200,.08);
+  --grn:#14763A;  --grn-l:rgba(20,118,58,.09);
+  --org:#BE4500;  --org-l:rgba(190,69,0,.09);
+  --t1:#0C1220; --t2:#485069; --t3:#8E97B0;
+  --br:#DDE3F0; --sur:#E9EDF7;
+  --fd:'Syne',sans-serif; --fb:'IBM Plex Sans',sans-serif; --fm:'IBM Plex Mono',monospace;
+  --nw:252px; --r:7px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--page);color:var(--t1);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.layout{display:flex;min-height:100vh}
+
+/* ─── SIDEBAR ─── */
+.sb{width:var(--nw);flex-shrink:0;position:fixed;top:0;left:0;height:100vh;background:var(--ink);overflow-y:auto;z-index:200;display:flex;flex-direction:column;border-right:1px solid rgba(255,255,255,.04)}
+.sb::-webkit-scrollbar{width:2px} .sb::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08)}
+.sb-logo{padding:26px 22px 22px;border-bottom:1px solid rgba(255,255,255,.06)}
+.sb-tag{font-family:var(--fm);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:7px}
+.sb-name{font-family:var(--fd);font-size:12.5px;font-weight:700;color:rgba(255,255,255,.88);line-height:1.45}
+.sb-grp{font-family:var(--fm);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.25);padding:16px 22px 4px}
+.sb-a{display:flex;align-items:flex-start;gap:9px;padding:7px 22px;color:rgba(255,255,255,.45);font-size:12.5px;border-left:2px solid transparent;transition:all .15s;line-height:1.5}
+.sb-a:hover{color:rgba(255,255,255,.85);background:rgba(255,255,255,.04)}
+.sb-a.on{color:var(--gold);border-left-color:var(--gold);background:rgba(184,135,12,.08)}
+.sb-n{font-family:var(--fm);font-size:9.5px;color:rgba(255,255,255,.2);flex-shrink:0;margin-top:2px}
+.sb-a.on .sb-n{color:var(--gold)}
+.sb-foot{margin-top:auto;padding:18px 22px;border-top:1px solid rgba(255,255,255,.06);font-family:var(--fm);font-size:9.5px;color:rgba(255,255,255,.25);line-height:1.9}
+
+/* ─── LAYOUT ─── */
+.main{margin-left:var(--nw);flex:1;min-width:0}
+
+/* ─── PART II HERO ─── */
+.ph{background:var(--ink);padding:56px 64px 52px;position:relative;overflow:hidden}
+.ph::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(184,135,12,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(184,135,12,.025) 1px,transparent 1px);background-size:44px 44px;pointer-events:none}
+.ph::after{content:'';position:absolute;top:-80px;right:-60px;width:360px;height:360px;background:radial-gradient(circle,rgba(184,135,12,.09) 0%,transparent 68%);pointer-events:none}
+.ph-inner{max-width:780px;position:relative;z-index:1}
+.ph-badge{display:inline-flex;align-items:center;gap:9px;background:rgba(184,135,12,.10);border:1px solid var(--gold-b);padding:5px 14px;border-radius:100px;margin-bottom:26px}
+.ph-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.ph-bt{font-family:var(--fm);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.ph-title{font-family:var(--fd);font-size:clamp(30px,4.2vw,52px);font-weight:800;color:var(--white);line-height:1.06;letter-spacing:-.022em;margin-bottom:16px}
+.ph-title .a{color:var(--gold)}
+.ph-sub{font-size:16px;font-weight:300;color:rgba(255,255,255,.45);max-width:580px;line-height:1.65;margin-bottom:36px}
+.ph-pills{display:flex;flex-wrap:wrap;gap:8px}
+.ph-pill{font-family:var(--fm);font-size:10px;letter-spacing:.1em;padding:5px 12px;border:1px solid rgba(255,255,255,.1);border-radius:100px;color:rgba(255,255,255,.45);text-transform:uppercase;transition:color .15s,border-color .15s}
+.ph-pill:hover{color:var(--gold);border-color:var(--gold-b)}
+
+/* ─── SECTION SHELL ─── */
+.sec{padding:72px 64px;border-bottom:1px solid var(--br)}
+.sec-dk{background:var(--ink);padding:72px 64px}
+.dv{display:flex;align-items:center;gap:18px;padding:10px 64px}
+.dv-l{flex:1;height:1px;background:var(--br)}
+.dv-t{font-family:var(--fm);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);white-space:nowrap}
+
+/* ─── EYEBROW + TITLE ─── */
+.ew{display:flex;align-items:center;gap:11px;margin-bottom:13px}
+.ew-n{font-family:var(--fm);font-size:11px;color:var(--gold);letter-spacing:.18em}
+.ew-r{height:1px;width:36px;background:var(--gold);opacity:.38}
+.ew-t{font-family:var(--fm);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--t2)}
+.ew-dk .ew-t{color:rgba(255,255,255,.38)}
+.ttl{font-family:var(--fd);font-size:clamp(26px,3.6vw,42px);font-weight:700;color:var(--t1);line-height:1.1;letter-spacing:-.022em;margin-bottom:16px;max-width:680px}
+.ttl-dk{color:rgba(255,255,255,.93)}
+.intro{font-size:16px;color:var(--t2);max-width:680px;line-height:1.8;margin-bottom:44px}
+.intro-dk{color:rgba(255,255,255,.52)}
+.sh{font-family:var(--fd);font-size:21px;font-weight:600;color:var(--t1);margin:44px 0 14px;display:flex;align-items:center;gap:11px}
+.sh-tag{font-family:var(--fm);font-size:10px;padding:3px 8px;border-radius:4px;letter-spacing:.08em}
+.sh-g{color:var(--gold);background:var(--gold-l)}
+.sh-t{color:var(--teal);background:var(--teal-l)}
+.sb2{font-size:15px;color:var(--t2);line-height:1.78;max-width:700px;margin-bottom:24px}
+.pq{border-left:3px solid var(--gold);padding:18px 22px;background:var(--gold-l);border-radius:0 var(--r) var(--r) 0;margin:36px 0;max-width:640px}
+.pq p{font-family:var(--fd);font-size:19px;font-weight:600;color:var(--t1);line-height:1.52;font-style:italic}
+.pq cite{display:block;margin-top:9px;font-family:var(--fm);font-size:10px;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;font-style:normal}
+.fi{opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s}
+.fi.in{opacity:1;transform:none}
+
+/* ─── COMPANY MOAT CARDS ─── */
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:36px 0}
+.cc{background:var(--white);border:1px solid var(--br);border-radius:var(--r);overflow:hidden;transition:box-shadow .2s}
+.cc:hover{box-shadow:0 6px 28px rgba(0,0,0,.07)}
+.cc-h{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--br)}
+.cc-i{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:14px;font-weight:800;flex-shrink:0}
+.cc-n{font-family:var(--fd);font-size:15px;font-weight:700;color:var(--t1)}
+.cc-s{font-family:var(--fm);font-size:9.5px;color:var(--t3);letter-spacing:.1em;margin-top:2px}
+.cc-kpi{display:flex;border-bottom:1px solid var(--br)}
+.kpi{flex:1;padding:9px 13px;border-right:1px solid var(--br)}
+.kpi:last-child{border-right:none}
+.kv{font-family:var(--fm);font-size:12px;font-weight:500;color:var(--t1)}
+.kl{font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-top:1px}
+.cc-why{padding:13px 18px;font-size:12.5px;color:var(--t2);line-height:1.65;border-bottom:1px solid var(--br)}
+.cc-moat{padding:13px 18px 15px}
+.cc-ml{font-family:var(--fm);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);margin-bottom:10px}
+.mrow{display:grid;grid-template-columns:116px 1fr 26px;align-items:center;gap:9px;margin-bottom:6px}
+.ml{font-family:var(--fm);font-size:10px;color:var(--t2)}
+.mt{height:4px;background:var(--br);border-radius:100px;overflow:hidden}
+.mf{height:100%;border-radius:100px;background:var(--teal);transition:width 1.1s cubic-bezier(.22,1,.36,1)}
+.mv{font-family:var(--fm);font-size:10px;color:var(--t1);text-align:right;font-weight:500}
+
+/* ─── RANK TABLE ─── */
+.rtw{overflow-x:auto;border:1px solid var(--br);border-radius:var(--r);margin:28px 0}
+.rt{width:100%;border-collapse:collapse;font-size:13px}
+.rt th{font-family:var(--fm);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--t3);text-align:left;padding:10px 13px;border-bottom:1px solid var(--br);background:var(--sur);font-weight:500}
+.rt td{padding:11px 13px;vertical-align:middle;border-bottom:1px solid var(--br);color:var(--t2)}
+.rt tr:last-child td{border-bottom:none}
+.rt tbody tr:hover td{background:var(--sur)}
+.rn{font-family:var(--fd);font-size:20px;font-weight:800;color:var(--br)}
+.rn.hi{color:var(--teal)}
+.pill{display:inline-block;padding:3px 9px;border-radius:100px;font-family:var(--fm);font-size:10px;font-weight:500;border:1px solid}
+.mg{font-family:var(--fm);font-size:12px;font-weight:500;color:var(--t1)}
+.sr{display:flex;gap:2px}
+.st{font-size:11px}
+.st.on{color:var(--gold)}
+.st.of{color:var(--br)}
+.vt{font-family:var(--fd);font-size:13px;font-weight:600}
+
+/* ─── ASML SCORES ─── */
+.al{display:flex;flex-direction:column;gap:12px;margin:28px 0}
+.ar{display:grid;grid-template-columns:172px 56px 1fr 140px;align-items:center;gap:16px;background:var(--white);border:1px solid var(--br);border-radius:var(--r);padding:15px 20px;transition:box-shadow .2s}
+.ar:hover{box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.an{font-family:var(--fd);font-size:14px;font-weight:600;color:var(--t1)}
+.as{font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
+.ab{font-family:var(--fd);font-size:28px;font-weight:800;line-height:1;text-align:center}
+.ads{display:flex;flex-direction:column;gap:5px}
+.ad{display:grid;grid-template-columns:108px 1fr;gap:8px;align-items:center}
+.adl{font-family:var(--fm);font-size:9.5px;color:var(--t3)}
+.adt{height:3px;background:var(--br);border-radius:100px;overflow:hidden}
+.adf{height:100%;border-radius:100px}
+.av{font-size:12px;color:var(--t2);line-height:1.55}
+
+/* ─── CAPITAL CYCLE ─── */
+.mx{margin:32px 0}
+.mxa{display:flex;justify-content:space-between;font-family:var(--fm);font-size:9.5px;color:var(--t3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;padding:0 4px}
+.mxg{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--br);border:1px solid var(--br);border-radius:var(--r);overflow:hidden}
+.mxq{padding:24px;min-height:180px;position:relative}
+.mql{font-family:var(--fm);font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;margin-bottom:8px}
+.mqt{font-family:var(--fd);font-size:16px;font-weight:700;margin-bottom:14px}
+.mxt{display:flex;flex-wrap:wrap;gap:6px}
+.mxtag{padding:4px 10px;border-radius:100px;font-size:11.5px;font-weight:500;border:1px solid}
+.mqv{position:absolute;bottom:16px;right:16px;font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.mxy{text-align:center;font-family:var(--fm);font-size:9.5px;color:var(--t3);letter-spacing:.12em;text-transform:uppercase;margin-top:8px}
+
+/* ─── TOLL BOOTH CARDS ─── */
+.tbg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:32px 0}
+.tbc{background:var(--white);border:1px solid var(--br);border-radius:var(--r);padding:22px;position:relative;overflow:hidden;transition:box-shadow .2s,transform .2s}
+.tbc:hover{box-shadow:0 8px 32px rgba(0,0,0,.08);transform:translateY(-2px)}
+.tbt{position:absolute;top:0;left:0;right:0;height:2px}
+.tba{font-family:var(--fm);font-size:9px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:7px}
+.tbh{font-family:var(--fd);font-size:17px;font-weight:700;color:var(--t1);margin-bottom:10px;line-height:1.25}
+.tbf{font-family:var(--fm);font-size:11px;color:var(--t3);margin-bottom:12px;letter-spacing:.06em}
+.tbf em{color:var(--t1);font-style:normal;font-weight:500}
+.tbw{font-size:12.5px;color:var(--t2);line-height:1.65;margin-bottom:14px}
+.tbts{display:flex;flex-wrap:wrap;gap:5px}
+.tbtag{font-family:var(--fm);font-size:10px;padding:3px 8px;border-radius:100px;border:1px solid var(--br);color:var(--t2)}
+
+/* ─── 3-COL GRID ─── */
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:28px 0}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0}
+.card{background:var(--white);border:1px solid var(--br);border-radius:var(--r);padding:20px}
+.card-top{position:absolute;top:0;left:0;right:0;height:2px}
+.card-bar{position:absolute;top:0;left:0;bottom:0;width:3px}
+.clbl{font-family:var(--fm);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--t3);margin-bottom:6px}
+.ctitle{font-family:var(--fd);font-size:15.5px;font-weight:600;color:var(--t1);margin-bottom:8px}
+.cbody{font-size:12.5px;color:var(--t2);line-height:1.65;margin-bottom:12px}
+.ctag{display:inline-block;font-family:var(--fm);font-size:10px;font-weight:500;padding:3px 9px;border-radius:100px;border:1px solid}
+.ct-teal{color:var(--teal);border-color:var(--teal-b);background:var(--teal-l)}
+.ct-gold{color:var(--gold);border-color:var(--gold-b);background:var(--gold-l)}
+.ct-red{color:var(--red);border-color:var(--red-b);background:var(--red-l)}
+.ct-muted{color:var(--t3);border-color:var(--br);background:var(--sur)}
+
+/* ─── ECO TABLE ─── */
+.tw{overflow-x:auto;margin:28px 0;border:1px solid var(--br);border-radius:var(--r)}
+.tt{width:100%;border-collapse:collapse;font-size:13px;min-width:780px}
+.tt th{font-family:var(--fm);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--t3);text-align:left;padding:10px 13px;border-bottom:1px solid var(--br);background:var(--sur);font-weight:500;white-space:nowrap}
+.tt td{padding:11px 13px;vertical-align:middle;border-bottom:1px solid var(--br);color:var(--t2)}
+.tt tr:last-child td{border-bottom:none}
+.tt tbody tr:hover td{background:var(--sur)}
+.tn{font-weight:600;color:var(--t1);display:block}
+.tex{font-family:var(--fm);font-size:9.5px;color:var(--t3);letter-spacing:.08em}
+.xb{height:4px;background:var(--br);border-radius:100px;overflow:hidden;width:80px;margin-top:4px}
+.xf{height:100%;border-radius:100px;background:var(--teal)}
+.cpill{display:inline-block;padding:2px 8px;border-radius:100px;font-family:var(--fm);font-size:9.5px;border:1px solid}
+
+/* ─── COMPOUNDERS ─── */
+.comp-h{font-family:var(--fd);font-size:17px;font-weight:700;color:var(--t1);margin:40px 0 14px;padding-bottom:10px;border-bottom:1px solid var(--br);display:flex;align-items:center;gap:10px}
+.compg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:32px}
+.cp{background:var(--white);border:1px solid var(--br);border-radius:var(--r);padding:14px;transition:box-shadow .2s}
+.cp:hover{box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.cp.feat{border-color:var(--teal-b);background:rgba(0,157,141,.02)}
+.cprank{font-family:var(--fm);font-size:9px;color:var(--t3);margin-bottom:4px}
+.cpname{font-family:var(--fd);font-size:13px;font-weight:700;color:var(--t1);margin-bottom:5px;line-height:1.25}
+.cptags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:7px}
+.cptag{padding:2px 7px;border-radius:100px;font-family:var(--fm);font-size:9px;font-weight:500;border:1px solid}
+.cpbody{font-size:11.5px;color:var(--t2);line-height:1.55}
+.cpmoat{font-family:var(--fm);font-size:9px;color:var(--teal);text-transform:uppercase;letter-spacing:.08em;margin-top:6px}
+.cpmoat::before{content:'◆ ';font-size:7px}
+
+/* ─── COMPARABLES TABLE ─── */
+.cmw{overflow-x:auto;margin:28px 0;border:1px solid var(--br);border-radius:var(--r)}
+.cmt{width:100%;border-collapse:collapse;font-size:13px;min-width:720px}
+.cmt th{font-family:var(--fm);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--t3);text-align:left;padding:10px 13px;border-bottom:1px solid var(--br);background:var(--sur);font-weight:500}
+.cmt td{padding:11px 13px;vertical-align:top;border-bottom:1px solid var(--br);color:var(--t2);font-size:12.5px;line-height:1.6}
+.cmt tr:last-child td{border-bottom:none}
+.cmt tbody tr:hover td{background:var(--sur)}
+.cma{text-align:center;font-size:18px;color:var(--t3)}
+.sco{display:inline-block;padding:3px 9px;border-radius:100px;font-family:var(--fm);font-size:9.5px;border:1px solid}
+.sco-h{background:var(--teal-l);color:var(--teal);border-color:var(--teal-b)}
+.sco-m{background:var(--gold-l);color:var(--gold);border-color:var(--gold-b)}
+
+/* ─── VERDICT CARDS ─── */
+.vdg{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:28px 0}
+.vdc{background:var(--white);border:1px solid var(--br);border-radius:var(--r);padding:20px}
+.vdq{font-family:var(--fm);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-bottom:7px}
+.vda{font-family:var(--fd);font-size:15px;font-weight:600;color:var(--t1);line-height:1.45;margin-bottom:8px}
+.vdd{font-size:12.5px;color:var(--t2);line-height:1.65}
+.vdn{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.vtag{font-family:var(--fm);font-size:10px;padding:3px 9px;border-radius:100px}
+.vteal{background:var(--teal-l);color:var(--teal);border:1px solid var(--teal-b)}
+.vgold{background:var(--gold-l);color:var(--gold);border:1px solid var(--gold-b)}
+.vred{background:var(--red-l);color:var(--red);border:1px solid var(--red-b)}
+
+/* ─── FINAL TABLE ─── */
+.ftw{overflow-x:auto;margin:28px 0;border:1px solid var(--br);border-radius:var(--r)}
+.ft{width:100%;border-collapse:collapse;font-size:12px;min-width:1100px}
+.ft th{font-family:var(--fm);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);text-align:left;padding:10px 11px;border-bottom:1px solid rgba(255,255,255,.06);font-weight:500;background:var(--ink);white-space:nowrap}
+.ft td{padding:10px 11px;vertical-align:middle;border-bottom:1px solid var(--br);color:var(--t2)}
+.ft tr:last-child td{border-bottom:none}
+.ft tbody tr:nth-child(even) td{background:rgba(241,244,251,.5)}
+.ft tbody tr:hover td{background:var(--teal-l)}
+.fco{font-family:var(--fd);font-size:12.5px;font-weight:700;color:var(--t1);display:block;white-space:nowrap}
+.fex{font-family:var(--fm);font-size:9px;color:var(--t3);display:block;letter-spacing:.06em;margin-top:1px}
+.sc{display:inline-flex;align-items:center;justify-content:center;width:33px;height:33px;border-radius:50%;font-family:var(--fd);font-size:13px;font-weight:700;border:2px solid}
+.sch{color:var(--teal);border-color:var(--teal-b);background:var(--teal-l)}
+.scm{color:var(--gold);border-color:var(--gold-b);background:var(--gold-l)}
+.scl{color:var(--t3);border-color:var(--br);background:var(--sur)}
+.pb{font-family:var(--fm);font-size:10.5px;font-weight:600;padding:3px 8px;border-radius:100px}
+.pbh{color:var(--grn);background:var(--grn-l)}
+.pbm{color:var(--gold);background:var(--gold-l)}
+.pbl{color:var(--t3);background:var(--sur)}
+.ib{height:4px;background:var(--br);border-radius:100px;overflow:hidden;width:48px;display:inline-block;vertical-align:middle;margin-left:4px}
+.ibf{height:100%;border-radius:100px;background:var(--teal)}
+.ibf.g{background:var(--gold)}
+
+/* ─── FOOTER ─── */
+.foot{background:var(--ink);padding:28px 64px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+.fl{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,.25);line-height:1.9}
+.fr{font-family:var(--fm);font-size:10.5px;color:var(--gold);text-align:right;flex-shrink:0}
+
+@media(max-width:960px){.sb{display:none}.main{margin-left:0}.ph,.sec,.sec-dk,.foot{padding-left:24px;padding-right:24px}.dv{padding-left:24px;padding-right:24px}.cg,.tbg,.g2,.g3,.vdg,.compg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══ SIDEBAR ═══ -->
+<nav class="sb">
+  <div class="sb-logo">
+    <span class="sb-tag">Institutional Research · Part II of II</span>
+    <div class="sb-name">Cybersecurity &amp;<br>AI Security Superwave</div>
+  </div>
+  <div class="sb-grp">Contents · Part II</div>
+  <a href="#top"      class="sb-a on"><span class="sb-n">00</span>Part II Overview</a>
+  <a href="#s04"      class="sb-a"><span class="sb-n">§04</span>Bottleneck Owners</a>
+  <a href="#s05"      class="sb-a"><span class="sb-n">§05</span>Where Value Lives</a>
+  <a href="#s06"      class="sb-a"><span class="sb-n">§06</span>ASML Framework</a>
+  <a href="#s07"      class="sb-a"><span class="sb-n">§07</span>AI Security · Next Decade</a>
+  <a href="#s08"      class="sb-a"><span class="sb-n">§08</span>Capital Cycle</a>
+  <a href="#s09"      class="sb-a"><span class="sb-n">§09</span>Toll Booths</a>
+  <a href="#s10"      class="sb-a"><span class="sb-n">§10</span>Critical Infrastructure</a>
+  <div class="sb-grp">India Section</div>
+  <a href="#s11"      class="sb-a"><span class="sb-n">§11</span>India's Opportunity</a>
+  <a href="#s12"      class="sb-a"><span class="sb-n">§12</span>India Ecosystem</a>
+  <a href="#s13"      class="sb-a"><span class="sb-n">§13</span>Hidden Compounders</a>
+  <a href="#s14"      class="sb-a"><span class="sb-n">§14</span>Global Comparables</a>
+  <div class="sb-grp">Final Conclusions</div>
+  <a href="#s15"      class="sb-a"><span class="sb-n">§15</span>Final Investment Verdict</a>
+  <a href="#special"  class="sb-a"><span class="sb-n">✦</span>AI Economy Layer</a>
+  <a href="#ftable"   class="sb-a"><span class="sb-n">✦</span>Final Scoring Table</a>
+  <div class="sb-foot">Global Cyber Superwave · Part II<br>June 2025 · Sections §04–§15<br>← Part I covers §01–§03</div>
+</nav>
+
+<!-- ═══ MAIN ═══ -->
+<main class="main">
+
+<!-- PART II HERO -->
+<section class="ph" id="top">
+  <div class="ph-inner">
+    <div class="ph-badge"><div class="ph-dot"></div><span class="ph-bt">Institutional Research Consortium — Part II of II</span></div>
+    <h1 class="ph-title">Bottleneck Owners,<br>Capital Cycles &amp; <span class="a">The India Opportunity</span></h1>
+    <p class="ph-sub">§04–§15 plus Special Section and Final Scoring Table. Picking the ASMLs, mapping the toll booths, and identifying the highest-conviction compounders in global and Indian cybersecurity.</p>
+    <div class="ph-pills">
+      <a href="#s04" class="ph-pill">Bottleneck Owners</a>
+      <a href="#s06" class="ph-pill">ASML Scores</a>
+      <a href="#s08" class="ph-pill">Capital Cycle</a>
+      <a href="#s09" class="ph-pill">Toll Booths</a>
+      <a href="#s11" class="ph-pill">India Thesis</a>
+      <a href="#s13" class="ph-pill">Compounders</a>
+      <a href="#ftable" class="ph-pill">Final Table</a>
+    </div>
+  </div>
+</section>
+
+<div class="dv"><div class="dv-l"></div><div class="dv-t">Part Four · Incumbent Analysis</div><div class="dv-l"></div></div>
+
+<!-- ═══ §04 BOTTLENECK OWNERS ═══ -->
+<section class="sec" id="s04">
+  <div class="ew"><span class="ew-n">§04</span><div class="ew-r"></div><span class="ew-t">Global Bottleneck Owners</span></div>
+  <h2 class="ttl">How Eight Companies Became Embedded Infrastructure</h2>
+  <p class="intro">Bottleneck ownership is not measured by market share. It is measured by irreversibility of integration — the depth at which a vendor's product becomes structurally load-bearing for enterprise operations. These eight companies most closely approximate true bottleneck status in the global cybersecurity ecosystem.</p>
+  <div class="cg">
+    <div class="cc fi">
+      <div class="cc-h"><div class="cc-i" style="background:var(--red-l);color:var(--red)">CS</div><div><div class="cc-n">CrowdStrike</div><div class="cc-s">NASDAQ: CRWD · Endpoint / XDR / Threat Intelligence</div></div></div>
+      <div class="cc-kpi"><div class="kpi"><div class="kv">$3.7B+</div><div class="kl">Annual ARR</div></div><div class="kpi"><div class="kv">~78%</div><div class="kl">Gross Margin</div></div><div class="kpi"><div class="kv">120%+</div><div class="kl">NRR</div></div></div>
+      <div class="cc-why">The Falcon sensor sits below the OS on 200M+ endpoints. The July 2024 outage — taking down 8.5M devices — paradoxically proved CrowdStrike's ASML status: enterprises couldn't simply disable the sensor. The data flywheel is the true moat: more endpoints → richer AI models → superior detection → more deployments. This loop has compounded for 15 years and cannot be replicated from a standing start.</div>
+      <div class="cc-moat"><div class="cc-ml">Moat Dimensions</div>
+        <div class="mrow"><span class="ml">Data Advantage</span><div class="mt"><div class="mf" style="width:100%"></div></div><span class="mv">10</span></div>
+        <div class="mrow"><span class="ml">Switching Costs</span><div class="mt"><div class="mf" style="width:90%"></div></div><span class="mv">9</span></div>
+        <div class="mrow"><span class="ml">Network Effects</span><div class="mt"><div class="mf" style="width:90%"></div></div><span class="mv">9</span></div>
+        <div class="mrow"><span class="ml">Platform Breadth</span><div class="mt"><div class="mf" style="width:80%"></div></div><span class="mv">8</span></div>
+      </div>
+    </div>
+    <div class="cc fi">
+      <div class="cc-h"><div class="cc-i" style="background:var(--elec-l);color:var(--elec)">PA</div><div><div class="cc-n">Palo Alto Networks</div><div class="cc-s">NASDAQ: PANW · NGFW + Prisma + Cortex Platform</div></div></div>
+      <div class="cc-kpi"><div class="kpi"><div class="kv">$4.2B+</div><div class="kl">NGS ARR</div></div><div class="kpi"><div class="kv">~74%</div><div class="kl">Gross Margin</div></div><div class="kpi"><div class="kv">115%+</div><div class="kl">NRR</div></div></div>
+      <div class="cc-why">Executing the most deliberate "platformization" strategy in security — incentivising customers to consolidate their full security stack onto PANW. Customers consolidated across NGFW, Prisma Cloud, and Cortex XDR face multi-year replacement projects to migrate away. Each module added compounds the switching cost, making the ASML score grow with every new product adoption.</div>
+      <div class="cc-moat"><div class="cc-ml">Moat Dimensions</div>
+        <div class="mrow"><span class="ml">Platform Breadth</span><div class="mt"><div class="mf" style="width:100%"></div></div><span class="mv">10</span></div>
+        <div class="mrow"><span class="ml">Switching Costs</span><div class="mt"><div class="mf" style="width:80%"></div></div><span class="mv">8</span></div>
+        <div class="mrow"><span class="ml">Network Effects</span><div class="mt"><div class="mf" style="width:70%"></div></div><span class="mv">7</span></div>
+        <div class="mrow"><span class="ml">Data Advantage</span><div class="mt"><div class="mf" style="width:70%"></div></div><span class="mv">7</span></div>
+      </div>
+    </div>
+    <div class="cc fi">
+      <div class="cc-h"><div class="cc-i" style="background:var(--pur-l);color:var(--pur)">ZS</div><div><div class="cc-n">Zscaler</div><div class="cc-s">NASDAQ: ZS · Zero Trust Exchange / SSE / SASE</div></div></div>
+      <div class="cc-kpi"><div class="kpi"><div class="kv">$2.6B+</div><div class="kl">Annual ARR</div></div><div class="kpi"><div class="kv">~79%</div><div class="kl">Gross Margin</div></div><div class="kpi"><div class="kv">118%+</div><div class="kl">NRR</div></div></div>
+      <div class="cc-why">The Zero Trust Exchange processes 150B+ transactions daily, sitting inline between every user and every internet or SaaS destination. Its position is architectural — not a tool plugged into the network, but the network itself. Removing Zscaler requires redesigning the entire enterprise connectivity architecture; a multi-year re-engineering project with zero interim security coverage.</div>
+      <div class="cc-moat"><div class="cc-ml">Moat Dimensions</div>
+        <div class="mrow"><span class="ml">Switching Costs</span><div class="mt"><div class="mf" style="width:90%"></div></div><span class="mv">9</span></div>
+        <div class="mrow"><span class="ml">Network Effects</span><div class="mt"><div class="mf" style="width:80%"></div></div><span class="mv">8</span></div>
+        <div class="mrow"><span class="ml">Data Advantage</span><div class="mt"><div class="mf" style="width:80%"></div></div><span class="mv">8</span></div>
+        <div class="mrow"><span class="ml">Platform Breadth</span><div class="mt"><div class="mf" style="width:80%"></div></div><span class="mv">8</span></div>
+      </div>
+    </div>
+    <div class="cc fi">
+      <div class="cc-h"><div class="cc-i" style="background:var(--teal-l);color:var(--teal)">OK</div><div><div class="cc-n">Okta</div><div class="cc-s">NASDAQ: OKTA · Identity &amp; Access Management / CIAM</div></div></div>
+      <div class="cc-kpi"><div class="kpi"><div class="kv">$2.3B+</div><div class="kl">Annual ARR</div></div><div class="kpi"><div class="kv">~77%</div><div class="kl">Gross Margin</div></div><div class="kpi"><div class="kv">112%+</div><div class="kl">NRR</div></div></div>
+      <div class="cc-why">The Okta Integration Network (OIN) contains 15,000+ pre-built app integrations — the largest identity ecosystem in existence, creating a bilateral network effect. The identity directory is the last enterprise software system that incumbents cannot easily displace: 82% of all breaches involve compromised credentials, making Okta's platform the primary defence against the dominant attack vector.</div>
+      <div class="cc-moat"><div class="cc-ml">Moat Dimensions</div>
+        <div class="mrow"><span class="ml">Switching Costs</span><div class="mt"><div class="mf" style="width:100%"></div></div><span class="mv">10</span></div>
+        <div class="mrow"><span class="ml">Network Effects</span><div class="mt"><div class="mf" style="width:90%"></div></div><span class="mv">9</span></div>
+        <div class="mrow"><span class="ml">Platform Breadth</span><div class="mt"><div class="mf" style="width:70%"></div></div><span class="mv">7</span></div>
+        <div class="mrow"><span class="ml">Data Advantage</span><div class="mt"><div class="mf" style="width:70%"></div></div><span class="mv">7</span></div>
+      </div>
+    </div>
+    <div class="cc fi">
+      <div class="cc-h"><div class="cc-i" style="background:var(--gold-l);color:var(--gold)">CA</div><div><div class="cc-n">CyberArk</div><div class="cc-s">NASDAQ: CYBR · Privileged Access Management</div></div></div>
+      <div class="cc-kpi"><div class="kpi"><div class="kv">$900M+</div><div class="kl">Annual ARR</div></div><div class="kpi"><div class="kv">~80%</div><div class="kl">Gross Margin</div></div><div class="kpi"><div class="kv">115%+</div><div class="kl">NRR</div></div></div>
+      <div class="cc-why">PAM controls who can act as administrator across every enterprise system — the crown jewels of security. CyberArk's switching costs are the highest in the ecosystem: replacement requires a multi-year board-level programme. Mandated compliance (PCI-DSS, SOX, NIS2) means the PAM seat cannot go unfilled, making CyberArk's revenue a compliance obligation, not a discretionary spend line.</div>
+      <div class="cc-moat"><div class="cc-ml">Moat Dimensions</div>
+        <div class="mrow"><span class="ml">Switching Costs</span><div class="mt"><div class="mf" style="width:100%"></div></div><span class="mv">10</span></div>
+        <div class="mrow"><span class="ml">Criticality</span><div class="mt"><div class="mf" style="width:90%"></div></div><span class="mv">9</span></div>
+        <div class="mrow"><span class="ml">Platform Breadth</span><div class="mt"><div class="mf" style="width:70%"></div></div><span class="mv">7</span></div>
+        <div class="mrow"><span class="ml">Network Effects</span><div class="mt"><div class="mf" style="width:60%"></div></div><span class="mv">6</span></div>
+      </div>
+    </div>
+    <div class="cc fi">
+      <div class="cc-h"><div class="cc-i" style="background:var(--org-l);color:var(--org)">CF</div><div><div class="cc-n">Cloudflare</div><div class="cc-s">NYSE: NET · Network Security / Zero Trust / AI Gateway</div></div></div>
+      <div class="cc-kpi"><div class="kpi"><div class="kv">$1.7B+</div><div class="kl">Annual ARR</div></div><div class="kpi"><div class="kv">~78%</div><div class="kl">Gross Margin</div></div><div class="kpi"><div class="kv">116%+</div><div class="kl">NRR</div></div></div>
+      <div class="cc-why">Cloudflare processes ~20% of all web traffic across 330+ global data centers — a network position no competitor can replicate at equivalent cost. The developer platform (Workers, Pages) creates a compounding second growth vector. AI Gateway positions Cloudflare as the security proxy for all enterprise AI traffic — the most strategically important new product in security since zero trust.</div>
+      <div class="cc-moat"><div class="cc-ml">Moat Dimensions</div>
+        <div class="mrow"><span class="ml">Network Effects</span><div class="mt"><div class="mf" style="width:90%"></div></div><span class="mv">9</span></div>
+        <div class="mrow"><span class="ml">Platform Breadth</span><div class="mt"><div class="mf" style="width:90%"></div></div><span class="mv">9</span></div>
+        <div class="mrow"><span class="ml">Data Advantage</span><div class="mt"><div class="mf" style="width:80%"></div></div><span class="mv">8</span></div>
+        <div class="mrow"><span class="ml">Switching Costs</span><div class="mt"><div class="mf" style="width:70%"></div></div><span class="mv">7</span></div>
+      </div>
+    </div>
+    <div class="cc fi">
+      <div class="cc-h"><div class="cc-i" style="background:var(--grn-l);color:var(--grn)">FT</div><div><div class="cc-n">Fortinet</div><div class="cc-s">NASDAQ: FTNT · NGFW / Security Fabric / SD-WAN / OT</div></div></div>
+      <div class="cc-kpi"><div class="kpi"><div class="kv">$5.3B+</div><div class="kl">Total Revenue</div></div><div class="kpi"><div class="kv">~76%</div><div class="kl">Gross Margin</div></div><div class="kpi"><div class="kv">700K+</div><div class="kl">Customers</div></div></div>
+      <div class="cc-why">Proprietary FortiASIC chips deliver 3–10× the throughput of software-based competitors at equivalent price — a hardware moat requiring years to replicate. The 700,000+ customer base is the largest installed base in enterprise security, spanning SMB to Fortune 500. FortiGate integration into SD-WAN makes removal equivalent to replacing the entire corporate networking infrastructure.</div>
+      <div class="cc-moat"><div class="cc-ml">Moat Dimensions</div>
+        <div class="mrow"><span class="ml">Installed Base</span><div class="mt"><div class="mf" style="width:100%"></div></div><span class="mv">10</span></div>
+        <div class="mrow"><span class="ml">ASIC Hardware Moat</span><div class="mt"><div class="mf" style="width:90%"></div></div><span class="mv">9</span></div>
+        <div class="mrow"><span class="ml">Platform Breadth</span><div class="mt"><div class="mf" style="width:90%"></div></div><span class="mv">9</span></div>
+        <div class="mrow"><span class="ml">Switching Costs</span><div class="mt"><div class="mf" style="width:70%"></div></div><span class="mv">7</span></div>
+      </div>
+    </div>
+    <div class="cc fi">
+      <div class="cc-h"><div class="cc-i" style="background:rgba(0,120,212,.10);color:#0078D4">MS</div><div><div class="cc-n">Microsoft Security</div><div class="cc-s">NASDAQ: MSFT · Sentinel / Defender / Entra / Purview</div></div></div>
+      <div class="cc-kpi"><div class="kpi"><div class="kv">$20B+</div><div class="kl">Est. Security Rev.</div></div><div class="kpi"><div class="kv">65T+</div><div class="kl">Daily Signals</div></div><div class="kpi"><div class="kv">1B+</div><div class="kl">Users</div></div></div>
+      <div class="cc-why">The most powerful distribution moat in enterprise software: existing M365, Azure, and Windows relationships mean security features are added to existing licences, displacing pure-play vendors through bundling alone. Copilot for Security and 65 trillion daily security signals create an AI advantage that standalone vendors cannot match without comparable telemetry scale.</div>
+      <div class="cc-moat"><div class="cc-ml">Moat Dimensions</div>
+        <div class="mrow"><span class="ml">Platform Lock-In</span><div class="mt"><div class="mf" style="width:100%"></div></div><span class="mv">10</span></div>
+        <div class="mrow"><span class="ml">Data Scale</span><div class="mt"><div class="mf" style="width:100%"></div></div><span class="mv">10</span></div>
+        <div class="mrow"><span class="ml">Distribution Moat</span><div class="mt"><div class="mf" style="width:100%"></div></div><span class="mv">10</span></div>
+        <div class="mrow"><span class="ml">Network Effects</span><div class="mt"><div class="mf" style="width:90%"></div></div><span class="mv">9</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="dv"><div class="dv-l"></div><div class="dv-t">Part Five · Value Rankings</div><div class="dv-l"></div></div>
+
+<!-- ═══ §05 WHERE VALUE LIVES ═══ -->
+<section class="sec" id="s05">
+  <div class="ew"><span class="ew-n">§05</span><div class="ew-r"></div><span class="ew-t">Where Does Value Live?</span></div>
+  <h2 class="ttl">Ranking All Tiers for Long-Term Wealth Creation</h2>
+  <p class="intro">Evaluated across gross margins, pricing power, switching costs, recurring revenue, data moats, AI advantage, and customer lock-in — the seven tiers of the security economy present markedly different long-term wealth creation profiles. This is the definitive institutional ranking.</p>
+  <div class="rtw">
+    <table class="rt">
+      <thead><tr><th style="width:32px">Rank</th><th style="width:200px">Security Tier</th><th>Gross Margin</th><th>Pricing Power</th><th>Switching Cost</th><th>AI Advantage</th><th style="width:100px">10yr Outlook</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr><td><span class="rn hi">1</span></td><td><span class="pill" style="background:var(--elec-l);color:var(--elec);border-color:var(--elec-b)">Identity / IAM</span></td><td class="mg">80–85%</td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span></div></td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span></div></td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span></div></td><td><span class="vt" style="color:var(--teal)">Exceptional</span></td><td style="font-size:12px;color:var(--t1)">NHI + agentic AI creates a second growth wave on top of an already high-moat base. Strongest compounding tier.</td></tr>
+        <tr><td><span class="rn hi">2</span></td><td><span class="pill" style="background:var(--grn-l);color:var(--grn);border-color:rgba(20,118,58,.22)">AI Security</span></td><td class="mg">Greenfield</td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span></div></td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span></div></td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span></div></td><td><span class="vt" style="color:var(--grn)">Very High</span></td><td style="font-size:12px;color:var(--t1)">Growing from zero; regulatory catalyst guaranteed; first movers capture disproportionate value.</td></tr>
+        <tr><td><span class="rn hi">3</span></td><td><span class="pill" style="background:var(--teal-l);color:var(--teal);border-color:var(--teal-b)">Endpoint / XDR</span></td><td class="mg">75–80%</td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span></div></td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span></div></td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span></div></td><td><span class="vt" style="color:var(--teal)">High</span></td><td style="font-size:12px;color:var(--t1)">Telemetry flywheel creates winner-take-most dynamics; maturing but expanding to firmware and browser surfaces.</td></tr>
+        <tr><td><span class="rn">4</span></td><td><span class="pill" style="background:var(--gold-l);color:var(--gold);border-color:var(--gold-b)">Data Security</span></td><td class="mg">70–80%</td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span></div></td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span><span class="st of">★</span></div></td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span><span class="st of">★</span></div></td><td><span class="vt" style="color:var(--gold)">Solid</span></td><td style="font-size:12px;color:var(--t1)">Post-quantum mandatory replacement cycle + AI data governance add two simultaneous structural tailwinds.</td></tr>
+        <tr><td><span class="rn">5</span></td><td><span class="pill" style="background:var(--pur-l);color:var(--pur);border-color:rgba(100,32,200,.22)">Cloud Security</span></td><td class="mg">70–78%</td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span><span class="st of">★</span></div></td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span><span class="st of">★</span></div></td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span></div></td><td><span class="vt" style="color:var(--t2)">Good</span></td><td style="font-size:12px;color:var(--t1)">High growth but hyperscaler risk; multi-cloud visibility is the only sustainable long-term moat position.</td></tr>
+        <tr><td><span class="rn">6</span></td><td><span class="pill" style="background:var(--red-l);color:var(--red);border-color:var(--red-b)">OT / Critical Infra</span></td><td class="mg">55–70%</td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span><span class="st of">★</span></div></td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span></div></td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span><span class="st of">★</span><span class="st of">★</span></div></td><td><span class="vt" style="color:var(--org)">Selective</span></td><td style="font-size:12px;color:var(--t1)">Strong regulatory tailwind; lower margins due to services mix; government dependency is double-edged.</td></tr>
+        <tr><td><span class="rn">7</span></td><td><span class="pill" style="background:var(--org-l);color:var(--org);border-color:rgba(190,69,0,.22)">SecOps / MSSP</span></td><td class="mg">20–50%</td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span><span class="st of">★</span><span class="st of">★</span></div></td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span><span class="st of">★</span><span class="st of">★</span></div></td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span></div></td><td><span class="vt" style="color:var(--t3)">Services Play</span></td><td style="font-size:12px;color:var(--t1)">Largest TAM; AI automation improves economics; India's highest-leverage category for global leadership.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="dv"><div class="dv-l"></div><div class="dv-t">Part Six · ASML Framework</div><div class="dv-l"></div></div>
+
+<!-- ═══ §06 ASML FRAMEWORK ═══ -->
+<section class="sec" id="s06">
+  <div class="ew"><span class="ew-n">§06</span><div class="ew-r"></div><span class="ew-t">The ASML Framework</span></div>
+  <h2 class="ttl">If This Company Disappeared Tomorrow…</h2>
+  <p class="intro">The ASML test asks: if this vendor vanished overnight, would enterprises face major operational failure, regulatory non-compliance, or deteriorating cyber resilience — and how difficult would replacement be? Scored 0–10 across Criticality, Platform Dependence, Replication Difficulty, and Switching Friction.</p>
+  <div class="al">
+    <div class="ar fi"><div><div class="an">Microsoft Security</div><div class="as">OS + Identity + Productivity + SIEM + EDR Suite</div></div><div class="ab" style="color:var(--teal)">9.5</div><div class="ads"><div class="ad"><span class="adl">Criticality</span><div class="adt"><div class="adf" style="width:100%;background:var(--teal)"></div></div></div><div class="ad"><span class="adl">Platform Dep.</span><div class="adt"><div class="adf" style="width:100%;background:var(--teal)"></div></div></div><div class="ad"><span class="adl">Replication Diff.</span><div class="adt"><div class="adf" style="width:95%;background:var(--teal)"></div></div></div><div class="ad"><span class="adl">Switching Friction</span><div class="adt"><div class="adf" style="width:90%;background:var(--teal)"></div></div></div></div><div class="av">OS-level embedment + identity directory + productivity = impossible to remove. Replacing even one layer (Sentinel, Entra) is a multi-year programme worth hundreds of millions.</div></div>
+    <div class="ar fi"><div><div class="an">CrowdStrike</div><div class="as">Endpoint Sensor / Threat Intelligence / XDR</div></div><div class="ab" style="color:var(--teal)">8.8</div><div class="ads"><div class="ad"><span class="adl">Criticality</span><div class="adt"><div class="adf" style="width:92%;background:var(--teal)"></div></div></div><div class="ad"><span class="adl">Platform Dep.</span><div class="adt"><div class="adf" style="width:85%;background:var(--teal)"></div></div></div><div class="ad"><span class="adl">Replication Diff.</span><div class="adt"><div class="adf" style="width:95%;background:var(--teal)"></div></div></div><div class="ad"><span class="adl">Switching Friction</span><div class="adt"><div class="adf" style="width:90%;background:var(--teal)"></div></div></div></div><div class="av">July 2024 proved ASML status in reverse: 8.5M devices instantly incapacitated. Replacement requires redeploying agents across every endpoint simultaneously while maintaining coverage — operationally impossible at enterprise scale.</div></div>
+    <div class="ar fi"><div><div class="an">CyberArk</div><div class="as">Privileged Access Management / Secrets Management</div></div><div class="ab" style="color:var(--teal)">8.5</div><div class="ads"><div class="ad"><span class="adl">Criticality</span><div class="adt"><div class="adf" style="width:95%;background:var(--teal)"></div></div></div><div class="ad"><span class="adl">Platform Dep.</span><div class="adt"><div class="adf" style="width:82%;background:var(--teal)"></div></div></div><div class="ad"><span class="adl">Replication Diff.</span><div class="adt"><div class="adf" style="width:85%;background:var(--teal)"></div></div></div><div class="ad"><span class="adl">Switching Friction</span><div class="adt"><div class="adf" style="width:100%;background:var(--teal)"></div></div></div></div><div class="av">Disappearing eliminates compliance posture for PCI-DSS, SOX, HIPAA, and NIS2 overnight. Industry-standard replacement timeline: 3–5 years, during which the organisation carries unacceptable audit exposure.</div></div>
+    <div class="ar fi"><div><div class="an">Zscaler</div><div class="as">Zero Trust Exchange / SSE / SASE</div></div><div class="ab" style="color:var(--gold)">8.2</div><div class="ads"><div class="ad"><span class="adl">Criticality</span><div class="adt"><div class="adf" style="width:85%;background:var(--gold)"></div></div></div><div class="ad"><span class="adl">Platform Dep.</span><div class="adt"><div class="adf" style="width:82%;background:var(--gold)"></div></div></div><div class="ad"><span class="adl">Replication Diff.</span><div class="adt"><div class="adf" style="width:92%;background:var(--gold)"></div></div></div><div class="ad"><span class="adl">Switching Friction</span><div class="adt"><div class="adf" style="width:80%;background:var(--gold)"></div></div></div></div><div class="av">Removal requires complete network re-architecture — re-establishing perimeter-based security that compliance frameworks have deprecated. Users lose internet access during migration.</div></div>
+    <div class="ar fi"><div><div class="an">Okta</div><div class="as">Identity Platform / Workforce + Customer Identity</div></div><div class="ab" style="color:var(--gold)">8.0</div><div class="ads"><div class="ad"><span class="adl">Criticality</span><div class="adt"><div class="adf" style="width:85%;background:var(--gold)"></div></div></div><div class="ad"><span class="adl">Platform Dep.</span><div class="adt"><div class="adf" style="width:80%;background:var(--gold)"></div></div></div><div class="ad"><span class="adl">Replication Diff.</span><div class="adt"><div class="adf" style="width:82%;background:var(--gold)"></div></div></div><div class="ad"><span class="adl">Switching Friction</span><div class="adt"><div class="adf" style="width:100%;background:var(--gold)"></div></div></div></div><div class="av">Disappearing blocks employee access to all SaaS applications simultaneously. Migration requires re-integrating 15,000+ app connections individually. The identity directory is the last enterprise system nobody touches once deployed.</div></div>
+    <div class="ar fi"><div><div class="an">Palo Alto Networks</div><div class="as">NGFW / Prisma Cloud / Cortex XDR Platform</div></div><div class="ab" style="color:var(--gold)">7.8</div><div class="ads"><div class="ad"><span class="adl">Criticality</span><div class="adt"><div class="adf" style="width:82%;background:var(--gold)"></div></div></div><div class="ad"><span class="adl">Platform Dep.</span><div class="adt"><div class="adf" style="width:85%;background:var(--gold)"></div></div></div><div class="ad"><span class="adl">Replication Diff.</span><div class="adt"><div class="adf" style="width:72%;background:var(--gold)"></div></div></div><div class="ad"><span class="adl">Switching Friction</span><div class="adt"><div class="adf" style="width:78%;background:var(--gold)"></div></div></div></div><div class="av">NGFW replacement requires hardware forklift upgrades at every data centre and branch. Full Prisma + Cortex customers face replacing three major product categories simultaneously. Platformization makes the ASML score compound over time.</div></div>
+    <div class="ar fi"><div><div class="an">Cloudflare</div><div class="as">Network Security / Edge / Zero Trust / AI Gateway</div></div><div class="ab" style="color:var(--gold)">7.5</div><div class="ads"><div class="ad"><span class="adl">Criticality</span><div class="adt"><div class="adf" style="width:75%;background:var(--gold)"></div></div></div><div class="ad"><span class="adl">Platform Dep.</span><div class="adt"><div class="adf" style="width:78%;background:var(--gold)"></div></div></div><div class="ad"><span class="adl">Replication Diff.</span><div class="adt"><div class="adf" style="width:88%;background:var(--gold)"></div></div></div><div class="ad"><span class="adl">Switching Friction</span><div class="adt"><div class="adf" style="width:70%;background:var(--gold)"></div></div></div></div><div class="av">Removal exposes enterprises to direct DDoS risk during migration. The 330+ PoP network cannot be replicated — competitors would require a decade and $10B+ to match the global infrastructure footprint.</div></div>
+  </div>
+</section>
+
+<div class="dv"><div class="dv-l"></div><div class="dv-t">Part Seven · Agentic AI Security</div><div class="dv-l"></div></div>
+
+<!-- ═══ §07 AI SECURITY NEXT DECADE ═══ -->
+<section class="sec" id="s07">
+  <div class="ew"><span class="ew-n">§07</span><div class="ew-r"></div><span class="ew-t">AI Security · The Next Decade</span></div>
+  <h2 class="ttl">Agentic AI as the Biggest Security Bottleneck of 2025–2035</h2>
+  <p class="intro">The emergence of agentic AI — systems that autonomously plan, act, and operate inside enterprise environments — creates a security architecture problem that existing tools cannot solve. The decade from 2025–2035 will be defined by the race to build trust infrastructure for a world where software agents outnumber human employees.</p>
+  <div class="pq"><p>"By 2028, enterprise AI agents will outnumber human employees 3:1 in technology-intensive companies. Every agent needs an identity, a permission set, an audit trail, and a kill-switch. No enterprise has this infrastructure today."</p><cite>Agentic AI Security Thesis — Cybersecurity Superwave Research</cite></div>
+  <div class="g2" style="margin-top:24px">
+    <div class="card" style="position:relative;overflow:hidden"><div class="card-bar" style="background:var(--elec)"></div><div class="clbl">Pillar 01 · Identity</div><div class="ctitle">Non-Human Identity (NHI) Management</div><div class="cbody">Every AI agent, service account, API key, and machine credential needs an identity with lifecycle management and least-privilege enforcement. NHI management is the fastest-growing IAM sub-category, growing 10× faster than human IAM as agent populations explode. CyberArk, Okta, and NHI-native startups (Aembit, Astrix) are competing for this greenfield.</div><span class="ctag ct-red">Immediate Priority</span></div>
+    <div class="card" style="position:relative;overflow:hidden"><div class="card-bar" style="background:var(--pur)"></div><div class="clbl">Pillar 02 · Authorization</div><div class="ctitle">Agent Permission &amp; Scope Control</div><div class="cbody">Agents must operate under fine-grained permission controls that limit their blast radius if compromised. Authorization frameworks for agentic AI — analogous to OAuth 2.0 for humans — are nascent but will become mandatory enterprise infrastructure within 24 months as the first high-profile agent hijacking incidents drive board-level urgency across industries.</div><span class="ctag ct-gold">12–24 Months</span></div>
+    <div class="card" style="position:relative;overflow:hidden"><div class="card-bar" style="background:var(--teal)"></div><div class="clbl">Pillar 03 · Monitoring</div><div class="ctitle">Runtime Monitoring &amp; Anomaly Detection</div><div class="cbody">Detecting when agents deviate from expected task sequences, attempt unauthorized resource access, or show signs of compromise requires purpose-built observability tooling. Traditional APM tools are insufficient for AI agents whose "normal" behavior is inherently variable and context-dependent. AI-native behavioral baselines are the new requirement.</div><span class="ctag ct-teal">Emerging</span></div>
+    <div class="card" style="position:relative;overflow:hidden"><div class="card-bar" style="background:var(--gold)"></div><div class="clbl">Pillar 04 · Governance</div><div class="ctitle">AI Governance &amp; Compliance Infrastructure</div><div class="cbody">The EU AI Act, US EO on AI, and national AI governance frameworks impose liability for AI systems without explainability and audit trails. AI governance platforms (Credo AI, Holistic AI) translate regulatory requirements into operational controls. The most regulation-certain category in AI security — spend is mandated, not discretionary.</div><span class="ctag ct-red">EU AI Act Mandated</span></div>
+    <div class="card" style="position:relative;overflow:hidden"><div class="card-bar" style="background:var(--grn)"></div><div class="clbl">Pillar 05 · Trust</div><div class="ctitle">Human Verification &amp; Anti-Deepfake Layer</div><div class="cbody">As AI agents proliferate, proving a counterparty is actually human becomes a security prerequisite. Liveness detection, cryptographic attestation of human presence, and digital watermarking become the trust layer of the AI economy — analogous to SSL certificates for the web. Every interaction at deepfake risk requires this infrastructure.</div><span class="ctag ct-gold">12–24 Months</span></div>
+    <div class="card" style="position:relative;overflow:hidden"><div class="card-bar" style="background:var(--red)"></div><div class="clbl">Pillar 06 · Emergency Controls</div><div class="ctitle">Agent Kill-Switches &amp; Circuit Breakers</div><div class="cbody">The ability to instantly pause, quarantine, or terminate a compromised agent across thousands of running instances is existential. Agent orchestration platforms must provide kill-switch infrastructure analogous to circuit breakers in financial trading — automated, instant, and faster than the attack itself. This is an architectural requirement, not a product feature.</div><span class="ctag ct-red">Now</span></div>
+  </div>
+</section>
+
+<div class="dv"><div class="dv-l"></div><div class="dv-t">Part Eight · Capital Allocation</div><div class="dv-l"></div></div>
+
+<!-- ═══ §08 CAPITAL CYCLE ═══ -->
+<section class="sec" id="s08">
+  <div class="ew"><span class="ew-n">§08</span><div class="ew-r"></div><span class="ew-t">Cybersecurity Capital Cycle</span></div>
+  <h2 class="ttl">Structural Winners vs. Commodity Traps</h2>
+  <p class="intro">Not all cybersecurity growth is equal. The capital cycle framework separates categories with durable structural moats from those facing commoditization — and distinguishes genuine platform opportunities from compelling narratives with poor underlying unit economics.</p>
+  <div class="mx">
+    <div class="mxa"><span>← Low Moat</span><span style="font-weight:600;color:var(--t1)">Moat Strength</span><span>High Moat →</span></div>
+    <div class="mxg">
+      <div class="mxq" style="background:#EDF8F6"><div class="mql" style="color:var(--teal)">Structural Winners</div><div class="mqt" style="color:var(--grn)">BUY &amp; HOLD</div><div class="mxt"><span class="mxtag" style="background:rgba(0,157,141,.08);border-color:var(--teal-b);color:var(--teal)">Identity / IAM</span><span class="mxtag" style="background:rgba(0,157,141,.08);border-color:var(--teal-b);color:var(--teal)">Non-Human Identity</span><span class="mxtag" style="background:rgba(0,157,141,.08);border-color:var(--teal-b);color:var(--teal)">Post-Quantum Crypto</span><span class="mxtag" style="background:rgba(0,157,141,.08);border-color:var(--teal-b);color:var(--teal)">AI Governance</span><span class="mxtag" style="background:rgba(0,157,141,.08);border-color:var(--teal-b);color:var(--teal)">PKI / Digital Trust</span><span class="mxtag" style="background:rgba(0,157,141,.08);border-color:var(--teal-b);color:var(--teal)">OT / ICS Security</span></div><div class="mqv" style="color:var(--teal)">High moat · Regulatory floor</div></div>
+      <div class="mxq" style="background:#EEF3FF"><div class="mql" style="color:var(--elec)">Platform Winners</div><div class="mqt" style="color:var(--elec)">SELECTIVE BUY</div><div class="mxt"><span class="mxtag" style="background:var(--elec-l);border-color:var(--elec-b);color:var(--elec)">CrowdStrike Falcon</span><span class="mxtag" style="background:var(--elec-l);border-color:var(--elec-b);color:var(--elec)">Palo Alto Platform</span><span class="mxtag" style="background:var(--elec-l);border-color:var(--elec-b);color:var(--elec)">CNAPP Leaders</span><span class="mxtag" style="background:var(--elec-l);border-color:var(--elec-b);color:var(--elec)">AI-Native SIEM</span><span class="mxtag" style="background:var(--elec-l);border-color:var(--elec-b);color:var(--elec)">Cloudflare Edge</span></div><div class="mqv" style="color:var(--elec)">High growth · Competitive</div></div>
+      <div class="mxq" style="background:#FDF3F2"><div class="mql" style="color:var(--red)">Commodity Traps</div><div class="mqt" style="color:var(--red)">AVOID</div><div class="mxt"><span class="mxtag" style="background:var(--red-l);border-color:var(--red-b);color:var(--red)">Legacy AV / Signature</span><span class="mxtag" style="background:var(--red-l);border-color:var(--red-b);color:var(--red)">Generic VPN</span><span class="mxtag" style="background:var(--red-l);border-color:var(--red-b);color:var(--red)">Legacy SIEM</span><span class="mxtag" style="background:var(--red-l);border-color:var(--red-b);color:var(--red)">Commodity DLP</span><span class="mxtag" style="background:var(--red-l);border-color:var(--red-b);color:var(--red)">Basic Firewalls</span></div><div class="mqv" style="color:var(--red)">Dying · Price erosion</div></div>
+      <div class="mxq" style="background:#FEFAE9"><div class="mql" style="color:var(--gold)">Narrative Traps</div><div class="mqt" style="color:var(--gold)">SELL THE STORY</div><div class="mxt"><span class="mxtag" style="background:var(--gold-l);border-color:var(--gold-b);color:var(--gold)">"AI-Powered" Wrappers</span><span class="mxtag" style="background:var(--gold-l);border-color:var(--gold-b);color:var(--gold)">Password Managers</span><span class="mxtag" style="background:var(--gold-l);border-color:var(--gold-b);color:var(--gold)">Generic Threat Intel</span><span class="mxtag" style="background:var(--gold-l);border-color:var(--gold-b);color:var(--gold)">Scanner-Only Tools</span></div><div class="mqv" style="color:var(--gold)">Good story · Poor economics</div></div>
+    </div>
+    <div class="mxy">← Low Growth &nbsp;&nbsp;&nbsp;&nbsp; Growth Trajectory &nbsp;&nbsp;&nbsp;&nbsp; High Growth →</div>
+  </div>
+</section>
+
+<div class="dv"><div class="dv-l"></div><div class="dv-t">Part Nine · Toll Booth Analysis</div><div class="dv-l"></div></div>
+
+<!-- ═══ §09 TOLL BOOTHS ═══ -->
+<section class="sec" id="s09">
+  <div class="ew"><span class="ew-n">§09</span><div class="ew-r"></div><span class="ew-t">Cybersecurity Toll Booths</span></div>
+  <h2 class="ttl">The Security Economy's Six Archetypes</h2>
+  <p class="intro">Toll booth businesses extract rent from every transaction passing through their infrastructure, regardless of who else wins in the broader market. The following six archetypes describe how cybersecurity value concentrates — with current candidates for each archetype and the structural reasons they hold their position.</p>
+  <div class="tbg">
+    <div class="tbc fi"><div class="tbt" style="background:var(--elec)"></div><div class="tba" style="color:var(--elec)">The Visa Analog</div><div class="tbh">Identity Transaction Network</div><div class="tbf">Best-fit today: <em>Okta · Microsoft Entra · CyberArk</em></div><div class="tbw">As every enterprise interaction — human, machine, or agent — requires authentication, the identity platform becomes the toll booth at the access layer. Every login, every API call, every agent execution is billed. As NHI populations explode, identity transaction volumes scale exponentially while infrastructure cost scales logarithmically.</div><div class="tbts"><span class="tbtag">Okta</span><span class="tbtag">Microsoft Entra</span><span class="tbtag">CyberArk</span><span class="tbtag">Aembit</span></div></div>
+    <div class="tbc fi"><div class="tbt" style="background:var(--red)"></div><div class="tba" style="color:var(--red)">The ASML Analog</div><div class="tbh">Endpoint Control Plane</div><div class="tbf">Best-fit today: <em>CrowdStrike</em></div><div class="tbw">Like ASML's EUV monopoly in chip manufacturing, CrowdStrike's Falcon sensor has achieved a near-irreplaceable position at the most data-rich layer of enterprise security. The 200M+ endpoint telemetry dataset accumulated over 15 years cannot be replicated. Removal risk is existential — the sensor IS the enterprise security substrate.</div><div class="tbts"><span class="tbtag">CrowdStrike</span><span class="tbtag">Microsoft Defender (second)</span></div></div>
+    <div class="tbc fi"><div class="tbt" style="background:var(--pur)"></div><div class="tba" style="color:var(--pur)">The Microsoft Analog</div><div class="tbh">Security Platform Consolidator</div><div class="tbf">Best-fit today: <em>Palo Alto Networks · Microsoft</em></div><div class="tbw">Build a good-enough product in every security category, bundle with existing relationships, and let switching costs from the bundle displace point solutions. Enterprises consolidate onto fewer vendors for budget and complexity reasons — the consolidation beneficiary wins outsized share regardless of product superiority in any single category.</div><div class="tbts"><span class="tbtag">Palo Alto Networks</span><span class="tbtag">Microsoft Security</span><span class="tbtag">Fortinet Fabric</span></div></div>
+    <div class="tbc fi"><div class="tbt" style="background:var(--teal)"></div><div class="tba" style="color:var(--teal)">The Nvidia Analog</div><div class="tbh">AI Security Infrastructure Layer</div><div class="tbf">Best-fit today: <em>Cloudflare AI Gateway · Emerging Players</em></div><div class="tbw">As every enterprise AI application passes through an inference call, the network-level proxy sitting between applications and AI APIs becomes the toll booth for all AI traffic. Cloudflare's AI Gateway is the clearest current candidate — inspecting, logging, and securing every AI API call at the network layer, analogous to Nvidia's position in the training stack.</div><div class="tbts"><span class="tbtag">Cloudflare AI Gateway</span><span class="tbtag">Lakera Guard</span><span class="tbtag">Protect AI</span></div></div>
+    <div class="tbc fi"><div class="tbt" style="background:var(--gold)"></div><div class="tba" style="color:var(--gold)">The Synopsys Analog</div><div class="tbh">Digital Trust Infrastructure</div><div class="tbf">Best-fit today: <em>DigiCert · Entrust · eMudhra (India)</em></div><div class="tbw">Certificate Authorities and PKI providers are the most invisible yet essential toll booths in digital security. Every HTTPS connection, code signature, e-signature, and email authentication passes through a CA. Post-quantum migration creates a mandatory global replacement cycle for all CA infrastructure — a non-negotiable, time-bound spending event affecting every enterprise globally.</div><div class="tbts"><span class="tbtag">DigiCert</span><span class="tbtag">Entrust</span><span class="tbtag">eMudhra (India)</span></div></div>
+    <div class="tbc fi"><div class="tbt" style="background:var(--org)"></div><div class="tba" style="color:var(--org)">Hidden Chokepoints</div><div class="tbh">Hardware Security &amp; Trust Anchors</div><div class="tbf">Best-fit today: <em>Thales HSM · Infineon · ARM TrustZone</em></div><div class="tbw">Hardware Security Modules store the cryptographic keys underpinning all enterprise encryption, payment processing, and PKI. Every bank, payment network, and government relies on physical HSMs as the root of trust. ARM's TrustZone architecture is in 90%+ of mobile devices. These hardware chokepoints benefit from every increase in digital transactions without competing in the security software market directly.</div><div class="tbts"><span class="tbtag">Thales HSM</span><span class="tbtag">Infineon</span><span class="tbtag">ARM TrustZone</span><span class="tbtag">Utimaco</span></div></div>
+  </div>
+</section>
+
+<div class="dv"><div class="dv-l"></div><div class="dv-t">Part Ten · Critical Infrastructure</div><div class="dv-l"></div></div>
+
+<!-- ═══ §10 CRITICAL INFRASTRUCTURE ═══ -->
+<section class="sec" id="s10">
+  <div class="ew"><span class="ew-n">§10</span><div class="ew-r"></div><span class="ew-t">Critical Infrastructure &amp; National Security</span></div>
+  <h2 class="ttl">Where Cybersecurity Becomes a Mandatory Infrastructure Layer</h2>
+  <p class="intro">These six infrastructure domains have crossed the threshold where a successful cyber attack is no longer an IT incident — it is a national security event with potential military-grade consequences and population-scale disruption.</p>
+  <div class="g3">
+    <div class="card" style="border-top:2px solid var(--red)"><div class="clbl" style="color:var(--red)">Energy &amp; Power</div><div class="ctitle">Grid Security</div><div class="cbody">NERC CIP mandates, nation-state pre-positioning, and physical-cyber convergence make power grid security the highest-consequence domain. A successful grid attack in a major economy is treated as an act of war. Security procurement is mandated by regulators, not CFOs — making spend fully non-discretionary and recession-proof.</div></div>
+    <div class="card" style="border-top:2px solid var(--pur)"><div class="clbl" style="color:var(--pur)">Telecommunications</div><div class="ctitle">5G Network Security</div><div class="cbody">5G network slicing creates new attack surfaces at the radio access layer. SS7 protocol vulnerabilities still plague global carrier interconnects. Telecom is simultaneously the backbone of digital government, financial infrastructure, and military communications — a compounded single point of failure for multiple civilization-scale services.</div></div>
+    <div class="card" style="border-top:2px solid var(--elec)"><div class="clbl" style="color:var(--elec)">Defense Systems</div><div class="ctitle">Defense Modernization</div><div class="cbody">Classified networks, supply chain security for defense hardware, and cyber-physical weapons systems create a defense cybersecurity market growing at 2× commercial rates with near-zero price sensitivity. AUKUS, Five Eyes, and NATO interoperability agreements drive sustained allied security spending cycles.</div></div>
+    <div class="card" style="border-top:2px solid var(--gold)"><div class="clbl" style="color:var(--gold)">Financial Systems</div><div class="ctitle">Payment Rails &amp; Core Banking</div><div class="cbody">SWIFT, real-time payment networks (UPI, FedNow, TIPS), CBDCs, and core banking systems form the nervous system of the global economy. A successful attack on payment infrastructure is immediately visible to every citizen. DORA, FFIEC, and PCI-DSS mandate specific controls making financial sector security among the most regulatory-compelled categories globally.</div></div>
+    <div class="card" style="border-top:2px solid var(--org)"><div class="clbl" style="color:var(--org)">Space Systems</div><div class="ctitle">Satellite &amp; Orbital Security</div><div class="cbody">The 2022 Viasat KA-SAT attack — disabling tens of thousands of terminals across Europe at the start of Russia's Ukraine invasion — demonstrated that satellite communications are frontline military and civilian infrastructure simultaneously. Space security is severely underfunded relative to its strategic importance.</div></div>
+    <div class="card" style="border-top:2px solid var(--grn)"><div class="clbl" style="color:var(--grn)">AI Infrastructure</div><div class="ctitle">Data Centers &amp; AI Compute</div><div class="cbody">Hyperscale data centers running AI inference workloads are the new critical infrastructure. Physical security, power supply security, and cyber security must converge as nation-state actors target AI compute assets strategically. The concentration of global AI capacity in a handful of facilities creates systemic risk at civilization scale.</div></div>
+  </div>
+</section>
+
+<div class="dv"><div class="dv-l"></div><div class="dv-t">India Section · §11–§14</div><div class="dv-l"></div></div>
+
+<!-- ═══ §11 INDIA OPPORTUNITY ═══ -->
+<section class="sec" id="s11">
+  <div class="ew"><span class="ew-n">§11</span><div class="ew-r"></div><span class="ew-t">India's Cybersecurity Opportunity</span></div>
+  <h2 class="ttl">Where India Can Build Global Leadership</h2>
+  <p class="intro">India occupies a uniquely advantageous position in the global cybersecurity economy: the world's largest pool of English-speaking engineering talent, a government-run digital public infrastructure stack at unprecedented scale, and a 1.4B-person domestic market undergoing rapid simultaneous digitization. The opportunity is large but requires different strategies in each category.</p>
+  <div class="g2">
+    <div class="card" style="position:relative;overflow:hidden"><div class="card-bar" style="background:var(--teal)"></div><div class="clbl">Category 01 · Services · Achievable Now</div><div class="ctitle">Managed Security Services (MSSP / MDR)</div><div class="cbody">India delivers 40%+ of global IT services. The combination of deep technical talent, 24/7 operational capacity across time zones, and 50–60% labour cost advantage creates a structurally superior MDR delivery model. TCS, Infosys, Wipro, and HCL already operate security operations centres at scale. This is India's clearest near-term path to global security leadership.</div><span class="ctag ct-teal">Already Leading</span></div>
+    <div class="card" style="position:relative;overflow:hidden"><div class="card-bar" style="background:var(--elec)"></div><div class="clbl">Category 02 · Infrastructure · Already Demonstrated</div><div class="ctitle">Digital Identity &amp; Trust Infrastructure</div><div class="cbody">Aadhaar serves 1.4B people — the largest biometric identity system ever built. India has proven the ability to build identity infrastructure at civilization scale. eMudhra as a licensed CA, NPCI operating UPI's identity layer, DigiLocker as a document trust platform — all represent world-class DPI security that other nations are actively studying and attempting to replicate.</div><span class="ctag ct-teal">Global Benchmark</span></div>
+    <div class="card" style="position:relative;overflow:hidden"><div class="card-bar" style="background:var(--gold)"></div><div class="clbl">Category 03 · Defense · Regional Leadership</div><div class="ctitle">Defense Cybersecurity &amp; Electronic Warfare</div><div class="cbody">India's defense modernization program, Make in India initiative, and DRDO's expanded mandate create a protected domestic market for defense-grade cybersecurity. BEL, Data Patterns, and KPIT Technologies are building defense electronics security capabilities. The India-China border tension provides ongoing political urgency and non-discretionary government budget commitments.</div><span class="ctag ct-gold">Building</span></div>
+    <div class="card" style="position:relative;overflow:hidden"><div class="card-bar" style="background:var(--org)"></div><div class="clbl">Category 04 · Telecom · Emerging Markets Leader</div><div class="ctitle">Telecom Fraud Analytics &amp; Communication Security</div><div class="cbody">India's telecom market (800M+ mobile subscribers, world's largest UPI volume) creates domestic demand at scale for telecom fraud management. Subex and Tanla Platforms have built world-class capabilities now exported to African, Southeast Asian, and Middle Eastern operators — demonstrating that India can own telecom security globally, not just domestically.</div><span class="ctag ct-gold">Exporting</span></div>
+    <div class="card" style="position:relative;overflow:hidden"><div class="card-bar" style="background:var(--pur)"></div><div class="clbl">Category 05 · AI Security · 5–10 Year Window</div><div class="ctitle">AI Governance &amp; Security Research</div><div class="cbody">India's AI talent base — concentrated in IITs, IIITs, and research labs — creates a competitive foundation for AI security research and governance products. The IndiaAI Mission is building domestic AI infrastructure that requires security governance. Indian startups are beginning to emerge in AI red-teaming and compliance tools, though the market remains nascent relative to US peers.</div><span class="ctag ct-muted">Emerging</span></div>
+    <div class="card" style="position:relative;overflow:hidden"><div class="card-bar" style="background:var(--red)"></div><div class="clbl">Category 06 · Software Products · Challenging</div><div class="ctitle">Security Software Products</div><div class="cbody">India has limited track record in pure-play security software products at global scale. Quick Heal/Seqrite is the clearest exception — a genuine enterprise endpoint security platform built in Pune. The lack of deep-tech security venture capital infrastructure, combined with brain drain to the US, makes global software product leadership harder to achieve than services. The window is opening as Indian tech matures.</div><span class="ctag ct-muted">Difficult</span></div>
+  </div>
+</section>
+
+<!-- ═══ §12 INDIA ECOSYSTEM ═══ -->
+<section class="sec" id="s12">
+  <div class="ew"><span class="ew-n">§12</span><div class="ew-r"></div><span class="ew-t">India Ecosystem Mapping</span></div>
+  <h2 class="ttl">Listed Companies with Material Security Exposure</h2>
+  <p class="intro">The following Indian companies have material, identifiable exposure to cybersecurity growth — spanning services, products, infrastructure, defense, and telecom security. Star ratings reflect moat quality, not growth rate.</p>
+  <div class="tw">
+    <table class="tt">
+      <thead><tr><th>Company</th><th>Exchange</th><th>Cap</th><th>Primary Security Segment</th><th>Security Exposure</th><th>Moat Basis</th><th>Rating</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tn">Tata Consultancy Services</span><span class="tex">NSE: TCS</span></td><td><span style="font-family:var(--fm);font-size:11px">NSE</span></td><td><span class="cpill" style="color:var(--t2);border-color:var(--br)">Large</span></td><td>MSSP, Security Transformation, SOC Services</td><td>$700M+ rev<div class="xb"><div class="xf" style="width:88%"></div></div></td><td>Client relationships, scale, brand</td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span></div></td></tr>
+        <tr><td><span class="tn">eMudhra Limited</span><span class="tex">NSE: EMUDHRA</span></td><td><span style="font-family:var(--fm);font-size:11px">NSE</span></td><td><span class="cpill" style="color:var(--gold);border-color:var(--gold-b);background:var(--gold-l)">Small</span></td><td>Digital Trust, PKI, Certificate Authority, e-Sign</td><td>~100% exposure<div class="xb"><div class="xf" style="width:100%"></div></div></td><td>Licensed CA status, government mandates, PKI moat</td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span></div></td></tr>
+        <tr><td><span class="tn">Subex Limited</span><span class="tex">NSE: SUBEX</span></td><td><span style="font-family:var(--fm);font-size:11px">NSE</span></td><td><span class="cpill" style="color:var(--gold);border-color:var(--gold-b);background:var(--gold-l)">Small</span></td><td>Telecom Fraud Management, Revenue Assurance, AI Analytics</td><td>~100% exposure<div class="xb"><div class="xf" style="width:100%"></div></div></td><td>300+ global operator relationships, network embedment</td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span></div></td></tr>
+        <tr><td><span class="tn">KPIT Technologies</span><span class="tex">NSE: KPITTECH</span></td><td><span style="font-family:var(--fm);font-size:11px">NSE</span></td><td><span class="cpill" style="color:var(--teal);border-color:var(--teal-b);background:var(--teal-l)">Mid</span></td><td>Automotive Cybersecurity, OT/ICS, AUTOSAR Security</td><td>30%+ of revenue<div class="xb"><div class="xf" style="width:75%"></div></div></td><td>Automotive OEM relationships, UN R155 mandate</td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span></div></td></tr>
+        <tr><td><span class="tn">Tanla Platforms</span><span class="tex">NSE: TANLA</span></td><td><span style="font-family:var(--fm);font-size:11px">NSE</span></td><td><span class="cpill" style="color:var(--teal);border-color:var(--teal-b);background:var(--teal-l)">Mid</span></td><td>DLT Blockchain for Telecom, Communication Security</td><td>~70% exposure<div class="xb"><div class="xf" style="width:72%"></div></div></td><td>TRAI DLT mandated platform, India SMS trust ledger</td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span></div></td></tr>
+        <tr><td><span class="tn">Quick Heal / Seqrite</span><span class="tex">NSE: QUICKHEAL</span></td><td><span style="font-family:var(--fm);font-size:11px">NSE</span></td><td><span class="cpill" style="color:var(--gold);border-color:var(--gold-b);background:var(--gold-l)">Small</span></td><td>Endpoint Security, SMB + Enterprise (Seqrite platform)</td><td>~100% exposure<div class="xb"><div class="xf" style="width:100%"></div></div></td><td>India brand, domestic install base, enterprise pivot</td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span><span class="st of">★</span></div></td></tr>
+        <tr><td><span class="tn">Data Patterns (India)</span><span class="tex">NSE: DATAPATTNS</span></td><td><span style="font-family:var(--fm);font-size:11px">NSE</span></td><td><span class="cpill" style="color:var(--gold);border-color:var(--gold-b);background:var(--gold-l)">Small</span></td><td>Defense Electronics, EW Systems, Secure Communications</td><td>~50% exposure<div class="xb"><div class="xf" style="width:55%"></div></div></td><td>DRDO relationships, defense access, indigenization</td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span></div></td></tr>
+        <tr><td><span class="tn">Tata Elxsi</span><span class="tex">NSE: TATAELXSI</span></td><td><span style="font-family:var(--fm);font-size:11px">NSE</span></td><td><span class="cpill" style="color:var(--teal);border-color:var(--teal-b);background:var(--teal-l)">Mid</span></td><td>Embedded Security (Automotive, Medical, Broadcast)</td><td>~25% exposure<div class="xb"><div class="xf" style="width:35%"></div></div></td><td>Multi-sector embedded engineering + Tata brand</td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span></div></td></tr>
+        <tr><td><span class="tn">Route Mobile</span><span class="tex">NSE: ROUTEMOBILE</span></td><td><span style="font-family:var(--fm);font-size:11px">NSE</span></td><td><span class="cpill" style="color:var(--teal);border-color:var(--teal-b);background:var(--teal-l)">Mid</span></td><td>CPaaS Security, OTP Authentication, Fraud Prevention</td><td>~40% exposure<div class="xb"><div class="xf" style="width:48%"></div></div></td><td>Carrier relationships, authentication infrastructure</td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span></div></td></tr>
+        <tr><td><span class="tn">BLS International</span><span class="tex">NSE: BLS</span></td><td><span style="font-family:var(--fm);font-size:11px">NSE</span></td><td><span class="cpill" style="color:var(--gold);border-color:var(--gold-b);background:var(--gold-l)">Small</span></td><td>Government Identity Verification, Document Processing</td><td>~60% exposure<div class="xb"><div class="xf" style="width:62%"></div></div></td><td>45+ government contracts, biometric infrastructure</td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span><span class="st of">★</span></div></td></tr>
+        <tr><td><span class="tn">Sify Technologies</span><span class="tex">NASDAQ: SIFY</span></td><td><span style="font-family:var(--fm);font-size:11px">NASDAQ</span></td><td><span class="cpill" style="color:var(--gold);border-color:var(--gold-b);background:var(--gold-l)">Small</span></td><td>Cloud Security, Managed Security Services, MSSP</td><td>~30% exposure<div class="xb"><div class="xf" style="width:42%"></div></div></td><td>12 data centers + connectivity + security bundle</td><td><div class="sr"><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st of">★</span><span class="st of">★</span></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══ §13 HIDDEN COMPOUNDERS ═══ -->
+<section class="sec" id="s13">
+  <div class="ew"><span class="ew-n">§13</span><div class="ew-r"></div><span class="ew-t">India Hidden Compounder Hunt</span></div>
+  <h2 class="ttl">Top Small-Cap &amp; Mid-Cap Cybersecurity Compounders</h2>
+  <p class="intro">The following companies represent the most underappreciated compounders in India's cybersecurity ecosystem — businesses with structural moats, recurring revenue characteristics, and exposure to secular security growth that are not yet recognised as cybersecurity plays by the broader market. Featured cards (teal border) represent highest-conviction positions.</p>
+
+  <div class="comp-h">🔍 Top 25 Hidden Small-Cap Compounders</div>
+  <div class="compg">
+    <div class="cp feat"><div class="cprank">#01 · NSE: EMUDHRA · ⭐ Top Conviction</div><div class="cpname">eMudhra Limited</div><div class="cptags"><span class="cptag" style="background:var(--teal-l);color:var(--teal);border-color:var(--teal-b)">PKI / CA</span><span class="cptag" style="background:var(--gold-l);color:var(--gold);border-color:var(--gold-b)">Digital Trust</span></div><div class="cpbody">India's only fully licensed Certifying Authority under the IT Act. Every legally valid digital signature and e-stamp in India passes through eMudhra's infrastructure. Post-quantum migration creates a decade-long replacement cycle for all CA infrastructure globally. The Indian DigiCert — and deeply undervalued.</div><div class="cpmoat">Regulatory licensing moat + government mandate</div></div>
+    <div class="cp feat"><div class="cprank">#02 · NSE: SUBEX · ⭐ Top Conviction</div><div class="cpname">Subex Limited</div><div class="cptags"><span class="cptag" style="background:var(--teal-l);color:var(--teal);border-color:var(--teal-b)">Telecom Fraud</span><span class="cptag" style="background:var(--elec-l);color:var(--elec);border-color:var(--elec-b)">Analytics</span></div><div class="cpbody">Embedded in 300+ global telecom operators for revenue assurance and fraud management. Deep network integration means Subex's switching cost rivals any enterprise software vendor. The AI platform transition is converting legacy contracts to SaaS ARR, dramatically improving earnings visibility.</div><div class="cpmoat">Global operator network + AI platform upgrade cycle</div></div>
+    <div class="cp feat"><div class="cprank">#03 · NSE: TANLA · ⭐ High Conviction</div><div class="cpname">Tanla Platforms</div><div class="cptags"><span class="cptag" style="background:var(--pur-l);color:var(--pur);border-color:rgba(100,32,200,.22)">DLT Trust</span><span class="cptag" style="background:var(--teal-l);color:var(--teal);border-color:var(--teal-b)">CPaaS</span></div><div class="cpbody">Operates Trubloq — the TRAI-mandated blockchain registry for India's entire commercial SMS ecosystem. Every promotional, transactional, and service SMS in India passes through Tanla's trust platform. A government-mandated toll booth processing 1B+ messages daily. Extension to WhatsApp Business and RCS is the next growth vector.</div><div class="cpmoat">TRAI mandate → regulatory toll booth for India SMS</div></div>
+    <div class="cp"><div class="cprank">#04 · NSE: DATAPATTNS</div><div class="cpname">Data Patterns (India)</div><div class="cptags"><span class="cptag" style="background:var(--red-l);color:var(--red);border-color:var(--red-b)">Defense</span></div><div class="cpbody">Defense electronics including electronic warfare systems, radar signal processing, and secure communications. DRDO-linked contracts provide high-visibility order book. Make in India indigenization push creates sustained, protected domestic demand for defense cybersecurity hardware.</div><div class="cpmoat">DRDO access + defense indigenization mandate</div></div>
+    <div class="cp"><div class="cprank">#05 · NSE: QUICKHEAL</div><div class="cpname">Quick Heal / Seqrite</div><div class="cptags"><span class="cptag" style="background:var(--teal-l);color:var(--teal);border-color:var(--teal-b)">Endpoint</span></div><div class="cpbody">India's only homegrown endpoint security product company with meaningful enterprise traction via the Seqrite platform. BFSI, government, and SMB segments provide a defensible domestic base. The enterprise transition is the key catalyst — if it succeeds, the valuation multiple expands dramatically.</div><div class="cpmoat">Domestic brand + India government trust relationships</div></div>
+    <div class="cp"><div class="cprank">#06 · NSE: BLS</div><div class="cpname">BLS International Services</div><div class="cptags"><span class="cptag" style="background:var(--elec-l);color:var(--elec);border-color:var(--elec-b)">Identity Verif.</span></div><div class="cpbody">Government document verification, consular services, and identity processing for 45+ governments globally. As identity verification becomes foundation of digital trust, BLS's biometric processing infrastructure becomes more strategically valuable. The analog to ID.me for government identity markets.</div><div class="cpmoat">Government contract moat + biometric infrastructure</div></div>
+    <div class="cp"><div class="cprank">#07 · NASDAQ: SIFY</div><div class="cpname">Sify Technologies</div><div class="cptags"><span class="cptag" style="background:var(--teal-l);color:var(--teal);border-color:var(--teal-b)">Cloud + MSSP</span></div><div class="cpbody">India's largest enterprise cloud and MSSP provider with 12 data centres and national fiber network. The convergence of cloud and security creates natural cross-sell. As enterprise cloud adoption in India triples through 2030, Sify's security practice scales proportionally with every new workload migration.</div><div class="cpmoat">Data center + connectivity + security bundle in India</div></div>
+    <div class="cp"><div class="cprank">#08 · NSE: ROUTEMOBILE</div><div class="cpname">Route Mobile</div><div class="cptags"><span class="cptag" style="background:var(--pur-l);color:var(--pur);border-color:rgba(100,32,200,.22)">CPaaS Security</span></div><div class="cpbody">Cloud communications platform processing authentication OTPs for India's largest fintech and banking applications. Every UPI transaction OTP, every bank login, every mutual fund authentication passes through Route Mobile's network — a de facto authentication infrastructure provider for Indian digital services.</div><div class="cpmoat">Carrier relationships + authentication infrastructure</div></div>
+    <div class="cp"><div class="cprank">#09 · NSE: INTELLECTD</div><div class="cpname">Intellect Design Arena</div><div class="cptags"><span class="cptag" style="background:var(--gold-l);color:var(--gold);border-color:var(--gold-b)">Banking Security</span></div><div class="cpbody">Core banking software for 270+ financial institutions across 57 countries. RBI's increasing IT risk management guidelines create mandatory security upgrade cycles for every Intellect customer. The iGTB treasury platform is particularly valuable in cross-border payment security as trade volumes grow.</div><div class="cpmoat">Core banking embedment + 57-country reach</div></div>
+    <div class="cp"><div class="cprank">#10 · NSE: NEWGEN</div><div class="cpname">Newgen Software</div><div class="cptags"><span class="cptag" style="background:var(--sur);color:var(--t2);border-color:var(--br)">GRC / Compliance</span></div><div class="cpbody">Business process automation with deep GRC capabilities. DPDP Act compliance creates specific demand for Newgen's privacy management platform. The banking and insurance sector concentration provides sticky, regulated revenue that is non-discretionary in nature regardless of economic cycle.</div><div class="cpmoat">BPM workflow embedment + DPDP compliance mandate</div></div>
+    <div class="cp"><div class="cprank">#11 · NSE: CAMS</div><div class="cpname">CAMS (Computer Age Mgmt.)</div><div class="cptags"><span class="cptag" style="background:var(--elec-l);color:var(--elec);border-color:var(--elec-b)">Financial Infra</span></div><div class="cpbody">Transfer agent for 70%+ of Indian mutual fund transactions — a regulated financial infrastructure monopoly that is inherently a security business. As India's AUM grows from $700B to $2T+ by 2030, the security infrastructure scales proportionally. SEBI mandates make spend non-discretionary.</div><div class="cpmoat">Regulatory MF monopoly + SEBI mandated controls</div></div>
+    <div class="cp"><div class="cprank">#12 · NSE: KPITTECH</div><div class="cpname">KPIT Technologies</div><div class="cptags"><span class="cptag" style="background:var(--gold-l);color:var(--gold);border-color:var(--gold-b)">Automotive Cyber</span></div><div class="cpbody">Deep specialization in automotive cybersecurity — ISO/SAE 21434, AUTOSAR SecOC, and IDS for connected vehicles. As every car becomes software-defined, automotive cybersecurity becomes mandatory engineering. KPIT serves BMW, Cummins, Eaton, and Hyundai across multi-year contracts.</div><div class="cpmoat">Automotive OEM relationships + UN R155 mandate</div></div>
+    <div class="cp"><div class="cprank">#13 · NSE: TATAELXSI</div><div class="cpname">Tata Elxsi</div><div class="cptags"><span class="cptag" style="background:var(--teal-l);color:var(--teal);border-color:var(--teal-b)">Embedded</span></div><div class="cpbody">Embedded security engineering for automotive, medical devices, and broadcast — product security as mandatory regulatory engineering. FDA postmarket cybersecurity guidelines, EU MDR, and UN R155 create mandatory security engagements across Tata Elxsi's entire customer base simultaneously.</div><div class="cpmoat">Multi-sector embedded security + Tata brand</div></div>
+    <div class="cp"><div class="cprank">#14 · NSE: COFORGE</div><div class="cpname">Coforge Limited</div><div class="cptags"><span class="cptag" style="background:var(--elec-l);color:var(--elec);border-color:var(--elec-b)">Enterprise Security</span></div><div class="cpbody">Disproportionate BFSI and insurance sector focus — two of the highest security-spending verticals. Security services growing faster than total company revenue. Xceltrait acquisition strengthened cloud security capabilities. NPS and IRDAI mandates create compliance-driven demand flowing through credible BFSI IT providers.</div><div class="cpmoat">BFSI vertical specialization + compliance depth</div></div>
+    <div class="cp"><div class="cprank">#15 · NSE: PERSISTENT</div><div class="cpname">Persistent Systems</div><div class="cptags"><span class="cptag" style="background:var(--pur-l);color:var(--pur);border-color:rgba(100,32,200,.22)">DevSecOps</span></div><div class="cpbody">The fastest-growing tier-2 Indian IT firm, with DevSecOps embedded in product engineering services for ISVs. The shift-left security movement means every software product development engagement includes mandatory security work. Healthcare and technology verticals are the highest security-spending categories globally.</div><div class="cpmoat">ISV engineering relationships + shift-left security</div></div>
+    <div class="cp"><div class="cprank">#16 · NSE: CYIENT</div><div class="cpname">Cyient Limited</div><div class="cptags"><span class="cptag" style="background:var(--red-l);color:var(--red);border-color:var(--red-b)">Aerospace OT</span></div><div class="cpbody">Engineering services for aerospace, defense, and rail — three of the most security-intensive OT environments globally. NIS2 and US TSA directives create mandatory OT cybersecurity compliance for these industries, generating structural demand flowing through Cyient's engineering channel relationships.</div><div class="cpmoat">Aerospace/rail OT engineering depth</div></div>
+    <div class="cp"><div class="cprank">#17 · NSE: MPHASIS</div><div class="cpname">Mphasis</div><div class="cptags"><span class="cptag" style="background:var(--elec-l);color:var(--elec);border-color:var(--elec-b)">Financial Cloud</span></div><div class="cpbody">Financial services-focused IT with growing cloud and cognitive security transformation practice. Mortgage and banking concentration creates exposure to compliance-mandated security spend. BlackRock investment and DXC relationships give Mphasis premium client access unavailable to smaller competitors.</div><div class="cpmoat">Financial services relationships + PE backing</div></div>
+    <div class="cp"><div class="cprank">#18 · NSE: BEL</div><div class="cpname">Bharat Electronics Ltd.</div><div class="cptags"><span class="cptag" style="background:var(--red-l);color:var(--red);border-color:var(--red-b)">Defense PSU</span></div><div class="cpbody">PSU defense electronics manufacturer with classified defense cybersecurity contracts, secure communications systems, and electronic warfare products. Largest beneficiary of India's defense modernization budget with guaranteed government contract pipeline that private firms cannot access.</div><div class="cpmoat">Government PSU + classified defense access</div></div>
+    <div class="cp"><div class="cprank">#19 · NSE: TATACOMMUNICATION</div><div class="cpname">Tata Communications</div><div class="cptags"><span class="cptag" style="background:var(--pur-l);color:var(--pur);border-color:rgba(100,32,200,.22)">Network Security</span></div><div class="cpbody">Global subsea cable network operator with a growing managed security and SASE practice. Physical network ownership provides a natural foundation for network security services. BSNL and Indian government relationships create a protected domestic market while global network enables international managed security expansion.</div><div class="cpmoat">Global network infrastructure + government relationships</div></div>
+    <div class="cp"><div class="cprank">#20 · NSE: RAMCOSYS</div><div class="cpname">Ramco Systems</div><div class="cptags"><span class="cptag" style="background:var(--gold-l);color:var(--gold);border-color:var(--gold-b)">Aviation ERP</span></div><div class="cpbody">Aviation and defense ERP software with security compliance built into maintenance workflows. ICAO, EASA, and FAA regulations create mandatory aviation cybersecurity compliance requirements. Ramco's embedded position in airline and defense MRO operations creates sticky, compliance-driven security revenue.</div><div class="cpmoat">Aviation ERP embedment + ICAO compliance mandate</div></div>
+    <div class="cp"><div class="cprank">#21 · NSE: SAKSOFT</div><div class="cpname">Saksoft Limited</div><div class="cptags"><span class="cptag" style="background:var(--sur);color:var(--t2);border-color:var(--br)">Data Security</span></div><div class="cpbody">Small-cap IT services with growing data security and GRC practice serving BFSI and healthcare clients. Small enough that the security practice growth is material to the overall company. DPDP Act creates specific demand catalyst for data privacy services in India across 2025–2027.</div><div class="cpmoat">Boutique BFSI relationships + DPDP timing</div></div>
+    <div class="cp"><div class="cprank">#22 · NSE: ONMOBILE</div><div class="cpname">OnMobile Global</div><div class="cptags"><span class="cptag" style="background:var(--sur);color:var(--t2);border-color:var(--br)">Telecom Platform</span></div><div class="cpbody">Telecom value-added services platform with security components for voice authentication and fraud prevention. Embedded in global carrier networks for services that underpin voice security. Smaller play, but the network embedment is real and the transition toward security services is a natural evolution of the platform.</div><div class="cpmoat">Telecom network embedment across carriers</div></div>
+    <div class="cp"><div class="cprank">#23 · NSE: INFOEDGE</div><div class="cpname">Info Edge (Naukri)</div><div class="cptags"><span class="cptag" style="background:var(--elec-l);color:var(--elec);border-color:var(--elec-b)">Identity Data</span></div><div class="cpbody">Operates India's largest professional identity database (Naukri). As background verification and professional identity become security infrastructure, Naukri's data becomes a trust layer. Strategic expansion into background verification creates a recurring security-adjacent revenue stream from India's hiring cycle.</div><div class="cpmoat">Professional identity data monopoly in India</div></div>
+    <div class="cp"><div class="cprank">#24 · NSE: MASTECH</div><div class="cpname">Mastech Digital</div><div class="cptags"><span class="cptag" style="background:var(--teal-l);color:var(--teal);border-color:var(--teal-b)">IAM Consulting</span></div><div class="cpbody">US-listed Indian IT services firm specialising in digital transformation with IAM as a core competency. Healthcare and BFSI focus creates exposure to highest security-compliance-driven spending categories in the US market. Small size means the security practice growth moves the needle materially on results.</div><div class="cpmoat">IAM domain expertise + US healthcare relationships</div></div>
+    <div class="cp"><div class="cprank">#25 · NSE: ESDS</div><div class="cpname">ESDS Software Solution</div><div class="cptags"><span class="cptag" style="background:var(--teal-l);color:var(--teal);border-color:var(--teal-b)">Cloud Security</span></div><div class="cpbody">Indian cloud infrastructure and managed security services provider with growing government and BFSI customer base. eNlight cloud platform provides the security foundation for Indian government digital services. Positioned to benefit from the combination of India's cloud adoption wave and sovereign data requirements under DPDP.</div><div class="cpmoat">Sovereign cloud + government trust + DPDP positioning</div></div>
+  </div>
+
+  <div class="comp-h">📈 Top 15 Emerging Mid-Cap Compounders</div>
+  <div class="compg">
+    <div class="cp feat"><div class="cprank">#01 MID-CAP · NSE: KPITTECH · ⭐</div><div class="cpname">KPIT Technologies</div><div class="cptags"><span class="cptag" style="background:var(--teal-l);color:var(--teal);border-color:var(--teal-b)">Automotive Cyber</span><span class="cptag" style="background:var(--gold-l);color:var(--gold);border-color:var(--gold-b)">OT Security</span></div><div class="cpbody">Pure-play automotive software cybersecurity leader in India. Every connected vehicle mandate (UN R155/156) creates mandatory KPIT engagement across their entire OEM customer base. 10,000+ automotive software engineers provide scale no competitor can match from India. Global automotive cybersecurity leadership is achievable within 5 years.</div><div class="cpmoat">UN R155 mandate + OEM depth + engineering scale</div></div>
+    <div class="cp feat"><div class="cprank">#02 MID-CAP · NSE: TATAELXSI · ⭐</div><div class="cpname">Tata Elxsi</div><div class="cptags"><span class="cptag" style="background:var(--elec-l);color:var(--elec);border-color:var(--elec-b)">Embedded Security</span></div><div class="cpbody">Embedded security engineering for automotive, medical, and broadcast — all categories where product security is becoming mandatory regulatory requirement. FDA postmarket cybersecurity, EU MDR, and UN R155 create mandatory security engineering across Tata Elxsi's entire customer base simultaneously. Multi-sector exposure is a compounding advantage.</div><div class="cpmoat">Multi-sector embedded security domain expertise</div></div>
+    <div class="cp feat"><div class="cprank">#03 MID-CAP · NSE: TANLA</div><div class="cpname">Tanla Platforms</div><div class="cptags"><span class="cptag" style="background:var(--pur-l);color:var(--pur);border-color:rgba(100,32,200,.22)">DLT Trust Registry</span></div><div class="cpbody">The TRAI-mandated DLT platform is a government-created monopoly on India's commercial messaging security. As India messaging moves beyond SMS to WhatsApp Business and RCS, Tanla is positioned to extend the trust registry. Wisely CPaaS security platform protects enterprises against phishing across communications channels.</div><div class="cpmoat">Government mandate + communications trust registry</div></div>
+    <div class="cp"><div class="cprank">#04 MID-CAP · NSE: COFORGE</div><div class="cpname">Coforge Limited</div><div class="cptags"><span class="cptag" style="background:var(--gold-l);color:var(--gold);border-color:var(--gold-b)">BFSI Security</span></div><div class="cpbody">Mid-tier IT with disproportionate BFSI and insurance exposure. Security services growing faster than total company revenue. The Xceltrait acquisition added cloud security capabilities. NPS and IRDAI mandates in India create compliance-driven security spend flowing through credible BFSI technology providers.</div><div class="cpmoat">BFSI vertical depth + regulatory compliance pull</div></div>
+    <div class="cp"><div class="cprank">#05 MID-CAP · NSE: PERSISTENT</div><div class="cpname">Persistent Systems</div><div class="cptags"><span class="cptag" style="background:var(--teal-l);color:var(--teal);border-color:var(--teal-b)">DevSecOps</span></div><div class="cpbody">Fastest-growing tier-2 Indian IT firm with DevSecOps embedded in product engineering for global ISVs. The shift-left security movement means every software product engagement includes security. Healthcare and technology — Persistent's strongest verticals — are the highest security-spending categories globally.</div><div class="cpmoat">ISV engineering relationships + shift-left security</div></div>
+    <div class="cp"><div class="cprank">#06 MID-CAP · NSE: ROUTEMOBILE</div><div class="cpname">Route Mobile</div><div class="cptags"><span class="cptag" style="background:var(--pur-l);color:var(--pur);border-color:rgba(100,32,200,.22)">CPaaS + Auth</span></div><div class="cpbody">Cloud communications platform processing authentication OTPs for India's largest banking and fintech applications. Proximus acquisition provides European expansion capital and carrier relationships. Every UPI transaction authentication, every bank OTP passes through Route Mobile's network, creating structural recurring revenue.</div><div class="cpmoat">Authentication infrastructure + Proximus backing</div></div>
+    <div class="cp"><div class="cprank">#07 MID-CAP · NSE: DATAPATTNS</div><div class="cpname">Data Patterns (India)</div><div class="cptags"><span class="cptag" style="background:var(--red-l);color:var(--red);border-color:var(--red-b)">Defense Electronics</span></div><div class="cpbody">Defense electronics with classified contracts for electronic warfare, radar, and secure communications. Deepest defense cybersecurity capability in the listed Indian universe. Classified order books provide revenue visibility beyond public disclosures. India-China geopolitical tension sustains defense security budgets regardless of cycles.</div><div class="cpmoat">Classified defense access + DRDO relationships</div></div>
+    <div class="cp"><div class="cprank">#08 MID-CAP · NSE: MPHASIS</div><div class="cpname">Mphasis</div><div class="cptags"><span class="cptag" style="background:var(--elec-l);color:var(--elec);border-color:var(--elec-b)">Financial Cloud</span></div><div class="cpbody">Financial services-focused IT with growing cloud and cognitive security practice. The mortgage and banking vertical creates structural exposure to compliance-mandated security spend. BlackRock investment and DXC relationships provide premium client access unavailable to smaller competitors in the BFSI security services market.</div><div class="cpmoat">BFSI relationships + PE backing + compliance pull</div></div>
+    <div class="cp"><div class="cprank">#09 MID-CAP · NSE: CYIENT</div><div class="cpname">Cyient</div><div class="cptags"><span class="cptag" style="background:var(--red-l);color:var(--red);border-color:var(--red-b)">Aerospace OT</span></div><div class="cpbody">Engineering services for aerospace, defense, and rail — three of the most security-intensive OT environments globally. NIS2 and US TSA directives create mandatory OT cybersecurity compliance generating structural demand through Cyient's engineering channel. Network design and semiconductor IP security services are growing fastest.</div><div class="cpmoat">Aerospace/rail engineering depth + OT mandate</div></div>
+    <div class="cp"><div class="cprank">#10 MID-CAP · NSE: CAMS</div><div class="cpname">CAMS</div><div class="cptags"><span class="cptag" style="background:var(--elec-l);color:var(--elec);border-color:var(--elec-b)">Financial Infra</span></div><div class="cpbody">Regulated monopoly for Indian mutual fund transactions. As India's AUM grows toward $2T by 2030, CAMS' security infrastructure scales proportionally. SEBI mandates ensure security spend is non-discretionary. KYC, AML, and fraud prevention controls are embedded in every transaction processed.</div><div class="cpmoat">SEBI-regulated MF monopoly infrastructure</div></div>
+    <div class="cp"><div class="cprank">#11 MID-CAP · NSE: INTELLECTD</div><div class="cpname">Intellect Design Arena</div><div class="cptags"><span class="cptag" style="background:var(--gold-l);color:var(--gold);border-color:var(--gold-b)">Banking Security SW</span></div><div class="cpbody">Core banking software for 270+ financial institutions across 57 countries. RBI's IT risk management guidelines create mandatory security upgrade cycles for every Intellect customer. The iGTB treasury platform provides deep cross-border payment security capabilities aligned with growing trade finance volumes.</div><div class="cpmoat">Core banking embedment + 57-country reach</div></div>
+    <div class="cp"><div class="cprank">#12 MID-CAP · NASDAQ: SIFY</div><div class="cpname">Sify Technologies</div><div class="cptags"><span class="cptag" style="background:var(--teal-l);color:var(--teal);border-color:var(--teal-b)">Cloud + MSSP</span></div><div class="cpbody">Full-stack cloud and managed security provider with 12 data centres and national fiber. The convergence of India's cloud adoption wave with security requirements creates natural bundled demand. Enterprise cloud migration in India is forecast to triple through 2030 — every migrating workload is a security revenue opportunity for Sify.</div><div class="cpmoat">DC + connectivity + MSSP bundle for India</div></div>
+    <div class="cp"><div class="cprank">#13 MID-CAP · NSE: BLS</div><div class="cpname">BLS International Services</div><div class="cptags"><span class="cptag" style="background:var(--elec-l);color:var(--elec);border-color:var(--elec-b)">Govt. Identity</span></div><div class="cpbody">Government identity verification and consular services for 45+ national governments. As e-Visa, digital identity, and border security systems modernize globally, BLS sits at the physical-to-digital identity verification chokepoint. Government contracts are structurally sticky — switching identity verification vendors mid-programme is operationally impossible.</div><div class="cpmoat">Government contract moat + biometric infrastructure</div></div>
+    <div class="cp"><div class="cprank">#14 MID-CAP · NSE: NEWGEN</div><div class="cpname">Newgen Software</div><div class="cptags"><span class="cptag" style="background:var(--sur);color:var(--t2);border-color:var(--br)">GRC / Compliance</span></div><div class="cpbody">Business process automation with GRC capabilities that make it a natural DPDP Act compliance solution. Banking and insurance concentrations provide regulated, sticky revenue. The low-code/no-code delivery model creates cross-sell into security workflow automation as enterprises automate compliance processes under India's evolving regulatory framework.</div><div class="cpmoat">BPM embedment + DPDP compliance catalyst</div></div>
+    <div class="cp feat"><div class="cprank">#15 MID-CAP · NSE: SUBEX · Graduating</div><div class="cpname">Subex (graduating to mid-cap)</div><div class="cptags"><span class="cptag" style="background:var(--teal-l);color:var(--teal);border-color:var(--teal-b)">Telecom Analytics</span><span class="cptag" style="background:var(--gold-l);color:var(--gold);border-color:var(--gold-b)">AI Platform</span></div><div class="cpbody">The clearest example of a hidden compounder transitioning to recognised value. 300+ operator relationships globally, AI upgrade cycle converting legacy revenue to SaaS ARR, and Subex Secure extending into IoT and enterprise security. The SaaS transition is the key catalyst for a valuation multiple re-rating from services to software multiples.</div><div class="cpmoat">Global telecom network + SaaS transition catalyst</div></div>
+  </div>
+</section>
+
+<!-- ═══ §14 GLOBAL COMPARABLES ═══ -->
+<section class="sec" id="s14">
+  <div class="ew"><span class="ew-n">§14</span><div class="ew-r"></div><span class="ew-t">Global Comparable Analysis</span></div>
+  <h2 class="ttl">Which Indian Companies Resemble Global Security Archetypes?</h2>
+  <p class="intro">The most useful framework for valuing Indian cybersecurity companies is identifying which global analog they most closely resemble — then asking whether the Indian company's moat, growth trajectory, and market opportunity justify a premium or discount to that analog's valuation multiple.</p>
+  <div class="cmw">
+    <table class="cmt">
+      <thead><tr><th style="width:160px">Indian Company</th><th class="cma" style="width:30px"></th><th style="width:160px">Global Analog</th><th>Similarity Basis</th><th>India Advantage</th><th>India Challenge</th><th style="width:110px">Similarity Score</th></tr></thead>
+      <tbody>
+        <tr><td><strong>eMudhra</strong><br><span style="font-family:var(--fm);font-size:10px;color:var(--t3)">NSE: EMUDHRA</span></td><td class="cma">→</td><td><strong>DigiCert / Entrust</strong><br><span style="font-size:12px;color:var(--t3)">US PKI / CA Leaders</span></td><td>Both are licensed Certificate Authorities providing PKI infrastructure and digital trust services. Direct product and business model analog — the closest match in the entire Indian ecosystem to a global security product company.</td><td>Regulatory moat in India; government mandate; lower valuation entry point; post-quantum migration is an equal tailwind globally</td><td>DigiCert has 10× the international revenue scale; international expansion requires capital and regulatory approvals in each market</td><td><span class="sco sco-h">Very High 9/10</span></td></tr>
+        <tr><td><strong>Subex</strong><br><span style="font-family:var(--fm);font-size:10px;color:var(--t3)">NSE: SUBEX</span></td><td class="cma">→</td><td><strong>NICE Actimize / Amdocs</strong><br><span style="font-size:12px;color:var(--t3)">Telecom Fraud Analytics</span></td><td>Both provide analytics-driven fraud management and revenue assurance to global telecom operators. Subex has comparable customer breadth to NICE Actimize in telecom specifically — 300+ operators is competitive with any global vendor.</td><td>Global emerging market operator penetration strong; AI platform transition underway; 300+ relationships rival global peers</td><td>Revenue scale significantly smaller; NICE Actimize has broader product portfolio; enterprise software margin profile not yet achieved</td><td><span class="sco sco-h">High 8/10</span></td></tr>
+        <tr><td><strong>KPIT Technologies</strong><br><span style="font-family:var(--fm);font-size:10px;color:var(--t3)">NSE: KPITTECH</span></td><td class="cma">→</td><td><strong>Argus / Upstream Security</strong><br><span style="font-size:12px;color:var(--t3)">Automotive Cybersecurity</span></td><td>Both provide automotive cybersecurity engineering services and products to global OEMs. KPIT's scale exceeds most pure-play automotive security vendors.</td><td>Scale: 10,000+ automotive engineers vs. pure-play startups with hundreds; existing OEM relationships create natural expansion; UN R155 mandate is global</td><td>Pure-play startups may have deeper security specialization; KPIT is still more services-heavy vs. product play</td><td><span class="sco sco-h">High 7.5/10</span></td></tr>
+        <tr><td><strong>Tanla Platforms</strong><br><span style="font-family:var(--fm);font-size:10px;color:var(--t3)">NSE: TANLA</span></td><td class="cma">→</td><td><strong>Bandwidth.com / Twilio</strong><br><span style="font-size:12px;color:var(--t3)">CPaaS Security Layer</span></td><td>Cloud communications platforms with embedded security functionality. Both process authentication and transactional communications with fraud prevention at the network layer.</td><td>TRAI DLT mandate gives Tanla a regulated monopoly that Twilio/Bandwidth do not possess in any single market; structurally higher switching cost</td><td>India market concentration; Twilio has global scale; Tanla's non-DLT revenue faces competition from global CPaaS players entering India</td><td><span class="sco sco-m">Medium 6.5/10</span></td></tr>
+        <tr><td><strong>BLS International</strong><br><span style="font-family:var(--fm);font-size:10px;color:var(--t3)">NSE: BLS</span></td><td class="cma">→</td><td><strong>ID.me / Jumio</strong><br><span style="font-size:12px;color:var(--t3)">Government Identity Verification</span></td><td>Government identity verification with biometric processing and document authentication. Both serve government clients as outsourced identity infrastructure.</td><td>Physical-digital bridge for 45+ governments creates stickier relationships than pure digital identity players; global government footprint is unique</td><td>ID.me has superior pure digital identity technology; BLS still primarily physical process with digital transformation risk ahead</td><td><span class="sco sco-m">Medium 6/10</span></td></tr>
+        <tr><td><strong>Quick Heal (Seqrite)</strong><br><span style="font-family:var(--fm);font-size:10px;color:var(--t3)">NSE: QUICKHEAL</span></td><td class="cma">→</td><td><strong>Malwarebytes / Bitdefender</strong><br><span style="font-size:12px;color:var(--t3)">SMB/Enterprise Endpoint</span></td><td>Consumer + SMB endpoint security with enterprise expansion underway. Both have strong domestic presence and are building enterprise platform capabilities from a consumer install base.</td><td>Government relationships in India create enterprise moat; BFSI and SMB install base is large; domestic CERT-In regulatory tailwind</td><td>Enterprise platform transition is difficult and capital-intensive; Microsoft Defender compresses margins in the SMB segment severely</td><td><span class="sco sco-m">Medium 6/10</span></td></tr>
+        <tr><td><strong>TCS / Infosys Security</strong><br><span style="font-family:var(--fm);font-size:10px;color:var(--t3)">NSE: TCS / INFY</span></td><td class="cma">→</td><td><strong>Accenture Security / IBM Security</strong><br><span style="font-size:12px;color:var(--t3)">Large MSSP / SI</span></td><td>Large-scale system integrators with security transformation practices serving global enterprise clients. Similar go-to-market via existing IT relationships.</td><td>Talent cost advantage: India delivery 40–50% cheaper than US/European; 24/7 SOC feasible at lower cost; security practice growing 2×+ company average</td><td>Accenture/IBM have superior security product partnerships and proprietary IP; margin ceilings from labour-intensive delivery model</td><td><span class="sco sco-h">High 8/10</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="dv"><div class="dv-l"></div><div class="dv-t">Part Fifteen · Final Conclusions</div><div class="dv-l"></div></div>
+
+<!-- ═══ §15 FINAL INVESTMENT VERDICT ═══ -->
+<section class="sec" id="s15">
+  <div class="ew"><span class="ew-n">§15</span><div class="ew-r"></div><span class="ew-t">Final Investment Verdict</span></div>
+  <h2 class="ttl">The Definitive Answers to the Core Questions</h2>
+  <p class="intro">Synthesising the full research framework — 15 sections, 7 value chain tiers, 8 global bottleneck owners, 40 India compounders, and the ASML analysis — into direct, unambiguous investment conclusions. Think like a sovereign wealth fund allocating capital for two decades.</p>
+  <div class="vdg">
+    <div class="vdc"><div class="vdq">Question 01 · Where does value live?</div><div class="vda">Identity (Tier 1) and AI Security (Tier 6) are the two highest-conviction long-term positions in the security economy.</div><div class="vdd">Identity has the best combination of existing moat, regulatory floor, and AI-era growth catalyst (NHI). AI Security is the greenfield category with a guaranteed regulatory demand catalyst and zero incumbent advantage — the most asymmetric entry point in the current cycle.</div><div class="vdn"><span class="vtag vteal">Identity / IAM</span><span class="vtag vteal">AI Security / Governance</span></div></div>
+    <div class="vdc"><div class="vdq">Question 02 · Strongest moats by layer?</div><div class="vda">Identity &gt; Endpoint &gt; Zero Trust Network — in that order of structural durability.</div><div class="vdd">Identity has the deepest switching costs and most regulatory mandates. Endpoint has a compounding data flywheel that can't be replicated. Zero Trust network position (Zscaler, Cloudflare) has architectural switching costs but faces more competitive alternatives than the other two.</div><div class="vdn"><span class="vtag vteal">CyberArk</span><span class="vtag vteal">Okta</span><span class="vtag vteal">CrowdStrike</span><span class="vtag vteal">Zscaler</span></div></div>
+    <div class="vdc"><div class="vdq">Question 03 · Which AI-security categories become mandatory?</div><div class="vda">LLM Firewall, Non-Human Identity Management, and AI Governance Platform — in order of enterprise urgency.</div><div class="vdd">LLM Firewall becomes mandatory the moment an enterprise deploys AI with access to sensitive data. NHI becomes mandatory as agent populations exceed human employees. AI Governance is mandated by the EU AI Act for all high-risk AI operators by 2026 — the most certain regulatory catalyst in the category.</div><div class="vdn"><span class="vtag vteal">LLM Firewalls</span><span class="vtag vteal">NHI Management</span><span class="vtag vteal">AI Governance</span></div></div>
+    <div class="vdc"><div class="vdq">Question 04 · Strongest pricing power globally?</div><div class="vda">CyberArk (PAM has no alternatives), CrowdStrike (sensor is embedded), and Microsoft (bundle compresses competition).</div><div class="vdd">CyberArk faces zero credible alternatives for mandated PAM compliance — the functional definition of pricing power. CrowdStrike's sensor cannot be replaced without extended coverage gaps. Microsoft's bundling strategy means it sets prices with no competitive reference point for the security features included in existing licences.</div><div class="vdn"><span class="vtag vteal">CyberArk</span><span class="vtag vteal">CrowdStrike</span><span class="vtag vteal">Microsoft</span></div></div>
+    <div class="vdc"><div class="vdq">Question 05 · Which Indian companies are best positioned?</div><div class="vda">eMudhra, Subex, KPIT Technologies, and Tanla Platforms — each with a structural moat, not just sector exposure.</div><div class="vdd">eMudhra is the only licensed CA in India — a regulatory moat that cannot be replicated by new entrants. Subex has 300+ global operator relationships that are structurally sticky. KPIT is the automotive cybersecurity engineering leader at scale. Tanla holds the TRAI-mandated DLT monopoly for India's entire commercial SMS infrastructure.</div><div class="vdn"><span class="vtag vgold">eMudhra</span><span class="vtag vgold">Subex</span><span class="vtag vgold">KPIT Tech</span><span class="vtag vgold">Tanla</span></div></div>
+    <div class="vdc"><div class="vdq">Question 06 · Which segments have highest margins?</div><div class="vda">Identity (80–85% GM), Endpoint (75–80% GM), and Cloud Security (70–78% GM) — all with strong NRR above 110%.</div><div class="vdd">Identity and Endpoint have the structural characteristics that produce outstanding economics: high switching costs drive low churn, platform expansion drives NRR above 115%, and the regulatory floor prevents price competition. AI Security will match these margins once the category achieves platform status in 3–5 years.</div></div>
+    <div class="vdc"><div class="vdq">Question 07 · Which are future platform winners?</div><div class="vda">CrowdStrike (endpoint-out), Palo Alto Networks (explicit platformization), and Microsoft (natural bundler at $20B+ scale).</div><div class="vdd">CrowdStrike is expanding from endpoint telemetry into identity, cloud, and SecOps — using its data advantage as the cross-sell engine. Palo Alto's platformization strategy is the most deliberate attempt to become the single-vendor security stack. Microsoft wins by default in every enterprise that refuses to change licences.</div><div class="vdn"><span class="vtag vteal">CrowdStrike</span><span class="vtag vteal">Palo Alto</span><span class="vtag vteal">Microsoft</span></div></div>
+    <div class="vdc"><div class="vdq">Question 08 · Which are merely narrative plays?</div><div class="vda">Generic "AI-powered" security wrappers with no proprietary data, basic password managers, and commodity VPN providers.</div><div class="vdd">The narrative trap is the same across every security category: a compelling story about AI + security without a proprietary data moat, without switching costs, and without a regulatory mandate. The test is simple — would enterprises notice if this vendor disappeared overnight? If the answer is no, it is a narrative, not a bottleneck.</div><div class="vdn"><span class="vtag vred">AI Wrappers</span><span class="vtag vred">Generic VPN</span><span class="vtag vred">Password Managers</span></div></div>
+  </div>
+</section>
+
+<div class="dv"><div class="dv-l"></div><div class="dv-t">Special Section · The AI Economy Security Layer</div><div class="dv-l"></div></div>
+
+<!-- ═══ SPECIAL SECTION: AI ECONOMY ═══ -->
+<section class="sec" id="special">
+  <div class="ew"><span class="ew-n">✦</span><div class="ew-r"></div><span class="ew-t">Special Section</span></div>
+  <h2 class="ttl">The Security Layer of the AI Economy</h2>
+  <p class="intro">The AI economy creates entirely new value pools at the intersection of security and AI infrastructure. The largest long-term wealth creation will accrue to platforms that own the trust, identity, verification, and governance layers of the emerging AI-native enterprise. These are the six largest emerging value pools.</p>
+  <div class="g3">
+    <div class="card" style="background:var(--teal-l);border-color:var(--teal-b)"><div class="aie-icon">🤖</div><div class="aie-title" style="color:var(--t1)">AI Agent Identity Network</div><div class="cbody">Every autonomous AI agent requires an identity, permission set, and credential. The platform that becomes the identity provider for non-human identities at scale — managing millions of agent lifecycles — will be the Visa of the AI economy. Zero current vendor has dominant position. First-mover advantage is decisive.</div><div style="font-family:var(--fm);font-size:11px;color:var(--teal);font-weight:500;margin-top:10px">Estimated 2035 market: $15B+ · CAGR: ~45%</div></div>
+    <div class="card" style="background:var(--gold-l);border-color:var(--gold-b)"><div class="aie-icon">🔐</div><div class="aie-title" style="color:var(--t1)">AI Governance Infrastructure</div><div class="cbody">Every enterprise deploying high-risk AI under the EU AI Act, US federal AI rules, or India's upcoming AI governance framework needs audit trails, explainability tooling, and compliance documentation. This is not optional — it carries criminal liability for executives. The market is growing from zero to multi-billion in 24 months.</div><div style="font-family:var(--fm);font-size:11px;color:var(--gold);font-weight:500;margin-top:10px">EU AI Act compliance window: 2025–2026 · Mandatory</div></div>
+    <div class="card" style="background:var(--elec-l);border-color:var(--elec-b)"><div class="aie-icon">🧠</div><div class="aie-title" style="color:var(--t1)">LLM Security Proxy Layer</div><div class="cbody">Every enterprise AI API call requires inspection, logging, prompt sanitization, and output filtering. The proxy layer sitting between enterprise applications and AI APIs becomes the toll booth for all AI traffic. Cloudflare AI Gateway is the most mature current candidate. The winner processes billions of AI interactions daily at network scale.</div><div style="font-family:var(--fm);font-size:11px;color:var(--elec);font-weight:500;margin-top:10px">Estimated 2035 market: $8B+ · Winner-take-most</div></div>
+    <div class="card" style="background:var(--red-l);border-color:var(--red-b)"><div class="aie-icon">👤</div><div class="aie-title" style="color:var(--t1)">Human Verification Trust Layer</div><div class="cbody">As deepfakes proliferate and AI agents dominate digital interactions, proving a counterparty is human becomes a premium security service. Liveness detection, cryptographic human attestation, and digital watermarking become the foundational trust layer of the AI economy — the SSL certificate equivalent for human presence verification.</div><div style="font-family:var(--fm);font-size:11px;color:var(--red);font-weight:500;margin-top:10px">Trigger: First $1B+ deepfake fraud event · Imminent</div></div>
+    <div class="card" style="background:var(--pur-l);border-color:rgba(100,32,200,.2)"><div class="aie-icon">⚡</div><div class="aie-title" style="color:var(--t1)">Post-Quantum Cryptography Migration</div><div class="cbody">NIST finalized post-quantum cryptography standards in 2024. Every enterprise must migrate all encryption infrastructure within 5–10 years — a non-negotiable, time-bound technology replacement cycle. "Harvest now, decrypt later" attacks make the urgency greater than the migration deadline suggests. First wave: government and financial services. Second: universal.</div><div style="font-family:var(--fm);font-size:11px;color:var(--pur);font-weight:500;margin-top:10px">$30B+ mandatory replacement cycle · 2025–2032</div></div>
+    <div class="card" style="background:var(--grn-l);border-color:rgba(20,118,58,.2)"><div class="aie-icon">🌐</div><div class="aie-title" style="color:var(--t1)">ML Supply Chain Security</div><div class="cbody">The AI supply chain — model repositories, fine-tuning datasets, ML libraries, pre-trained checkpoints — is largely unprotected and represents a single point of failure for enterprises deploying foundation models. Analogous to SolarWinds for software supply chains, the first major compromised model supply chain incident will trigger immediate mandatory enterprise adoption of ML supply chain security tooling.</div><div style="font-family:var(--fm);font-size:11px;color:var(--grn);font-weight:500;margin-top:10px">Catalyst: First major AI supply chain attack</div></div>
+  </div>
+</section>
+
+<div class="dv"><div class="dv-l"></div><div class="dv-t">Final Scoring Table · Complete Company Assessment</div><div class="dv-l"></div></div>
+
+<!-- ═══ FINAL SCORING TABLE ═══ -->
+<section class="sec" id="ftable">
+  <div class="ew"><span class="ew-n">✦</span><div class="ew-r"></div><span class="ew-t">Final Required Table</span></div>
+  <h2 class="ttl">Company Scoring — Global &amp; India Universe</h2>
+  <p class="intro">The complete scoring table across all key investment dimensions. ASML Score (0–10) measures irreplaceability. Moat Score measures long-term competitive defensibility. Recurring Revenue Strength, AI Security Exposure, Global Opportunity, and 10-Year Compounder Probability complete the assessment. 🇮🇳 denotes Indian-listed companies.</p>
+  <div class="ftw">
+    <table class="ft">
+      <thead>
+        <tr>
+          <th style="min-width:160px">Company</th>
+          <th>Security Bottleneck Solved</th>
+          <th style="width:80px">ASML Score</th>
+          <th style="width:80px">Moat Score</th>
+          <th>Recurring Rev. Strength</th>
+          <th>AI Security Exposure</th>
+          <th>Global Opportunity</th>
+          <th style="width:96px">10yr Compounder Probability</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="fco">Microsoft Security</span><span class="fex">NASDAQ: MSFT · Enterprise Suite</span></td><td>OS + Identity + Productivity + SIEM + EDR — impossibly embedded</td><td><span class="sc sch">9.5</span></td><td><span class="sc sch">9.8</span></td><td>Very Strong<div class="ib"><div class="ibf" style="width:100%"></div></div></td><td>Very High<div class="ib"><div class="ibf" style="width:100%"></div></div></td><td>Massive ($20B+ annual)</td><td><span class="pb pbh">95%</span></td></tr>
+        <tr><td><span class="fco">CrowdStrike</span><span class="fex">NASDAQ: CRWD · Endpoint / XDR</span></td><td>Endpoint telemetry monopoly — 200M+ devices, unmatched AI models</td><td><span class="sc sch">8.8</span></td><td><span class="sc sch">9.2</span></td><td>Very Strong<div class="ib"><div class="ibf" style="width:96%"></div></div></td><td>Very High<div class="ib"><div class="ibf" style="width:96%"></div></div></td><td>Massive ($3.7B ARR → $10B+)</td><td><span class="pb pbh">88%</span></td></tr>
+        <tr><td><span class="fco">CyberArk</span><span class="fex">NASDAQ: CYBR · PAM</span></td><td>Privileged access — the crown jewels; highest switching cost in security</td><td><span class="sc sch">8.5</span></td><td><span class="sc sch">9.5</span></td><td>Very Strong<div class="ib"><div class="ibf" style="width:94%"></div></div></td><td>High<div class="ib"><div class="ibf" style="width:80%"></div></div></td><td>Large ($900M ARR → $3B+)</td><td><span class="pb pbh">84%</span></td></tr>
+        <tr><td><span class="fco">Zscaler</span><span class="fex">NASDAQ: ZS · Zero Trust Network</span></td><td>Network proxy for all internet traffic — architectural switching cost</td><td><span class="sc sch">8.2</span></td><td><span class="sc sch">8.5</span></td><td>Strong<div class="ib"><div class="ibf" style="width:90%"></div></div></td><td>High<div class="ib"><div class="ibf" style="width:82%"></div></div></td><td>Massive ($2.6B ARR → $8B+)</td><td><span class="pb pbh">83%</span></td></tr>
+        <tr><td><span class="fco">Okta</span><span class="fex">NASDAQ: OKTA · Identity Platform</span></td><td>Identity directory — 15,000 app integrations, bilateral network effect</td><td><span class="sc sch">8.0</span></td><td><span class="sc sch">8.8</span></td><td>Strong<div class="ib"><div class="ibf" style="width:88%"></div></div></td><td>High<div class="ib"><div class="ibf" style="width:85%"></div></div></td><td>Massive ($2.3B ARR → $7B+)</td><td><span class="pb pbh">80%</span></td></tr>
+        <tr><td><span class="fco">Cloudflare</span><span class="fex">NYSE: NET · Network Security</span></td><td>20% of all web traffic + AI Gateway for AI traffic — network scale</td><td><span class="sc sch">7.5</span></td><td><span class="sc sch">8.0</span></td><td>Strong<div class="ib"><div class="ibf" style="width:86%"></div></div></td><td>Very High<div class="ib"><div class="ibf" style="width:95%"></div></div></td><td>Massive ($1.7B ARR → $6B+)</td><td><span class="pb pbh">88%</span></td></tr>
+        <tr><td><span class="fco">Palo Alto Networks</span><span class="fex">NASDAQ: PANW · Platform</span></td><td>Security platform consolidation — NGFW + cloud + SecOps in one</td><td><span class="sc sch">7.8</span></td><td><span class="sc scm">8.0</span></td><td>Strong<div class="ib"><div class="ibf" style="width:87%"></div></div></td><td>High<div class="ib"><div class="ibf" style="width:80%"></div></div></td><td>Massive ($4.2B NGS ARR)</td><td><span class="pb pbh">78%</span></td></tr>
+        <tr><td><span class="fco">Fortinet</span><span class="fex">NASDAQ: FTNT · NGFW + Fabric</span></td><td>ASIC hardware moat + 700K customer installed base + SD-WAN</td><td><span class="sc scm">7.2</span></td><td><span class="sc scm">7.5</span></td><td>Strong<div class="ib"><div class="ibf" style="width:82%"></div></div></td><td>Medium<div class="ib"><div class="ibf g" style="width:60%"></div></div></td><td>Large ($5.3B total revenue)</td><td><span class="pb pbm">68%</span></td></tr>
+        <tr><td><span class="fco">SentinelOne</span><span class="fex">NYSE: S · AI-Native Endpoint</span></td><td>AI-native EDR / XDR — competitive alternative to CrowdStrike</td><td><span class="sc scm">6.8</span></td><td><span class="sc scm">7.2</span></td><td>Building<div class="ib"><div class="ibf" style="width:65%"></div></div></td><td>Very High<div class="ib"><div class="ibf" style="width:92%"></div></div></td><td>Large ($700M+ ARR)</td><td><span class="pb pbm">72%</span></td></tr>
+        <tr><td><span class="fco">Wiz</span><span class="fex">Private · Cloud Security</span></td><td>CNAPP — unified multi-cloud security posture; fastest SaaS $100M ever</td><td><span class="sc scm">6.5</span></td><td><span class="sc scm">7.5</span></td><td>Building<div class="ib"><div class="ibf" style="width:68%"></div></div></td><td>High<div class="ib"><div class="ibf" style="width:80%"></div></div></td><td>Large ($500M+ ARR)</td><td><span class="pb pbm">75%</span></td></tr>
+        <tr><td><span class="fco">🇮🇳 TCS (Security Practice)</span><span class="fex">NSE: TCS · MSSP</span></td><td>Global scale MSSP / MDR — talent + cost + 24/7 delivery advantage</td><td><span class="sc scm">4.5</span></td><td><span class="sc scm">5.0</span></td><td>Very Strong<div class="ib"><div class="ibf" style="width:95%"></div></div></td><td>Medium<div class="ib"><div class="ibf g" style="width:55%"></div></div></td><td>Global ($700M+ security)</td><td><span class="pb pbm">65%</span></td></tr>
+        <tr><td><span class="fco">🇮🇳 KPIT Technologies</span><span class="fex">NSE: KPITTECH · Automotive Cyber</span></td><td>Automotive cybersecurity engineering — UN R155 mandatory compliance</td><td><span class="sc scm">6.0</span></td><td><span class="sc scm">7.0</span></td><td>Building<div class="ib"><div class="ibf" style="width:68%"></div></div></td><td>High<div class="ib"><div class="ibf" style="width:78%"></div></div></td><td>Global (automotive is worldwide)</td><td><span class="pb pbh">74%</span></td></tr>
+        <tr><td><span class="fco">🇮🇳 eMudhra</span><span class="fex">NSE: EMUDHRA · PKI / CA</span></td><td>Licensed CA — only legal issuer of digital signatures in India; PKI trust</td><td><span class="sc sch">7.5</span></td><td><span class="sc sch">8.0</span></td><td>Very Strong<div class="ib"><div class="ibf" style="width:92%"></div></div></td><td>Medium<div class="ib"><div class="ibf g" style="width:58%"></div></div></td><td>India + Emerging Markets</td><td><span class="pb pbh">78%</span></td></tr>
+        <tr><td><span class="fco">🇮🇳 Subex</span><span class="fex">NSE: SUBEX · Telecom Fraud</span></td><td>300+ global telecom operator relationships — fraud analytics at carrier depth</td><td><span class="sc scm">6.5</span></td><td><span class="sc scm">7.0</span></td><td>Building<div class="ib"><div class="ibf" style="width:65%"></div></div></td><td>Medium<div class="ib"><div class="ibf g" style="width:52%"></div></div></td><td>Global Telecom Operators</td><td><span class="pb pbh">70%</span></td></tr>
+        <tr><td><span class="fco">🇮🇳 Tanla Platforms</span><span class="fex">NSE: TANLA · DLT / CPaaS</span></td><td>TRAI DLT mandated monopoly — toll booth for India's entire SMS security</td><td><span class="sc scm">6.0</span></td><td><span class="sc scm">6.5</span></td><td>Strong<div class="ib"><div class="ibf" style="width:80%"></div></div></td><td>Low-Medium<div class="ib"><div class="ibf g" style="width:40%"></div></div></td><td>India + South Asia</td><td><span class="pb pbm">68%</span></td></tr>
+        <tr><td><span class="fco">🇮🇳 Data Patterns</span><span class="fex">NSE: DATAPATTNS · Defense</span></td><td>Defense electronics — classified DRDO access, secure comms, EW systems</td><td><span class="sc scm">6.5</span></td><td><span class="sc scm">7.0</span></td><td>Strong<div class="ib"><div class="ibf" style="width:78%"></div></div></td><td>Medium<div class="ib"><div class="ibf g" style="width:55%"></div></div></td><td>India Defense (protected market)</td><td><span class="pb pbh">74%</span></td></tr>
+        <tr><td><span class="fco">🇮🇳 Tata Elxsi</span><span class="fex">NSE: TATAELXSI · Embedded</span></td><td>Embedded security engineering — automotive, medical, broadcast OEM mandates</td><td><span class="sc scm">5.8</span></td><td><span class="sc scm">6.5</span></td><td>Strong<div class="ib"><div class="ibf" style="width:76%"></div></div></td><td>Medium<div class="ib"><div class="ibf g" style="width:60%"></div></div></td><td>Global OEMs in target sectors</td><td><span class="pb pbm">70%</span></td></tr>
+        <tr><td><span class="fco">🇮🇳 Quick Heal / Seqrite</span><span class="fex">NSE: QUICKHEAL · Endpoint</span></td><td>India SMB/enterprise endpoint — only homegrown Indian security product company</td><td><span class="sc scl">5.5</span></td><td><span class="sc scl">6.0</span></td><td>Building<div class="ib"><div class="ibf" style="width:58%"></div></div></td><td>Medium<div class="ib"><div class="ibf g" style="width:52%"></div></div></td><td>India + Emerging Markets</td><td><span class="pb pbm">62%</span></td></tr>
+        <tr><td><span class="fco">🇮🇳 Route Mobile</span><span class="fex">NSE: ROUTEMOBILE · CPaaS</span></td><td>Authentication OTP infrastructure — embedded in India's banking authentication</td><td><span class="sc scm">5.8</span></td><td><span class="sc scm">6.2</span></td><td>Strong<div class="ib"><div class="ibf" style="width:74%"></div></div></td><td>Low-Medium<div class="ib"><div class="ibf g" style="width:38%"></div></div></td><td>India + Africa + SE Asia</td><td><span class="pb pbm">66%</span></td></tr>
+        <tr><td><span class="fco">🇮🇳 BLS International</span><span class="fex">NSE: BLS · Identity Verif.</span></td><td>Government identity verification — 45+ national government contract moats</td><td><span class="sc scl">5.5</span></td><td><span class="sc scl">6.0</span></td><td>Strong<div class="ib"><div class="ibf" style="width:72%"></div></div></td><td>Low-Medium<div class="ib"><div class="ibf g" style="width:36%"></div></div></td><td>45+ Countries</td><td><span class="pb pbm">65%</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="foot">
+  <div class="fl">
+    Global Cybersecurity &amp; AI Security Superwave — Part II of II<br>
+    §04 Bottleneck Owners · §05–§06 Value &amp; ASML · §07–§09 AI, Capital Cycle, Toll Booths<br>
+    §10–§14 Infrastructure, India &amp; Comparables · §15 + Special + Final Table · June 2025
+  </div>
+  <div class="fr">
+    Institutional Research Consortium<br>
+    Think like a sovereign wealth fund<br>
+    allocating capital for two decades.
+  </div>
+</footer>
+
+</main>
+</div>
+
+<script>
+// Sidebar active state
+const secs = document.querySelectorAll('section[id]');
+const links = document.querySelectorAll('.sb-a');
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if(e.isIntersecting){
+      const id = e.target.id;
+      links.forEach(l => {
+        l.classList.remove('on');
+        if(l.getAttribute('href') === '#'+id) l.classList.add('on');
+      });
+    }
+  });
+}, {rootMargin:'-25% 0px -65% 0px'});
+secs.forEach(s => obs.observe(s));
+
+// Fade-in on scroll
+const fObs = new IntersectionObserver(es => {
+  es.forEach((e,i) => {
+    if(e.isIntersecting){
+      setTimeout(() => e.target.classList.add('in'), i * 55);
+      fObs.unobserve(e.target);
+    }
+  });
+}, {threshold:0.08});
+document.querySelectorAll('.fi').forEach(el => fObs.observe(el));
+
+// Moat bar animation
+const bObs = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.mf,.adf,.ibf,.xf,.exp-fill').forEach(b => {
+        const w = b.style.width; b.style.width='0';
+        requestAnimationFrame(()=>setTimeout(()=>b.style.width=w, 60));
+      });
+      bObs.unobserve(e.target);
+    }
+  });
+}, {threshold:0.2});
+document.querySelectorAll('.cc,.ar,.ft tr').forEach(el => bObs.observe(el));
+</script>
+</body>
+</html>

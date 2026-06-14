@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cybersecurity & AI Security Superwave — Part I of II</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ─── DESIGN TOKENS ─────────────────────────────────────────── */
+:root {
+  --ink:           #03071A;
+  --ink-mid:       #0B1228;
+  --page:          #F1F4FB;
+  --white:         #FFFFFF;
+
+  --teal:          #009D8D;
+  --teal-light:    rgba(0, 157, 141, 0.12);
+  --teal-border:   rgba(0, 157, 141, 0.3);
+
+  --gold:          #B8870C;
+  --gold-light:    rgba(184, 135, 12, 0.10);
+
+  --electric:      #1452F0;
+  --electric-light:rgba(20, 82, 240, 0.09);
+
+  --threat:        #C4261C;
+  --threat-light:  rgba(196, 38, 28, 0.09);
+
+  --purple:        #6420C8;
+  --purple-light:  rgba(100, 32, 200, 0.08);
+
+  --green:         #14763A;
+  --green-light:   rgba(20, 118, 58, 0.09);
+
+  --orange:        #BE4500;
+  --orange-light:  rgba(190, 69, 0, 0.09);
+
+  --text-1:        #0C1220;
+  --text-2:        #485069;
+  --text-3:        #8E97B0;
+  --border:        #DDE3F0;
+  --surface:       #E9EDF7;
+
+  --font-display:  'Syne', sans-serif;
+  --font-body:     'IBM Plex Sans', sans-serif;
+  --font-mono:     'IBM Plex Mono', monospace;
+
+  --nav-w:         252px;
+  --r:             7px;
+}
+
+/* ─── RESET ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--page);
+  color: var(--text-1);
+  line-height: 1.7;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ─── LAYOUT ─────────────────────────────────────────────────── */
+.layout { display: flex; min-height: 100vh; }
+
+/* ─── SIDEBAR ────────────────────────────────────────────────── */
+.sidebar {
+  width: var(--nav-w);
+  flex-shrink: 0;
+  position: fixed;
+  top: 0; left: 0;
+  height: 100vh;
+  background: var(--ink);
+  overflow-y: auto;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(255,255,255,0.04);
+}
+.sidebar::-webkit-scrollbar { width: 2px; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); }
+
+.sb-logo {
+  padding: 26px 22px 22px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.sb-logo-tag {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--teal);
+  display: block;
+  margin-bottom: 7px;
+}
+.sb-logo-name {
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.45;
+}
+
+.sb-group-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  padding: 18px 22px 5px;
+}
+
+.sb-link {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 7px 22px;
+  color: rgba(255,255,255,0.45);
+  font-size: 12.5px;
+  font-family: var(--font-body);
+  border-left: 2px solid transparent;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+  line-height: 1.5;
+}
+.sb-link:hover { color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.04); }
+.sb-link.is-active {
+  color: var(--teal);
+  border-left-color: var(--teal);
+  background: rgba(0,157,141,0.08);
+}
+.sb-num {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: rgba(255,255,255,0.2);
+  flex-shrink: 0;
+  margin-top: 2px;
+  letter-spacing: 0.05em;
+}
+.sb-link.is-active .sb-num { color: var(--teal); }
+
+.sb-footer {
+  margin-top: auto;
+  padding: 18px 22px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.sb-footer-text {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: rgba(255,255,255,0.25);
+  line-height: 1.9;
+}
+
+/* ─── MAIN ───────────────────────────────────────────────────── */
+.main { margin-left: var(--nav-w); flex: 1; min-width: 0; }
+
+/* ─── HERO ───────────────────────────────────────────────────── */
+.hero {
+  background: var(--ink);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 64px 64px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,157,141,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,157,141,0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none;
+}
+.hero-glow {
+  position: absolute;
+  bottom: -160px; left: -120px;
+  width: 560px; height: 560px;
+  background: radial-gradient(circle, rgba(0,157,141,0.10) 0%, transparent 68%);
+  pointer-events: none;
+}
+.hero-glow-2 {
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(20,82,240,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner { max-width: 820px; position: relative; z-index: 1; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: rgba(0,157,141,0.10);
+  border: 1px solid var(--teal-border);
+  padding: 5px 14px;
+  border-radius: 100px;
+  margin-bottom: 36px;
+}
+.hero-badge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  animation: hb-pulse 2.2s ease-in-out infinite;
+}
+@keyframes hb-pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+.hero-badge-text {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 5.2vw, 66px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin-bottom: 22px;
+}
+.hero-title .accent { color: var(--teal); }
+
+.hero-subtitle {
+  font-size: 17px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.48);
+  max-width: 580px;
+  line-height: 1.65;
+  margin-bottom: 60px;
+}
+
+.hero-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--r);
+  overflow: hidden;
+  max-width: 700px;
+}
+.hero-metric { background: rgba(255,255,255,0.02); padding: 20px 18px; }
+.hero-metric-val {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 7px;
+}
+.hero-metric-val .a { color: var(--teal); }
+.hero-metric-lbl {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.6;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 30px; left: 64px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,0.25);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.hero-scroll-line { width: 28px; height: 1px; background: rgba(255,255,255,0.15); }
+
+/* ─── SECTION SHELL ──────────────────────────────────────────── */
+.section {
+  padding: 76px 64px;
+  border-bottom: 1px solid var(--border);
+}
+.section:last-of-type { border-bottom: none; }
+
+.section-dark {
+  background: var(--ink);
+  padding: 76px 64px;
+  border-bottom: none;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 10px 64px;
+  background: var(--page);
+}
+.divider-line { flex: 1; height: 1px; background: var(--border); }
+.divider-label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  white-space: nowrap;
+}
+
+/* ─── EYEBROW + TITLE ────────────────────────────────────────── */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 13px;
+}
+.eyebrow-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--teal);
+  letter-spacing: 0.18em;
+}
+.eyebrow-rule { height: 1px; width: 36px; background: var(--teal); opacity: 0.38; }
+.eyebrow-txt {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+.eyebrow-dark .eyebrow-txt { color: rgba(255,255,255,0.38); }
+
+.sec-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.8vw, 44px);
+  font-weight: 700;
+  color: var(--text-1);
+  line-height: 1.1;
+  letter-spacing: -0.022em;
+  margin-bottom: 18px;
+  max-width: 680px;
+}
+.sec-title-dark { color: rgba(255,255,255,0.93); }
+
+.sec-intro {
+  font-size: 16.5px;
+  color: var(--text-2);
+  max-width: 680px;
+  line-height: 1.8;
+  margin-bottom: 48px;
+}
+.sec-intro-dark { color: rgba(255,255,255,0.52); }
+
+/* ─── PULL QUOTE ─────────────────────────────────────────────── */
+.pull-quote {
+  border-left: 3px solid var(--teal);
+  padding: 18px 22px;
+  background: var(--teal-light);
+  border-radius: 0 var(--r) var(--r) 0;
+  margin: 36px 0;
+  max-width: 640px;
+}
+.pull-quote.threat-q { border-left-color: var(--threat); background: var(--threat-light); }
+.pull-quote p {
+  font-family: var(--font-display);
+  font-size: 19.5px;
+  font-weight: 600;
+  color: var(--text-1);
+  line-height: 1.5;
+  font-style: italic;
+}
+.pull-quote cite {
+  display: block;
+  margin-top: 9px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-style: normal;
+}
+
+/* ─── STAT ROW ───────────────────────────────────────────────── */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 40px 0;
+}
+.stat-box {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 22px 20px;
+}
+.stat-box-val {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--text-1);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-box-val em { color: var(--teal); font-style: normal; }
+.stat-box-lbl { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+
+/* ─── DRIVER GRID ────────────────────────────────────────────── */
+.driver-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 36px 0;
+}
+.driver-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 22px;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.driver-card:hover {
+  box-shadow: 0 6px 24px rgba(0,0,0,0.07);
+  transform: translateY(-1px);
+}
+.driver-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--teal);
+}
+.driver-num {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--teal);
+  letter-spacing: 0.16em;
+  margin-bottom: 9px;
+}
+.driver-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-1);
+  margin-bottom: 8px;
+}
+.driver-body {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.68;
+  margin-bottom: 13px;
+}
+.driver-tag {
+  background: var(--surface);
+  border-radius: 4px;
+  padding: 7px 10px;
+  font-size: 12px;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+.driver-tag strong {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+/* ─── SPEND BARS ─────────────────────────────────────────────── */
+.spend-block { margin: 36px 0; }
+.spend-row {
+  display: grid;
+  grid-template-columns: 164px 1fr 72px;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+.spend-lbl { font-size: 13px; color: var(--text-2); }
+.spend-track { height: 5px; background: var(--border); border-radius: 100px; overflow: hidden; }
+.spend-fill {
+  height: 100%;
+  border-radius: 100px;
+  background: var(--teal);
+  transition: width 1.2s cubic-bezier(0.22,1,0.36,1);
+}
+.spend-fill.threat { background: var(--threat); }
+.spend-pct {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-1);
+  font-weight: 500;
+  text-align: right;
+}
+
+/* ─── SUBSECTION HEAD ────────────────────────────────────────── */
+.sub-head {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-1);
+  margin: 44px 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+.sub-head-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--teal);
+  background: var(--teal-light);
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.08em;
+}
+.sub-body {
+  font-size: 15px;
+  color: var(--text-2);
+  line-height: 1.78;
+  max-width: 700px;
+  margin-bottom: 24px;
+}
+
+/* ─── THREAT TABLE ───────────────────────────────────────────── */
+.threat-wrap { overflow-x: auto; margin: 32px 0; }
+.threat-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+.threat-table th {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  text-align: left;
+  padding: 0 14px 11px;
+  border-bottom: 1px solid var(--border);
+  font-weight: 500;
+}
+.threat-table td {
+  padding: 13px 14px;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-2);
+  font-size: 13px;
+  line-height: 1.62;
+}
+.threat-table tr:last-child td { border-bottom: none; }
+.threat-table tbody tr:hover td { background: var(--surface); }
+.t-name {
+  font-weight: 600;
+  color: var(--text-1);
+  font-size: 13.5px;
+  display: block;
+  margin-bottom: 3px;
+  font-family: var(--font-display);
+}
+.threat-badge {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 100px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.tb-critical { background: var(--threat-light); color: var(--threat); }
+.tb-high     { background: var(--gold-light); color: var(--gold); }
+.tb-emerging { background: var(--electric-light); color: var(--electric); }
+
+/* ─── MANDATORY GRID ─────────────────────────────────────────── */
+.mandatory-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px;
+  margin: 30px 0;
+}
+.mand-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 14px 16px;
+}
+.mand-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+.mand-dot.crit    { background: var(--threat); }
+.mand-dot.high    { background: var(--gold); }
+.mand-dot.emerg   { background: var(--electric); }
+.mand-name { font-size: 13.5px; font-weight: 600; color: var(--text-1); margin-bottom: 2px; }
+.mand-sub { font-size: 12px; color: var(--text-3); line-height: 1.55; }
+
+/* ─── EXEC PILLARS ───────────────────────────────────────────── */
+.exec-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 44px;
+}
+.exec-pillar {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--r);
+  padding: 22px;
+  transition: background 0.2s;
+}
+.exec-pillar:hover { background: rgba(255,255,255,0.06); }
+.ep-icon { font-size: 22px; margin-bottom: 12px; }
+.ep-title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 8px;
+}
+.ep-body { font-size: 12.5px; color: rgba(255,255,255,0.45); line-height: 1.68; }
+
+/* ─── TIER CARDS ─────────────────────────────────────────────── */
+.tier-list { display: flex; flex-direction: column; gap: 16px; margin-top: 36px; }
+.tier-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.tier-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 19px 22px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+.tier-header:hover { background: var(--surface); }
+.tier-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px; height: 38px;
+  border-radius: 6px;
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.tier-meta { flex: 1; }
+.tier-label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 3px;
+}
+.tier-name {
+  font-family: var(--font-display);
+  font-size: 17.5px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+.tier-toggle {
+  font-size: 22px;
+  color: var(--text-3);
+  line-height: 1;
+  transition: transform 0.25s;
+  font-weight: 300;
+  width: 24px;
+  text-align: center;
+}
+.tier-toggle.open { transform: rotate(45deg); }
+
+.tier-body {
+  padding: 22px 22px 24px;
+  border-top: 1px solid var(--border);
+  display: none;
+}
+.tier-body.is-open { display: block; }
+
+.tier-desc {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.75;
+  margin-bottom: 18px;
+  max-width: 720px;
+}
+.tier-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 18px;
+}
+.tier-tag {
+  padding: 4px 11px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid;
+}
+.tier-verdict {
+  background: var(--surface);
+  border-radius: 6px;
+  padding: 14px 16px;
+  font-size: 13px;
+  color: var(--text-1);
+  line-height: 1.65;
+}
+.tier-verdict strong {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+  font-weight: 500;
+}
+
+/* ─── DOCUMENT FOOTER ────────────────────────────────────────── */
+.doc-footer {
+  background: var(--ink);
+  padding: 30px 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+.footer-left {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(255,255,255,0.25);
+  line-height: 1.9;
+}
+.footer-right {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--teal);
+  letter-spacing: 0.08em;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ─── ANIMATIONS ─────────────────────────────────────────────── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.fade-up.in-view { opacity: 1; transform: none; }
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; }
+  .hero, .section, .section-dark, .doc-footer { padding-left: 28px; padding-right: 28px; }
+  .divider { padding-left: 28px; padding-right: 28px; }
+  .driver-grid, .exec-pillars, .stat-row { grid-template-columns: 1fr; }
+  .hero-metrics { grid-template-columns: 1fr 1fr; }
+  .mandatory-grid { grid-template-columns: 1fr; }
+  .spend-row { grid-template-columns: 120px 1fr 60px; }
+}
+
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  SIDEBAR NAVIGATION                                         -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<nav class="sidebar">
+  <div class="sb-logo">
+    <span class="sb-logo-tag">Institutional Research · Part I&nbsp;of&nbsp;II</span>
+    <div class="sb-logo-name">Cybersecurity &amp;<br>AI Security Superwave</div>
+  </div>
+
+  <div class="sb-group-label">Contents · Part I</div>
+
+  <a href="#hero"        class="sb-link is-active"><span class="sb-num">00</span>Cover &amp; Overview</a>
+  <a href="#mission"     class="sb-link"><span class="sb-num">00</span>Executive Mission</a>
+  <a href="#civilization" class="sb-link"><span class="sb-num">§01</span>Digital Civilization Thesis</a>
+  <a href="#ai-rev"      class="sb-link"><span class="sb-num">§02</span>AI Security Revolution</a>
+  <a href="#value-chain" class="sb-link"><span class="sb-num">§03</span>Global Value Chain</a>
+
+  <div class="sb-group-label">Value Chain Tiers</div>
+  <a href="#t1" class="sb-link"><span class="sb-num">T1</span>Identity &amp; Access</a>
+  <a href="#t2" class="sb-link"><span class="sb-num">T2</span>Endpoint / XDR</a>
+  <a href="#t3" class="sb-link"><span class="sb-num">T3</span>Cloud Security</a>
+  <a href="#t4" class="sb-link"><span class="sb-num">T4</span>Data Security</a>
+  <a href="#t5" class="sb-link"><span class="sb-num">T5</span>Security Operations</a>
+  <a href="#t6" class="sb-link"><span class="sb-num">T6</span>AI Security</a>
+  <a href="#t7" class="sb-link"><span class="sb-num">T7</span>Critical Infrastructure</a>
+
+  <div class="sb-footer">
+    <div class="sb-footer-text">
+      Global Cyber Superwave Research<br>
+      June 2025 · Sections §01–§03<br>
+      Part II → §04–§15 + Final Tables
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  MAIN CONTENT                                               -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<main class="main">
+
+<!-- ─── HERO ──────────────────────────────────────────────── -->
+<section class="hero" id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      <span class="hero-badge-text">Institutional Research Consortium — Part I of II</span>
+    </div>
+
+    <h1 class="hero-title">
+      The Global Cybersecurity<br>
+      &amp; <span class="accent">AI Security</span><br>
+      Superwave
+    </h1>
+
+    <p class="hero-subtitle">
+      2025–2045: Identifying the ASMLs, Visa-like Toll Booths,
+      Mission-Critical Platforms &amp; Hidden Compounders
+      Protecting the Digital Civilization
+    </p>
+
+    <div class="hero-metrics">
+      <div class="hero-metric">
+        <div class="hero-metric-val">$<span class="a">2.5</span>T</div>
+        <div class="hero-metric-lbl">Projected global<br>spend by 2035</div>
+      </div>
+      <div class="hero-metric">
+        <div class="hero-metric-val"><span class="a">15</span></div>
+        <div class="hero-metric-lbl">Investment thesis<br>categories</div>
+      </div>
+      <div class="hero-metric">
+        <div class="hero-metric-val"><span class="a">40</span>yr</div>
+        <div class="hero-metric-lbl">Infrastructure<br>supercycle horizon</div>
+      </div>
+      <div class="hero-metric">
+        <div class="hero-metric-val"><span class="a">7</span></div>
+        <div class="hero-metric-lbl">Value chain<br>tiers analyzed</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Scroll to begin
+  </div>
+</section>
+
+
+<!-- ─── EXECUTIVE MISSION (dark) ──────────────────────────── -->
+<section class="section-dark" id="mission">
+  <div class="eyebrow eyebrow-dark">
+    <span class="eyebrow-num">§00</span>
+    <div class="eyebrow-rule"></div>
+    <span class="eyebrow-txt">Executive Mission</span>
+  </div>
+  <h2 class="sec-title sec-title-dark">The Core Investment Question</h2>
+  <p class="sec-intro sec-intro-dark">
+    As the world becomes AI-native and digitally interconnected, where will the majority
+    of economic value accrue in protecting digital civilization? Not which company detects
+    malware — but which firms own bottlenecks, possess pricing power, and become the
+    embedded infrastructure of the security economy.
+  </p>
+
+  <div class="exec-pillars">
+    <div class="exec-pillar fade-up">
+      <div class="ep-icon">🏛️</div>
+      <div class="ep-title">Bottleneck Owners</div>
+      <div class="ep-body">Which platforms become so deeply embedded that enterprises face existential operational risk if they disappear — the ASML test applied to digital security.</div>
+    </div>
+    <div class="exec-pillar fade-up">
+      <div class="ep-icon">💠</div>
+      <div class="ep-title">Toll Booth Networks</div>
+      <div class="ep-body">Which businesses sit at transaction chokepoints — processing every identity check, every access request, every threat signal — collecting rent as scale increases.</div>
+    </div>
+    <div class="exec-pillar fade-up">
+      <div class="ep-icon">🌐</div>
+      <div class="ep-title">Platform Compounders</div>
+      <div class="ep-body">Which vendors achieve platform status where data network effects, AI advantages, and switching costs create decade-long compounding of pricing power.</div>
+    </div>
+    <div class="exec-pillar fade-up">
+      <div class="ep-icon">🇮🇳</div>
+      <div class="ep-title">India's Opportunity</div>
+      <div class="ep-body">Where India can build global leadership — from managed security services and digital trust infrastructure to AI governance and defense cybersecurity.</div>
+    </div>
+    <div class="exec-pillar fade-up">
+      <div class="ep-icon">🤖</div>
+      <div class="ep-title">Agentic AI Security</div>
+      <div class="ep-body">How autonomous AI creates entirely new mandatory spending categories that did not exist 36 months ago — and which firms are positioned to own them.</div>
+    </div>
+    <div class="exec-pillar fade-up">
+      <div class="ep-icon">🔬</div>
+      <div class="ep-title">Hidden Compounders</div>
+      <div class="ep-body">The suppliers behind the security ecosystem — certification authorities, data brokers, hardware roots of trust — that benefit regardless of who wins the AI race.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">
+  <div class="divider-line"></div>
+  <div class="divider-label">Part One · Structural Thesis</div>
+  <div class="divider-line"></div>
+</div>
+
+
+<!-- ─── §01 DIGITAL CIVILIZATION THESIS ───────────────────── -->
+<section class="section" id="civilization">
+  <div class="eyebrow">
+    <span class="eyebrow-num">§01</span>
+    <div class="eyebrow-rule"></div>
+    <span class="eyebrow-txt">Digital Civilization Thesis</span>
+  </div>
+  <h2 class="sec-title">From IT Line Item to Civilization Infrastructure</h2>
+  <p class="sec-intro">
+    Cybersecurity is undergoing the most significant categorical reclassification in its history.
+    For three decades it sat in the IT budget — a cost center, a compliance checkbox, a reactive spend.
+    The 2020s mark the inflection point at which it transitions into civilization infrastructure:
+    as indispensable, as non-discretionary, and as structurally recurring as electricity, water, or payment rails.
+  </p>
+
+  <div class="pull-quote">
+    <p>"Every percentage point of global GDP that moves digital creates a structural, permanent, non-discretionary security spend floor. We are in the early innings of digitizing $100 trillion in economic activity."</p>
+    <cite>Structural Investment Thesis — Global Cybersecurity Superwave</cite>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-box fade-up">
+      <div class="stat-box-val">$<em>9.5</em>T</div>
+      <div class="stat-box-lbl">Estimated global cybercrime cost in 2025 — exceeding the GDP of every nation except the US and China</div>
+    </div>
+    <div class="stat-box fade-up">
+      <div class="stat-box-val"><em>82</em>%</div>
+      <div class="stat-box-lbl">Of successful enterprise breaches involve compromised credentials — making identity the foundational security layer</div>
+    </div>
+    <div class="stat-box fade-up">
+      <div class="stat-box-val"><em>3.5</em>M</div>
+      <div class="stat-box-lbl">Global cybersecurity workforce shortage — creating a structural tailwind for platform-based automation and managed services</div>
+    </div>
+  </div>
+
+  <div class="sub-head">
+    <span class="sub-head-tag">The 10 Structural Drivers</span>
+    Why Security Spending Grows Faster Than GDP
+  </div>
+
+  <div class="driver-grid">
+    <div class="driver-card fade-up">
+      <div class="driver-num">DRIVER 01 · CLOUD ADOPTION</div>
+      <div class="driver-title">Cloud Infrastructure Buildout</div>
+      <div class="driver-body">The $600B+ cloud infrastructure market creates a direct, proportional security spend requirement. Every $1 of cloud spend generates $0.10–$0.15 in security spend. As cloud penetration moves from 25% to 60% of enterprise workloads over the next decade, the security coefficient compounds without ceasing.</div>
+      <div class="driver-tag">
+        <strong>Security Implication</strong>
+        CSPM, CWPP, CNAPP, and API security become baseline infrastructure. Multi-cloud complexity amplifies spend per workload beyond single-cloud deployments.
+      </div>
+    </div>
+    <div class="driver-card fade-up">
+      <div class="driver-num">DRIVER 02 · AI ADOPTION</div>
+      <div class="driver-title">Enterprise AI at Scale</div>
+      <div class="driver-body">200B+ AI API calls per day by 2027 means every model inference is a potential attack surface. Training data is a target. Model weights are intellectual property worth billions. Every enterprise deploying AI creates an entirely new security perimeter that existing tools are architecturally unequipped to protect.</div>
+      <div class="driver-tag">
+        <strong>Security Implication</strong>
+        AI model security, LLM firewalls, and AI observability become mandatory spending categories that grow from zero — the most attractive greenfield in security.
+      </div>
+    </div>
+    <div class="driver-card fade-up">
+      <div class="driver-num">DRIVER 03 · AGENTIC AI</div>
+      <div class="driver-title">Autonomous AI Systems</div>
+      <div class="driver-body">AI agents executing multi-step tasks — browsing web, writing code, calling APIs, managing files — require a fundamentally new security architecture. Agents need identities, access controls, audit trails, and kill-switches. The enterprise must now manage a growing non-human workforce with zero-trust principles.</div>
+      <div class="driver-tag">
+        <strong>Security Implication</strong>
+        Non-human identity management, agent authorization, and agentic AI audit infrastructure emerge as entirely new mandatory categories by 2026.
+      </div>
+    </div>
+    <div class="driver-card fade-up">
+      <div class="driver-num">DRIVER 04 · DIGITAL PAYMENTS</div>
+      <div class="driver-title">Financial Infrastructure Digitization</div>
+      <div class="driver-body">$3.5T in real-time digital payment volumes globally by 2025. Identity fraud alone represents $50B+ in annual losses. Every dollar digitized through UPI, CBDC pilots, open banking, or buy-now-pay-later requires identity verification, fraud detection, and transaction security infrastructure at the payment layer.</div>
+      <div class="driver-tag">
+        <strong>Security Implication</strong>
+        Identity verification, behavioral biometrics, and fraud orchestration platforms become load-bearing payment infrastructure — not optional add-ons.
+      </div>
+    </div>
+    <div class="driver-card fade-up">
+      <div class="driver-num">DRIVER 05 · DIGITAL GOVERNMENT</div>
+      <div class="driver-title">National Digital Transformation</div>
+      <div class="driver-body">60+ countries building digital ID systems, e-governance portals, central bank digital currencies, and digital public infrastructure. India's Aadhaar-UPI-DigiLocker stack serves 1.4 billion people. Each national program creates decade-long authentication infrastructure requirements with sovereign security mandates.</div>
+      <div class="driver-tag">
+        <strong>Security Implication</strong>
+        National-scale identity infrastructure, government cloud security, and sovereign data protection become strategic priorities with non-negotiable budgets.
+      </div>
+    </div>
+    <div class="driver-card fade-up">
+      <div class="driver-num">DRIVER 06 · OT/IT CONVERGENCE</div>
+      <div class="driver-title">Critical Infrastructure Digitization</div>
+      <div class="driver-body">40% of power grid control systems are now IP-connected. Water utilities, gas pipelines, rail networks, and hospitals have digitized operational technology that was never designed for network connectivity. The convergence of IT and OT creates attack surfaces with physical-world consequences — blackouts, contamination, disruption.</div>
+      <div class="driver-tag">
+        <strong>Security Implication</strong>
+        OT/ICS security transitions from niche to mandatory. Regulatory mandates (NIS2, NERC CIP) create compliance-driven spend floors independent of business cycles.
+      </div>
+    </div>
+    <div class="driver-card fade-up">
+      <div class="driver-num">DRIVER 07 · AUTONOMOUS SYSTEMS</div>
+      <div class="driver-title">Cyber-Physical Security</div>
+      <div class="driver-body">Self-driving vehicles, surgical robots, and warehouse automation represent safety-critical infrastructure where a cyberattack has direct physical harm potential. A compromised autonomous vehicle fleet or medical device is a national security event, not an IT incident. Security becomes load-bearing for deployment at scale.</div>
+      <div class="driver-tag">
+        <strong>Security Implication</strong>
+        Embedded system security, secure boot, hardware roots of trust, and real-time anomaly detection for cyber-physical systems become essential engineering requirements.
+      </div>
+    </div>
+    <div class="driver-card fade-up">
+      <div class="driver-num">DRIVER 08 · DEFENSE MODERNIZATION</div>
+      <div class="driver-title">Military Cyber Doctrine</div>
+      <div class="driver-body">AUKUS, NATO's 2% GDP commitment, and peer-competition with China and Russia have elevated cyber warfare to a primary military domain. Defense ministries globally are rebuilding IT infrastructure, standing up cyber commands, and integrating commercial security technology into classified networks at 2× enterprise growth rates.</div>
+      <div class="driver-tag">
+        <strong>Security Implication</strong>
+        Zero Trust architecture, supply chain security, and defense-grade encryption are becoming standard enterprise requirements, not just military specifications.
+      </div>
+    </div>
+    <div class="driver-card fade-up">
+      <div class="driver-num">DRIVER 09 · INDUSTRY 4.0</div>
+      <div class="driver-title">Industrial Automation Wave</div>
+      <div class="driver-body">The fusion of manufacturing, logistics, and digital systems has connected billions of industrial sensors, PLCs, and SCADA systems to enterprise networks. These systems, designed in the 1990s with zero security architecture, are now internet-adjacent. A single ransomware attack on a Tier 1 auto supplier can halt $10B+ in production capacity.</div>
+      <div class="driver-tag">
+        <strong>Security Implication</strong>
+        Industrial cybersecurity grows from $5B to $30B+ by 2030 as manufacturing CEOs face existential supply chain cyber risk with regulatory liability attached.
+      </div>
+    </div>
+    <div class="driver-card fade-up">
+      <div class="driver-num">DRIVER 10 · DATA SOVEREIGNTY</div>
+      <div class="driver-title">Regulatory Compliance Infrastructure</div>
+      <div class="driver-body">GDPR, India's DPDP Act, China's Data Security Law, the EU AI Act, SEC cyber disclosure rules — regulatory frameworks in every major economy are creating criminal liability for executives and mandatory breach disclosure windows. Regulation is the most powerful demand catalyst in cybersecurity history, creating cycle-independent spend floors.</div>
+      <div class="driver-tag">
+        <strong>Security Implication</strong>
+        Data governance, privacy infrastructure, and compliance platforms become mandatory line items with board-level visibility and executive accountability by statute.
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-head" style="margin-top:52px">
+    <span class="sub-head-tag">Spend Trajectory</span>
+    Estimated Category CAGRs 2025–2030
+  </div>
+  <p class="sub-body">Cybersecurity possesses three characteristics making it structurally faster-growing than the broader economy: regulatory mandates create a spend floor independent of economic conditions; AI-augmented attacks create an arms race permanently ratcheting up required investment; and the cost-of-non-spend grows faster than the cost-of-spend as breach consequences compound.</p>
+
+  <div class="spend-block">
+    <div class="spend-row"><span class="spend-lbl">AI / ML Security</span><div class="spend-track"><div class="spend-fill threat" style="width:100%"></div></div><span class="spend-pct">~35% CAGR</span></div>
+    <div class="spend-row"><span class="spend-lbl">Identity Security</span><div class="spend-track"><div class="spend-fill" style="width:86%"></div></div><span class="spend-pct">~18% CAGR</span></div>
+    <div class="spend-row"><span class="spend-lbl">Cloud Security</span><div class="spend-track"><div class="spend-fill" style="width:78%"></div></div><span class="spend-pct">~16% CAGR</span></div>
+    <div class="spend-row"><span class="spend-lbl">OT / ICS Security</span><div class="spend-track"><div class="spend-fill" style="width:72%"></div></div><span class="spend-pct">~15% CAGR</span></div>
+    <div class="spend-row"><span class="spend-lbl">Data Security</span><div class="spend-track"><div class="spend-fill" style="width:64%"></div></div><span class="spend-pct">~13% CAGR</span></div>
+    <div class="spend-row"><span class="spend-lbl">Endpoint / XDR</span><div class="spend-track"><div class="spend-fill" style="width:58%"></div></div><span class="spend-pct">~12% CAGR</span></div>
+    <div class="spend-row"><span class="spend-lbl">Security Services</span><div class="spend-track"><div class="spend-fill" style="width:54%"></div></div><span class="spend-pct">~11% CAGR</span></div>
+    <div class="spend-row"><span class="spend-lbl">Network Security</span><div class="spend-track"><div class="spend-fill" style="width:48%"></div></div><span class="spend-pct">~10% CAGR</span></div>
+  </div>
+</section>
+
+
+<div class="divider">
+  <div class="divider-line"></div>
+  <div class="divider-label">Part Two · AI Threat Landscape</div>
+  <div class="divider-line"></div>
+</div>
+
+
+<!-- ─── §02 AI SECURITY REVOLUTION ────────────────────────── -->
+<section class="section" id="ai-rev">
+  <div class="eyebrow">
+    <span class="eyebrow-num">§02</span>
+    <div class="eyebrow-rule"></div>
+    <span class="eyebrow-txt">AI Security Revolution</span>
+  </div>
+  <h2 class="sec-title">How AI Rewrites the Entire Threat Landscape</h2>
+  <p class="sec-intro">
+    The integration of AI into enterprise systems does not merely expand existing attack surfaces —
+    it creates entirely new attack categories that did not exist 36 months ago. AI introduces novel
+    vulnerability classes at every layer: the training pipeline, the inference endpoint, the model
+    weights, the agent runtime, and the human-AI interaction surface. Each category will generate
+    mandatory, non-discretionary security spending at enterprise scale.
+  </p>
+
+  <div class="pull-quote threat-q">
+    <p>"AI democratizes offensive cybersecurity at the same rate it democratizes software development. Nation-state-grade attack capabilities are now accessible to anyone with an API key and intent."</p>
+    <cite>AI Threat Landscape Analysis — Cybersecurity Superwave Research</cite>
+  </div>
+
+  <div class="threat-wrap">
+    <table class="threat-table">
+      <thead>
+        <tr>
+          <th style="width:185px">Attack Vector</th>
+          <th>Mechanism &amp; Enterprise Impact</th>
+          <th style="width:116px">Threat Level</th>
+          <th style="width:190px">Mandatory Spend Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="t-name">AI Model Poisoning</span>
+            Training data contamination that corrupts model behavior, invisible until triggered
+          </td>
+          <td>Attackers insert adversarial examples into training datasets, causing models to systematically misclassify specific inputs. A poisoned fraud detection model may approve specific fraudulent transactions; a poisoned medical AI may misdiagnose specific conditions. Poisoning a foundation model affects every fine-tuned downstream application at scale.</td>
+          <td><span class="threat-badge tb-critical">Critical</span></td>
+          <td>ML security platforms, training data governance, model provenance tracking</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="t-name">Prompt Injection</span>
+            Hijacking LLM behavior through adversarial instructions in user inputs or external data
+          </td>
+          <td>Indirect injection embeds malicious instructions in external content (emails, documents, web pages) that LLMs process autonomously. As enterprises deploy LLMs to read emails, summarize documents, and browse web, indirect injection becomes a systemic enterprise attack surface. A single malicious document can exfiltrate all data an agent has access to.</td>
+          <td><span class="threat-badge tb-critical">Critical</span></td>
+          <td>LLM firewalls, prompt sanitization, AI output filtering, agent sandboxing</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="t-name">Agent Hijacking</span>
+            Compromising autonomous AI agents to execute attacker-controlled actions in enterprise environments
+          </td>
+          <td>AI agents with tool access — code execution, API calls, database writes, email sending — represent control plane access to enterprise systems. Agent hijacking redirects this access to attacker objectives. The blast radius scales with agent capability, making the most capable agents the highest-value targets in the enterprise attack surface.</td>
+          <td><span class="threat-badge tb-critical">Critical</span></td>
+          <td>Non-human identity management, agent authorization, runtime monitoring, kill-switches</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="t-name">Synthetic Identity Fraud</span>
+            AI-generated personas with synthetic biometrics that bypass KYC verification
+          </td>
+          <td>Generative AI enables creation of synthetic identities combining real and fabricated data — AI-generated face photos, voice profiles, and document forgeries indistinguishable from genuine. Synthetic identity fraud is already the fastest-growing financial crime category, with US losses exceeding $20B annually. Deepfake technology makes the problem orders of magnitude worse.</td>
+          <td><span class="threat-badge tb-critical">Critical</span></td>
+          <td>Liveness detection, AI-powered KYC, biometric authentication, behavioral analytics</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="t-name">Deepfake Attacks</span>
+            Real-time audio/video synthesis targeting authentication systems and human judgment
+          </td>
+          <td>CEO fraud using AI voice cloning: an employee receives a call from their CEO's voice requesting urgent wire transfer. A $25M Hong Kong bank fraud in 2024 used a deepfake CFO in a live video call. Deepfakes bypass voice authentication in banking, enable boardroom impersonation, and weaponize every communication channel that relies on human voice/video recognition.</td>
+          <td><span class="threat-badge tb-critical">Critical</span></td>
+          <td>Deepfake detection, voice authentication, digital watermarking, human verification</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="t-name">Autonomous Cyber Attacks</span>
+            AI-orchestrated campaigns operating at machine speed, eliminating human-speed defense advantages
+          </td>
+          <td>AI enables attacks that scan, exploit, pivot, and exfiltrate at compute speed — compressing attack timelines from days to minutes. The defender's response time, historically measured in hours, is eliminated as a defensive advantage. AI-vs-AI becomes the defining paradigm of enterprise security operations, making human-speed SOCs structurally inadequate.</td>
+          <td><span class="threat-badge tb-critical">Critical</span></td>
+          <td>AI-powered SOC, automated threat response, SOAR with ML, real-time threat intelligence</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="t-name">AI-Powered Malware</span>
+            Polymorphic malware generated by LLMs that evades signature-based detection systems
+          </td>
+          <td>LLMs can generate functional malware variants at thousands per hour, each with different code structure, obfuscation, and evasion techniques. Traditional signature-based AV is architecturally defeated. AI-generated malware also enables custom tooling for specific targets — bespoke exploits created in minutes rather than months. The cost of sophisticated attacks collapses toward zero.</td>
+          <td><span class="threat-badge tb-high">High</span></td>
+          <td>Behavioral detection, AI-native EDR, sandbox analysis, code genome analysis</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="t-name">LLM Data Exfiltration</span>
+            Extracting training data or confidential inference inputs from model responses
+          </td>
+          <td>LLMs memorize training data and can be induced to reproduce it through carefully crafted prompts. Enterprise LLMs fine-tuned on confidential data leak that data through completions. Multi-tenant LLM inference creates data boundary risks. As enterprises inject sensitive data into AI contexts at scale, this becomes a tier-1 data security risk requiring dedicated controls.</td>
+          <td><span class="threat-badge tb-high">High</span></td>
+          <td>AI data loss prevention, inference boundary enforcement, prompt logging &amp; audit</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="t-name">Model Theft (Extraction)</span>
+            Reconstructing proprietary model capabilities through systematic API querying
+          </td>
+          <td>Model extraction attacks reconstruct the functional behavior of a proprietary model through systematic input-output querying — without accessing model weights. As model weights become multi-billion dollar assets, model IP protection becomes a board-level security concern. The attack requires no insider access — just API credentials and compute. Every public API is exposed.</td>
+          <td><span class="threat-badge tb-high">High</span></td>
+          <td>API rate limiting, query pattern analysis, model watermarking, fingerprinting</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="t-name">AI Supply Chain Attacks</span>
+            Compromising AI model repositories and ML infrastructure to distribute backdoored models
+          </td>
+          <td>Analogous to SolarWinds for software supply chains, AI supply chain attacks target the distribution infrastructure of AI models. Compromised models on Hugging Face, backdoored ML libraries on PyPI, malicious fine-tuning datasets — the AI supply chain is largely unprotected and represents a single point of failure for enterprises deploying pre-trained foundation models.</td>
+          <td><span class="threat-badge tb-emerging">Emerging</span></td>
+          <td>ML supply chain security, model provenance, dependency scanning for ML</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="t-name">AI Governance Failures</span>
+            Regulatory and liability risk from AI systems making consequential decisions without auditability
+          </td>
+          <td>The EU AI Act, SEC AI disclosure rules, and emerging global AI regulatory frameworks impose liability for AI systems operating without explainability and audit trails. Enterprises deploying AI in hiring, lending, healthcare, and critical infrastructure face regulatory fines and executive criminal liability for opaque AI decisions. Governance transitions from best practice to legal obligation.</td>
+          <td><span class="threat-badge tb-emerging">Emerging</span></td>
+          <td>AI governance platforms, model cards, explainability tooling, AI audit infrastructure</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sub-head" style="margin-top:44px">
+    <span class="sub-head-tag">Verdict</span>
+    Mandatory Spending Determination
+  </div>
+  <p class="sub-body">The following AI security categories will transition from discretionary to mandatory enterprise spending within 24–36 months, driven by regulatory pressure, catastrophic breach events, and the accelerating deployment of enterprise AI systems.</p>
+
+  <div class="mandatory-grid">
+    <div class="mand-item fade-up">
+      <div class="mand-dot crit"></div>
+      <div>
+        <div class="mand-name">LLM Firewall / AI Proxy</div>
+        <div class="mand-sub">Mandatory for every enterprise deploying AI with access to sensitive data — the first port of call for AI security budgets</div>
+      </div>
+    </div>
+    <div class="mand-item fade-up">
+      <div class="mand-dot crit"></div>
+      <div>
+        <div class="mand-name">Non-Human Identity Management</div>
+        <div class="mand-sub">Essential as agent populations exceed human employee counts in enterprise environments by 2027</div>
+      </div>
+    </div>
+    <div class="mand-item fade-up">
+      <div class="mand-dot high"></div>
+      <div>
+        <div class="mand-name">AI Governance Platform</div>
+        <div class="mand-sub">EU AI Act compliance: required for all high-risk AI system operators from 2026 with criminal penalties for non-compliance</div>
+      </div>
+    </div>
+    <div class="mand-item fade-up">
+      <div class="mand-dot high"></div>
+      <div>
+        <div class="mand-name">Deepfake Detection Infrastructure</div>
+        <div class="mand-sub">Financial services, legal, and media sectors facing regulatory mandates and operational necessity simultaneously</div>
+      </div>
+    </div>
+    <div class="mand-item fade-up">
+      <div class="mand-dot emerg"></div>
+      <div>
+        <div class="mand-name">AI Observability &amp; Monitoring</div>
+        <div class="mand-sub">Production AI systems require the same monitoring rigor applied to production software systems — now a DevOps-equivalent requirement</div>
+      </div>
+    </div>
+    <div class="mand-item fade-up">
+      <div class="mand-dot emerg"></div>
+      <div>
+        <div class="mand-name">ML Supply Chain Security</div>
+        <div class="mand-sub">Category catalyst: the first major compromised model supply chain incident will trigger immediate mandatory enterprise adoption</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="divider">
+  <div class="divider-line"></div>
+  <div class="divider-label">Part Three · Value Chain Architecture</div>
+  <div class="divider-line"></div>
+</div>
+
+
+<!-- ─── §03 GLOBAL VALUE CHAIN ─────────────────────────────── -->
+<section class="section" id="value-chain">
+  <div class="eyebrow">
+    <span class="eyebrow-num">§03</span>
+    <div class="eyebrow-rule"></div>
+    <span class="eyebrow-txt">Global Cybersecurity Value Chain</span>
+  </div>
+  <h2 class="sec-title">Seven Tiers of the Security Economy</h2>
+  <p class="sec-intro">
+    The cybersecurity ecosystem is structured across seven distinct value chain tiers, each with
+    different margin profiles, switching costs, competitive dynamics, and long-term moat characteristics.
+    Understanding which tier a company operates in — and whether it bridges multiple tiers — is the
+    foundational framework for evaluating long-term wealth creation potential.
+  </p>
+
+  <div class="tier-list">
+
+    <!-- TIER 1: IDENTITY -->
+    <div class="tier-card" id="t1">
+      <div class="tier-header" onclick="toggleTier(this)">
+        <div class="tier-badge" style="background:var(--electric-light);color:var(--electric)">T1</div>
+        <div class="tier-meta">
+          <div class="tier-label">Tier One · Highest Switching Cost · Gross Margins 80–85%</div>
+          <div class="tier-name">Identity &amp; Access Management</div>
+        </div>
+        <div class="tier-toggle">+</div>
+      </div>
+      <div class="tier-body">
+        <p class="tier-desc">Identity has become the new security perimeter. In a world without a defined network edge — where employees work from anywhere, apps run in any cloud, and AI agents operate autonomously — the question "who is this entity and what should it be allowed to do?" is the foundational security question. Identity sits at the intersection of every security interaction, making it the most strategically positioned tier in the entire value chain.</p>
+        <p class="tier-desc">The tier comprises three distinct segments: Identity and Access Management (IAM) for human users, Privileged Access Management (PAM) for administrative accounts, and Identity Verification for establishing trust at onboarding. A fourth emerging segment — Non-Human Identity (NHI) — manages machine accounts, service principals, API keys, and AI agents. NHI is the fastest-growing sub-category in enterprise security, growing from near-zero to a multi-billion dollar market as agent populations explode.</p>
+        <p class="tier-desc">Verizon's DBIR consistently shows that 82%+ of breaches involve compromised credentials. This single statistic explains why identity vendors have the highest gross margins (80–85%), strongest net revenue retention (120%+), and deepest switching costs in the security ecosystem. Migrating an Identity Provider is equivalent to replacing the central nervous system of an enterprise's IT infrastructure — a project measured in years, not months.</p>
+        <div class="tier-tags">
+          <span class="tier-tag" style="background:var(--electric-light);border-color:rgba(20,82,240,0.22);color:var(--electric)">IAM Platforms</span>
+          <span class="tier-tag" style="background:var(--electric-light);border-color:rgba(20,82,240,0.22);color:var(--electric)">Privileged Access Management</span>
+          <span class="tier-tag" style="background:var(--electric-light);border-color:rgba(20,82,240,0.22);color:var(--electric)">Multi-Factor Authentication</span>
+          <span class="tier-tag" style="background:var(--electric-light);border-color:rgba(20,82,240,0.22);color:var(--electric)">Identity Verification / KYC</span>
+          <span class="tier-tag" style="background:var(--electric-light);border-color:rgba(20,82,240,0.22);color:var(--electric)">Non-Human Identity (NHI)</span>
+          <span class="tier-tag" style="background:var(--electric-light);border-color:rgba(20,82,240,0.22);color:var(--electric)">Decentralized Identity</span>
+        </div>
+        <div class="tier-verdict">
+          <strong>Investment Verdict · Tier 1 of 7</strong>
+          Identity is Tier 1 in every sense. Vendors with directory-level integration (Okta, Microsoft Entra, CyberArk) possess near-permanent switching costs. The NHI segment is the highest-growth, lowest-competition, and most strategically positioned sub-category for the agentic AI era. The identity platform that owns enterprise directory for human and non-human identities will be the Visa of enterprise security — processing every access transaction and collecting rent at every authentication event.
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 2: ENDPOINT -->
+    <div class="tier-card" id="t2">
+      <div class="tier-header" onclick="toggleTier(this)">
+        <div class="tier-badge" style="background:var(--teal-light);color:var(--teal)">T2</div>
+        <div class="tier-meta">
+          <div class="tier-label">Tier Two · Data Network Effects · Gross Margins 75–80%</div>
+          <div class="tier-name">Endpoint &amp; Extended Detection Response</div>
+        </div>
+        <div class="tier-toggle">+</div>
+      </div>
+      <div class="tier-body">
+        <p class="tier-desc">Endpoint security has undergone a generational transformation from signature-based antivirus to AI-powered Extended Detection and Response (XDR). The endpoint remains the most data-rich source of threat telemetry in the enterprise — every process execution, network connection, file access, and memory operation generates signal that, when analyzed at scale, produces the most granular threat intelligence available to defenders.</p>
+        <p class="tier-desc">The architecture of modern endpoint platforms creates a powerful data flywheel: more protected endpoints → richer threat telemetry → better AI detection models → superior protection → more enterprise adoption. This data network effect is the primary moat in the endpoint tier and explains why CrowdStrike has consistently maintained detection superiority despite intense competition. More endpoints = better models = harder to displace.</p>
+        <p class="tier-desc">The convergence of endpoint, network, cloud, and identity telemetry into unified XDR platforms is collapsing five separate product categories into one. Vendors who achieve true XDR integration gain an asymmetric advantage in detection accuracy and reduce the analyst workload that is the industry's most significant operational constraint — the 3.5M worker shortage that cannot be solved by hiring alone.</p>
+        <div class="tier-tags">
+          <span class="tier-tag" style="background:var(--teal-light);border-color:var(--teal-border);color:var(--teal)">EDR / XDR Platforms</span>
+          <span class="tier-tag" style="background:var(--teal-light);border-color:var(--teal-border);color:var(--teal)">Mobile Device Management</span>
+          <span class="tier-tag" style="background:var(--teal-light);border-color:var(--teal-border);color:var(--teal)">Browser Security</span>
+          <span class="tier-tag" style="background:var(--teal-light);border-color:var(--teal-border);color:var(--teal)">Endpoint Isolation</span>
+          <span class="tier-tag" style="background:var(--teal-light);border-color:var(--teal-border);color:var(--teal)">Firmware Security</span>
+        </div>
+        <div class="tier-verdict">
+          <strong>Investment Verdict · Tier 2 of 7</strong>
+          The endpoint tier is dominated by two to three platform vendors with insurmountable telemetry advantages. CrowdStrike's Falcon platform has processed behavioral telemetry from 200M+ endpoints — a dataset that cannot be replicated from a standing start. The moat is real but the tier is maturing. The next growth wave comes from browser-native security and firmware/BIOS-level protection as attackers move below the OS layer. NRR of 120%+ for platform leaders.
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 3: CLOUD -->
+    <div class="tier-card" id="t3">
+      <div class="tier-header" onclick="toggleTier(this)">
+        <div class="tier-badge" style="background:var(--purple-light);color:var(--purple)">T3</div>
+        <div class="tier-meta">
+          <div class="tier-label">Tier Three · Multi-Cloud Complexity · Fastest Growing Major Category</div>
+          <div class="tier-name">Cloud Security &amp; DevSecOps</div>
+        </div>
+        <div class="tier-toggle">+</div>
+      </div>
+      <div class="tier-body">
+        <p class="tier-desc">Cloud security is the fastest-growing major security category, growing at 20–25% annually as cloud workload penetration moves from early majority to late majority adoption. The category is structurally complex because the attack surface — misconfigured S3 buckets, exposed APIs, overprivileged IAM roles, insecure container images — is fundamentally different from traditional network security and requires purpose-built tooling that legacy vendors cannot retrofit.</p>
+        <p class="tier-desc">The industry is converging toward the CNAPP (Cloud-Native Application Protection Platform) model, which unifies CSPM (Cloud Security Posture Management), CWPP (Cloud Workload Protection Platform), CIEM (Cloud Infrastructure Entitlement Management), and DAST/SAST scanning into a single platform. This convergence rewards vendors with the broadest integration surface and deepest cloud provider API access. CNAPP replaces 5–7 point solutions.</p>
+        <p class="tier-desc">API security emerges as the hidden critical sub-category: 80%+ of enterprise internet traffic is now API-based, yet most API security is an afterthought. APIs are the connective tissue between every enterprise system, every SaaS product, and every AI agent — making API security a tier-1 priority masquerading as a tier-3 problem. The first platform to solve API security at scale captures a disproportionate share of value.</p>
+        <div class="tier-tags">
+          <span class="tier-tag" style="background:var(--purple-light);border-color:rgba(100,32,200,0.22);color:var(--purple)">CSPM / CNAPP</span>
+          <span class="tier-tag" style="background:var(--purple-light);border-color:rgba(100,32,200,0.22);color:var(--purple)">Container &amp; Kubernetes Security</span>
+          <span class="tier-tag" style="background:var(--purple-light);border-color:rgba(100,32,200,0.22);color:var(--purple)">API Security</span>
+          <span class="tier-tag" style="background:var(--purple-light);border-color:rgba(100,32,200,0.22);color:var(--purple)">DevSecOps &amp; IaC Scanning</span>
+          <span class="tier-tag" style="background:var(--purple-light);border-color:rgba(100,32,200,0.22);color:var(--purple)">CASB</span>
+          <span class="tier-tag" style="background:var(--purple-light);border-color:rgba(100,32,200,0.22);color:var(--purple)">SASE / Zero Trust Network Access</span>
+        </div>
+        <div class="tier-verdict">
+          <strong>Investment Verdict · Tier 3 of 7</strong>
+          Cloud security is the most competitive tier, with hyperscalers (AWS Security Hub, Azure Defender, GCP SCC) commoditizing point solutions. The sustainable moat is in multi-cloud visibility — the ability to provide unified security posture across AWS, Azure, and GCP simultaneously — which no single cloud provider can offer about its competitors. Wiz, Orca, and Lacework compete on this axis. Gross margins of 70–80%; higher competitive intensity than Identity.
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 4: DATA -->
+    <div class="tier-card" id="t4">
+      <div class="tier-header" onclick="toggleTier(this)">
+        <div class="tier-badge" style="background:var(--gold-light);color:var(--gold)">T4</div>
+        <div class="tier-meta">
+          <div class="tier-label">Tier Four · Regulatory Floor · Post-Quantum Mandate Incoming</div>
+          <div class="tier-name">Data Security &amp; Privacy Infrastructure</div>
+        </div>
+        <div class="tier-toggle">+</div>
+      </div>
+      <div class="tier-body">
+        <p class="tier-desc">Data security sits at the intersection of technical security and legal compliance, giving it a unique characteristic: regulation creates a permanent, cycle-independent spend floor. GDPR violations carry fines of up to 4% of global annual revenue. India's DPDP Act, China's DSL, and the California CPRA create overlapping obligations that require dedicated infrastructure to navigate and satisfy simultaneously across multinational operations.</p>
+        <p class="tier-desc">The AI era transforms data security fundamentally: LLMs trained on enterprise data become data exfiltration vectors. Retrieval-augmented generation (RAG) systems that inject sensitive documents into AI contexts create new DLP requirements. Every enterprise building AI systems must solve data governance before deployment — making data security a prerequisite for AI adoption, not a companion product. This creates a powerful cross-sell motion for data security vendors.</p>
+        <p class="tier-desc">Post-quantum encryption is the most underappreciated mandate in this tier: NIST finalized its first post-quantum cryptography standards in 2024, and organizations handling sensitive data will need to complete migration within 5–10 years. This is a non-negotiable, time-bound, technology replacement cycle affecting every enterprise globally. "Harvest now, decrypt later" attacks mean the urgency is greater than the migration deadline implies.</p>
+        <div class="tier-tags">
+          <span class="tier-tag" style="background:var(--gold-light);border-color:rgba(184,135,12,0.25);color:var(--gold)">Data Discovery &amp; Classification</span>
+          <span class="tier-tag" style="background:var(--gold-light);border-color:rgba(184,135,12,0.25);color:var(--gold)">Data Loss Prevention</span>
+          <span class="tier-tag" style="background:var(--gold-light);border-color:rgba(184,135,12,0.25);color:var(--gold)">Encryption &amp; Key Management</span>
+          <span class="tier-tag" style="background:var(--gold-light);border-color:rgba(184,135,12,0.25);color:var(--gold)">Privacy Infrastructure</span>
+          <span class="tier-tag" style="background:var(--gold-light);border-color:rgba(184,135,12,0.25);color:var(--gold)">Data Governance</span>
+          <span class="tier-tag" style="background:var(--gold-light);border-color:rgba(184,135,12,0.25);color:var(--gold)">Post-Quantum Encryption</span>
+        </div>
+        <div class="tier-verdict">
+          <strong>Investment Verdict · Tier 4 of 7</strong>
+          Post-quantum encryption is the single most underappreciated mandatory spend cycle in cybersecurity. Every enterprise must complete the migration — there is no opt-out — creating a $30B+ replacement cycle concentrated in the 2025–2032 window. The data governance intersection with AI creates a second simultaneous growth vector. Vendors bridging compliance, governance, and AI data controls will capture outsized value in this tier.
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 5: SECOPS -->
+    <div class="tier-card" id="t5">
+      <div class="tier-header" onclick="toggleTier(this)">
+        <div class="tier-badge" style="background:var(--orange-light);color:var(--orange)">T5</div>
+        <div class="tier-meta">
+          <div class="tier-label">Tier Five · AI Automation Wave · Largest India Opportunity</div>
+          <div class="tier-name">Security Operations &amp; Threat Intelligence</div>
+        </div>
+        <div class="tier-toggle">+</div>
+      </div>
+      <div class="tier-body">
+        <p class="tier-desc">Security Operations Centers face an existential operational challenge: alert volumes growing at 30% annually, a 3.5M global workforce shortage, and the need to operate 24/7 against adversaries who never sleep. AI is transforming this tier more rapidly than any other — not by replacing analysts, but by compressing detection-to-response time and eliminating the commodity work that consumes 60–70% of analyst capacity in a typical enterprise SOC.</p>
+        <p class="tier-desc">The SIEM market, historically dominated by Splunk, is undergoing a platform transition driven by AI. Modern AI-native SIEMs can correlate millions of events per second, auto-triage alerts with 95%+ accuracy, and generate natural-language incident summaries that compress analyst workflow from hours to minutes. Microsoft Sentinel's integration with Microsoft 365 data provides a moat that pure-play SIEM vendors must overcome through superior detection quality.</p>
+        <p class="tier-desc">Threat intelligence — curated, contextualized data about adversary tactics, techniques, and procedures — becomes the training fuel for AI security models. Organizations with the largest, highest-fidelity threat intelligence datasets (Mandiant/Google, Recorded Future, CrowdStrike Intel) have an asymmetric AI training advantage that compounds as incidents generate more proprietary data. This creates a feedback loop that intensifies winner-take-most dynamics in threat intelligence.</p>
+        <div class="tier-tags">
+          <span class="tier-tag" style="background:var(--orange-light);border-color:rgba(190,69,0,0.22);color:var(--orange)">AI-Native SIEM</span>
+          <span class="tier-tag" style="background:var(--orange-light);border-color:rgba(190,69,0,0.22);color:var(--orange)">SOAR Platforms</span>
+          <span class="tier-tag" style="background:var(--orange-light);border-color:rgba(190,69,0,0.22);color:var(--orange)">Threat Intelligence</span>
+          <span class="tier-tag" style="background:var(--orange-light);border-color:rgba(190,69,0,0.22);color:var(--orange)">Managed Detection &amp; Response (MDR)</span>
+          <span class="tier-tag" style="background:var(--orange-light);border-color:rgba(190,69,0,0.22);color:var(--orange)">Incident Response</span>
+          <span class="tier-tag" style="background:var(--orange-light);border-color:rgba(190,69,0,0.22);color:var(--orange)">Digital Forensics</span>
+        </div>
+        <div class="tier-verdict">
+          <strong>Investment Verdict · Tier 5 of 7</strong>
+          Security Operations is transitioning from human-scale to AI-scale. The platform with the deepest threat intelligence dataset becomes the most accurate AI security model — a data moat mirroring Google's search advantage. MDR represents the massive opportunity for services providers to absorb the SOC function from enterprises that cannot build internal capability. This tier has the largest India opportunity given the combination of analyst talent and service delivery economics at scale.
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 6: AI SECURITY -->
+    <div class="tier-card" id="t6">
+      <div class="tier-header" onclick="toggleTier(this)">
+        <div class="tier-badge" style="background:var(--green-light);color:var(--green)">T6</div>
+        <div class="tier-meta">
+          <div class="tier-label">Tier Six · Greenfield Category · Growing From Zero</div>
+          <div class="tier-name">AI Model Security &amp; Governance</div>
+        </div>
+        <div class="tier-toggle">+</div>
+      </div>
+      <div class="tier-body">
+        <p class="tier-desc">AI security is the only major cybersecurity category growing from zero in real-time. Every other tier has decade-long incumbents, mature market structures, and established competitive dynamics. AI security in 2025 resembles endpoint security in 2010 — a category that is clearly necessary, whose winners haven't been determined, and where the first platform to achieve scale will capture disproportionate long-term value. The greenfield opportunity is real and large.</p>
+        <p class="tier-desc">The category addresses three distinct problem layers: securing AI systems (protecting models, training pipelines, and inference infrastructure), securing with AI (using AI to improve security capabilities across tiers), and governing AI systems (ensuring AI operates within regulatory, ethical, and organizational bounds). The third layer — AI governance — is the category most directly exposed to the global regulatory wave and will generate the most durable, compliance-driven spend.</p>
+        <p class="tier-desc">The AI security vendor landscape includes LLM firewall providers (Lakera, Protect AI), AI governance platforms (Credo AI, Holistic AI), AI red-teaming services (HiddenLayer, CalypsoAI), and AI observability tools (Arize AI, WhyLabs). The market is fragmented today; consolidation toward 2–3 platform winners is inevitable. The acquirer may well be a Tier 1 or Tier 2 incumbent seeking to extend their platform into the AI security category.</p>
+        <div class="tier-tags">
+          <span class="tier-tag" style="background:var(--green-light);border-color:rgba(20,118,58,0.22);color:var(--green)">LLM Firewall &amp; Proxy</span>
+          <span class="tier-tag" style="background:var(--green-light);border-color:rgba(20,118,58,0.22);color:var(--green)">AI Governance Platforms</span>
+          <span class="tier-tag" style="background:var(--green-light);border-color:rgba(20,118,58,0.22);color:var(--green)">AI Red-Teaming</span>
+          <span class="tier-tag" style="background:var(--green-light);border-color:rgba(20,118,58,0.22);color:var(--green)">Model Observability</span>
+          <span class="tier-tag" style="background:var(--green-light);border-color:rgba(20,118,58,0.22);color:var(--green)">AI Compliance &amp; Audit</span>
+          <span class="tier-tag" style="background:var(--green-light);border-color:rgba(20,118,58,0.22);color:var(--green)">Agent Security</span>
+        </div>
+        <div class="tier-verdict">
+          <strong>Investment Verdict · Tier 6 of 7</strong>
+          Tier 6 is the highest-conviction early-stage opportunity in cybersecurity. The regulatory catalyst (EU AI Act, US EO on AI, India's AI governance framework) is real, time-bound, and growing. Incumbents lack AI-native security products; startups are building from first principles. The first AI security platform to achieve enterprise-grade distribution — likely through partnership with a Tier 1 identity or endpoint player — will capture the long-term market at platform-level margins.
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 7: CRITICAL INFRA -->
+    <div class="tier-card" id="t7">
+      <div class="tier-header" onclick="toggleTier(this)">
+        <div class="tier-badge" style="background:var(--threat-light);color:var(--threat)">T7</div>
+        <div class="tier-meta">
+          <div class="tier-label">Tier Seven · National Security Imperative · Government Mandate Driven</div>
+          <div class="tier-name">Critical Infrastructure &amp; OT Security</div>
+        </div>
+        <div class="tier-toggle">+</div>
+      </div>
+      <div class="tier-body">
+        <p class="tier-desc">Critical infrastructure security operates at the intersection of enterprise cybersecurity and national security, making it the tier with the most direct government involvement, the strongest regulatory mandates, and the highest consequence of failure. Power grids, water treatment facilities, nuclear plants, oil and gas pipelines, hospitals, and financial clearinghouses all operate Operational Technology (OT) systems designed decades ago without any security considerations whatsoever.</p>
+        <p class="tier-desc">The IT/OT convergence — driven by Industry 4.0, remote monitoring, and operational efficiency — has connected these inherently insecure systems to enterprise IT networks and, by extension, to the internet. The air-gap security model is dead. Nation-state actors — primarily China, Russia, North Korea, and Iran — have pre-positioned within critical infrastructure networks, establishing persistent access that can be activated in a geopolitical conflict scenario, effectively holding civilian infrastructure hostage.</p>
+        <p class="tier-desc">The regulatory response is forceful and non-negotiable: NERC CIP for energy, TSA directives for pipelines and aviation, CISA's Known Exploited Vulnerabilities catalog, and NIS2 in Europe create mandatory compliance spend independent of economic conditions. A power grid operator cannot defer security upgrades to preserve margins — the regulatory liability and physical consequence of non-compliance are existential at both the organizational and national levels.</p>
+        <div class="tier-tags">
+          <span class="tier-tag" style="background:var(--threat-light);border-color:rgba(196,38,28,0.22);color:var(--threat)">OT / ICS Security</span>
+          <span class="tier-tag" style="background:var(--threat-light);border-color:rgba(196,38,28,0.22);color:var(--threat)">SCADA Protection</span>
+          <span class="tier-tag" style="background:var(--threat-light);border-color:rgba(196,38,28,0.22);color:var(--threat)">Energy Grid Security</span>
+          <span class="tier-tag" style="background:var(--threat-light);border-color:rgba(196,38,28,0.22);color:var(--threat)">Industrial Network Monitoring</span>
+          <span class="tier-tag" style="background:var(--threat-light);border-color:rgba(196,38,28,0.22);color:var(--threat)">Satellite &amp; Space Security</span>
+          <span class="tier-tag" style="background:var(--threat-light);border-color:rgba(196,38,28,0.22);color:var(--threat)">5G Network Security</span>
+        </div>
+        <div class="tier-verdict">
+          <strong>Investment Verdict · Tier 7 of 7</strong>
+          Claroty, Dragos, and Nozomi Networks represent the three-way contest for OT security leadership. Winners will be those who successfully bridge OT visibility with IT security operations — providing unified SIEM integration allowing a single SOC to monitor both domains. The market was estimated at $5B in 2024, growing to $30B+ by 2030. Defense-sector spending provides an additional growth lever fully independent of commercial enterprise budgets and economic cycles.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tier-list -->
+</section>
+
+
+<!-- ─── DOCUMENT FOOTER ────────────────────────────────────── -->
+<footer class="doc-footer">
+  <div class="footer-left">
+    Global Cybersecurity &amp; AI Security Superwave — Part I of II<br>
+    §00 Executive Mission · §01 Digital Civilization · §02 AI Revolution · §03 Value Chain (Tiers 1–7)<br>
+    Institutional Research Consortium · June 2025
+  </div>
+  <div class="footer-right">
+    Part II →<br>
+    Bottleneck Owners · ASML Framework<br>
+    India Ecosystem · Final Verdicts &amp; Tables
+  </div>
+</footer>
+
+</main><!-- /main -->
+</div><!-- /layout -->
+
+<script>
+/* ─── SIDEBAR ACTIVE STATE ─────────────────────── */
+const allSections = document.querySelectorAll('section[id], .tier-card[id]');
+const allNavLinks = document.querySelectorAll('.sb-link');
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      allNavLinks.forEach(link => {
+        link.classList.remove('is-active');
+        if (link.getAttribute('href') === '#' + id) {
+          link.classList.add('is-active');
+        }
+      });
+    }
+  });
+}, { rootMargin: '-25% 0px -65% 0px' });
+
+allSections.forEach(s => sectionObserver.observe(s));
+
+/* ─── TIER TOGGLE ──────────────────────────────── */
+function toggleTier(header) {
+  const body   = header.nextElementSibling;
+  const toggle = header.querySelector('.tier-toggle');
+  const isOpen = body.classList.contains('is-open');
+  body.classList.toggle('is-open', !isOpen);
+  toggle.classList.toggle('open', !isOpen);
+  toggle.textContent = isOpen ? '+' : '×';
+}
+
+/* ─── FADE-IN ON SCROLL ────────────────────────── */
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('in-view'), i * 60);
+      fadeObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+
+/* ─── SPEND BAR ANIMATION ──────────────────────── */
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.spend-fill').forEach(bar => {
+        const target = bar.style.width;
+        bar.style.width = '0%';
+        requestAnimationFrame(() => {
+          setTimeout(() => { bar.style.width = target; }, 80);
+        });
+      });
+      barObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.spend-block').forEach(b => barObserver.observe(b));
+</script>
+</body>
+</html>
